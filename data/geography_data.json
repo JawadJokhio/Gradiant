@@ -1,0 +1,3596 @@
+{
+  "provinces": [
+    {
+      "id": "balochistan",
+      "name": "Balochistan",
+      "coordinates": [
+        [
+          24.5,
+          61.0
+        ],
+        [
+          32.0,
+          70.0
+        ]
+      ],
+      "facts": "The largest province by area, rich in mineral resources.",
+      "color": "#f87171"
+    },
+    {
+      "id": "punjab",
+      "name": "Punjab",
+      "coordinates": [
+        [
+          28.0,
+          70.0
+        ],
+        [
+          34.0,
+          75.0
+        ]
+      ],
+      "facts": "The most populous province, known as the 'Land of Five Rivers'.",
+      "color": "#fbbf24"
+    },
+    {
+      "id": "sindh",
+      "name": "Sindh",
+      "coordinates": [
+        [
+          23.5,
+          66.5
+        ],
+        [
+          28.5,
+          71.0
+        ]
+      ],
+      "facts": "Home to the ancient Indus Valley Civilization and Karachi, the financial hub.",
+      "color": "#34d399"
+    },
+    {
+      "id": "kpk",
+      "name": "Khyber Pakhtunkhwa",
+      "coordinates": [
+        [
+          31.0,
+          69.5
+        ],
+        [
+          37.0,
+          74.0
+        ]
+      ],
+      "facts": "Known for its mountainous terrain and the historic Khyber Pass.",
+      "color": "#60a5fa"
+    },
+    {
+      "id": "gb",
+      "name": "Gilgit-Baltistan",
+      "coordinates": [
+        [
+          34.5,
+          72.5
+        ],
+        [
+          37.5,
+          77.5
+        ]
+      ],
+      "facts": "Host to five of the world's 14 'eight-thousanders', including K2.",
+      "color": "#a78bfa"
+    },
+    {
+      "id": "ajk",
+      "name": "Azad Jammu and Kashmir",
+      "coordinates": [
+        [
+          33.0,
+          73.5
+        ],
+        [
+          35.5,
+          75.5
+        ]
+      ],
+      "facts": "A self-governing region known for its breathtaking natural beauty.",
+      "color": "#f472b6"
+    }
+  ],
+  "crops": [
+    {
+      "id": "wheat",
+      "name": "Wheat",
+      "regions": [
+        {
+          "name": "Punjab Core",
+          "coordinates": [
+            [
+              30.0,
+              71.0
+            ],
+            [
+              32.0,
+              74.5
+            ]
+          ],
+          "description": "Primary wheat belt of Punjab."
+        },
+        {
+          "name": "Upper Sindh",
+          "coordinates": [
+            [
+              26.5,
+              68.0
+            ],
+            [
+              28.0,
+              69.5
+            ]
+          ],
+          "description": "High-yield districts like Sukkur and Ghotki."
+        },
+        {
+          "name": "Peshawar Valley",
+          "coordinates": [
+            [
+              33.8,
+              71.3
+            ],
+            [
+              34.5,
+              72.3
+            ]
+          ],
+          "description": "Fertile plains of KP."
+        }
+      ],
+      "color": "#fbbf24",
+      "facts": {
+        "Summary": "Backbone of national food security, grown in Rabi season.",
+        "Climate": "Cool season (10-25°C), requires dry weather for ripening.",
+        "Soil": "Fertile Alluvial or Loamy soil of Indus Plains.",
+        "Water": "20-21 inches per season, primarily irrigation-dependent.",
+        "Irrigation": "Linked to extensive canal networks and barrages."
+      },
+      "source": "FAO Pakistan / Agriculture Census 2023"
+    },
+    {
+      "id": "rice",
+      "name": "Rice",
+      "regions": [
+        {
+          "name": "Kalar Tract",
+          "coordinates": [
+            [
+              31.5,
+              73.5
+            ],
+            [
+              32.5,
+              74.8
+            ]
+          ],
+          "description": "Famous Basmati rice belt between Ravi and Chenab rivers."
+        },
+        {
+          "name": "Upper Sindh Rice Belt",
+          "coordinates": [
+            [
+              27.0,
+              67.5
+            ],
+            [
+              28.2,
+              68.8
+            ]
+          ],
+          "description": "Larkana, Jacobabad, and Shikarpur districts."
+        },
+        {
+          "name": "Nasirabad Division",
+          "coordinates": [
+            [
+              28.0,
+              67.8
+            ],
+            [
+              28.8,
+              68.5
+            ]
+          ],
+          "description": "Balochistan's primary rice area."
+        }
+      ],
+      "color": "#86efac",
+      "facts": {
+        "Summary": "Major Kharif cash crop and key export (Basmati).",
+        "Climate": "Tropical (20-35°C), high humidity.",
+        "Soil": "Heavy clay loam or silt loam with high water retention.",
+        "Water": "Water-intensive, roots must remain submerged (40+ inches rainfall equivalent).",
+        "Irrigation": "Heavily dependent on perennial canal water."
+      },
+      "source": "Rice Research Institute (RRI) / SPAM Maps"
+    },
+    {
+      "id": "maize",
+      "name": "Maize",
+      "regions": [
+        {
+          "name": "Central KP Belt",
+          "coordinates": [
+            [
+              34.0,
+              71.8
+            ],
+            [
+              34.5,
+              72.5
+            ]
+          ],
+          "description": "Mardan, Swabi, and Peshawar districts."
+        },
+        {
+          "name": "East Punjab",
+          "coordinates": [
+            [
+              30.5,
+              73.0
+            ],
+            [
+              31.5,
+              74.5
+            ]
+          ],
+          "description": "Sahiwal and Okara districts."
+        }
+      ],
+      "color": "#fde047",
+      "facts": {
+        "Summary": "Important for food, livestock feed, and industrial starch.",
+        "Climate": "Warm weather, sensitive to frost and drought.",
+        "Soil": "Well-drained Fertile Silt Loam.",
+        "Water": "22-27 inches, requires regular and consistent irrigation.",
+        "Season": "Both Spring (Jan-Feb) and Autumn (May-Aug) crops."
+      },
+      "source": "FAO / Pakistan Agricultural Research Council (PARC)"
+    },
+    {
+      "id": "sugarcane",
+      "name": "Sugarcane",
+      "regions": [
+        {
+          "name": "Central Punjab",
+          "coordinates": [
+            [
+              30.0,
+              72.0
+            ],
+            [
+              31.5,
+              73.8
+            ]
+          ],
+          "description": "Faisalabad, Sargodha, and Jhang."
+        },
+        {
+          "name": "Sindh Sugarcane Belt",
+          "coordinates": [
+            [
+              24.5,
+              68.0
+            ],
+            [
+              25.8,
+              69.2
+            ]
+          ],
+          "description": "Badin, Thatta, and Hyderabad."
+        },
+        {
+          "name": "Peshawar-Mardan Plain",
+          "coordinates": [
+            [
+              34.0,
+              71.5
+            ],
+            [
+              34.3,
+              72.3
+            ]
+          ],
+          "description": "Major KP production area."
+        }
+      ],
+      "color": "#166534",
+      "facts": {
+        "Summary": "High-value cash crop for the processing/sugar industry.",
+        "Climate": "Tropical, optimal growth at 30°C, frost-sensitive.",
+        "Soil": "Deep Alluvial soils with good drainage.",
+        "Water": "High water requirement, 10-15 month long growing cycle.",
+        "Season": "Perennial Kharif (Spring or Autumn sowing)."
+      },
+      "source": "Pakistan Sugar Mills Association / FAO"
+    },
+    {
+      "id": "cotton",
+      "name": "Cotton Hubs",
+      "regions": [
+        {
+          "name": "South Punjab Triangle",
+          "coordinates": [
+            [
+              28.5,
+              70.0
+            ],
+            [
+              30.5,
+              72.0
+            ]
+          ],
+          "description": "Multan, Bahawalpur, and R.Y. Khan - 70% of national output."
+        },
+        {
+          "name": "Lower Sindh Belt",
+          "coordinates": [
+            [
+              25.5,
+              68.0
+            ],
+            [
+              26.5,
+              69.5
+            ]
+          ],
+          "description": "Sanghar and Hyderabad districts."
+        }
+      ],
+      "color": "#f8fafc",
+      "facts": {
+        "Summary": "Silver fiber of Pakistan, major foreign exchange earner.",
+        "Climate": "Long hot summer, harvesting in dry autumn.",
+        "Role": "Backbone of the textile industry."
+      }
+    },
+    {
+      "id": "pulses",
+      "name": "Pulses (Legumes)",
+      "regions": [
+        {
+          "name": "Thal Desert Pulse Belt",
+          "coordinates": [
+            [
+              31.0,
+              71.0
+            ],
+            [
+              32.5,
+              72.0
+            ]
+          ],
+          "description": "Bhakkar and Layyah - major chickpea production."
+        }
+      ],
+      "color": "#fbbf24",
+      "facts": {
+        "Summary": "Essential source of protein for the local population.",
+        "Soil": "Grown on sandy soils with minimal water.",
+        "Types": "Gram (Chickpea), Moong, Mash, Masoor."
+      }
+    },
+    {
+      "id": "oilseeds",
+      "name": "Oilseeds",
+      "regions": [
+        {
+          "name": "Potohar Belt",
+          "coordinates": [
+            [
+              32.5,
+              72.0
+            ],
+            [
+              34.0,
+              73.5
+            ]
+          ],
+          "description": "Sunflower and Mustard in rain-fed regions."
+        },
+        {
+          "name": "Lower Indus Plain",
+          "coordinates": [
+            [
+              24.5,
+              68.0
+            ],
+            [
+              26.0,
+              69.0
+            ]
+          ],
+          "description": "Sunflower hubs in Sindh."
+        }
+      ],
+      "color": "#facc15",
+      "facts": {
+        "Summary": "Crops for edible oil (Sunflower, Mustard, Canola).",
+        "Economic": "Crucial to reduce oil import dependency."
+      }
+    }
+  ],
+  "livestock": [
+    {
+      "id": "buffalo_farming",
+      "name": "Buffalo Farming Regions",
+      "regions": [
+        {
+          "name": "Central Punjab Plain",
+          "coordinates": [
+            [
+              30.5,
+              72.5
+            ],
+            [
+              32.5,
+              74.5
+            ]
+          ],
+          "description": "High concentration dairy production near urban centers."
+        },
+        {
+          "name": "Canal Colonies",
+          "coordinates": [
+            [
+              30.0,
+              71.0
+            ],
+            [
+              32.0,
+              74.0
+            ]
+          ],
+          "description": "Irrigated districts in Punjab."
+        }
+      ],
+      "color": "#4b5563",
+      "facts": "Punjab is the main buffalo breeding province. Specific breeds include Nili-Ravi and Kundi. Key districts: Sahiwal, Okara, Faisalabad."
+    },
+    {
+      "id": "sheep_goat_farming",
+      "name": "Sheep and Goat Farming",
+      "regions": [
+        {
+          "name": "Balochistan Uplands",
+          "coordinates": [
+            [
+              28.0,
+              65.0
+            ],
+            [
+              31.0,
+              68.0
+            ]
+          ],
+          "description": "Nomadic herding in rugged terrains."
+        },
+        {
+          "name": "Tharparkar (Sindh)",
+          "coordinates": [
+            [
+              24.5,
+              69.5
+            ],
+            [
+              25.5,
+              71.0
+            ]
+          ],
+          "description": "Thari breeds famous for endurance."
+        },
+        {
+          "name": "Thal & Cholistan Deserts",
+          "coordinates": [
+            [
+              27.5,
+              70.0
+            ],
+            [
+              32.0,
+              72.0
+            ]
+          ],
+          "description": "Traditional desert grazing."
+        }
+      ],
+      "color": "#9ca3af",
+      "facts": "Mainly found in arid and semi-arid regions. Sheep are raised for wool and meat; goats are 'the poor man's cow' providing milk and meat."
+    }
+  ],
+  "fruits": [
+    {
+      "id": "mango",
+      "name": "Mango",
+      "regions": [
+        {
+          "name": "Multan Belt",
+          "coordinates": [
+            [
+              29.8,
+              71.2
+            ],
+            [
+              30.5,
+              72.0
+            ]
+          ],
+          "description": "Chaunsa and Anwar Ratol hub."
+        },
+        {
+          "name": "Mirpurkhas Belt",
+          "coordinates": [
+            [
+              25.3,
+              68.8
+            ],
+            [
+              26.0,
+              69.5
+            ]
+          ],
+          "description": "Famous Sindhri mango orchards."
+        }
+      ],
+      "color": "#f97316",
+      "facts": {
+        "Summary": "King of Fruits, major export earner.",
+        "Climate": "Warm, arid climates; heat-loving (30°C+).",
+        "Soil": "Deep, well-drained Alluvial loam.",
+        "Water": "Moderate during flowering, heavy during fruiting.",
+        "Season": "Harvested from May to August."
+      },
+      "source": "PHDEC / Mango Research Institute Multan"
+    },
+    {
+      "id": "citrus",
+      "name": "Citrus (Kinnow)",
+      "regions": [
+        {
+          "name": "Sargodha-Bhalwal Belt",
+          "coordinates": [
+            [
+              32.0,
+              72.5
+            ],
+            [
+              32.6,
+              73.2
+            ]
+          ],
+          "description": "95% of world's Kinnow production hub."
+        }
+      ],
+      "color": "#fb923c",
+      "facts": {
+        "Summary": "World-leading producer of the Kinnow variety.",
+        "Climate": "Winter chilling required for color and sugar.",
+        "Soil": "Medium to light Texture Sandy Loam.",
+        "Water": "Sensitive to waterlogging, needs regular irrigation.",
+        "Season": "Harvested from December to February."
+      },
+      "source": "Pakistan Horticulture Development & Export Company"
+    },
+    {
+      "id": "apple",
+      "name": "Apple",
+      "regions": [
+        {
+          "name": "Quetta-Ziarat Belt",
+          "coordinates": [
+            [
+              30.0,
+              66.5
+            ],
+            [
+              30.8,
+              67.8
+            ]
+          ],
+          "description": "High-altitude orchards in Balochistan."
+        },
+        {
+          "name": "GB Valleys",
+          "coordinates": [
+            [
+              35.5,
+              74.0
+            ],
+            [
+              36.5,
+              75.5
+            ]
+          ],
+          "description": "Organic apple production in Northern valleys."
+        }
+      ],
+      "color": "#ef4444",
+      "facts": {
+        "Summary": "Temperate fruit grown in high-altitude regions.",
+        "Climate": "Cool climate, requires significant winter chilling.",
+        "Soil": "Loamy soil with rich organic matter.",
+        "Water": "Moderate, often snow-melt dependent.",
+        "Season": "Harvested in Autumn (Sept-Oct)."
+      },
+      "source": "PHDEC / Balochistan Horticulture Dept"
+    }
+  ],
+  "forests": [
+    {
+      "id": "changa_manga",
+      "name": "Changa Manga Forest",
+      "regions": [
+        {
+          "name": "Kasur District",
+          "coordinates": [
+            [
+              31.0,
+              73.9
+            ],
+            [
+              31.2,
+              74.1
+            ]
+          ],
+          "description": "One of the largest man-made forests in the world."
+        }
+      ],
+      "color": "#166534",
+      "facts": {
+        "Type": "Irrigated Forest",
+        "Established": "1866",
+        "Significance": "Man-made forest originally developed to provide fuel-wood for locomotives during the British Raj."
+      }
+    },
+    {
+      "id": "alpine",
+      "name": "Alpine Forests",
+      "regions": [
+        {
+          "name": "High Northern Zone",
+          "coordinates": [
+            [
+              35.5,
+              74.0
+            ],
+            [
+              37.0,
+              76.5
+            ]
+          ],
+          "description": "Highest altitude tree lines in GB."
+        }
+      ],
+      "color": "#dcfce7",
+      "facts": {
+        "Climate": "Freezing winters, short summers.",
+        "Altitude": "3500m to 4500m.",
+        "Species": "Birch, Juniper, and various shrubs.",
+        "Role": "Crucial for high-altitude biodiversity and soil stability."
+      }
+    },
+    {
+      "id": "coniferous",
+      "name": "Coniferous Forests",
+      "regions": [
+        {
+          "name": "Swat-Kaghan Ranges",
+          "coordinates": [
+            [
+              34.5,
+              72.5
+            ],
+            [
+              35.5,
+              73.8
+            ]
+          ],
+          "description": "Main timber forests of the North."
+        }
+      ],
+      "color": "#064e3b",
+      "facts": {
+        "Climate": "Temperate, heavy winter snowfall.",
+        "Altitude": "1000m to 3500m.",
+        "Species": "Deodar (National Tree), Pine, Cedar, Spruce.",
+        "Role": "Main source of timber and massive carbon sink."
+      }
+    },
+    {
+      "id": "subtropical_pine",
+      "name": "Subtropical Pine Forests",
+      "regions": [
+        {
+          "name": "Murree Hills",
+          "coordinates": [
+            [
+              33.75,
+              73.2
+            ],
+            [
+              33.95,
+              73.5
+            ]
+          ],
+          "description": "Natural Chir Pine zone in Murree tehsil."
+        },
+        {
+          "name": "Abbottabad Foothills",
+          "coordinates": [
+            [
+              34.05,
+              73.15
+            ],
+            [
+              34.2,
+              73.35
+            ]
+          ],
+          "description": "Subtropical chir pine zone of Abbottabad."
+        }
+      ],
+      "color": "#65a30d",
+      "facts": {
+        "Altitude": "900m to 1700m.",
+        "Species": "Chir Pine (Pinus roxburghii).",
+        "Climate": "Dry with hot summers and cold winters.",
+        "Soil": "Sandy, well-drained, slightly acidic."
+      }
+    },
+    {
+      "id": "tropical_dry",
+      "name": "Tropical Dry Forests",
+      "regions": [
+        {
+          "name": "Punjab Thorn Plains",
+          "coordinates": [
+            [
+              32.2,
+              73.5
+            ],
+            [
+              33.0,
+              74.8
+            ]
+          ],
+          "description": "Sialkot, Gujrat, and Jhelum plains."
+        },
+        {
+          "name": "Potohar Foothills",
+          "coordinates": [
+            [
+              33.4,
+              72.8
+            ],
+            [
+              33.8,
+              73.1
+            ]
+          ],
+          "description": "Dry deciduous forests in Rawalpindi foothills."
+        }
+      ],
+      "color": "#a3e635",
+      "facts": {
+        "Altitude": "Below 900m.",
+        "Species": "Acacia, Prosopis (Thorn), Babul, Sheesham.",
+        "Climate": "Hot, low rainfall (less than 70cm annually).",
+        "Role": "Xerophytic vegetation adapted to water scarcity."
+      }
+    },
+    {
+      "id": "riverine",
+      "name": "Riverine (Bela) Forests",
+      "regions": [
+        {
+          "name": "Indus River Banks",
+          "coordinates": [
+            [
+              25.0,
+              68.2
+            ],
+            [
+              28.5,
+              70.0
+            ]
+          ],
+          "description": "Narrow belts along the Indus River floodplains."
+        }
+      ],
+      "color": "#22c55e",
+      "facts": {
+        "Climate": "Dependent on river flood patterns.",
+        "Location": "Indus floodplains in Sindh and Punjab.",
+        "Species": "Babul (Acacia), Sheesham (Dalbergia), Bahan.",
+        "Role": "Flood mitigation and protecting riverbanks from erosion."
+      }
+    },
+    {
+      "id": "mangroves",
+      "name": "Mangrove Forests",
+      "regions": [
+        {
+          "name": "Indus Delta",
+          "coordinates": [
+            [
+              23.8,
+              67.2
+            ],
+            [
+              24.5,
+              68.5
+            ]
+          ],
+          "description": "Salt-tolerant coastal ecosystems."
+        }
+      ],
+      "color": "#0f766e",
+      "facts": {
+        "Climate": "Coastal, saline water exposure.",
+        "Location": "Indus Delta (Sindh) and Makran coast.",
+        "Species": "Avicennia marina (Grey Mangrove).",
+        "Role": "Coastal defense against cyclones and fish nurseries."
+      }
+    }
+  ],
+  "rain_systems": [
+    {
+      "id": "monsoon",
+      "name": "Monsoon System",
+      "regions": [
+        {
+          "name": "Heavy Intensity Zone (Northern)",
+          "coordinates": [
+            [
+              33.0,
+              71.5
+            ],
+            [
+              35.0,
+              74.5
+            ]
+          ],
+          "intensity": "Heavy",
+          "description": "Footshills of Northern Mountains (Murree, Kaghan) receiving over 1000mm."
+        },
+        {
+          "name": "Moderate Intensity Zone (Central)",
+          "coordinates": [
+            [
+              31.0,
+              72.0
+            ],
+            [
+              33.0,
+              74.5
+            ]
+          ],
+          "intensity": "Moderate",
+          "description": "Central Punjab plains receiving 500mm-1000mm."
+        },
+        {
+          "name": "Light Intensity Zone (South)",
+          "coordinates": [
+            [
+              24.0,
+              67.0
+            ],
+            [
+              31.0,
+              71.0
+            ]
+          ],
+          "intensity": "Light",
+          "description": "Southern Punjab and Sindh receiving less than 500mm."
+        }
+      ],
+      "color": "#3b82f6",
+      "facts": {
+        "Season": "Summer (June to September)",
+        "Origin": "Bay of Bengal and Arabian Sea",
+        "Importance": "Crucial for Kharif crops like rice and cotton."
+      }
+    },
+    {
+      "id": "western_disturbances",
+      "name": "Western Disturbances",
+      "regions": [
+        {
+          "name": "Heavy Snow/Rain Zone (Mountainous)",
+          "coordinates": [
+            [
+              34.0,
+              71.0
+            ],
+            [
+              37.0,
+              74.0
+            ]
+          ],
+          "intensity": "Heavy",
+          "description": "High altitude northern and western mountains."
+        },
+        {
+          "name": "Moderate Rain Zone (Plateau)",
+          "coordinates": [
+            [
+              28.0,
+              64.0
+            ],
+            [
+              31.0,
+              68.0
+            ]
+          ],
+          "intensity": "Moderate",
+          "description": "Balochistan Plateau and surroundings."
+        }
+      ],
+      "color": "#60a5fa",
+      "facts": {
+        "Season": "Winter (December to March)",
+        "Origin": "Mediterranean Region",
+        "Importance": "Vital for Rabi crops like wheat."
+      }
+    },
+    {
+      "id": "convectional_rain",
+      "name": "Convectional Rainfall",
+      "regions": [
+        {
+          "name": "High Frequency Zone",
+          "coordinates": [
+            [
+              31.0,
+              71.0
+            ],
+            [
+              34.5,
+              74.5
+            ]
+          ],
+          "intensity": "Variable",
+          "description": "Northern and Central plains experiencing local heating."
+        }
+      ],
+      "color": "#93c5fd",
+      "facts": {
+        "Season": "Pre-monsoon (April-June) and Post-monsoon",
+        "Mechanism": "Intense land heating leads to rising air and thunder clouds.",
+        "Nature": "Short, intense bursts often accompanied by hail."
+      }
+    }
+  ],
+  "landforms": [
+    {
+      "id": "doabs",
+      "name": "Doabs of Punjab",
+      "regions": [
+        {
+          "name": "Sind Sagar Doab",
+          "coordinates": [
+            [
+              30.0,
+              70.5
+            ],
+            [
+              33.5,
+              72.5
+            ]
+          ],
+          "description": "Land between Indus and Jhelum rivers."
+        },
+        {
+          "name": "Chaj (Jech) Doab",
+          "coordinates": [
+            [
+              31.5,
+              72.5
+            ],
+            [
+              33.0,
+              73.5
+            ]
+          ],
+          "description": "Land between Jhelum and Chenab rivers."
+        },
+        {
+          "name": "Rechna Doab",
+          "coordinates": [
+            [
+              30.5,
+              73.0
+            ],
+            [
+              32.5,
+              74.5
+            ]
+          ],
+          "description": "Land between Chenab and Ravi rivers."
+        },
+        {
+          "name": "Bari Doab",
+          "coordinates": [
+            [
+              29.5,
+              72.0
+            ],
+            [
+              31.5,
+              74.0
+            ]
+          ],
+          "description": "Land between Ravi and Sutlej rivers."
+        }
+      ],
+      "color": "#84cc16",
+      "facts": "Fertile tracts of land between major rivers, heart of Pakistan's agriculture."
+    },
+    {
+      "id": "plains",
+      "name": "Plains & Deltas",
+      "regions": [
+        {
+          "name": "Piedmont Plains",
+          "coordinates": [
+            [
+              28.5,
+              69.5
+            ],
+            [
+              31.5,
+              70.5
+            ]
+          ],
+          "description": "Plains at the foothills of Sulaiman and Kirthar ranges (Derajat)."
+        },
+        {
+          "name": "Indus Tidal Delta",
+          "coordinates": [
+            [
+              23.5,
+              67.0
+            ],
+            [
+              25.0,
+              68.5
+            ]
+          ],
+          "description": "Triangular landform where Indus meets the Arabian Sea."
+        },
+        {
+          "name": "Active Flood Plains",
+          "coordinates": [
+            [
+              25.0,
+              68.5
+            ],
+            [
+              28.5,
+              70.5
+            ]
+          ],
+          "description": "Narrow strip along rivers flooded almost every year."
+        }
+      ],
+      "color": "#a8a29e",
+      "facts": "Diverse physical features essential for geography studies."
+    }
+  ],
+  "ports": [
+    {
+      "id": "karachi",
+      "name": "Karachi Port",
+      "coordinate": [
+        24.84,
+        66.97
+      ],
+      "type": "sea",
+      "facts": "Pakistan's premier commercial gateway and oldest port."
+    },
+    {
+      "id": "qasim",
+      "name": "Port Qasim",
+      "coordinate": [
+        24.77,
+        67.33
+      ],
+      "type": "sea",
+      "facts": "Pakistan's second busiest port, handles industrial cargo."
+    },
+    {
+      "id": "gwadar",
+      "name": "Gwadar Port",
+      "coordinate": [
+        25.11,
+        62.34
+      ],
+      "type": "sea",
+      "facts": "Strategic deep-sea port centerpiece of CPEC."
+    },
+    {
+      "id": "ormara",
+      "name": "Port of Ormara",
+      "coordinate": [
+        25.21,
+        64.63
+      ],
+      "type": "sea",
+      "facts": "Naval and commercial port in Balochistan."
+    },
+    {
+      "id": "pasni",
+      "name": "Port of Pasni",
+      "coordinate": [
+        25.26,
+        63.47
+      ],
+      "type": "sea",
+      "facts": "Important fishing and commercial hub in Balochistan."
+    },
+    {
+      "id": "jiwani",
+      "name": "Port of Jiwani",
+      "coordinate": [
+        25.05,
+        61.74
+      ],
+      "type": "sea",
+      "facts": "Strategic port near the Iranian border."
+    },
+    {
+      "id": "keti",
+      "name": "Keti Bandar",
+      "coordinate": [
+        24.15,
+        67.45
+      ],
+      "type": "sea",
+      "facts": "Historical port city on the Indus Delta."
+    },
+    {
+      "id": "lahore_dp",
+      "name": "Lahore Dry Port",
+      "coordinate": [
+        31.56,
+        74.37
+      ],
+      "type": "dry",
+      "facts": "First dry port of Pakistan, established in 1973."
+    },
+    {
+      "id": "sialkot_dp",
+      "name": "Sialkot Dry Port",
+      "coordinate": [
+        32.50,
+        74.53
+      ],
+      "type": "dry",
+      "facts": "Private sector dry port supporting the export industry."
+    },
+    {
+      "id": "peshawar_dp",
+      "name": "Peshawar Dry Port",
+      "coordinate": [
+        34.00,
+        71.38
+      ],
+      "type": "dry",
+      "facts": "Key inland port for transit trade with Afghanistan."
+    },
+    {
+      "id": "quetta_dp",
+      "name": "Quetta Dry Port",
+      "coordinate": [
+        30.19,
+        67.00
+      ],
+      "type": "dry",
+      "facts": "Inland gateway for trade via Balochistan."
+    },
+    {
+      "id": "multan_dp",
+      "name": "Multan Dry Port",
+      "coordinate": [
+        30.09,
+        71.35
+      ],
+      "type": "dry",
+      "facts": "Serving the agricultural and industrial hub of South Punjab."
+    },
+    {
+      "id": "faisalabad_dp",
+      "name": "Faisalabad Dry Port",
+      "coordinate": [
+        31.43,
+        73.11
+      ],
+      "type": "dry",
+      "facts": "Supports the massive textile export industry."
+    },
+    {
+      "id": "sust_dp",
+      "name": "Sust Dry Port",
+      "coordinate": [
+        36.69,
+        74.83
+      ],
+      "type": "dry",
+      "facts": "Highest dry port, gateway for trade with China."
+    }
+  ],
+  "rivers": [
+    {
+      "id": "indus",
+      "name": "Indus River",
+      "path": [
+        [
+          36.95,
+          75.0
+        ],
+        [
+          35.9,
+          74.3
+        ],
+        [
+          35.2,
+          73.0
+        ],
+        [
+          34.2,
+          72.6
+        ],
+        [
+          33.9,
+          72.2
+        ],
+        [
+          33.1,
+          71.6
+        ],
+        [
+          32.4,
+          71.4
+        ],
+        [
+          31.5,
+          70.9
+        ],
+        [
+          29.0,
+          70.0
+        ],
+        [
+          28.2,
+          69.4
+        ],
+        [
+          27.3,
+          68.7
+        ],
+        [
+          26.2,
+          68.1
+        ],
+        [
+          25.4,
+          68.3
+        ],
+        [
+          24.8,
+          67.8
+        ],
+        [
+          24.0,
+          67.5
+        ]
+      ],
+      "color": "#3b82f6",
+      "facts": "Lifeline of Pakistan, flowing from the Himalayas (near Mansarovar) through the entire length of the country to the Arabian Sea."
+    },
+    {
+      "id": "jhelum",
+      "name": "Jhelum River",
+      "path": [
+        [
+          34.1,
+          73.8
+        ],
+        [
+          33.7,
+          73.6
+        ],
+        [
+          33.2,
+          73.7
+        ],
+        [
+          32.9,
+          73.7
+        ],
+        [
+          32.5,
+          73.1
+        ],
+        [
+          31.2,
+          72.1
+        ]
+      ],
+      "color": "#60a5fa",
+      "facts": "Westernmost of the five Punjab rivers, known for Mangla Dam and its confluence with Chenab at Trimmu."
+    },
+    {
+      "id": "chenab",
+      "name": "Chenab River",
+      "path": [
+        [
+          33.2,
+          75.5
+        ],
+        [
+          32.8,
+          74.5
+        ],
+        [
+          32.5,
+          74.1
+        ],
+        [
+          32.1,
+          73.4
+        ],
+        [
+          31.1,
+          72.1
+        ],
+        [
+          29.4,
+          71.0
+        ]
+      ],
+      "color": "#2563eb",
+      "facts": "Largest of the Punjab rivers by volume, merges with Jhelum at Trimmu and later forms the Panjnad."
+    },
+    {
+      "id": "ravi",
+      "name": "Ravi River",
+      "path": [
+        [
+          32.6,
+          75.2
+        ],
+        [
+          32.2,
+          74.8
+        ],
+        [
+          31.6,
+          74.4
+        ],
+        [
+          30.9,
+          73.5
+        ],
+        [
+          30.4,
+          72.2
+        ],
+        [
+          30.1,
+          71.8
+        ]
+      ],
+      "color": "#1d4ed8",
+      "facts": "Flows past Lahore, essential for central Punjab's irrigation; merges with Chenab below Sidhuai."
+    },
+    {
+      "id": "sutlej",
+      "name": "Sutlej River",
+      "path": [
+        [
+          31.1,
+          74.6
+        ],
+        [
+          30.7,
+          74.1
+        ],
+        [
+          30.2,
+          73.6
+        ],
+        [
+          29.7,
+          72.5
+        ],
+        [
+          29.1,
+          71.5
+        ],
+        [
+          29.0,
+          71.0
+        ]
+      ],
+      "color": "#1e40af",
+      "facts": "Longest of the Punjab rivers, enters from India near Ganda Singh Wala and merges with Chenab to form Panjnad."
+    },
+    {
+      "id": "kabul",
+      "name": "Kabul River",
+      "path": [
+        [
+          34.5,
+          69.1
+        ],
+        [
+          34.3,
+          70.4
+        ],
+        [
+          34.1,
+          71.2
+        ],
+        [
+          34.2,
+          71.8
+        ],
+        [
+          33.9,
+          72.2
+        ]
+      ],
+      "color": "#60a5fa",
+      "facts": "Major western tributary of the Indus, originating in Afghanistan and entering Indus at Attock."
+    },
+    {
+      "id": "swat",
+      "name": "Swat River",
+      "path": [
+        [
+          35.8,
+          72.6
+        ],
+        [
+          35.0,
+          72.4
+        ],
+        [
+          34.6,
+          71.9
+        ],
+        [
+          34.1,
+          71.7
+        ]
+      ],
+      "color": "#93c5fd",
+      "facts": "Starts from Ushu and Utran glaceries, flows through Swat Valley, and joins Kabul River near Nisatta."
+    },
+    {
+      "id": "kurram",
+      "name": "Kurram River",
+      "path": [
+        [
+          33.9,
+          69.8
+        ],
+        [
+          33.4,
+          70.2
+        ],
+        [
+          33.0,
+          70.6
+        ],
+        [
+          32.6,
+          71.3
+        ]
+      ],
+      "color": "#3b82f6",
+      "facts": "A key western river flowing through Kurram Agency and Bannu, entering the Indus near Isa Khel."
+    },
+    {
+      "id": "gomal",
+      "name": "Gomal River",
+      "path": [
+        [
+          32.5,
+          69.0
+        ],
+        [
+          32.1,
+          70.0
+        ],
+        [
+          31.9,
+          70.5
+        ],
+        [
+          31.7,
+          70.9
+        ]
+      ],
+      "color": "#2563eb",
+      "facts": "Drains the Gomal Pass and South Waziristan; its water is stored in the Gomal Zam Dam for irrigation."
+    },
+    {
+      "id": "zhob",
+      "name": "Zhob River",
+      "path": [
+        [
+          30.6,
+          67.8
+        ],
+        [
+          31.2,
+          68.5
+        ],
+        [
+          31.8,
+          69.4
+        ],
+        [
+          32.1,
+          70.0
+        ]
+      ],
+      "color": "#60a5fa",
+      "facts": "Located in northern Balochistan, it flows into the Gomal River near Khajuri Kach."
+    },
+    {
+      "id": "hingol",
+      "name": "Hingol River",
+      "path": [
+        [
+          26.5,
+          65.5
+        ],
+        [
+          25.9,
+          65.4
+        ],
+        [
+          25.4,
+          65.5
+        ]
+      ],
+      "color": "#60a5fa",
+      "facts": "Longest river of Balochistan, famous for the Hingol National Park and the Makran coast."
+    },
+    {
+      "id": "dasht",
+      "name": "Dasht River",
+      "path": [
+        [
+          26.2,
+          63.2
+        ],
+        [
+          25.8,
+          62.7
+        ],
+        [
+          25.4,
+          62.1
+        ],
+        [
+          25.1,
+          61.7
+        ]
+      ],
+      "color": "#2563eb",
+      "facts": "Crucial for Kech and Gawadar districts, the Mirani Dam is built on this river."
+    }
+  ],
+  "barrages": [
+    {
+      "name": "Sukkur Barrage",
+      "coordinate": [
+        27.6806,
+        68.8453
+      ],
+      "river": "Indus",
+      "facts": "The pride of Pakistan's irrigation system, the largest barrage by canal output."
+    },
+    {
+      "name": "Kotri Barrage",
+      "coordinate": [
+        25.4422,
+        68.3167
+      ],
+      "river": "Indus",
+      "facts": "Also known as Ghulam Muhammad Barrage, serves lower Sindh."
+    },
+    {
+      "name": "Guddu Barrage",
+      "coordinate": [
+        28.4186,
+        69.7133
+      ],
+      "river": "Indus",
+      "facts": "Supplies water to northern Sindh and parts of Balochistan."
+    },
+    {
+      "name": "Taunsa Barrage",
+      "coordinate": [
+        30.5128,
+        70.8492
+      ],
+      "river": "Indus",
+      "facts": "Major barrage in Punjab supporting DG Khan and Muzaffargarh."
+    },
+    {
+      "name": "Chashma Barrage",
+      "coordinate": [
+        32.4339,
+        71.3789
+      ],
+      "river": "Indus",
+      "facts": "Integral for the Chashma-Jhelum link canal."
+    },
+    {
+      "name": "Jinnah Barrage",
+      "coordinate": [
+        32.9185,
+        71.5219
+      ],
+      "river": "Indus",
+      "facts": "Provides irrigation to the Thal desert region."
+    },
+    {
+      "name": "Trimmu Barrage",
+      "coordinate": [
+        31.1444,
+        72.1464
+      ],
+      "river": "Chenab",
+      "facts": "At the confluence of Jhelum and Chenab rivers."
+    },
+    {
+      "name": "Panjnad Barrage",
+      "coordinate": [
+        29.3917,
+        71.0444
+      ],
+      "river": "Panjnad",
+      "facts": "Where all five Punjab rivers finally unite before joining Indus."
+    },
+    {
+      "name": "Marala Headworks",
+      "coordinate": [
+        32.6733,
+        74.4639
+      ],
+      "river": "Chenab",
+      "facts": "A massive headworks near Sialkot providing water to major link canals."
+    },
+    {
+      "name": "Rasul Barrage",
+      "coordinate": [
+        32.6803,
+        73.5208
+      ],
+      "river": "Jhelum",
+      "facts": "Connects Jhelum and Chenab via the Rasul-Qadirabad link canal."
+    },
+    {
+      "name": "Khanki Headworks",
+      "coordinate": [
+        32.4081,
+        73.9669
+      ],
+      "river": "Chenab",
+      "facts": "One of the oldest headworks, recently upgraded."
+    },
+    {
+      "name": "Sidhnai Headworks",
+      "coordinate": [
+        30.5900,
+        72.0617
+      ],
+      "river": "Ravi",
+      "facts": "Irrigates the lower Bari Doab region."
+    },
+    {
+      "name": "Balloki Headworks",
+      "coordinate": [
+        31.2222,
+        73.8592
+      ],
+      "river": "Ravi",
+      "facts": "Crucial for the Balloki-Sulemanki link canal."
+    },
+    {
+      "name": "Sulemanki Headworks",
+      "coordinate": [
+        30.3775,
+        73.8667
+      ],
+      "river": "Sutlej",
+      "facts": "Supplies water to the Fordwah and Eastern Sadiqia canals."
+    },
+    {
+      "name": "Islam Barrage",
+      "coordinate": [
+        29.8264,
+        72.5492
+      ],
+      "river": "Sutlej",
+      "facts": "Serving the Bahawalpur region irrigation needs."
+    }
+  ],
+  "dams": [
+    {
+      "name": "Tarbela Dam",
+      "coordinate": [
+        34.15,
+        72.62
+      ],
+      "type": "large",
+      "facts": "Largest earth-filled dam in the world, on Indus River."
+    },
+    {
+      "name": "Mangla Dam",
+      "coordinate": [
+        33.15,
+        73.65
+      ],
+      "type": "large",
+      "facts": "Ninth largest dam globally, on Jhelum River."
+    },
+    {
+      "name": "Mirani Dam",
+      "coordinate": [
+        26.0,
+        62.5
+      ],
+      "type": "large",
+      "facts": "Large dam in Balochistan for irrigation and water supply."
+    },
+    {
+      "name": "Misriot Dam",
+      "coordinate": [
+        33.52,
+        73.01
+      ],
+      "type": "small",
+      "facts": "Small irrigation dam near Rawalpindi, Punjab."
+    },
+    {
+      "name": "Satpara Dam",
+      "coordinate": [
+        35.24,
+        75.63
+      ],
+      "type": "small",
+      "facts": "Medium-sized dam providing water and power to Skardu, GB."
+    },
+    {
+      "name": "Sabakzai Dam",
+      "coordinate": [
+        31.22,
+        69.17
+      ],
+      "type": "small",
+      "facts": "Small dam on Sawar Rud, Balochistan."
+    },
+    {
+      "name": "Akra Kaur Dam",
+      "coordinate": [
+        25.35,
+        62.33
+      ],
+      "type": "small",
+      "facts": "Primary water source for Gwadar, Balochistan."
+    },
+    {
+      "name": "Chashma Akhora Khel",
+      "coordinate": [
+        33.36,
+        71.08
+      ],
+      "type": "small",
+      "facts": "Small dam in District Karak, KPK."
+    },
+    {
+      "name": "Sarozai Dam",
+      "coordinate": [
+        33.42,
+        70.75
+      ],
+      "type": "small",
+      "facts": "Irrigation and water supply dam in District Hangu, KPK."
+    },
+    {
+      "name": "Darawat Dam",
+      "coordinate": [
+        25.93,
+        67.88
+      ],
+      "type": "small",
+      "facts": "Small dam across Nai Baran River, Sindh."
+    },
+    {
+      "name": "Dhok Talian Dam",
+      "coordinate": [
+        33.01,
+        72.82
+      ],
+      "type": "small",
+      "facts": "Small irrigation dam in District Chakwal, Punjab."
+    },
+    {
+      "name": "Tain Pura Dam",
+      "coordinate": [
+        33.05,
+        73.55
+      ],
+      "type": "small",
+      "facts": "Small dam providing irrigation in Tehsil Dina, Jhelum."
+    },
+    {
+      "name": "Shahpur Dam",
+      "coordinate": [
+        33.72,
+        72.71
+      ],
+      "type": "small",
+      "facts": "Important small dam for Rawalpindi/Attock irrigation."
+    }
+  ],
+  "industries": [
+    {
+      "id": "steel_mills",
+      "name": "Pakistan Steel Mills",
+      "locations": [
+        {
+          "name": "Pipri, Karachi",
+          "coordinate": [
+            24.81,
+            67.35
+          ]
+        }
+      ],
+      "facts": "Largest industrial complex in Pakistan, built with Soviet assistance."
+    },
+    {
+      "id": "fertilizer",
+      "name": "Fertilizer Plants",
+      "locations": [
+        {
+          "name": "FFC Sadiqabad",
+          "coordinate": [
+            28.3,
+            70.1
+          ]
+        },
+        {
+          "name": "Engro Daharki",
+          "coordinate": [
+            28.0,
+            69.7
+          ]
+        },
+        {
+          "name": "Pak-Arab Multan",
+          "coordinate": [
+            30.2,
+            71.5
+          ]
+        }
+      ],
+      "facts": "Vital for agriculture, primarily located near gas fields for raw material."
+    },
+    {
+      "id": "cement",
+      "name": "Cement Industry",
+      "locations": [
+        {
+          "name": "Lucky Cement Pezu",
+          "coordinate": [
+            32.3,
+            70.7
+          ]
+        },
+        {
+          "name": "D.G. Khan Cement",
+          "coordinate": [
+            30.0,
+            70.6
+          ]
+        },
+        {
+          "name": "Bestway Cement (Salt Range)",
+          "coordinate": [
+            32.7,
+            72.9
+          ]
+        }
+      ],
+      "facts": "Located near limestone and gypsum deposits in the Salt Range and Western Hills."
+    },
+    {
+      "id": "sugar_industry",
+      "name": "Sugar Industries",
+      "locations": [
+        {
+          "name": "Mardan Sugar Mill",
+          "coordinate": [
+            34.2,
+            72.0
+          ]
+        },
+        {
+          "name": "Jauharabad Sugar Mill",
+          "coordinate": [
+            32.3,
+            72.1
+          ]
+        }
+      ],
+      "facts": "Located in sugarcane growing belts of Punjab, Sindh, and KP."
+    },
+    {
+      "id": "cotton_textile",
+      "name": "Cotton Textile Industries",
+      "locations": [
+        {
+          "name": "Faisalabad Cluster",
+          "coordinate": [
+            31.4,
+            73.1
+          ]
+        },
+        {
+          "name": "Karachi SITE",
+          "coordinate": [
+            24.9,
+            67.0
+          ]
+        }
+      ],
+      "facts": "Pakistan's largest industrial sector, focused on spinning, weaving, and garments."
+    }
+  ],
+  "energy_pipelines": [
+    {
+      "name": "Sui-Karachi Gas Pipeline",
+      "path": [
+        [
+          28.6,
+          69.2
+        ],
+        [
+          27.7,
+          68.8
+        ],
+        [
+          25.4,
+          68.3
+        ],
+        [
+          24.9,
+          67.0
+        ]
+      ],
+      "color": "#ef4444",
+      "facts": "Transports natural gas from Sui field to Karachi hub."
+    },
+    {
+      "name": "Parco Oil Pipeline",
+      "path": [
+        [
+          24.8,
+          67.3
+        ],
+        [
+          25.4,
+          68.3
+        ],
+        [
+          28.4,
+          69.7
+        ],
+        [
+          30.1,
+          71.3
+        ]
+      ],
+      "color": "#10b981",
+      "facts": "White oil pipeline system from Karachi to Mahmood Kot (Multan)."
+    }
+  ],
+  "airports": [
+    {
+      "id": "intl_airports",
+      "name": "International Airports",
+      "locations": [
+        {
+          "name": "Jinnah Intl (KHI)",
+          "coordinate": [
+            24.9,
+            67.16
+          ]
+        },
+        {
+          "name": "Allama Iqbal Intl (LHE)",
+          "coordinate": [
+            31.52,
+            74.4
+          ]
+        },
+        {
+          "name": "Islamabad Intl (ISB)",
+          "coordinate": [
+            33.56,
+            72.82
+          ]
+        },
+        {
+          "name": "Bacha Khan Intl (PEW)",
+          "coordinate": [
+            33.99,
+            71.51
+          ]
+        },
+        {
+          "name": "Gwadar Intl (GWD)",
+          "coordinate": [
+            25.13,
+            62.32
+          ]
+        }
+      ],
+      "facts": "Major gateways for international trade and travel."
+    },
+    {
+      "id": "domestic_airports",
+      "name": "Domestic Airports",
+      "locations": [
+        {
+          "name": "Skardu (KDU)",
+          "coordinate": [
+            35.33,
+            75.54
+          ]
+        },
+        {
+          "name": "Gilgit (GIL)",
+          "coordinate": [
+            35.92,
+            74.33
+          ]
+        },
+        {
+          "name": "Quetta (UET)",
+          "coordinate": [
+            30.24,
+            66.94
+          ]
+        }
+      ],
+      "facts": "Crucial for connectivity in mountainous and remote regions."
+    }
+  ],
+  "population": [
+    {
+      "id": "dense_areas",
+      "name": "Densely Populated Areas",
+      "regions": [
+        {
+          "name": "Central Punjab",
+          "coordinates": [
+            [
+              31.0,
+              73.0
+            ],
+            [
+              32.5,
+              74.5
+            ]
+          ]
+        },
+        {
+          "name": "Karachi Metro",
+          "coordinates": [
+            [
+              24.7,
+              66.8
+            ],
+            [
+              25.1,
+              67.3
+            ]
+          ]
+        }
+      ],
+      "color": "#ef4444",
+      "facts": "Areas with over 600 persons per sq km, primarily urban/industrial centers."
+    },
+    {
+      "id": "sparse_areas",
+      "name": "Sparsely Populated Areas",
+      "regions": [
+        {
+          "name": "Western Balochistan",
+          "coordinates": [
+            [
+              25.0,
+              61.0
+            ],
+            [
+              30.0,
+              65.0
+            ]
+          ]
+        }
+      ],
+      "color": "#fef08a",
+      "facts": "Areas with less than 20 persons per sq km due to arid climate and rugged terrain."
+    }
+  ],
+  "minerals": [
+    {
+      "id": "limestone",
+      "name": "Limestone",
+      "locations": [
+        {
+          "name": "Punjab Salt Range",
+          "coordinate": [
+            32.6,
+            72.8
+          ],
+          "description": "Huge deposits in Chakwal and Mianwali."
+        },
+        {
+          "name": "Kirthar Range",
+          "coordinate": [
+            26.0,
+            67.5
+          ],
+          "description": "Vast resources in Sindh province."
+        },
+        {
+          "name": "Margalla Hills",
+          "coordinate": [
+            33.7,
+            72.9
+          ],
+          "description": "Major source for Northern Punjab."
+        },
+        {
+          "name": "Cherat Hills",
+          "coordinate": [
+            33.8,
+            71.8
+          ],
+          "description": "High-quality reserves in KP."
+        }
+      ],
+      "uses": "Chief raw material for Cement industries; also used in Glass, Paper, and Iron smelting.",
+      "significance": "Cornerstone of Pakistan's industrial economy, supporting the massive construction sector.",
+      "color": "#cbd5e1"
+    }
+  ],
+  "infrastructure": [
+    {
+      "name": "500kV Main Transmission Corridor",
+      "path": [
+        [
+          34.15,
+          72.6
+        ],
+        [
+          33.6,
+          73.1
+        ],
+        [
+          32.0,
+          72.7
+        ],
+        [
+          31.5,
+          74.3
+        ],
+        [
+          30.2,
+          71.5
+        ],
+        [
+          28.4,
+          69.7
+        ],
+        [
+          27.7,
+          68.8
+        ],
+        [
+          25.4,
+          68.3
+        ],
+        [
+          24.8,
+          66.9
+        ]
+      ],
+      "color": "#facc15",
+      "facts": "The primary high-voltage North-South backbone connecting Tarbela and Mangla power houses to the load centers in Punjab and Sindh."
+    },
+    {
+      "name": "Matiari-Lahore HVDC Line",
+      "path": [
+        [
+          25.5,
+          68.5
+        ],
+        [
+          26.0,
+          69.0
+        ],
+        [
+          28.0,
+          71.0
+        ],
+        [
+          30.0,
+          73.0
+        ],
+        [
+          31.5,
+          74.4
+        ]
+      ],
+      "color": "#eab308",
+      "facts": "The first High Voltage Direct Current (HVDC) transmission line in Pakistan, built under CPEC to transmit power from South to North."
+    },
+    {
+      "name": "Hub-Karachi Transmission Link",
+      "path": [
+        [
+          25.1,
+          66.7
+        ],
+        [
+          24.9,
+          66.9
+        ],
+        [
+          24.8,
+          67.2
+        ]
+      ],
+      "color": "#fbbf24",
+      "facts": "Connects the Hub Power Plant to the Karachi K-Electric grid."
+    },
+    {
+      "name": "CASA-1000 Corridor (Planned)",
+      "path": [
+        [
+          34.0,
+          71.5
+        ],
+        [
+          34.5,
+          71.0
+        ],
+        [
+          35.0,
+          70.0
+        ]
+      ],
+      "color": "#fbdb51",
+      "facts": "Central Asia-South Asia power project to bring clean energy from Kyrgyzstan and Tajikistan to Pakistan via Afghanistan."
+    }
+  ],
+  "industrial_zones": [
+    {
+      "id": "site_karachi",
+      "name": "SITE Industrial Area",
+      "coordinate": [
+        24.9037,
+        67.0071
+      ],
+      "type": "industrial_estate",
+      "facts": "Pakistan's largest and oldest industrial estate, home to hundreds of textile, chemical, and food processing units."
+    },
+    {
+      "id": "korangi_industrial",
+      "name": "Korangi Industrial Area",
+      "coordinate": [
+        24.8345,
+        67.1213
+      ],
+      "type": "industrial_estate",
+      "facts": "Major hub for leather, textiles, and pharmaceuticals in Karachi."
+    },
+    {
+      "id": "bin_qasim_park",
+      "name": "Bin Qasim Industrial Park",
+      "coordinate": [
+        24.9213,
+        66.9708
+      ],
+      "type": "sez",
+      "facts": "Special Economic Zone catering to engineering, chemicals, and heavy industries near Port Qasim."
+    },
+    {
+      "id": "sundar_lahore",
+      "name": "Sundar Industrial Estate",
+      "coordinate": [
+        31.2926,
+        74.1717
+      ],
+      "type": "industrial_estate",
+      "facts": "Most modern industrial estate in Punjab, featuring diverse industries from electronics to consumer goods."
+    },
+    {
+      "id": "m3_industrial_city",
+      "name": "M-3 Industrial City",
+      "coordinate": [
+        31.6261,
+        73.1851
+      ],
+      "type": "sez",
+      "facts": "Largest Special Economic Zone in Pakistan, located in Faisalabad, focusing on textile, garments, and pharmaceuticals."
+    },
+    {
+      "id": "hattar_industrial",
+      "name": "Hattar Industrial Estate",
+      "coordinate": [
+        33.9059,
+        72.8574
+      ],
+      "type": "industrial_estate",
+      "facts": "Strategically located at the junction of KP and Punjab, hosting chemical, ghee, and beverage industries."
+    },
+    {
+      "id": "gadoon_amazai",
+      "name": "Gadoon Amazai Industrial Estate",
+      "coordinate": [
+        34.1216,
+        72.6459
+      ],
+      "type": "industrial_estate",
+      "facts": "Located in Swabi, KP, it flourished as a major textile and plastic manufacturing hub of the region."
+    },
+    {
+      "id": "rashakai_sez",
+      "name": "Rashakai Special Economic Zone",
+      "coordinate": [
+        34.0688,
+        72.1450
+      ],
+      "type": "sez",
+      "facts": "Priority CPEC project in Khyber Pakhtunkhwa, aimed at processing minerals, textiles, and light engineering."
+    },
+    {
+      "id": "gwadar_free_zone",
+      "name": "Gwadar Free Zone",
+      "coordinate": [
+        25.1216,
+        62.3254
+      ],
+      "type": "sez",
+      "facts": "Centerpiece of CPEC, facilitating transshipment and manufacturing for the Middle East and African markets."
+    },
+    {
+      "id": "sialkot_epz",
+      "name": "Sialkot Export Processing Zone",
+      "coordinate": [
+        32.4926,
+        74.5313
+      ],
+      "type": "epz",
+      "facts": "Globally recognized for sports goods, surgical instruments, and leather jackets manufacturing and export."
+    },
+    {
+      "id": "risalpur_epz",
+      "name": "Risalpur Export Processing Zone",
+      "coordinate": [
+        34.0678,
+        71.9927
+      ],
+      "type": "epz",
+      "facts": "Facilitating export-oriented industries in the KP region, particularly in gemstones and food processing."
+    },
+    {
+      "id": "hayatabad_industrial",
+      "name": "Hayatabad Industrial Estate",
+      "coordinate": [
+        33.9891,
+        71.4225
+      ],
+      "type": "industrial_estate",
+      "facts": "The premier industrial zone of Peshawar, serving local demand and trade with Afghanistan."
+    },
+    {
+      "id": "dhabeji_sez",
+      "name": "Dhabeji Special Economic Zone",
+      "coordinate": [
+        24.7833,
+        67.5167
+      ],
+      "type": "sez",
+      "facts": "A major CPEC project in Sindh, located near Port Qasim, ideal for heavy industry and exports."
+    },
+    {
+      "id": "bostan_sez",
+      "name": "Bostan Special Economic Zone",
+      "coordinate": [
+        30.4225,
+        67.0187
+      ],
+      "type": "sez",
+      "facts": "CPEC project in Balochistan, focused on agriculture processing and livestock-related industries."
+    }
+  ],
+  "mountain_ranges": [
+    {
+      "id": "karakoram",
+      "name": "Karakoram Range",
+      "coordinates": [
+        [
+          35.5,
+          74.0
+        ],
+        [
+          37.0,
+          74.5
+        ],
+        [
+          37.0,
+          77.0
+        ],
+        [
+          35.0,
+          77.5
+        ],
+        [
+          34.5,
+          76.0
+        ]
+      ],
+      "highest_peak": {
+        "name": "K2 (Mount Godwin-Austen)",
+        "coordinate": [
+          35.8811,
+          76.5133
+        ],
+        "elevation": "8,611m"
+      },
+      "passes": [
+        {
+          "name": "Khunjerab Pass",
+          "coordinate": [
+            36.8497,
+            75.4311
+          ],
+          "facts": "World's highest paved international border crossing, part of the Karakoram Highway."
+        }
+      ],
+      "location": "northern",
+      "facts": "Host to 60+ peaks over 7,000m. It is a mass of lofty mountains and massive glaciers like Baltoro. Known for its rugged terrain and extreme cold."
+    },
+    {
+      "id": "himalayas",
+      "name": "Himalayan Range",
+      "coordinates": [
+        [
+          33.5,
+          73.5
+        ],
+        [
+          35.5,
+          74.0
+        ],
+        [
+          35.5,
+          75.5
+        ],
+        [
+          34.0,
+          75.5
+        ],
+        [
+          33.0,
+          74.5
+        ]
+      ],
+      "highest_peak": {
+        "name": "Nanga Parbat",
+        "coordinate": [
+          35.2375,
+          74.5891
+        ],
+        "elevation": "8,126m"
+      },
+      "passes": [
+        {
+          "name": "Babusar Pass",
+          "coordinate": [
+            35.1486,
+            74.0456
+          ],
+          "facts": "Highest point in Kaghan Valley; a major seasonal road link."
+        }
+      ],
+      "location": "northern",
+      "facts": "Part of the world's highest mountain system. Marks the western anchor of the Great Himalayas in Pakistan. Nanga Parbat is its crowning peak."
+    },
+    {
+      "id": "hindu_kush",
+      "name": "Hindu Kush Range",
+      "coordinates": [
+        [
+          34.5,
+          71.0
+        ],
+        [
+          36.5,
+          71.0
+        ],
+        [
+          37.0,
+          73.0
+        ],
+        [
+          35.0,
+          73.5
+        ],
+        [
+          34.0,
+          72.0
+        ]
+      ],
+      "highest_peak": {
+        "name": "Tirich Mir",
+        "coordinate": [
+          36.2533,
+          71.8433
+        ],
+        "elevation": "7,708m"
+      },
+      "passes": [
+        {
+          "name": "Lowari Pass",
+          "coordinate": [
+            35.3528,
+            71.8028
+          ],
+          "facts": "Strategic pass connecting Chitral; now supplemented by the Lowari Tunnel."
+        }
+      ],
+      "location": "northern",
+      "facts": "Extends from central Afghanistan into northwestern Pakistan. Tirich Mir is the highest point outside the Himalaya-Karakoram system."
+    },
+    {
+      "id": "safed_koh",
+      "name": "Safed Koh (White Mountain)",
+      "coordinates": [
+        [
+          33.8,
+          69.5
+        ],
+        [
+          34.2,
+          70.0
+        ],
+        [
+          34.0,
+          70.8
+        ],
+        [
+          33.6,
+          70.5
+        ]
+      ],
+      "highest_peak": {
+        "name": "Mount Sikaram",
+        "coordinate": [
+          33.9719,
+          69.8708
+        ],
+        "elevation": "4,761m"
+      },
+      "location": "northern",
+      "facts": "Located south of the Hindu Kush, it forms a natural wall between Pakistan and Afghanistan."
+    },
+    {
+      "id": "sulaiman",
+      "name": "Sulaiman Range",
+      "coordinates": [
+        [
+          29.0,
+          69.0
+        ],
+        [
+          31.0,
+          70.0
+        ],
+        [
+          32.5,
+          70.0
+        ],
+        [
+          32.0,
+          71.0
+        ],
+        [
+          30.0,
+          70.5
+        ],
+        [
+          28.5,
+          69.5
+        ]
+      ],
+      "highest_peak": {
+        "name": "Takht-e-Sulaiman",
+        "coordinate": [
+          31.6083,
+          70.0817
+        ],
+        "elevation": "3,487m"
+      },
+      "location": "western",
+      "facts": "Forms the eastern edge of the Iranian plateau. Known for its historical significance and diverse flora."
+    },
+    {
+      "id": "waziristan_hills",
+      "name": "Waziristan Hills",
+      "coordinates": [
+        [
+          32.0,
+          69.0
+        ],
+        [
+          33.2,
+          69.8
+        ],
+        [
+          33.1,
+          70.5
+        ],
+        [
+          32.0,
+          70.3
+        ]
+      ],
+      "highest_peak": {
+        "name": "Preghal (Pir Ghal)",
+        "coordinate": [
+          32.4800,
+          69.4333
+        ],
+        "elevation": "3,515m"
+      },
+      "location": "western",
+      "facts": "Rough, rugged hills located in the southern part of the Northwestern Highlands. They are home to the strategic Gomal Pass."
+    },
+    {
+      "id": "kirthar",
+      "name": "Kirthar Range",
+      "coordinates": [
+        [
+          25.0,
+          66.5
+        ],
+        [
+          27.0,
+          67.0
+        ],
+        [
+          28.5,
+          67.5
+        ],
+        [
+          28.0,
+          68.0
+        ],
+        [
+          26.0,
+          67.5
+        ],
+        [
+          24.8,
+          67.0
+        ]
+      ],
+      "highest_peak": {
+        "name": "Zardak Peak",
+        "coordinate": [
+          27.8711,
+          67.2217
+        ],
+        "elevation": "2,260m"
+      },
+      "location": "western",
+      "facts": "Delineates the boundary between Sindh and Balochistan. Features Gorakh Hill."
+    }
+  ],
+  "deserts": [
+    {
+      "id": "thar_desert",
+      "name": "Thar Desert",
+      "coordinates": [
+        [
+          24.168,
+          68.933
+        ],
+        [
+          29.679,
+          72.990
+        ],
+        [
+          26.0,
+          71.0
+        ],
+        [
+          24.5,
+          70.0
+        ]
+      ],
+      "facts": "Pakistan's largest desert, located in Sindh. Known for its unique culture, monsoon-dependent flora, and the Thar Coal reserves."
+    },
+    {
+      "id": "cholistan_desert",
+      "name": "Cholistan Desert",
+      "coordinates": [
+        [
+          27.7,
+          69.95
+        ],
+        [
+          29.75,
+          72.87
+        ],
+        [
+          28.5,
+          71.5
+        ],
+        [
+          28.0,
+          70.0
+        ]
+      ],
+      "facts": "Locally known as Rohi, this desert in Bahawalpur is part of the Great Indian Desert. Features the historic Derawar Fort."
+    },
+    {
+      "id": "thal_desert",
+      "name": "Thal Desert",
+      "coordinates": [
+        [
+          31.16,
+          71.3
+        ],
+        [
+          32.2,
+          71.5
+        ],
+        [
+          32.0,
+          72.2
+        ],
+        [
+          31.0,
+          72.0
+        ]
+      ],
+      "facts": "Located in the Doab between the Indus and Jhelum/Chenab rivers. Partially reclaimed for agriculture through the Thal Canal project."
+    },
+    {
+      "id": "kharan_desert",
+      "name": "Kharan Desert",
+      "coordinates": [
+        [
+          27.64,
+          63.32
+        ],
+        [
+          28.56,
+          65.59
+        ],
+        [
+          29.2,
+          65.0
+        ],
+        [
+          28.0,
+          64.0
+        ]
+      ],
+      "facts": "A sandy and mountainous desert in Balochistan. It is one of the most arid regions in Pakistan, characterized by dry basins (Hamuns)."
+    }
+  ],
+  "plateaus": [
+    {
+      "id": "potwar_plateau",
+      "name": "Potwar Plateau",
+      "coordinates": [
+        [
+          32.5,
+          72.0
+        ],
+        [
+          34.0,
+          72.5
+        ],
+        [
+          34.0,
+          74.0
+        ],
+        [
+          32.5,
+          73.5
+        ]
+      ],
+      "facts": "A rugged landscape in northern Punjab. Rich in minerals like salt, gypsum, and coal. Home to the Soan River and salt range."
+    },
+    {
+      "id": "balochistan_plateau",
+      "name": "Balochistan Plateau",
+      "coordinates": [
+        [
+          24.73,
+          60.87
+        ],
+        [
+          32.06,
+          62.0
+        ],
+        [
+          32.0,
+          68.0
+        ],
+        [
+          25.0,
+          67.0
+        ]
+      ],
+      "facts": "A vast, high-altitude arid plateau. Characterized by 'Karez' irrigation, mineral wealth, and extreme temperature variations."
+    }
+  ],
+  "mines": [
+    {
+      "name": "Khewra Salt Mine",
+      "coordinate": [
+        32.6553,
+        73.0089
+      ],
+      "mineral": "Salt",
+      "facts": "World's second-largest salt mine, located in the Salt Range, Punjab."
+    },
+    {
+      "name": "Saindak Copper-Gold Mine",
+      "coordinate": [
+        29.25,
+        61.6
+      ],
+      "mineral": "Copper/Gold",
+      "facts": "Major copper and gold deposit in Chagai District, Balochistan."
+    },
+    {
+      "name": "Reko Diq Mine",
+      "coordinate": [
+        28.97,
+        62.43
+      ],
+      "mineral": "Copper/Gold",
+      "facts": "One of the world's largest undeveloped copper and gold deposits."
+    },
+    {
+      "name": "Thar Coal Mine",
+      "coordinate": [
+        24.8,
+        70.2
+      ],
+      "mineral": "Coal",
+      "facts": "Contains 175 billion tons of lignite coal, one of the largest reserves in the world."
+    },
+    {
+      "name": "Kalabagh Iron Ore Mine",
+      "coordinate": [
+        32.96,
+        71.55
+      ],
+      "mineral": "Iron",
+      "facts": "Significant iron ore deposits located near Mianwali, Punjab."
+    },
+    {
+      "name": "Muslim Bagh Chromite Mine",
+      "coordinate": [
+        30.81,
+        67.73
+      ],
+      "mineral": "Chromite",
+      "facts": "Primary source of high-grade chromite in Pakistan, located in Balochistan."
+    }
+  ],
+  "mining_methods": [
+    {
+      "id": "open_cast",
+      "name": "Open-Cast Mining",
+      "locations": [
+        {
+          "name": "Thar Coal Block-I",
+          "coordinate": [
+            24.8,
+            70.3
+          ]
+        },
+        {
+          "name": "Saindak Copper",
+          "coordinate": [
+            29.25,
+            61.6
+          ]
+        }
+      ],
+      "facts": "Surface mining where overburden is removed to reach minerals."
+    },
+    {
+      "id": "adit_mining",
+      "name": "Adit Mining",
+      "locations": [
+        {
+          "name": "Sor Range Coal",
+          "coordinate": [
+            30.15,
+            67.1
+          ]
+        }
+      ],
+      "facts": "Horizontal tunnels bored into hillsides to reach coal/minerals."
+    },
+    {
+      "id": "shaft_mining",
+      "name": "Shaft Mining",
+      "locations": [
+        {
+          "name": "Degari Collieries",
+          "coordinate": [
+            29.9,
+            67.2
+          ]
+        }
+      ],
+      "facts": "Vertical tunnels sunk deep into the ground for deep-seated minerals."
+    }
+  ],
+  "energy_resources": [
+    {
+      "name": "Tarbela Dam (HEP)",
+      "coordinate": [
+        34.08,
+        72.7
+      ],
+      "type": "Hydroelectric",
+      "facts": "Largest earth-filled dam in the world, primary source of HEP."
+    },
+    {
+      "name": "Mangla Dam (HEP)",
+      "coordinate": [
+        33.13,
+        73.65
+      ],
+      "type": "Hydroelectric",
+      "facts": "Second largest HEP station on Jhelum River."
+    },
+    {
+      "name": "Chashma Nuclear",
+      "coordinate": [
+        32.42,
+        71.47
+      ],
+      "type": "Nuclear",
+      "facts": "Major nuclear power complex in Punjab."
+    },
+    {
+      "name": "K-Nuclear (KANUPP)",
+      "coordinate": [
+        24.84,
+        66.78
+      ],
+      "type": "Nuclear",
+      "facts": "Coastal nuclear power plant serving Karachi."
+    },
+    {
+      "name": "Guddu Thermal",
+      "coordinate": [
+        28.43,
+        69.7
+      ],
+      "type": "Thermal",
+      "facts": "One of the largest thermal power stations in Sindh."
+    },
+    {
+      "name": "Jamshoro Thermal",
+      "coordinate": [
+        25.48,
+        68.28
+      ],
+      "type": "Thermal",
+      "facts": "Oil and coal fired plant in Lower Sindh."
+    },
+    {
+      "name": "Sui Gas Field",
+      "coordinate": [
+        28.6333,
+        69.2
+      ],
+      "type": "Gas",
+      "facts": "Pakistan's largest gas field, discovered in 1952. It revolutionized the energy landscape of the country."
+    },
+    {
+      "name": "Mari Gas Field",
+      "coordinate": [
+        28.02,
+        69.45
+      ],
+      "type": "Gas",
+      "facts": "One of the largest gas fields in Pakistan, located in Ghotki District, Sindh."
+    },
+    {
+      "name": "Qadirpur Gas Field",
+      "coordinate": [
+        28.0469,
+        69.3631
+      ],
+      "type": "Gas",
+      "facts": "Significant gas producer in Sindh, operated by OGDCL."
+    },
+    {
+      "name": "Dhurnal Oil Field",
+      "coordinate": [
+        33.1,
+        72.4
+      ],
+      "type": "Oil",
+      "facts": "Major oil field in the Potwar Basin, Punjab."
+    },
+    {
+      "name": "Tut Oil Field",
+      "coordinate": [
+        33.0,
+        72.2
+      ],
+      "type": "Oil",
+      "facts": "Pioneer oil field discovered in the 1960s in Punjab."
+    },
+    {
+      "name": "Uch Gas Field",
+      "coordinate": [
+        28.6,
+        68.6
+      ],
+      "type": "Gas",
+      "facts": "Feeds the Uch Power Plant, providing essential electricity to the national grid."
+    },
+    {
+      "name": "Pirkoh Gas Field",
+      "coordinate": [
+        29.1,
+        69.2
+      ],
+      "type": "Gas",
+      "facts": "Located in the Sulaiman Range, Balochistan."
+    },
+    {
+      "name": "Dhodak Oil & Gas Field",
+      "coordinate": [
+        30.5,
+        70.3
+      ],
+      "type": "Condensate/Gas",
+      "facts": "Important field in Dera Ghazi Khan, Punjab."
+    }
+  ],
+  "transport": {
+    "roads": [
+      {
+        "id": "m1",
+        "name": "M-1 Motorway (Peshawar-Islamabad)",
+        "path": [
+          [
+            34.0,
+            71.5
+          ],
+          [
+            33.9,
+            72.3
+          ],
+          [
+            33.7,
+            72.9
+          ],
+          [
+            33.6,
+            73.1
+          ]
+        ],
+        "color": "#10b981",
+        "facts": "Connects Peshawar to Islamabad, a vital link between KP and the capital."
+      },
+      {
+        "id": "m2",
+        "name": "M-2 Motorway (Islamabad-Lahore)",
+        "path": [
+          [
+            33.6,
+            73.1
+          ],
+          [
+            33.0,
+            72.8
+          ],
+          [
+            32.5,
+            72.3
+          ],
+          [
+            31.5,
+            74.3
+          ]
+        ],
+        "color": "#10b981",
+        "facts": "The first motorway in South Asia, connecting the capital to the heart of Punjab."
+      },
+      {
+        "id": "m3",
+        "name": "M-3 Motorway (Lahore-Abdul Hakeem)",
+        "path": [
+          [
+            31.5,
+            74.3
+          ],
+          [
+            30.5,
+            72.8
+          ]
+        ],
+        "color": "#10b981",
+        "facts": "Provides a direct link between Lahore and Multan."
+      },
+      {
+        "id": "m4",
+        "name": "M-4 Motorway (Pindi Bhattian-Multan)",
+        "path": [
+          [
+            31.8,
+            73.2
+          ],
+          [
+            31.4,
+            73.1
+          ],
+          [
+            31.0,
+            72.5
+          ],
+          [
+            30.2,
+            71.5
+          ]
+        ],
+        "color": "#10b981",
+        "facts": "Connects the industrial hub Faisalabad to Multan."
+      },
+      {
+        "id": "m5",
+        "name": "M-5 Motorway (Multan-Sukkur)",
+        "path": [
+          [
+            30.2,
+            71.5
+          ],
+          [
+            29.2,
+            70.8
+          ],
+          [
+            28.4,
+            69.7
+          ],
+          [
+            27.7,
+            68.8
+          ]
+        ],
+        "color": "#10b981",
+        "facts": "The longest motorway in Pakistan, a key part of CPEC."
+      },
+      {
+        "id": "m6",
+        "name": "M-6 Motorway (Sukkur-Hyderabad)",
+        "path": [
+          [
+            27.7,
+            68.8
+          ],
+          [
+            25.4,
+            68.3
+          ]
+        ],
+        "color": "#10b981",
+        "facts": "Planned motorway to connect Sukkur and Hyderabad."
+      },
+      {
+        "id": "m8",
+        "name": "M-8 Motorway (Ratodero-Gwadar)",
+        "path": [
+          [
+            27.8,
+            68.2
+          ],
+          [
+            26.0,
+            65.0
+          ],
+          [
+            25.5,
+            63.0
+          ],
+          [
+            25.1,
+            62.3
+          ]
+        ],
+        "color": "#10b981",
+        "facts": "Strategically connects Sindh to the deep-sea port of Gwadar."
+      },
+      {
+        "id": "m9",
+        "name": "M-9 Motorway (Hyderabad-Karachi)",
+        "path": [
+          [
+            25.4,
+            68.3
+          ],
+          [
+            24.9,
+            67.0
+          ]
+        ],
+        "color": "#10b981",
+        "facts": "Critical link between Karachi and the rest of the country."
+      },
+      {
+        "id": "m15",
+        "name": "M-15 Motorway (Hazara Motorway)",
+        "path": [
+          [
+            33.8,
+            73.0
+          ],
+          [
+            34.2,
+            73.2
+          ],
+          [
+            34.5,
+            73.3
+          ]
+        ],
+        "color": "#10b981",
+        "facts": "Enhances connectivity in the Hazara region of KP."
+      }
+    ],
+    "trade_routes": [
+      {
+        "id": "cpec_western",
+        "name": "CPEC Western Alignment",
+        "path": [
+          [
+            36.8,
+            75.0
+          ],
+          [
+            35.9,
+            74.3
+          ],
+          [
+            34.0,
+            71.5
+          ],
+          [
+            31.8,
+            70.9
+          ],
+          [
+            30.1,
+            67.0
+          ],
+          [
+            25.1,
+            62.3
+          ]
+        ],
+        "color": "#ef4444",
+        "facts": "Shortest route via D.I. Khan and Quetta, developing western regions."
+      },
+      {
+        "id": "cpec_eastern",
+        "name": "CPEC Eastern Alignment",
+        "path": [
+          [
+            36.8,
+            75.0
+          ],
+          [
+            31.5,
+            74.3
+          ],
+          [
+            30.2,
+            71.5
+          ],
+          [
+            27.7,
+            68.8
+          ],
+          [
+            24.8,
+            67.0
+          ],
+          [
+            25.1,
+            62.3
+          ]
+        ],
+        "color": "#dc2626",
+        "facts": "Route via Lahore and Sukkur, utilizing existing motorway networks."
+      },
+      {
+        "id": "cpec_central",
+        "name": "CPEC Central Alignment",
+        "path": [
+          [
+            36.8,
+            75.0
+          ],
+          [
+            33.6,
+            73.1
+          ],
+          [
+            30.0,
+            70.6
+          ],
+          [
+            28.4,
+            70.3
+          ],
+          [
+            25.1,
+            62.3
+          ]
+        ],
+        "color": "#b91c1c",
+        "facts": "Planned alignment through the heart of the country."
+      },
+      {
+        "id": "gt_road",
+        "name": "Grand Trunk (GT) Road (N-5)",
+        "path": [
+          [
+            34.0,
+            71.5
+          ],
+          [
+            33.6,
+            73.0
+          ],
+          [
+            31.5,
+            74.3
+          ],
+          [
+            30.2,
+            71.5
+          ],
+          [
+            27.7,
+            68.8
+          ],
+          [
+            24.8,
+            67.0
+          ]
+        ],
+        "color": "#f97316",
+        "facts": "The historic lifeline of the subcontinent, the longest national highway."
+      },
+      {
+        "id": "indus_highway",
+        "name": "Indus Highway (N-55)",
+        "path": [
+          [
+            34.2,
+            72.2
+          ],
+          [
+            33.0,
+            71.5
+          ],
+          [
+            31.5,
+            70.8
+          ],
+          [
+            29.0,
+            70.0
+          ],
+          [
+            27.7,
+            68.2
+          ],
+          [
+            25.4,
+            68.3
+          ]
+        ],
+        "color": "#8b5cf6",
+        "facts": "Connects Karachi to Peshawar via the western bank of the Indus River."
+      },
+      {
+        "id": "karakoram_highway",
+        "name": "Karakoram Highway (N-35)",
+        "path": [
+          [
+            33.8,
+            73.0
+          ],
+          [
+            34.5,
+            73.3
+          ],
+          [
+            35.9,
+            74.3
+          ],
+          [
+            36.8,
+            75.0
+          ]
+        ],
+        "color": "#06b6d4",
+        "facts": "The 'Eighth Wonder of the World', connecting Pakistan to China."
+      },
+      {
+        "id": "makran_coastal_highway",
+        "name": "Makran Coastal Highway (N-10)",
+        "path": [
+          [
+            24.8,
+            67.0
+          ],
+          [
+            25.4,
+            65.5
+          ],
+          [
+            25.1,
+            62.3
+          ]
+        ],
+        "color": "#ec4899",
+        "facts": "Scenic route along the Arabian Sea connecting Karachi to Gwadar."
+      }
+    ],
+    "railways": [
+      {
+        "id": "main_line_1",
+        "name": "Main Line 1 (ML-1) Karachi-Peshawar",
+        "path": [
+          [
+            24.8,
+            67.0
+          ],
+          [
+            25.4,
+            68.3
+          ],
+          [
+            27.7,
+            68.8
+          ],
+          [
+            30.2,
+            71.5
+          ],
+          [
+            31.5,
+            74.3
+          ],
+          [
+            33.6,
+            73.1
+          ],
+          [
+            33.9,
+            72.3
+          ],
+          [
+            34.0,
+            71.5
+          ]
+        ],
+        "color": "#9ca3af",
+        "facts": "The primary railway artery of Pakistan, scheduled for major CPEC upgrade."
+      }
+    ]
+  },
+  "fish_farms": [
+    {
+      "id": "inland_fish_farms",
+      "name": "Inland Fish Farms",
+      "regions": [
+        {
+          "name": "Thatta & Badin",
+          "coordinates": [
+            [
+              24.5,
+              67.5
+            ],
+            [
+              25.0,
+              68.5
+            ]
+          ],
+          "description": "Major cluster of commercial fish ponds in Sindh."
+        }
+      ],
+      "color": "#38bdf8",
+      "facts": "Commercial aquaculture focuses on species like Rohu, Mori, and Thaila."
+    }
+  ],
+  "drought_areas": [
+    {
+      "name": "Tharparkar Drought Zone",
+      "coordinates": [
+        [
+          24.5,
+          69.5
+        ],
+        [
+          25.5,
+          70.8
+        ]
+      ],
+      "color": "#fde047",
+      "facts": "Chronically drought-prone area with low rainfall and water scarcity."
+    }
+  ],
+  "mountain_passes": [
+    {
+      "id": "khyber_pass",
+      "name": "Khyber Pass",
+      "coordinate": [
+        34.01,
+        71.16
+      ],
+      "facts": "Historic gateway through the Safed Koh mountains, connecting Central Asia to the Indian subcontinent."
+    },
+    {
+      "id": "bolan_pass",
+      "name": "Bolan Pass",
+      "coordinate": [
+        29.75,
+        67.58
+      ],
+      "facts": "Pass through the Toba Kakar range connecting the Indus valley to Quetta; vital for trade and military history."
+    }
+  ]
+}
