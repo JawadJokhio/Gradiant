@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Camera, Upload, ArrowLeft, Send, CheckCircle2, Copy, RefreshCw, X } from 'lucide-react'
+import { useAuth } from '../context/AuthContext'
 
 interface VisionAnsweringProps {
     onBack: () => void;
@@ -8,6 +9,7 @@ interface VisionAnsweringProps {
 }
 
 export default function VisionAnswering({ onBack, initialSubject }: VisionAnsweringProps) {
+    const { token } = useAuth()
     const [selectedImage, setSelectedImage] = useState<string | null>(null)
     const [imageFile, setImageFile] = useState<File | null>(null)
     const [subject] = useState(initialSubject || 'history')
@@ -37,9 +39,11 @@ export default function VisionAnswering({ onBack, initialSubject }: VisionAnswer
         formData.append('marks', marks.toString())
 
         try {
-            // Mock API call for now or connect to backend
-            const response = await fetch('http://localhost:8000/ask-ai', {
+            const response = await fetch('http://127.0.0.1:8000/ask-ai', {
                 method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
                 body: formData,
             })
             const data = await response.json()

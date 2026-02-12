@@ -7,6 +7,7 @@ import type { LatLngExpression } from 'leaflet'
 import L from 'leaflet'
 import icon from 'leaflet/dist/images/marker-icon.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
+import { useAuth } from '../context/AuthContext'
 
 let DefaultIcon = L.icon({
     iconUrl: icon,
@@ -37,6 +38,7 @@ interface GeographyModuleProps {
 }
 
 export default function GeographyModule({ onBack }: GeographyModuleProps) {
+    const { token } = useAuth()
     const [query, setQuery] = useState('')
     const [mapImage, setMapImage] = useState<string | null>(null)
     const [imageFile, setImageFile] = useState<File | null>(null)
@@ -89,8 +91,11 @@ export default function GeographyModule({ onBack }: GeographyModuleProps) {
         formData.append('image', imageFile)
 
         try {
-            const response = await fetch('http://localhost:8000/analyze-map', {
+            const response = await fetch('http://127.0.0.1:8000/analyze-map', {
                 method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
                 body: formData,
             })
             const data = await response.json()
@@ -116,7 +121,7 @@ export default function GeographyModule({ onBack }: GeographyModuleProps) {
                 formData.append('query', categoryQuery)
                 formData.append('image', imageFile)
                 try {
-                    const response = await fetch('http://localhost:8000/analyze-map', {
+                    const response = await fetch('http://127.0.0.1:8000/analyze-map', {
                         method: 'POST',
                         body: formData,
                     })
