@@ -9,9 +9,9 @@ const subjects = [
     { id: 'islamiat', name: 'Islamiat', icon: '🌙', color: 'from-purple-500 to-fuchsia-600', description: 'Cambridge 2058 - Islamic Religion & Culture' },
 ];
 
-export const Dashboard: React.FC<{ onSelectSubject: (id: string) => void }> = ({ onSelectSubject }) => {
+export const Dashboard = ({ onSelectSubject }) => {
     const { user, logout, token } = useAuth();
-    const [performance, setPerformance] = useState<any>(null);
+    const [performance, setPerformance] = useState(null);
 
     useEffect(() => {
         const fetchPerformance = async () => {
@@ -57,7 +57,7 @@ export const Dashboard: React.FC<{ onSelectSubject: (id: string) => void }> = ({
                         <div className="space-y-4">
                             <h3 className="text-sm font-uppercase tracking-wider text-slate-500 font-bold">WEAK AREAS</h3>
                             <div className="flex flex-wrap gap-2">
-                                {performance?.weak_areas?.length > 0 ? performance.weak_areas.map((wa: string) => (
+                                {performance?.weak_areas?.length > 0 ? performance.weak_areas.map((wa) => (
                                     <span key={wa} className="px-3 py-1 bg-red-500/10 border border-red-500/30 text-red-400 rounded-full text-xs">
                                         {wa}
                                     </span>

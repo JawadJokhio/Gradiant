@@ -11,7 +11,7 @@ from groq import Groq
 from huggingface_hub import InferenceClient
 import re
 import motor.motor_asyncio
-from passlib.context import CryptContext
+import bcrypt
 from jose import JWTError, jwt
 from datetime import datetime, timedelta
 from bson import ObjectId
@@ -21,11 +21,10 @@ import pymongo
 load_dotenv()
 
 # Security Configuration
+# Security Configuration
 SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key-for-development-only-change-this")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 days
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 # MongoDB Configuration
@@ -48,10 +47,19 @@ app.add_middleware(
 
 # --- AUTH UTILITIES ---
 def verify_password(plain_password, hashed_password):
-    return pwd_context.verify(plain_password, hashed_password)
+    try:
+        # Standard bcrypt check - handles compatibility with passlib bcrypt hashes
+        pwd_bytes = plain_password[:72].encode('utf-8')
+        hashed_bytes = hashed_password.encode('utf-8')
+        return bcrypt.checkpw(pwd_bytes, hashed_bytes)
+    except Exception:
+        return False
 
 def get_password_hash(password):
-    return pwd_context.hash(password)
+    # Enforce 72-byte limit and return as string
+    pwd_bytes = password[:72].encode('utf-8')
+    salt = bcrypt.gensalt()
+    return bcrypt.hashpw(pwd_bytes, salt).decode('utf-8')
 
 def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     to_encode = data.copy()
@@ -105,6 +113,7 @@ class LessonProgress(BaseModel):
 # Load Knowledge Datasets
 BASE_DIR = os.path.dirname(__file__)
 HIST_DATA_PATH = os.path.join(BASE_DIR, "..", "data", "history_data.json")
+GEOG_DATA_PATH = os.path.join(BASE_DIR, "..", "data", "geography_data.json")
 
 def load_json(path):
     if os.path.exists(path):
@@ -113,6 +122,21 @@ def load_json(path):
     return {}
 
 history_data = load_json(HIST_DATA_PATH)
+geography_data = load_json(GEOG_DATA_PATH)
+
+# --- HELPER SCHEMAS ---
+class WeaknessAnalysisResponse(BaseModel):
+    weak_areas: List[str]
+    improvement_plan: str
+    summary: str
+
+class PaperSession(BaseModel):
+    session_name: str
+    papers: List[str]
+
+class YearlyPapers(BaseModel):
+    year: str
+    sessions: List[PaperSession]
 
 # Initialize LLM clients
 groq_client = Groq(api_key=os.getenv("GROQ_API_KEY")) if os.getenv("GROQ_API_KEY") else None
@@ -165,47 +189,38 @@ async def get_chat_history(current_user: dict = Depends(get_current_user)):
         h["_id"] = str(h["_id"])
     return history
 
-def get_subject_context(query, subject="history"):
-    """Focused RAG logic for Cambridge History"""
+def get_subject_context(query):
+    """Focused RAG logic for Cambridge History (Syllabus 2059/01)"""
     context = ""
     query_lower = query.lower()
-    
     data = history_data
     matches = []
     marking_examples = []
         
     # Check specific textbook topics first (Nigel Kelly context)
     specific_topics = data.get("specific_topics", {})
-    found_specific = False
     topic_lower_words = set(re.findall(r'\w+', query_lower))
     
     for key, topic_data in specific_topics.items():
         key_words = set(key.split('_'))
         common = topic_lower_words.intersection(key_words)
-        
         match = False
         if len(key_words) == 1 and len(common) == 1: match = True
         elif len(common) >= 2: match = True
         elif any(date in query_lower for date in re.findall(r'\d{4}', key)): match = True
             
         if match:
-            found_specific = True
             context += f"\n### TEXTBOOK CONTEXT: {topic_data.get('title', key)} (Nigel Kelly Standards)\n"
-            
             if "factors" in topic_data:
                 for factor, points in topic_data["factors"].items():
                     context += f"**{factor}**:\n"
-                    for p in points:
-                        context += f"- {p}\n"
-            
+                    for p in points: context += f"- {p}\n"
             if "qa_pairs" in topic_data:
-                context += "\n**Relevant Past Questions & Answers (Examiner Style):**\n"
+                context += "\n**Relevant Past Questions & Answers:**\n"
                 for qa in topic_data["qa_pairs"][:3]:
                     context += f"Q: {qa['question']}\nA: {qa['answer']}\n\n"
-            
             if "raw_text" in topic_data:
                  context += f"{topic_data['raw_text'][:1000]}...\n"
-            
             context += "\n"
     
     # Search curated sections
@@ -223,72 +238,152 @@ def get_subject_context(query, subject="history"):
                 mark_schemes = content.get("mark_scheme", [])
                 for scheme in mark_schemes:
                     question = scheme.get("question", "")
-                    points = scheme.get("points", [])
+                    # Fix field mapping for points and retrieve examiner_tips
+                    points = scheme.get("mark_scheme_points", scheme.get("points", []))
+                    tips = scheme.get("examiner_tips", [])
                     
                     if any(word in question.lower() for word in query_lower.split() if len(word) > 4):
                         marking_examples.append({
-                            "year": year,
-                            "question": question,
-                            "points": points[:5]
+                            "year": year, 
+                            "question": question, 
+                            "points": points[:5],
+                            "tips": tips
                         })
         
     if matches:
         context += "\n### O-LEVEL HISTORY ARCHIVE:\n" + "\n---\n".join(matches[:2])
     
     if marking_examples:
-        context += "\n\n### CAMBRIDGE EXAMINER MARKING SCHEMES:\n"
+        context += "\n\n### CAMBRIDGE EXAMINER MARKING SCHEMES & TIPS:\n"
         for example in marking_examples[:2]:
             context += f"\n**Question: {example['question']}**\n"
-            for point in example['points']:
-                context += f"  • {point}\n"
+            for point in example['points']: context += f"  • {point}\n"
+            if example['tips']:
+                context += "  **Tutor Wisdom/Tips:**\n"
+                for tip in example['tips']: context += f"  - {tip}\n"
             
     return context
 
-def validate_structure(answer: str, marks: int) -> bool:
-    """Validates if the answer follow Cambridge structure rules"""
-    a = answer.lower()
-    if marks == 4:
-        # Check for 2 PEEL paragraphs
-        peels = re.findall(r'reason \d|point|evidence|explanation', a)
-        return len(peels) >= 6
-    if marks == 14:
-        sections = ["introduction", "agree", "disagree", "judgement"]
-        return all(s in a for s in sections)
-    return True
-
 async def get_llm_response(prompt: str, marks: int = 4, mode: str = "chat"):
     context = get_subject_context(prompt)
-    
-    # Implementing the 10-step Engine Logic in the System Prompt
     system_prompt = f"""
 You are the Cambridge History Examiner Simulation Engine (Syllabus 2059/01).
-Strictly follow the 10-step protocol:
 
-STEP 1: Detect Command Word, Topic, and Personality.
-STEP 2: Enforce Length: 4m(110-150w), 7m(220-260w), 14m(450-550w).
-STEP 3: If personality mentioned, start with Full Name, DOB/DOD, and Historical Intro.
-STEP 4: Structure:
-- 4 Marks: Exactly 2 PEEL paragraphs.
-- 7 Marks: 3 analytical PEEL paragraphs.
-- 14 Marks: Full evaluation essay (Intro, Agree, Disagree, Final Judgement).
-STEP 5: Use Nigel Kelly evidence (dates, names, acts) exclusively from context.
-STEP 6: Always append [EXAMINER AUDIT] footer.
-STEP 7: Analysis for Student Answers (Auto Mark mode).
-STEP 8: Depth Analysis for 14 markers (progression & impact).
-STEP 9: Output Discipline: Formal, clinical examiner tone.
-STEP 10: Failsafe: Default to 4 marks if unspecified.
+===== NON-NEGOTIABLE EXAMINER RULES =====
 
-CONTEXT DATA FROM NIGEL KELLY / PAST PAPERS:
+STEP 1 — QUESTION TYPE DETECTION
+Detect:
+• command word
+• topic
+• personality vs event
+
+STEP 2 — PERSONALITY BIO RULE
+If a named individual appears:
+START answer with:
+• Full name
+• Birth–death years
+• Role/title
+• Movement association
+
+STEP 3 — MARK STRUCTURE ENFORCEMENT
+
+4 MARK:
+• EXACTLY TWO reasons
+• Each reason = POINT → EVIDENCE(date/event) → EXPLANATION
+• NO evaluation
+• NO comparison
+• NO conclusion
+
+7 MARK:
+• THREE developed reasons
+• No sustained judgement
+
+14 MARK:
+• INTRODUCTION
+• AGREE (max 2 paragraphs)
+• DISAGREE (≥3 developments chronological)
+• FINAL JUDGEMENT
+• Sustained comparison required
+
+If violated → internally regenerate.
+
+STEP 4 — NIGEL KELLY EVIDENCE CONTROL
+Only use evidence from CONTEXT.
+Every paragraph must include:
+• named event
+• date
+• Pakistan Movement linkage (if relevant)
+STEP 4.5 — TEMPORAL BOUNDARY ENFORCEMENT
+
+If the question specifies a date range:
+
+• ALL evidence MUST fall within that time period
+• Events outside the range are STRICTLY FORBIDDEN
+• No forward referencing beyond the end year
+• No later outcomes used as evidence
+• Argument must be built using developments ONLY within timeframe
+
+If violation occurs → internally regenerate answer
+
+TEMPORAL RELEVANCE RULE:
+
+If evaluating significance within a period:
+
+• Significance must be explained in relation to developments within same period
+• Later consequences cannot be used as justification
+
+STEP 5 — LENGTH NORMALISER
+Target:
+4m → ~120 words
+7m → ~240 words
+14m → ~500 words
+
+Trim or extend silently.
+
+STEP 6 — EXAMINER BAND GENERATOR
+
+Use rubric:
+
+4m:
+2 reasons complete → 4
+1 developed → 2–3
+simple list → 1
+
+7m:
+3 developed → 6–7
+2 developed → 4–5
+descriptive → 2–3
+
+14m:
+evaluation + comparison → 12–14
+some judgement → 8–11
+narrative → 4–7
+
+STEP 7 — EXAMINER AUDIT FORMAT
+Append ONLY:
+
+[EXAMINER AUDIT: X/{{marks}}]
+Band Level: L?
+Reason: concise examiner rationale
+
+STEP 8 — TUTOR WISDOM
+Always conclude with a concise, one-sentence "Tutor Wisdom" section.
+FORMAT:
+### [4] Tutor Wisdom
+[Your dynamic advice here based on the examiner tips or question logic]
+
+STEP 9 — TONE
+Formal Cambridge examiner.
+
+STEP 10 — FAILSAFE
+If uncertain → default to 4m rules.
+
+===== CONTEXT =====
 {context}
-
-MARKING SCHEME RULES:
-- 4 Marks: Reason 1 (P.E.E), Reason 2 (P.E.E). No evaluation.
-- 7 Marks: 3 Reasons (P.E.E). Show cause-effect.
-- 14 Marks: Balance 2 perspectives. Evaluation must have a clearly sustained conclusion.
 """
-
-    try:
-        if groq_client:
+    # Try Groq first (Primary)
+    if groq_client:
+        try:
             completion = groq_client.chat.completions.create(
                 model="llama-3.3-70b-versatile",
                 messages=[
@@ -299,33 +394,27 @@ MARKING SCHEME RULES:
                 max_tokens=2500
             )
             return completion.choices[0].message.content
-        
-        # Fallback to HF
-        if hf_client:
-            res = hf_client.text_generation(
+        except Exception as e:
+            print(f"Groq Error: {str(e)}. Falling back to secondary engine...")
+
+    # Fallback to Hugging Face (Secondary)
+    if hf_client:
+        try:
+            return hf_client.text_generation(
                 f"<|system|>\n{system_prompt}\n<|user|>\nAnswer for {marks} marks: {prompt}\n<|assistant|>",
                 model="Qwen/Qwen2.5-72B-Instruct",
                 max_new_tokens=2000
             )
-            return res
-            
-    except Exception as e:
-        return f"Error: {str(e)}"
+        except Exception as e:
+            return f"Error with all intelligence engines: {str(e)}"
     
-    return "Intelligence engines offline."
-
 @app.post("/ask-ai")
 async def ask_ai(
-    query: Optional[str] = Form(None),
-    subject: str = Form("history"),
-    mode: str = Form("chat"),
+    query: str = Form(...),
     marks: int = Form(4),
     current_user: dict = Depends(get_current_user)
 ):
-    if not query:
-        raise HTTPException(status_code=400, detail="Query is required")
-    
-    answer = await get_llm_response(query, marks, mode)
+    answer = await get_llm_response(query, marks)
     
     # Save to history
     chat_entry = {
@@ -333,12 +422,330 @@ async def ask_ai(
         "query": query,
         "answer": answer,
         "marks": marks,
-        "mode": mode,
+        "mode": "chat",
         "timestamp": datetime.utcnow()
     }
     await db.chats.insert_one(chat_entry)
 
-    return {"answer": answer, "subject": "history", "marks": marks}
+    return {"answer": answer, "marks": marks}
+
+# --- NEW CAMBRIDGE ASSISTANT STYLE ENDPOINTS ---
+
+@app.get("/papers/{subject}/years")
+async def get_paper_years(subject: str):
+    data = history_data if subject.lower() == "history" else geography_data
+    past_papers = data.get("past_papers", {})
+    return sorted(list(past_papers.keys()), reverse=True)
+
+@app.get("/papers/{subject}/{year}")
+async def get_paper_sessions(subject: str, year: str):
+    data = history_data if subject.lower() == "history" else geography_data
+    year_data = data.get("past_papers", {}).get(year, {})
+    return list(year_data.keys())
+
+@app.get("/papers/{subject}/{year}/{session}")
+async def get_paper_content(subject: str, year: str, session: str):
+    data = history_data if subject.lower() == "history" else geography_data
+    session_data = data.get("past_papers", {}).get(year, {}).get(session, {})
+    return session_data
+
+@app.get("/analyze-weakness", response_model=WeaknessAnalysisResponse)
+async def analyze_weakness(current_user: dict = Depends(get_current_user)):
+    # Fetch user's recent chat history
+    history = await db.chats.find({"username": current_user["username"]}).sort("timestamp", -1).to_list(10)
+    
+    if not history:
+        return {
+            "weak_areas": ["Not enough data yet"],
+            "improvement_plan": "Start interacting with the AI examiners to see your progress!",
+            "summary": "Begin your journey by asking questions or practicing paper solutions."
+        }
+
+    # Prepare historical context for LLM
+    interactions = ""
+    for h in history:
+        interactions += f"Q: {h['query']}\nFeedback: {h['answer']}\n\n"
+
+    analysis_prompt = f"""
+    Analyze the following recent exam practice interactions for student "{current_user['username']}".
+    Based on the examiner's feedback and the student's questions, identify:
+    1. Three specific academic weak areas (be very specific like '1947 partition reasons' or 'topographic map symbols').
+    2. A one-paragraph actionable improvement plan.
+    3. A brief summary of overall performance.
+
+    INTERACTIONS:
+    {interactions}
+
+    RETURN ONLY A JSON OBJECT with keys: "weak_areas" (list), "improvement_plan" (string), "summary" (string).
+    """
+
+    try:
+        if groq_client:
+            completion = groq_client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[{"role": "user", "content": analysis_prompt}],
+                temperature=0.3,
+                response_format={"type": "json_object"}
+            )
+            result = json.loads(completion.choices[0].message.content)
+            return result
+    except Exception as e:
+        print(f"Weakness Analysis Error: {str(e)}")
+
+    # Fallback/Dummy Analysis if LLM fails
+    return {
+        "weak_areas": ["Recent Topics Analysis"],
+        "improvement_plan": "Focus on consistent practice with diverse question types.",
+        "summary": "Keep practicing to generate more detailed insights."
+    }
+
+@app.post("/analyze-map")
+async def analyze_map(
+    query: str = Form(...),
+    image: Optional[UploadFile] = File(None),
+    current_user: dict = Depends(get_current_user)
+):
+    query_lower = query.lower()
+    features = []
+    
+    # 1. Spatial Search in geography_data.json
+    # Categories to search
+    # 1. Spatial Search in geography_data.json
+    # Standard Categories
+    search_map = {
+        "provinces": ["province", "provinces", "administrative", "divisions", "boundaries"],
+        "crops": ["crops", "crop", "agriculture", "farming", "wheat", "rice", "cotton", "maize", "sugarcane", "pulses", "oilseeds", "kharif", "rabi"],
+        "livestock": ["livestock", "animals", "sheep", "buffalo", "goat", "rearing", "farming"],
+        "fruits": ["fruits", "fruit", "mango", "citrus", "kinnow", "apple", "orchards"],
+        "forests": ["forests", "forest", "trees", "vegetation", "mangroves", "alpine", "coniferous", "riverine", "irrigated"],
+        "energy": ["energy", "power", "oil", "gas", "electricity", "coal", "nuclear", "fields", "refinery"],
+        "minerals": ["minerals", "mining", "resources", "metallic", "non-metallic", "deposits", "limestone", "gypsum", "salt"],
+        "rivers": ["rivers", "river", "water", "indus", "jhelum", "chenab", "ravi", "sutlej", "swat", "kabul", "kurram", "gomal", "zhob", "hingol", "dasht"],
+        "barrages": ["barrages", "barrage", "dams", "irrigation", "headworks"],
+        "ports": ["ports", "port", "dry port", "sea port", "harbor", "karachi port", "gwadar", "dryport"],
+        "infrastructure": ["infrastructure", "roads", "railways", "cpec", "motorways", "highways", "transmission lines", "grid", "pipeline"],
+        "landforms": ["landforms", "physical", "plains", "doabs", "deltas", "plateaus", "mountains", "hills", "potohar", "salt range"],
+        "rain_systems": ["rain", "rainfall", "monsoon", "western disturbances", "convectional", "climate", "precipitation"],
+        "airports": ["airports", "airport", "aviation", "flight", "jinnah intl"],
+        "industries": ["industries", "industry", "industrial", "factory", "plants", "steel mills", "textile", "cement", "fertilizer"],
+        "dams": ["dams", "dam", "reservoir", "tarbela", "mangla"],
+        "energy_pipelines": ["pipeline", "pipelines", "gas pipeline", "oil pipeline"],
+        "population": ["population", "density", "populated", "urban", "sparse", "dense"],
+        "mountain_ranges": ["mountain ranges", "mountain range", "peaks", "k2", "karakoram", "himalayas", "hindu kush"],
+        "deserts": ["deserts", "desert", "thal", "thar", "cholistan", "kharan"],
+        "plateaus": ["plateaus", "plateau", "potwar", "balochistan plateau"],
+        "mountain_passes": ["mountain passes", "pass", "khunjerab", "bolan", "khyber", "gomal"],
+        "glaciers": ["glaciers", "glacier", "siachen", "baltoro", "biafo"],
+        "canals": ["canals", "canal", "irrigation canal", "nara", "rohri", "thal canal", "link canal"],
+        "fish_farms": ["fish farms", "fishing", "inland fish", "coastal fish"],
+        "drought_areas": ["drought", "arid", "water scarcity"],
+        "industrial_zones": ["sez", "special economic zone", "industrial estate", "site", "epz"]
+    }
+    
+    # Pass 1: Strict Entity Matching (Prioritize specific names/IDs)
+    specific_matches = []
+    
+    # Pass 1: Strict Entity Matching (Prioritize specific names/IDs)
+    specific_matches = []
+    
+    # Helper to flatten and search items (handles both lists and dicts of lists)
+    def find_matches_in_category(category_items, query):
+        matches = []
+        # If it's a list, iterate directly
+        if isinstance(category_items, list):
+            for item in category_items:
+                if isinstance(item, dict):
+                    name = item.get("name", "").lower()
+                    item_id = item.get("id", "").lower()
+                    if query == name or query == item_id:
+                        matches.append(item)
+                    elif f" {name} " in f" {query} " or f" {item_id} " in f" {query} ":
+                        matches.append(item)
+        # If it's a dict (like 'transport'), iterate values (which are lists)
+        elif isinstance(category_items, dict):
+            for sub_list in category_items.values():
+                if isinstance(sub_list, list):
+                    for item in sub_list:
+                        if isinstance(item, dict):
+                            name = item.get("name", "").lower()
+                            item_id = item.get("id", "").lower()
+                            if query == name or query == item_id:
+                                matches.append(item)
+                            elif f" {name} " in f" {query} " or f" {item_id} " in f" {query} ":
+                                matches.append(item)
+        return matches
+
+    for key, val in geography_data.items():
+        found = find_matches_in_category(val, query_lower)
+        for f in found:
+            specific_matches.append((key, f))
+
+    # If we found specific matches, use ONLY them
+    if specific_matches:
+        matching_categories = []
+        items_to_process = specific_matches
+        category_requested = False
+    else:
+        # Pass 2: Fallback to Category/Keyword Matching
+        matching_categories = []
+        category_requested = False
+        
+        for cat_name, keywords in search_map.items():
+            # Exact match (Case 1: User types the category name or keyword exactly)
+            if query_lower == cat_name or query_lower in [k.lower() for k in keywords]:
+                matching_categories.append(cat_name)
+                category_requested = True
+            # Word boundary match (Case 2: "Where are the airports?")
+            else:
+                name_match = re.search(rf"\b{re.escape(cat_name)}\b", query_lower)
+                kw_match = any(re.search(rf"\b{re.escape(kw)}\b", query_lower) for kw in keywords)
+                if name_match or kw_match:
+                    matching_categories.append(cat_name)
+
+        # Force mappings with word boundaries to avoid collisions (like "port" in "airport")
+        if any(re.search(rf"\b{re.escape(kw)}\b", query_lower) for kw in ["physical", "plains", "doabs", "landform"]):
+            if "landforms" not in matching_categories: matching_categories.append("landforms")
+        if any(re.search(rf"\b{re.escape(kw)}\b", query_lower) for kw in ["rain", "monsoon", "climate", "rainfall"]):
+            if "rain_systems" not in matching_categories: matching_categories.append("rain_systems")
+        if any(re.search(rf"\b{re.escape(kw)}\b", query_lower) for kw in ["ports", "marine", "dry port", "sea port"]):
+            if "ports" not in matching_categories: matching_categories.append("ports")
+        if any(re.search(rf"\b{re.escape(kw)}\b", query_lower) for kw in ["roads", "railways", "transport", "motorway", "highways"]):
+            if "transport" not in matching_categories: matching_categories.append("transport")
+
+        items_to_process = []
+        for key in matching_categories:
+            val = geography_data.get(key, [])
+            # Flatten for Pass 2 processing
+            if isinstance(val, list):
+                for item in val: items_to_process.append((key, item))
+            elif isinstance(val, dict):
+                for sub_list in val.values():
+                    if isinstance(sub_list, list):
+                        for item in sub_list: items_to_process.append((key, item))
+
+    # Collector for prompt context
+    matched_facts = []
+
+    for key, item in items_to_process:
+        item_name = item.get("name", "").lower()
+        item_id = item.get("id", "").lower()
+        
+        # If Pass 1 succeeded, we include all found items.
+        # Otherwise, check relevance if it wasn't a category request.
+        should_include = category_requested or specific_matches
+        
+        if not should_include:
+            # Tokenize query to find specific keyword matches
+            query_words = [w for w in query_lower.split() if len(w) > 3]
+            if any(word in item_name or word in item_id for word in query_words):
+                should_include = True
+            # Special cases for minerals/crops where name is at top level
+            elif item_name in query_lower or item_id in query_lower:
+                should_include = True
+        
+        if should_include:
+                # Add to facts context
+                matched_facts.append(f"{item.get('name')}: {item.get('facts', item.get('description', ''))}")
+                
+                # Standardize Mapping for Frontend (GeographyModule.jsx)
+                
+                # 1. RIVERS / PATHS (item.path)
+                if "path" in item:
+                    features.append({
+                        "type": "path",
+                        "label": item["name"],
+                        "color": item.get("color", "#3b82f6"),
+                        "data": item["path"]
+                    })
+                
+                # 2. MULTI-LOCATION POINTS (item.locations)
+                elif "locations" in item:
+                    for loc in item["locations"]:
+                        features.append({
+                            "type": "point",
+                            "label": loc.get("name", item["name"]),
+                            "color": item.get("color", "#f43f5e"),
+                            "data": [loc["coordinate"]],
+                            "facts": loc.get("description", item.get("facts")),
+                            "icon": item.get("icon", "map-pin")
+                        })
+
+                # 3. SINGLE POINTS (item.coordinate)
+                elif "coordinate" in item:
+                    features.append({
+                        "type": "point",
+                        "label": item["name"],
+                        "color": item.get("color", "#f43f5e"),
+                        "data": [item["coordinate"]],
+                        "facts": item.get("facts"),
+                        "icon": item.get("icon", "anchor" if "port" in key else "map-pin")
+                    })
+                
+                # 4. REGIONS / POLYGONS (item.regions or item.coordinates)
+                elif "regions" in item:
+                    features.append({
+                        "type": "region",
+                        "label": item["name"],
+                        "color": item.get("color", "#10b981"),
+                        "data": item["regions"],
+                    })
+                elif "coordinates" in item:
+                    # Flattened region (like provinces)
+                    features.append({
+                        "type": "region",
+                        "label": item["name"],
+                        "color": item.get("color", "#fbbf24"),
+                        "data": [{"name": item["name"], "coordinates": item["coordinates"], "description": item.get("facts")}]
+                    })
+
+    # 2. Generate LLM Explanation
+    knowledge_context = "\n".join(matched_facts[:10]) # Limit context to avoid token bloat
+    
+    system_prompt = f"""
+    You are the Cambridge Geography Examiner (Syllabus 2217/02).
+    Provide an expert geographical breakdown for: "{query}" in the context of Pakistan.
+    
+    ===== GEOGRAPHICAL KNOWLEDGE BASE =====
+    {knowledge_context}
+    ========================================
+
+    Format your response with:
+    ### [1] Curriculum Context
+    [Brief overview]
+    
+    ### [2] Distribution Analysis
+    [Where these are found and WHY - physical factors like relief, soil, climate]
+    
+    ### [3] Economic Significance
+    [Impact on Pakistan's GDP, trade, or local livelihoods]
+    
+    ### [4] Tutor Wisdom
+    [One-sentence exam tip]
+    
+    Use technical terms (Relief, Alluvial, Rabi/Kharif, Perennial).
+    Keep it concise (~300 words).
+    """
+    
+    explanation = "Intelligence engines offline."
+    if groq_client:
+        try:
+            completion = groq_client.chat.completions.create(
+                model="llama-3.3-70b-versatile",
+                messages=[
+                    {"role": "system", "content": system_prompt},
+                    {"role": "user", "content": query}
+                ],
+                temperature=0.3
+            )
+            explanation = completion.choices[0].message.content
+        except Exception as e:
+            print(f"Groq Error in GIS: {str(e)}")
+
+    return {
+        "features": features,
+        "explanation": explanation,
+        "query": query
+    }
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -1,13 +1,22 @@
 @import "tailwindcss";
 
 :root {
-  font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  line-height: 1.6;
   font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #020617;
+  /* Theme Variables - Light */
+  --bg-cream: #fdf9f6;
+  --bg-card: #ffffff;
+  --primary-purple: #4d3e77;
+  --primary-purple-light: #6a5a9c;
+  --accent-gold: #c5a059;
+  --text-dark: #2d2645;
+  --text-muted: #645c84;
+  --border-color: rgba(77, 62, 119, 0.1);
+
+  color: var(--text-dark);
+  background-color: var(--bg-cream);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -15,12 +24,24 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.dark {
+  --bg-cream: #0f0a1e;
+  --bg-card: #1a142e;
+  --primary-purple: #a594f9;
+  --primary-purple-light: #c4b5fd;
+  --accent-gold: #e9d1a1;
+  --text-dark: #f3f4f6;
+  --text-muted: #94a3b8;
+  --border-color: rgba(165, 148, 249, 0.15);
+}
+
 html,
 body {
   margin: 0;
   height: 100%;
   min-width: 320px;
-  background-color: #020617;
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
 }
 
 #root {
@@ -28,49 +49,94 @@ body {
   height: 100%;
 }
 
-.custom-scrollbar::-webkit-scrollbar {
-  width: 6px;
+/* Global Scrollbar Styles */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-purple-light) transparent;
 }
 
-.custom-scrollbar::-webkit-scrollbar-track {
+/* Webkit Global Baseline */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.4);
+::-webkit-scrollbar-thumb {
+  background: var(--primary-purple-light);
   border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.7);
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-purple);
+  background-clip: content-box;
+}
+
+/* Custom Scrollbar Utility */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-purple-light) transparent;
+}
+
+/* Mobile Responsiveness for Scrollbars */
+@media (max-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+
+  * {
+    scrollbar-width: none;
+    /* Hide on mobile by default for cleaner look */
+  }
+
+  .custom-scrollbar,
+  .overflow-auto,
+  .overflow-y-auto {
+    scrollbar-width: thin;
+  }
 }
 
 .glass-panel {
-  @apply bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl;
+  background: var(--bg-card);
+  opacity: 0.7;
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
+  border-radius: 1rem;
 }
 
 /* Leaflet Overrides */
 .leaflet-container {
-  background: #020617 !important;
-  border-radius: 1rem;
+  background: var(--bg-cream) !important;
+  border-radius: 1.5rem;
+  border: 4px solid var(--bg-card);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-/* .leaflet-tile-pane {
-  filter: invert(100%) hue-rotate(180deg) brightness(95%) contrast(90%);
-} */
+.dark .leaflet-container {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
 
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
-  @apply bg-slate-900 text-white border border-white/10 shadow-2xl;
+  background: var(--bg-card) !important;
+  color: var(--text-dark) !important;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .river-label {
   background: transparent !important;
   border: none !important;
   box-shadow: none !important;
-  color: #1e293b !important;
+  color: var(--text-dark) !important;
   font-weight: 800 !important;
-  text-shadow: 0 0 3px white;
+  text-shadow: 0 0 3px var(--bg-cream);
 }
 
 @keyframes float {
