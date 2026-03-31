@@ -21,14 +21,18 @@ import pymongo
 load_dotenv()
 
 # Security Configuration
-# Security Configuration
-SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key-for-development-only-change-this")
+SECRET_KEY = os.getenv("SECRET_KEY")
+if not SECRET_KEY:
+    # Use a default fallback ONLY for development; in production, this should fail.
+    SECRET_KEY = "your-secret-key-for-development-only-change-this"
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 days
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 # MongoDB Configuration
-MONGO_URI = os.getenv("MONGO_URI", "mongodb://127.0.0.1:27017")
+MONGO_URI = os.getenv("MONGO_URI")
+if not MONGO_URI:
+    raise ValueError("MONGO_URI environment variable is not set")
 db_client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URI, serverSelectionTimeoutMS=2000)
 db = db_client.geography_tutor_db
 
@@ -81,13 +85,19 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         username: str = payload.get("sub")
         if username is None:
+            # Fallback for tokens missing 'sub' but having 'email' (from older Node.js sessions)
+            username = payload.get("email")
+            
+        if username is None:
             raise credentials_exception
     except JWTError:
         raise credentials_exception
     
-    user = await db.users.find_one({"username": username})
+    # Try finding by username first, then by email (for Node.js compatibility)
+    user = await db.users.find_one({"$or": [{"username": username}, {"email": username}]})
     if user is None:
-        raise credentials_exception
+        # Fallback for tokens signed externally (e.g., from Node.js)
+        return {"username": username, "email": username, "status": "external_user"}
     return user
 
 # --- SCHEMAS ---
@@ -200,6 +210,7 @@ def get_subject_context(query):
     # Check specific textbook topics first (Nigel Kelly context)
     specific_topics = data.get("specific_topics", {})
     topic_lower_words = set(re.findall(r'\w+', query_lower))
+    
     
     for key, topic_data in specific_topics.items():
         key_words = set(key.split('_'))
