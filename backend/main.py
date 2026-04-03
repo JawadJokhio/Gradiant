@@ -510,6 +510,116 @@ async def analyze_weakness(current_user: dict = Depends(get_current_user)):
         "summary": "Keep practicing to generate more detailed insights."
     }
 
+CATEGORY_ALIASES = {
+    "provinces": ["province", "provinces", "administrative"],
+    "crops": ["crop", "crops", "agriculture", "farming"],
+    "livestock": ["livestock", "animals"],
+    "fruits": ["fruit", "fruits"],
+    "forests": ["forest", "forests", "vegetation"],
+    "energy": ["energy", "power", "electricity"],
+    "minerals": ["mineral", "minerals", "mining"],
+    "rivers": ["river", "rivers"],
+    "barrages": ["barrage", "barrages"],
+    "ports": ["port", "seaport", "harbor"],
+    "dryports": ["dryport", "dry port"],
+    "airports": ["airport", "airports"],
+    "dams": ["dam", "dams"],
+    "industries": ["industry", "industries", "industrial"],
+    "pipelines": ["pipeline", "pipelines"],
+    "population": ["population", "density"],
+    "landforms": ["landform", "relief", "plains"],
+    "rain": ["rain", "monsoon", "climate"],
+    "mountains": ["mountain", "range"],
+    "deserts": ["desert"],
+    "plateaus": ["plateau"],
+    "passes": ["pass"],
+    "glaciers": ["glacier"],
+    "canals": ["canal"],
+    "fish": ["fish", "fishing"],
+    "drought": ["drought", "arid"],
+    "industrial_zones": ["sez", "industrial zone"]
+}
+
+def detect_category(query):
+    query = query.lower()
+    
+    for category, keywords in CATEGORY_ALIASES.items():
+        for kw in keywords:
+            if re.search(rf"\b{kw}\b", query):
+                return category
+    
+    return None
+
+def match_entities(data, query):
+    query = query.lower()
+    results = []
+
+    for category, items in data.items():
+        if isinstance(items, dict):
+            items = [i for sub in items.values() for i in sub]
+
+        for item in items:
+            name = item.get("name", "").lower()
+            item_id = item.get("id", "").lower()
+
+            # Priority scoring
+            score = 0
+
+            if query == name:
+                score = 100
+            elif name in query:
+                score = 80
+            elif any(word in name for word in query.split()):
+                score = 50
+
+            if score > 0:
+                results.append((score, category, item))
+
+    return sorted(results, reverse=True)
+
+def convert_to_feature(category, item):
+    features = []
+
+    if "path" in item:
+        features.append({
+            "type": "path",
+            "label": item.get("name", ""),
+            "data": item["path"],
+            "color": item.get("color", "#3b82f6")
+        })
+
+    elif "locations" in item:
+        for loc in item["locations"]:
+            features.append({
+                "type": "point",
+                "label": loc.get("name", item.get("name", "")),
+                "data": [loc["coordinate"]],
+                "color": item.get("color", "#f43f5e"),
+                "facts": loc.get("description", item.get("facts")),
+                "icon": item.get("icon", "map-pin")
+            })
+
+    elif "coordinate" in item:
+        features.append({
+            "type": "point",
+            "label": item.get("name", ""),
+            "data": [item["coordinate"]],
+            "color": item.get("color", "#f43f5e"),
+            "facts": item.get("facts"),
+            "icon": item.get("icon", "anchor" if "port" in category else "map-pin")
+        })
+
+    elif "regions" in item or "coordinates" in item:
+        region_data = item.get("regions") or [{"name": item.get("name", ""), "coordinates": item["coordinates"], "description": item.get("facts")}]
+        features.append({
+            "type": "region",
+            "label": item.get("name", ""),
+            "data": region_data,
+            "color": item.get("color", "#10b981" if "regions" in item else "#fbbf24")
+        })
+
+    return features
+
 @app.post("/analyze-map")
 async def analyze_map(
     query: str = Form(...),
@@ -517,199 +627,38 @@ async def analyze_map(
     current_user: dict = Depends(get_current_user)
 ):
     query_lower = query.lower()
+    
+    category = detect_category(query_lower)
+    entity_matches = match_entities(geography_data, query_lower)
+
     features = []
-    
-    # 1. Spatial Search in geography_data.json
-    # Categories to search
-    # 1. Spatial Search in geography_data.json
-    # Standard Categories
-    search_map = {
-        "provinces": ["province", "provinces", "administrative", "divisions", "boundaries"],
-        "crops": ["crops", "crop", "agriculture", "farming", "wheat", "rice", "cotton", "maize", "sugarcane", "pulses", "oilseeds", "kharif", "rabi"],
-        "livestock": ["livestock", "animals", "sheep", "buffalo", "goat", "rearing", "farming"],
-        "fruits": ["fruits", "fruit", "mango", "citrus", "kinnow", "apple", "orchards"],
-        "forests": ["forests", "forest", "trees", "vegetation", "mangroves", "alpine", "coniferous", "riverine", "irrigated"],
-        "energy": ["energy", "power", "oil", "gas", "electricity", "coal", "nuclear", "fields", "refinery"],
-        "minerals": ["minerals", "mining", "resources", "metallic", "non-metallic", "deposits", "limestone", "gypsum", "salt"],
-        "rivers": ["rivers", "river", "water", "indus", "jhelum", "chenab", "ravi", "sutlej", "swat", "kabul", "kurram", "gomal", "zhob", "hingol", "dasht"],
-        "barrages": ["barrages", "barrage", "dams", "irrigation", "headworks"],
-        "ports": ["ports", "port", "dry port", "sea port", "harbor", "karachi port", "gwadar", "dryport"],
-        "infrastructure": ["infrastructure", "roads", "railways", "cpec", "motorways", "highways", "transmission lines", "grid", "pipeline"],
-        "landforms": ["landforms", "physical", "plains", "doabs", "deltas", "plateaus", "mountains", "hills", "potohar", "salt range"],
-        "rain_systems": ["rain", "rainfall", "monsoon", "western disturbances", "convectional", "climate", "precipitation"],
-        "airports": ["airports", "airport", "aviation", "flight", "jinnah intl"],
-        "industries": ["industries", "industry", "industrial", "factory", "plants", "steel mills", "textile", "cement", "fertilizer"],
-        "dams": ["dams", "dam", "reservoir", "tarbela", "mangla"],
-        "energy_pipelines": ["pipeline", "pipelines", "gas pipeline", "oil pipeline"],
-        "population": ["population", "density", "populated", "urban", "sparse", "dense"],
-        "mountain_ranges": ["mountain ranges", "mountain range", "peaks", "k2", "karakoram", "himalayas", "hindu kush"],
-        "deserts": ["deserts", "desert", "thal", "thar", "cholistan", "kharan"],
-        "plateaus": ["plateaus", "plateau", "potwar", "balochistan plateau"],
-        "mountain_passes": ["mountain passes", "pass", "khunjerab", "bolan", "khyber", "gomal"],
-        "glaciers": ["glaciers", "glacier", "siachen", "baltoro", "biafo"],
-        "canals": ["canals", "canal", "irrigation canal", "nara", "rohri", "thal canal", "link canal"],
-        "fish_farms": ["fish farms", "fishing", "inland fish", "coastal fish"],
-        "drought_areas": ["drought", "arid", "water scarcity"],
-        "industrial_zones": ["sez", "special economic zone", "industrial estate", "site", "epz"]
-    }
-    
-    # Pass 1: Strict Entity Matching (Prioritize specific names/IDs)
-    specific_matches = []
-    
-    # Pass 1: Strict Entity Matching (Prioritize specific names/IDs)
-    specific_matches = []
-    
-    # Helper to flatten and search items (handles both lists and dicts of lists)
-    def find_matches_in_category(category_items, query):
-        matches = []
-        # If it's a list, iterate directly
-        if isinstance(category_items, list):
-            for item in category_items:
-                if isinstance(item, dict):
-                    name = item.get("name", "").lower()
-                    item_id = item.get("id", "").lower()
-                    if query == name or query == item_id:
-                        matches.append(item)
-                    elif f" {name} " in f" {query} " or f" {item_id} " in f" {query} ":
-                        matches.append(item)
-        # If it's a dict (like 'transport'), iterate values (which are lists)
-        elif isinstance(category_items, dict):
-            for sub_list in category_items.values():
-                if isinstance(sub_list, list):
-                    for item in sub_list:
-                        if isinstance(item, dict):
-                            name = item.get("name", "").lower()
-                            item_id = item.get("id", "").lower()
-                            if query == name or query == item_id:
-                                matches.append(item)
-                            elif f" {name} " in f" {query} " or f" {item_id} " in f" {query} ":
-                                matches.append(item)
-        return matches
-
-    for key, val in geography_data.items():
-        found = find_matches_in_category(val, query_lower)
-        for f in found:
-            specific_matches.append((key, f))
-
-    # If we found specific matches, use ONLY them
-    if specific_matches:
-        matching_categories = []
-        items_to_process = specific_matches
-        category_requested = False
-    else:
-        # Pass 2: Fallback to Category/Keyword Matching
-        matching_categories = []
-        category_requested = False
-        
-        for cat_name, keywords in search_map.items():
-            # Exact match (Case 1: User types the category name or keyword exactly)
-            if query_lower == cat_name or query_lower in [k.lower() for k in keywords]:
-                matching_categories.append(cat_name)
-                category_requested = True
-            # Word boundary match (Case 2: "Where are the airports?")
-            else:
-                name_match = re.search(rf"\b{re.escape(cat_name)}\b", query_lower)
-                kw_match = any(re.search(rf"\b{re.escape(kw)}\b", query_lower) for kw in keywords)
-                if name_match or kw_match:
-                    matching_categories.append(cat_name)
-
-        # Force mappings with word boundaries to avoid collisions (like "port" in "airport")
-        if any(re.search(rf"\b{re.escape(kw)}\b", query_lower) for kw in ["physical", "plains", "doabs", "landform"]):
-            if "landforms" not in matching_categories: matching_categories.append("landforms")
-        if any(re.search(rf"\b{re.escape(kw)}\b", query_lower) for kw in ["rain", "monsoon", "climate", "rainfall"]):
-            if "rain_systems" not in matching_categories: matching_categories.append("rain_systems")
-        if any(re.search(rf"\b{re.escape(kw)}\b", query_lower) for kw in ["ports", "marine", "dry port", "sea port"]):
-            if "ports" not in matching_categories: matching_categories.append("ports")
-        if any(re.search(rf"\b{re.escape(kw)}\b", query_lower) for kw in ["roads", "railways", "transport", "motorway", "highways"]):
-            if "transport" not in matching_categories: matching_categories.append("transport")
-
-        items_to_process = []
-        for key in matching_categories:
-            val = geography_data.get(key, [])
-            # Flatten for Pass 2 processing
-            if isinstance(val, list):
-                for item in val: items_to_process.append((key, item))
-            elif isinstance(val, dict):
-                for sub_list in val.values():
-                    if isinstance(sub_list, list):
-                        for item in sub_list: items_to_process.append((key, item))
-
-    # Collector for prompt context
     matched_facts = []
 
-    for key, item in items_to_process:
-        item_name = item.get("name", "").lower()
-        item_id = item.get("id", "").lower()
-        
-        # If Pass 1 succeeded, we include all found items.
-        # Otherwise, check relevance if it wasn't a category request.
-        should_include = category_requested or specific_matches
-        
-        if not should_include:
-            # Tokenize query to find specific keyword matches
-            query_words = [w for w in query_lower.split() if len(w) > 3]
-            if any(word in item_name or word in item_id for word in query_words):
-                should_include = True
-            # Special cases for minerals/crops where name is at top level
-            elif item_name in query_lower or item_id in query_lower:
-                should_include = True
-        
-        if should_include:
-                # Add to facts context
-                matched_facts.append(f"{item.get('name')}: {item.get('facts', item.get('description', ''))}")
-                
-                # Standardize Mapping for Frontend (GeographyModule.jsx)
-                
-                # 1. RIVERS / PATHS (item.path)
-                if "path" in item:
-                    features.append({
-                        "type": "path",
-                        "label": item["name"],
-                        "color": item.get("color", "#3b82f6"),
-                        "data": item["path"]
-                    })
-                
-                # 2. MULTI-LOCATION POINTS (item.locations)
-                elif "locations" in item:
-                    for loc in item["locations"]:
-                        features.append({
-                            "type": "point",
-                            "label": loc.get("name", item["name"]),
-                            "color": item.get("color", "#f43f5e"),
-                            "data": [loc["coordinate"]],
-                            "facts": loc.get("description", item.get("facts")),
-                            "icon": item.get("icon", "map-pin")
-                        })
+    # CASE 1: Strong entity match
+    if entity_matches:
+        top_matches = entity_matches[:5]
 
-                # 3. SINGLE POINTS (item.coordinate)
-                elif "coordinate" in item:
-                    features.append({
-                        "type": "point",
-                        "label": item["name"],
-                        "color": item.get("color", "#f43f5e"),
-                        "data": [item["coordinate"]],
-                        "facts": item.get("facts"),
-                        "icon": item.get("icon", "anchor" if "port" in key else "map-pin")
-                    })
-                
-                # 4. REGIONS / POLYGONS (item.regions or item.coordinates)
-                elif "regions" in item:
-                    features.append({
-                        "type": "region",
-                        "label": item["name"],
-                        "color": item.get("color", "#10b981"),
-                        "data": item["regions"],
-                    })
-                elif "coordinates" in item:
-                    # Flattened region (like provinces)
-                    features.append({
-                        "type": "region",
-                        "label": item["name"],
-                        "color": item.get("color", "#fbbf24"),
-                        "data": [{"name": item["name"], "coordinates": item["coordinates"], "description": item.get("facts")}]
-                    })
+        for _, cat, item in top_matches:
+            matched_facts.append(f"{item.get('name')}: {item.get('facts', '')}")
+            features.extend(convert_to_feature(cat, item))
+
+    # CASE 2: Category-based retrieval
+    elif category:
+        items = geography_data.get(category, [])
+
+        if isinstance(items, dict):
+            items = [i for sub in items.values() for i in sub]
+
+        for item in items[:10]:
+            matched_facts.append(f"{item.get('name')}: {item.get('facts', '')}")
+            features.extend(convert_to_feature(category, item))
+
+    # CASE 3: fallback
+    else:
+        matched_facts.append("No strong geographical match found.")
 
     # 2. Generate LLM Explanation
+
     knowledge_context = "\n".join(matched_facts[:10]) # Limit context to avoid token bloat
     
     system_prompt = f"""
