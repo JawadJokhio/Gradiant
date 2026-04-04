@@ -417,7 +417,10 @@ If uncertain → default to 4m rules.
                 max_new_tokens=2000
             )
         except Exception as e:
-            return f"Error with all intelligence engines: {str(e)}"
+            return f"Error with all intelligence engines (HF): {str(e)}"
+    
+    # If no providers are available
+    return "Intelligence engines offline: Please check your API keys in the .env file."
     
 @app.post("/ask-ai")
 async def ask_ai(
