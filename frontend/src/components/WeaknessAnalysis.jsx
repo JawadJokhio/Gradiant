@@ -12,10 +12,7 @@ export default function WeaknessAnalysis({ onBack }) {
 
     const fetchAnalysis = async () => {
         try {
-            const token = localStorage.getItem('token')
-            const response = await fetch('http://localhost:8000/analyze-weakness', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            })
+            const response = await fetch('http://localhost:8000/analyze-weakness')
             const data = await response.json()
             setAnalysis(data)
         } catch (error) {

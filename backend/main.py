@@ -347,14 +347,19 @@ def detect_category(query):
     
     for category, keywords in CATEGORY_ALIASES.items():
         for kw in keywords:
-            if re.search(rf"\b{kw}\b", query):
+            if re.search(rf"\b{kw}(s|es)?\b", query):
                 return category
     
     return None
 
 def match_entities(data, query):
     query = query.lower()
+    query_words = set(query.split())
     results = []
+
+    # Detect if user is asking for a specific sub-type
+    modifiers = ["sea", "dry", "international", "intl", "domestic", "sez", "epz", "industrial"]
+    active_modifiers = [mod for mod in modifiers if mod in query]
 
     for category, items in data.items():
         if isinstance(items, dict):
@@ -363,16 +368,27 @@ def match_entities(data, query):
         for item in items:
             name = item.get("name", "").lower()
             item_id = item.get("id", "").lower()
+            item_type = item.get("type", "").lower()
+            
+            # Search space for this item
+            item_search_str = f"{name} {item_id} {item_type}"
 
-            # Priority scoring
+            # Base scoring
             score = 0
 
             if query == name:
                 score = 100
             elif name in query:
                 score = 80
-            elif any(word in name for word in query.split()):
+            elif any(word in item_search_str for word in query_words):
                 score = 50
+
+            # Enforce modifiers if present to isolate subtypes (e.g. sea vs dry ports)
+            if active_modifiers:
+                if any(mod in item_search_str for mod in active_modifiers):
+                    score += 50
+                else:
+                    score -= 100
 
             if score > 0:
                 results.append((score, category, item))
@@ -437,7 +453,7 @@ async def analyze_map(
 
     # CASE 1: Strong entity match
     if entity_matches:
-        top_matches = entity_matches[:5]
+        top_matches = entity_matches[:10]
 
         for _, cat, item in top_matches:
             matched_facts.append(f"{item.get('name')}: {item.get('facts', '')}")

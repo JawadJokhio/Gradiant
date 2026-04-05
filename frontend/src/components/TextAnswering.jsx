@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { MessageSquare, ArrowLeft, Send, Sparkles, Brain, BookOpen, ChevronLeft } from 'lucide-react'
-import { useAuth } from '../context/AuthContext'
 
 export default function TextAnswering({ onBack, initialSubject }) {
-    const { token } = useAuth()
+
     const [query, setQuery] = useState('')
     const [subject] = useState(initialSubject || 'history')
     const [marks, setMarks] = useState(4)
@@ -24,9 +23,7 @@ export default function TextAnswering({ onBack, initialSubject }) {
         try {
             const response = await fetch('http://localhost:8000/ask-ai', {
                 method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                },
+
                 body: formData,
             })
             const data = await response.json()

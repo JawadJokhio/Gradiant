@@ -1,10 +1,9 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Send, Brain, BookOpen, User, Award, ShieldCheck, Info, Sparkles, ChevronRight, AlertTriangle, ArrowLeft, ChevronLeft, Sparkle } from 'lucide-react'
-import { useAuth } from '../context/AuthContext'
 
 export default function HistoryExaminer({ onBack }) {
-    const { token } = useAuth()
+
     const [query, setQuery] = useState('')
     const [selectedMarks, setSelectedMarks] = useState(null)
     const [isAnalyzing, setIsAnalyzing] = useState(false)
@@ -37,7 +36,7 @@ export default function HistoryExaminer({ onBack }) {
         try {
             const response = await fetch('http://localhost:8000/ask-ai', {
                 method: 'POST',
-                headers: { 'Authorization': `Bearer ${token}` },
+
                 body: formData,
             })
             const data = await response.json()

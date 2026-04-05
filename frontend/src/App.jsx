@@ -1,6 +1,3 @@
-import { useAuth } from './context/AuthContext'
-import { Login } from './components/Auth/Login'
-import { Signup } from './components/Auth/Signup'
 import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import { Sun, Moon } from 'lucide-react'
@@ -25,8 +22,6 @@ const subjectsData = {
 }
 
 function App() {
-    const { token, isLoading: authLoading } = useAuth()
-    const [authMode, setAuthMode] = useState('login')
     const [activeSubject, setActiveSubject] = useState(null)
     const [activeMode, setActiveMode] = useState(null)
     const [darkMode, setDarkMode] = useState(() => {
@@ -50,29 +45,7 @@ function App() {
         </button>
     )
 
-    if (authLoading) {
-        return (
-            <div className={`h-screen w-full flex items-center justify-center transition-colors duration-500 ${darkMode ? 'dark bg-[#0f0a1e]' : 'bg-[#fdf9f6]'}`}>
-                <div className="w-12 h-12 border-4 border-[#4d3e77] dark:border-[#a594f9] border-t-transparent rounded-full animate-spin"></div>
-            </div>
-        )
-    }
-
     const renderContent = () => {
-        if (!token) {
-            return (
-                <div className="h-screen w-full flex items-center justify-center p-4">
-                    <AnimatePresence mode="wait">
-                        {authMode === 'login' ? (
-                            <Login key="login" onToggle={() => setAuthMode('signup')} />
-                        ) : (
-                            <Signup key="signup" onToggle={() => setAuthMode('login')} />
-                        )}
-                    </AnimatePresence>
-                </div>
-            )
-        }
-
         if (!activeSubject) {
             return (
                 <SubjectDashboard

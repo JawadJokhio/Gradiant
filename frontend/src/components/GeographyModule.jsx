@@ -6,7 +6,6 @@ import { Upload, Search, Map as MapIcon, Info, Database, Layers, Leaf, Droplets,
 import L from 'leaflet'
 import icon from 'leaflet/dist/images/marker-icon.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png'
-import { useAuth } from '../context/AuthContext'
 
 let DefaultIcon = L.icon({
     iconUrl: icon,
@@ -18,7 +17,7 @@ let DefaultIcon = L.icon({
 L.Marker.prototype.options.icon = DefaultIcon;
 
 export default function GeographyModule({ onBack }) {
-    const { token } = useAuth()
+
     const [query, setQuery] = useState('')
     const [mapImage, setMapImage] = useState(null)
     const [imageFile, setImageFile] = useState(null)
@@ -67,9 +66,7 @@ export default function GeographyModule({ onBack }) {
         try {
             const response = await fetch('http://localhost:8000/analyze-map', {
                 method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${token}`
-                },
+
                 body: formData,
             })
             const data = await response.json()
