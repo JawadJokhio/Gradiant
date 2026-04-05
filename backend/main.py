@@ -575,7 +575,7 @@ def match_entities(data, query):
             if score > 0:
                 results.append((score, category, item))
 
-    return sorted(results, reverse=True)
+    return sorted(results, key=lambda x: x[0], reverse=True)
 
 def convert_to_feature(category, item):
     features = []
