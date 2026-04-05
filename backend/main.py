@@ -1,40 +1,17 @@
 from fastapi import FastAPI, UploadFile, File, Form, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 import uvicorn
 import json
 import os
-from pydantic import BaseModel, EmailStr
+from pydantic import BaseModel
 from typing import Optional, List, Dict
 from dotenv import load_dotenv
 from groq import Groq
 from huggingface_hub import InferenceClient
 import re
-import motor.motor_asyncio
-import bcrypt
-from jose import JWTError, jwt
-from datetime import datetime, timedelta
-from bson import ObjectId
-import pymongo
 
 # Load environment variables
 load_dotenv()
-
-# Security Configuration
-SECRET_KEY = os.getenv("SECRET_KEY")
-if not SECRET_KEY:
-    # Use a default fallback ONLY for development; in production, this should fail.
-    SECRET_KEY = "your-secret-key-for-development-only-change-this"
-ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 days
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
-
-# MongoDB Configuration
-MONGO_URI = os.getenv("MONGO_URI")
-if not MONGO_URI:
-    raise ValueError("MONGO_URI environment variable is not set")
-db_client = motor.motor_asyncio.AsyncIOMotorClient(MONGO_URI, serverSelectionTimeoutMS=2000)
-db = db_client.geography_tutor_db
 
 app = FastAPI(title="Pakistan Geography Tutor - Personalized Examiner")
 
@@ -48,77 +25,6 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-# --- AUTH UTILITIES ---
-def verify_password(plain_password, hashed_password):
-    try:
-        # Standard bcrypt check - handles compatibility with passlib bcrypt hashes
-        pwd_bytes = plain_password[:72].encode('utf-8')
-        hashed_bytes = hashed_password.encode('utf-8')
-        return bcrypt.checkpw(pwd_bytes, hashed_bytes)
-    except Exception:
-        return False
-
-def get_password_hash(password):
-    # Enforce 72-byte limit and return as string
-    pwd_bytes = password[:72].encode('utf-8')
-    salt = bcrypt.gensalt()
-    return bcrypt.hashpw(pwd_bytes, salt).decode('utf-8')
-
-def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
-    to_encode = data.copy()
-    if expires_delta:
-        expire = datetime.utcnow() + expires_delta
-    else:
-        expire = datetime.utcnow() + timedelta(minutes=15)
-    to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
-
-async def get_current_user(token: str = Depends(oauth2_scheme)):
-    credentials_exception = HTTPException(
-        status_code=status.HTTP_401_UNAUTHORIZED,
-        detail="Could not validate credentials",
-        headers={"WWW-Authenticate": "Bearer"},
-    )
-    try:
-        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
-        username: str = payload.get("sub")
-        if username is None:
-            # Fallback for tokens missing 'sub' but having 'email' (from older Node.js sessions)
-            username = payload.get("email")
-            
-        if username is None:
-            raise credentials_exception
-    except JWTError:
-        raise credentials_exception
-    
-    # Try finding by username first, then by email (for Node.js compatibility)
-    user = await db.users.find_one({"$or": [{"username": username}, {"email": username}]})
-    if user is None:
-        # Fallback for tokens signed externally (e.g., from Node.js)
-        return {"username": username, "email": username, "status": "external_user"}
-    return user
-
-# --- SCHEMAS ---
-class UserCreate(BaseModel):
-    username: str
-    email: EmailStr
-    password: str
-
-class UserResponse(BaseModel):
-    username: str
-    email: str
-
-class Token(BaseModel):
-    access_token: str
-    token_type: str
-
-class LessonProgress(BaseModel):
-    course: str
-    progress: int
-    weak_areas: List[str]
-    last_active: datetime
 
 # Load Knowledge Datasets
 BASE_DIR = os.path.dirname(__file__)
@@ -152,52 +58,7 @@ class YearlyPapers(BaseModel):
 groq_client = Groq(api_key=os.getenv("GROQ_API_KEY")) if os.getenv("GROQ_API_KEY") else None
 hf_client = InferenceClient(token=os.getenv("HF_API_KEY")) if os.getenv("HF_API_KEY") else None
 
-# --- AUTH ENDPOINTS ---
-@app.post("/signup", response_model=UserResponse)
-async def signup(user: UserCreate):
-    try:
-        existing_user = await db.users.find_one({"$or": [{"username": user.username}, {"email": user.email}]})
-        if existing_user:
-            raise HTTPException(status_code=400, detail="Username or Email already registered")
-        
-        hashed_password = get_password_hash(user.password)
-        new_user = {
-            "username": user.username,
-            "email": user.email,
-            "password": hashed_password,
-            "created_at": datetime.utcnow()
-        }
-        await db.users.insert_one(new_user)
-        return new_user
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Internal Server Error: {str(e)}")
-
-@app.post("/login", response_model=Token)
-async def login(form_data: OAuth2PasswordRequestForm = Depends()):
-    user = await db.users.find_one({"username": form_data.username})
-    if not user or not verify_password(form_data.password, user["password"]):
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Incorrect username or password",
-            headers={"WWW-Authenticate": "Bearer"},
-        )
-    
-    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
-    access_token = create_access_token(
-        data={"sub": user["username"]}, expires_delta=access_token_expires
-    )
-    return {"access_token": access_token, "token_type": "bearer"}
-
-@app.get("/users/me", response_model=UserResponse)
-async def read_users_me(current_user: dict = Depends(get_current_user)):
-    return current_user
-
-@app.get("/chat/history")
-async def get_chat_history(current_user: dict = Depends(get_current_user)):
-    history = await db.chats.find({"username": current_user["username"]}).sort("timestamp", -1).to_list(100)
-    for h in history:
-        h["_id"] = str(h["_id"])
-    return history
+# --- AI ENDPOINTS ---
 
 def get_subject_context(query):
     """Focused RAG logic for Cambridge History (Syllabus 2059/01)"""
@@ -380,7 +241,7 @@ Reason: concise examiner rationale
 STEP 8 — TUTOR WISDOM
 Always conclude with a concise, one-sentence "Tutor Wisdom" section.
 FORMAT:
-### [4] Tutor Wisdom
+[4] Tutor Wisdom
 [Your dynamic advice here based on the examiner tips or question logic]
 
 STEP 9 — TONE
@@ -417,27 +278,17 @@ If uncertain → default to 4m rules.
                 max_new_tokens=2000
             )
         except Exception as e:
-            return f"Error with all intelligence engines: {str(e)}"
+            return f"Error with all intelligence engines (HF): {str(e)}"
+    
+    # If no providers are available
+    return "Intelligence engines offline: Please check your API keys in the .env file."
     
 @app.post("/ask-ai")
 async def ask_ai(
     query: str = Form(...),
-    marks: int = Form(4),
-    current_user: dict = Depends(get_current_user)
+    marks: int = Form(4)
 ):
     answer = await get_llm_response(query, marks)
-    
-    # Save to history
-    chat_entry = {
-        "username": current_user["username"],
-        "query": query,
-        "answer": answer,
-        "marks": marks,
-        "mode": "chat",
-        "timestamp": datetime.utcnow()
-    }
-    await db.chats.insert_one(chat_entry)
-
     return {"answer": answer, "marks": marks}
 
 # --- NEW CAMBRIDGE ASSISTANT STYLE ENDPOINTS ---
@@ -460,55 +311,6 @@ async def get_paper_content(subject: str, year: str, session: str):
     session_data = data.get("past_papers", {}).get(year, {}).get(session, {})
     return session_data
 
-@app.get("/analyze-weakness", response_model=WeaknessAnalysisResponse)
-async def analyze_weakness(current_user: dict = Depends(get_current_user)):
-    # Fetch user's recent chat history
-    history = await db.chats.find({"username": current_user["username"]}).sort("timestamp", -1).to_list(10)
-    
-    if not history:
-        return {
-            "weak_areas": ["Not enough data yet"],
-            "improvement_plan": "Start interacting with the AI examiners to see your progress!",
-            "summary": "Begin your journey by asking questions or practicing paper solutions."
-        }
-
-    # Prepare historical context for LLM
-    interactions = ""
-    for h in history:
-        interactions += f"Q: {h['query']}\nFeedback: {h['answer']}\n\n"
-
-    analysis_prompt = f"""
-    Analyze the following recent exam practice interactions for student "{current_user['username']}".
-    Based on the examiner's feedback and the student's questions, identify:
-    1. Three specific academic weak areas (be very specific like '1947 partition reasons' or 'topographic map symbols').
-    2. A one-paragraph actionable improvement plan.
-    3. A brief summary of overall performance.
-
-    INTERACTIONS:
-    {interactions}
-
-    RETURN ONLY A JSON OBJECT with keys: "weak_areas" (list), "improvement_plan" (string), "summary" (string).
-    """
-
-    try:
-        if groq_client:
-            completion = groq_client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
-                messages=[{"role": "user", "content": analysis_prompt}],
-                temperature=0.3,
-                response_format={"type": "json_object"}
-            )
-            result = json.loads(completion.choices[0].message.content)
-            return result
-    except Exception as e:
-        print(f"Weakness Analysis Error: {str(e)}")
-
-    # Fallback/Dummy Analysis if LLM fails
-    return {
-        "weak_areas": ["Recent Topics Analysis"],
-        "improvement_plan": "Focus on consistent practice with diverse question types.",
-        "summary": "Keep practicing to generate more detailed insights."
-    }
 
 CATEGORY_ALIASES = {
     "provinces": ["province", "provinces", "administrative"],
@@ -623,8 +425,7 @@ def convert_to_feature(category, item):
 @app.post("/analyze-map")
 async def analyze_map(
     query: str = Form(...),
-    image: Optional[UploadFile] = File(None),
-    current_user: dict = Depends(get_current_user)
+    image: Optional[UploadFile] = File(None)
 ):
     query_lower = query.lower()
     
