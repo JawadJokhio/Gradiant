@@ -21,7 +21,7 @@ export default function TextAnswering({ onBack, initialSubject }) {
         formData.append('marks', marks.toString())
 
         try {
-            const response = await fetch('http://localhost:8000/ask-ai', {
+            const response = await fetch('http://localhost:8000/history/ask-ai', {
                 method: 'POST',
 
                 body: formData,

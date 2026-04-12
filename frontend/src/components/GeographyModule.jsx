@@ -64,7 +64,7 @@ export default function GeographyModule({ onBack }) {
         if (imageFile) formData.append('image', imageFile)
 
         try {
-            const response = await fetch('http://localhost:8000/analyze-map', {
+            const response = await fetch('http://localhost:8000/geography/analyze-map', {
                 method: 'POST',
 
                 body: formData,
