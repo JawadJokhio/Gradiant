@@ -89,7 +89,7 @@ class LLMService:
         if settings.groq_api_key:
             self.groq_provider = GroqProvider(settings.groq_api_key)
         
-        if settings.hf_api_key and settings.hf_api_key != "your_hf_api_key_here":
+        if settings.hf_api_key and settings.hf_api_key != "your_huggingface_api_key_here":
             self.hf_provider = HFProvider(settings.hf_api_key)
             self.vision_provider = HFVisionProvider(settings.hf_api_key)
 
