@@ -25,11 +25,11 @@ async def analyze_geography_image_question(
     if not query or query.strip() == "":
         query = "If the image contains a specific past-paper question, answer it comprehensively. Otherwise, provide a detailed geographical analysis of the map, graph, diagram, or data shown."
 
-    # 1. Extract context
+    # 1. Perform a quick extraction to get keywords for RAG context
+    # This helps even if the user query is vague (e.g. "Analyze this")
     image_context = geography_image_analysis_service.extract_graph_context(base64_img, query)
 
-    # 2. Get Geographic RAG context via standard match logic (treating extraction as a "query")
-    # To maximize accuracy, we query the DB with both user query and extracted logic
+    # 2. Get Geographic RAG context using both user query and image context
     search_query = f"{query} {image_context}"
     entity_matches = geography_service.match_entities(search_query)
     
@@ -42,11 +42,12 @@ async def analyze_geography_image_question(
     if not geo_context_text:
         geo_context_text = "No additional geographic background context found."
 
-    # 3. Generate Evaluation
-    answer = geography_image_analysis_service.evaluate_image_answer(
-        image_context=image_context, 
-        query=query, 
-        context_string=geo_context_text, 
+    # 3. Direct Vision-to-Answer Analysis
+    # The vision model looks at the image and the context to provide the final answer
+    answer = geography_image_analysis_service.analyze_geography_image_direct(
+        image_base64=base64_img,
+        query=query,
+        context_string=geo_context_text,
         marks=marks
     )
 

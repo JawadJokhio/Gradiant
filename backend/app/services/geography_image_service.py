@@ -7,13 +7,24 @@ class GeographyImageAnalysisService:
     def extract_graph_context(self, image_base64: str, query: str = "") -> str:
         """Extracts the question, visual data and all labels from the image."""
         system_prompt = """
-        You are a Cambridge O-Level Past Paper Reader.
-        Carefully analyze this image and extract ALL of the following:
-        1. TRANSCRIBE any written/printed question(s) EXACTLY as they appear - word for word.
-        2. Identify what type of figure is shown (map, bar chart, pie chart, line graph, diagram).
-        3. List ALL labels, place names, letters (like W, X, Y, Z), river names, keys/legends shown on the figure.
-        4. Note any axis labels, scale bars, compass directions, or statistical values.
-        Be extremely precise. Do NOT attempt to answer the question - only extract.
+        You are a Cambridge O-Level Past Paper Reader specializing in Geography (2217).
+        Carefully analyze this image and extract ALL of the following in a clear, labeled format:
+
+        1. QUESTIONS: Transcribe every question/sub-question EXACTLY as written. 
+           IMPORTANT: Include the marks assigned to each question (e.g., [2] or 3 marks) if visible.
+        
+        2. FIGURE TYPE: Identify if it's a map (topographic, thematic, sketch), graph (bar, line, pie), diagram, or photograph.
+        
+        3. SPATIAL DATA & LABELS: 
+           - List ALL labels, place names, and identifiers (W, X, Y, Z).
+           - For identifiers like 'X' or 'Y' on a map, describe their EXACT location relative to other features 
+             (e.g., "X is located on the bank of the river in the north-east", "Y is near the boundary of the forested area").
+        
+        4. LEGEND & SCALE: Extract all key/legend entries, scale bars, and north-arrows.
+        
+        5. STATISTICAL VALUES: List any data points or axis values shown.
+
+        Be extremely precise. Do NOT answer the questions. Focus on providing a complete 'environmental scan' of the document.
         """        
         user_prompt = f"Transcribe the question(s) and extract all data from this image. User query (optional context): {query}"
         
@@ -28,7 +39,7 @@ class GeographyImageAnalysisService:
         You are a Cambridge O-Level Geography Examiner (Syllabus 2217).
         A student has uploaded an image of a past paper question.
 
-        ===== EXTRACTED IMAGE CONTENT (question + figure data) =====
+        ===== EXTRACTED IMAGE CONTENT (question + figure data + spatial context) =====
         {image_context}
         ============================================================
 
@@ -37,14 +48,40 @@ class GeographyImageAnalysisService:
         ==================================================
 
         INSTRUCTIONS:
-        - Identify the EXACT question(s) from the extracted image content above.
-        - Answer EACH question part directly and specifically (e.g. if asked "Name rivers W and X", give the actual river names).
-        - Use ONLY the information visible in the figure/image for questions that say "Using Fig. X only".
-        - For other questions, supplement with your geographical knowledge.
-        - Award yourself {marks} marks: provide exactly {marks} distinct, mark-worthy points.
-        - Format clearly: use bold question parts (e.g. **(i)**, **(ii)**) before each answer.
-        - End with a brief **Tutor Wisdom** tip relevant to the question type.
+        1. Identify the EXACT question parts and their assigned MARKS from the extracted content.
+        2. Use the extraction's spatial data (descriptions of where X and Y are) to accurately answer location-based questions.
+        3. If MARKS are identified from the image for a part (e.g., [3]), provide exactly that many distinct, mark-worthy points.
+        4. If NO marks are visible in the image for a part, default to providing {marks} mark-worthy points.
+        5. For "Using Fig. X only" questions, restrict yourself STRICTLY to the extracted figure data.
+        6. Format clearly: use bold question parts (e.g. **(i)**, **(ii)**) and bullet points for multiple marks.
+        7. End with a brief **Tutor Wisdom** tip relevant to the question type.
         """
         user_prompt = f"Answer all question parts found in the image. User note: {query}"
 
         return self.llm_service.generate_response(system_prompt, user_prompt)
+
+    def analyze_geography_image_direct(self, image_base64: str, query: str, context_string: str, marks: int) -> str:
+        """Single-pass Vision Reasoning: Analyzes the image and answers directly in one step."""
+        system_prompt = f"""
+        You are a Cambridge O-Level Geography Examiner (Syllabus 2217).
+        Look at the provided image (Map/Graph/Diagram) and answer the user's question directly.
+        
+        ===== IMPORTANT GEOGRAPHICAL CONTEXT (RAG) =====
+        {context_string}
+        ================================================
+        
+        EXAMINER RULES:
+        1. SPATIAL ACCURACY: Identify markers like X, Y, W, Z by looking at their EXACT location on the map. 
+           - Look for nearby features (rivers, settlements, boundaries, mountains) to determine what they represent.
+        2. MARK ENFORCEMENT: Identify the marks for the question from the image (e.g. [2]). 
+           - Provide EXACTLY that many distinct points. If marks are not visible, provide {marks} points.
+        3. SOURCE CONTROL: If the question says "Using Fig. X only", use ONLY details visible in the image.
+        4. FORMATTING: Use bold sub-parts (e.g. **(i)**, **(ii)**) and bullet points.
+        5. TUTOR WISDOM: End with a "Tutor Wisdom" advice based on common examiner report pitfalls for this topic.
+        """
+        user_prompt = f"Analyze the image and answer this question/request: {query}"
+        
+        try:
+            return self.llm_service.generate_vision_response(system_prompt, user_prompt, image_base64)
+        except Exception as e:
+            return f"Error in direct vision analysis: {str(e)}"
