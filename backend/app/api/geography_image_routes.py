@@ -25,6 +25,18 @@ async def analyze_geography_image_question(
     if not query or query.strip() == "":
         query = "If the image contains a specific past-paper question, answer it comprehensively. Otherwise, provide a detailed geographical analysis of the map, graph, diagram, or data shown."
 
+    # Hard relevance gate: only geography-related images are allowed for answering.
+    relevance = geography_image_analysis_service.check_geography_image_relevance(base64_img, query)
+    if not relevance.get("relevant", False):
+        return AIAnswerResponse(
+            answer=(
+                "Uploaded image geography se relevant nahi lag rahi, is liye answer generate nahi kiya gaya. "
+                f"Reason: {relevance.get('reason', 'Not geography-related image.')} "
+                "Please geography map/graph/diagram ya past-paper figure upload karein."
+            ),
+            marks=marks
+        )
+
     # 1. Perform a quick extraction to get keywords for RAG context
     # This helps even if the user query is vague (e.g. "Analyze this")
     image_context = geography_image_analysis_service.extract_graph_context(base64_img, query)

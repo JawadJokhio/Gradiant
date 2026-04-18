@@ -1,3 +1,4 @@
+import json
 from app.services.llm_service import LLMService
 
 class GeographyImageAnalysisService:
@@ -32,6 +33,42 @@ class GeographyImageAnalysisService:
             return self.llm_service.generate_vision_response(system_prompt, user_prompt, image_base64)
         except Exception as e:
             return f"Error extracting image details: {str(e)}"
+
+    def check_geography_image_relevance(self, image_base64: str, query: str = "") -> dict:
+        """Validate that uploaded image is genuinely geography/map-related before answering."""
+        system_prompt = """
+        You are an image relevance classifier for a Pakistan Geography Tutor app.
+        Decide whether the image is relevant to geography learning tasks.
+
+        Relevant examples:
+        - Maps (physical, political, thematic, topographic)
+        - Graphs/charts/diagrams related to climate, population, economy, land use, transport, rivers
+        - Geography past-paper question pages or figures
+        - Satellite or landscape photos clearly tied to geographical analysis
+
+        Not relevant examples:
+        - Selfies, random people photos, memes, products, pets
+        - Unrelated text documents with no geography context
+        - Any image where geography relevance is unclear
+
+        Return STRICT JSON ONLY:
+        {"relevant": true/false, "reason": "short reason"}
+        """
+        user_prompt = f"Classify image relevance. Optional user query: {query}"
+
+        try:
+            raw = self.llm_service.generate_vision_response(system_prompt, user_prompt, image_base64)
+            parsed = json.loads(raw.strip())
+            return {
+                "relevant": bool(parsed.get("relevant", False)),
+                "reason": str(parsed.get("reason", "Could not verify geography relevance.")).strip()
+            }
+        except Exception:
+            # Safe fallback: reject if classifier output is invalid/unreliable.
+            return {
+                "relevant": False,
+                "reason": "Could not confidently verify this image as geography-related."
+            }
 
     def evaluate_image_answer(self, image_context: str, query: str, context_string: str, marks: int) -> str:
         """Answer the specific question found in the image using extracted data + RAG knowledge."""
