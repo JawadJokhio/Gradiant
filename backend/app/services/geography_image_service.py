@@ -1,4 +1,5 @@
 import json
+import re
 from app.services.llm_service import LLMService
 
 class GeographyImageAnalysisService:
@@ -51,23 +52,72 @@ class GeographyImageAnalysisService:
         - Unrelated text documents with no geography context
         - Any image where geography relevance is unclear
 
+        IMPORTANT:
+        - If image has a map/graph/diagram OR exam-style geography question/figure, treat as relevant.
+        - If uncertain between relevant and irrelevant, prefer relevant.
+
         Return STRICT JSON ONLY:
         {"relevant": true/false, "reason": "short reason"}
         """
         user_prompt = f"Classify image relevance. Optional user query: {query}"
 
+        def _parse_json_or_none(raw_text: str):
+            if not raw_text:
+                return None
+
+            text = raw_text.strip()
+            try:
+                return json.loads(text)
+            except Exception:
+                pass
+
+            fenced = re.search(r"```(?:json)?\s*(\{[\s\S]*?\})\s*```", text, flags=re.IGNORECASE)
+            if fenced:
+                try:
+                    return json.loads(fenced.group(1).strip())
+                except Exception:
+                    pass
+
+            inline = re.search(r"(\{[\s\S]*\})", text)
+            if inline:
+                try:
+                    return json.loads(inline.group(1).strip())
+                except Exception:
+                    pass
+            return None
+
         try:
             raw = self.llm_service.generate_vision_response(system_prompt, user_prompt, image_base64)
-            parsed = json.loads(raw.strip())
+            parsed = _parse_json_or_none(raw)
+            if parsed is not None:
+                return {
+                    "relevant": bool(parsed.get("relevant", False)),
+                    "reason": str(parsed.get("reason", "Could not verify geography relevance.")).strip()
+                }
+
+            # Fallback for non-JSON model outputs: allow likely geography visuals.
+            lowered = raw.lower()
+            positive_tokens = [
+                "map", "graph", "chart", "diagram", "geography", "topographic",
+                "past paper", "o-level", "figure", "climate", "population", "rainfall",
+                "river", "soil", "land use", "transport", "agriculture"
+            ]
+            negative_tokens = [
+                "selfie", "meme", "pet", "product", "advertisement", "invoice"
+            ]
+
+            positive_score = sum(1 for token in positive_tokens if token in lowered)
+            negative_score = sum(1 for token in negative_tokens if token in lowered)
+
             return {
-                "relevant": bool(parsed.get("relevant", False)),
-                "reason": str(parsed.get("reason", "Could not verify geography relevance.")).strip()
+                "relevant": positive_score >= negative_score,
+                "reason": "Classifier returned non-JSON output; used tolerant text fallback."
             }
         except Exception:
-            # Safe fallback: reject if classifier output is invalid/unreliable.
+            # If classifier call fails, allow image to proceed to avoid blocking valid geography graphs/maps.
             return {
-                "relevant": False,
-                "reason": "Could not confidently verify this image as geography-related."
+                "relevant": True,
+                "reason": "Relevance check unavailable; proceeding with analysis."
             }
 
     def evaluate_image_answer(self, image_context: str, query: str, context_string: str, marks: int) -> str:
