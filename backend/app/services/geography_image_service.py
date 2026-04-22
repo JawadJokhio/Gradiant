@@ -113,7 +113,7 @@ class GeographyImageAnalysisService:
         2. MARK ENFORCEMENT: Identify the marks for the question from the image (e.g. [2]). 
            - Provide EXACTLY that many distinct points. If marks are not visible, provide {marks} points.
         3. SOURCE CONTROL: If the question says "Using Fig. X only", use ONLY details visible in the image.
-        4. FORMATTING: Use bold sub-parts (e.g. **(i)**, **(ii)**) and bullet points.
+        4. FORMATTING: Use bold sub-parts (e.g. (i), (ii)) and bullet points.
         5. TUTOR WISDOM: End with a "Tutor Wisdom" advice based on common examiner report pitfalls for this topic.
         """
         user_prompt = f"Analyze the image and answer this question/request: {query}"
