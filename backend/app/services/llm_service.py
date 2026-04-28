@@ -221,57 +221,61 @@ class HFProvider(BaseLLMProvider):
         except Exception as e:
             raise LLMProviderError(f"HF generation failed: {str(e)}")
 
-class LLMService:
-    def __init__(self):
-        self.groq_provider = None
-        self.groq_vision = None
-        self.gemini_provider = None
-        self.gemini_vision = None
-        self.openrouter_provider = None
-        self.openrouter_vision = None
-        self.hf_provider = None
-        self.hf_vision = None
-        
-        # 1. Groq (Primary Text/Vision)
+class LLMProviderFactory:
+    """Factory Pattern to instantiate available LLM providers based on configuration."""
+    
+    @staticmethod
+    def create_text_providers() -> list[BaseLLMProvider]:
+        providers = []
         if settings.groq_api_key:
-            # Groq keys typically start with "gsk_".
             if settings.groq_api_key.startswith("gsk_"):
-                self.groq_provider = GroqProvider(settings.groq_api_key)
-                self.groq_vision = GroqVisionProvider(settings.groq_api_key)
+                providers.append(GroqProvider(settings.groq_api_key))
             else:
                 print("DEBUG: GROQ_API_KEY format looks invalid for Groq (expected prefix: gsk_)")
-        
-        # 2. Gemini (Production-grade Vision + High Reliability Text)
+                
         if settings.gemini_api_key:
-            self.gemini_provider = GeminiProvider(settings.gemini_api_key)
-            self.gemini_vision = GeminiVisionProvider(settings.gemini_api_key)
+            providers.append(GeminiProvider(settings.gemini_api_key))
 
-        # 3. OpenRouter (Fallback Text/Vision)
         if settings.openrouter_api_key:
-            # OpenRouter keys typically start with "sk-or-v1-".
             if settings.openrouter_api_key.startswith("sk-or-v1-"):
-                self.openrouter_provider = OpenRouterProvider(settings.openrouter_api_key)
-                self.openrouter_vision = OpenRouterVisionProvider(settings.openrouter_api_key)
+                providers.append(OpenRouterProvider(settings.openrouter_api_key))
             else:
                 print("DEBUG: OPENROUTER_API_KEY format looks invalid (expected prefix: sk-or-v1-)")
 
-        # 4. HuggingFace (Global Fallback)
         if settings.hf_api_key and settings.hf_api_key != "your_huggingface_api_key_here":
             hf_client = InferenceClient(token=settings.hf_api_key, base_url="https://router.huggingface.co/v1")
-            self.hf_provider = HFProvider(hf_client)
-            self.hf_vision = HFVisionProvider(hf_client)
-
-    def _configured_vision_providers(self):
-        providers = []
-        if self.groq_vision:
-            providers.append("Groq")
-        if self.hf_vision:
-            providers.append("HuggingFace")
-        if self.openrouter_vision:
-            providers.append("OpenRouter")
-        if self.gemini_vision:
-            providers.append("Gemini")
+            providers.append(HFProvider(hf_client))
+            
         return providers
+
+    @staticmethod
+    def create_vision_providers() -> list[BaseLLMProvider]:
+        providers = []
+        # Ordered by fallback priority
+        if settings.groq_api_key and settings.groq_api_key.startswith("gsk_"):
+            providers.append(GroqVisionProvider(settings.groq_api_key))
+            
+        if settings.hf_api_key and settings.hf_api_key != "your_huggingface_api_key_here":
+            hf_client = InferenceClient(token=settings.hf_api_key, base_url="https://router.huggingface.co/v1")
+            providers.append(HFVisionProvider(hf_client))
+            
+        if settings.openrouter_api_key and settings.openrouter_api_key.startswith("sk-or-v1-"):
+            providers.append(OpenRouterVisionProvider(settings.openrouter_api_key))
+            
+        if settings.gemini_api_key:
+            providers.append(GeminiVisionProvider(settings.gemini_api_key))
+            
+        return providers
+
+
+class LLMService:
+    """
+    LLM Service acting as a Strategy Context.
+    Uses a Chain of Responsibility pattern for provider fallback.
+    """
+    def __init__(self):
+        self.text_providers = LLMProviderFactory.create_text_providers()
+        self.vision_providers = LLMProviderFactory.create_vision_providers()
 
     @staticmethod
     def _summarize_provider_error(error: Exception) -> str:
@@ -295,88 +299,44 @@ class LLMService:
         return "runtime request failed"
 
     def generate_response(self, system_prompt: str, user_prompt: str, **kwargs) -> str:
-        """Sequential Fallback: Groq -> Gemini -> OpenRouter -> HF"""
-        # 1. Try Groq
-        if self.groq_provider:
+        """Strategy/Chain of Responsibility: Fallback through configured text providers."""
+        for provider in self.text_providers:
             try:
-                return self.groq_provider.generate(system_prompt, user_prompt, **kwargs)
+                return provider.generate(system_prompt, user_prompt, **kwargs)
             except Exception as e:
-                print(f"DEBUG: Groq failed, falling back to Gemini... Error: {str(e)}")
-
-        # 2. Try Gemini
-        if self.gemini_provider:
-            try:
-                return self.gemini_provider.generate(system_prompt, user_prompt, **kwargs)
-            except Exception as e:
-                print(f"DEBUG: Gemini failed, falling back to OpenRouter... Error: {str(e)}")
-
-        # 3. Try OpenRouter
-        if self.openrouter_provider:
-            try:
-                return self.openrouter_provider.generate(system_prompt, user_prompt, **kwargs)
-            except Exception as e:
-                print(f"DEBUG: OpenRouter failed, falling back to HF... Error: {str(e)}")
-
-        # 4. Try HuggingFace
-        if self.hf_provider:
-            try:
-                return self.hf_provider.generate(system_prompt, user_prompt, **kwargs)
-            except Exception as e:
-                print(f"DEBUG: HF Provider failed: {str(e)}")
+                provider_name = provider.__class__.__name__.replace('Provider', '')
+                print(f"DEBUG: {provider_name} generation failed, falling back... Error: {str(e)}")
 
         return "Intelligence engines offline: All providers failed. Please check your API keys."
 
     def generate_vision_response(self, system_prompt: str, user_prompt: str, image_base64: str) -> str:
-        """Vision Fallback: Groq -> HF -> OpenRouter -> Gemini"""
-        configured_providers = self._configured_vision_providers()
-        provider_errors = {}
-
-        # 1. Try Groq Vision (Primary)
-        if self.groq_vision:
-            try:
-                return self.groq_vision.generate(system_prompt, user_prompt, image_base64=image_base64)
-            except Exception as e:
-                provider_errors["Groq"] = self._summarize_provider_error(e)
-                print(f"DEBUG: Groq Vision failed, falling back to HF... Error: {str(e)}")
-
-        # 2. Try HF Vision (Fallback)
-        if self.hf_vision:
-            try:
-                return self.hf_vision.generate(system_prompt, user_prompt, image_base64=image_base64)
-            except Exception as e:
-                provider_errors["HuggingFace"] = self._summarize_provider_error(e)
-                print(f"DEBUG: HF Vision failed, falling back to OpenRouter... Error: {str(e)}")
-
-        # 3. Try OpenRouter Vision (Fallback)
-        if self.openrouter_vision:
-            try:
-                return self.openrouter_vision.generate(system_prompt, user_prompt, image_base64=image_base64)
-            except Exception as e:
-                provider_errors["OpenRouter"] = self._summarize_provider_error(e)
-                print(f"DEBUG: OpenRouter Vision failed, falling back to Gemini... Error: {str(e)}")
-
-        # 4. Try Gemini Vision (Fallback)
-        if self.gemini_vision:
-            try:
-                return self.gemini_vision.generate(system_prompt, user_prompt, image_base64=image_base64)
-            except Exception as e:
-                provider_errors["Gemini"] = self._summarize_provider_error(e)
-                print(f"DEBUG: Gemini Vision failed: {str(e)}")
-
-        if not configured_providers:
+        """Strategy/Chain of Responsibility: Fallback through configured vision providers."""
+        if not self.vision_providers:
             return (
                 "Vision engines offline: No provider is configured. "
                 "Set at least one of GEMINI_API_KEY, OPENROUTER_API_KEY, or HF_API_KEY in .env."
             )
 
+        provider_errors = {}
+        configured_provider_names = []
+
+        for provider in self.vision_providers:
+            provider_name = provider.__class__.__name__.replace('VisionProvider', '')
+            configured_provider_names.append(provider_name)
+            try:
+                return provider.generate(system_prompt, user_prompt, image_base64=image_base64)
+            except Exception as e:
+                provider_errors[provider_name] = self._summarize_provider_error(e)
+                print(f"DEBUG: {provider_name} Vision failed, falling back... Error: {str(e)}")
+
         if provider_errors:
             details = "; ".join(f"{name}: {reason}" for name, reason in provider_errors.items())
             return (
                 "Vision engines offline: Configured providers failed at runtime "
-                f"({', '.join(configured_providers)}). Details: {details}."
+                f"({', '.join(configured_provider_names)}). Details: {details}."
             )
 
         return (
             "Vision engines offline: Configured providers failed at runtime "
-            f"({', '.join(configured_providers)}). Please verify API keys, billing, and model access."
+            f"({', '.join(configured_provider_names)}). Please verify API keys, billing, and model access."
         )

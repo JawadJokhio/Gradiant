@@ -62,10 +62,11 @@ class GeographyService:
                 item_search_str = f"{name} {item_id} {item_type}"
                 self._all_items.append((category, item, name, item_search_str))
                 
+                idx = len(self._all_items) - 1
                 if name:
                     if name not in self._exact_name_index:
                         self._exact_name_index[name] = []
-                    self._exact_name_index[name].append((category, item, item_search_str))
+                    self._exact_name_index[name].append(idx)
 
         # Re-build _word_index to store integer indexes pointing to _all_items for better memory
         self._word_index.clear()
@@ -92,22 +93,21 @@ class GeographyService:
         
         scores = {}  # Map item index to highest score
 
-        # 1. Exact Name Matches
+        # 1. Exact Name Matches (O(1) Indexed Lookup)
         if query_lower in self._exact_name_index:
-            for category, item, search_str in self._exact_name_index[query_lower]:
-                # find idx wrapper
-                for idx, (c, i, n, s) in enumerate(self._all_items):
-                    if c == category and n == query_lower and s == search_str:
-                        scores[idx] = max(scores.get(idx, 0), 100)
+            for idx in self._exact_name_index[query_lower]:
+                scores[idx] = max(scores.get(idx, 0), 100)
 
-        # 2. Substring & Word Matches
+        # 2. Word Matches (O(1) Inverted Index Lookup)
+        for word in query_words:
+            if word in self._word_index:
+                for idx in self._word_index[word]:
+                    scores[idx] = max(scores.get(idx, 0), 50)
+
+        # 3. Substring Name Matches (O(N) Scan)
         for idx, (category, item, name, search_str) in enumerate(self._all_items):
             if name and name in query_lower:
                 scores[idx] = max(scores.get(idx, 0), 80)
-                
-            if idx not in scores:
-                if any(word in search_str for word in query_words):
-                    scores[idx] = max(scores.get(idx, 0), 50)
 
         # Apply modifiers
         results = []

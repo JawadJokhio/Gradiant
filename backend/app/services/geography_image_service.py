@@ -68,22 +68,22 @@ class GeographyImageAnalysisService:
             text = raw_text.strip()
             try:
                 return json.loads(text)
-            except Exception:
+            except json.JSONDecodeError:
                 pass
 
-            fenced = re.search(r"```(?:json)?\s*(\{[\s\S]*?\})\s*```", text, flags=re.IGNORECASE)
-            if fenced:
-                try:
-                    return json.loads(fenced.group(1).strip())
-                except Exception:
-                    pass
+            patterns = [
+                r"```(?:json)?\s*(\{[\s\S]*?\})\s*```",
+                r"(\{[\s\S]*\})"
+            ]
 
-            inline = re.search(r"(\{[\s\S]*\})", text)
-            if inline:
-                try:
-                    return json.loads(inline.group(1).strip())
-                except Exception:
-                    pass
+            for pattern in patterns:
+                match = re.search(pattern, text, flags=re.IGNORECASE)
+                if match:
+                    try:
+                        return json.loads(match.group(1).strip())
+                    except json.JSONDecodeError:
+                        continue
+
             return None
 
         try:
