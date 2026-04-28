@@ -32,8 +32,12 @@ export default function VisionAnswering({ onBack, initialSubject }) {
         formData.append('mode', 'vision')
         formData.append('marks', marks.toString())
 
+        const endpoint = subject === 'history'
+            ? 'http://localhost:8000/history-sources/analyze-image-question'
+            : 'http://localhost:8000/geography/analyze-image-question'
+
         try {
-            const response = await fetch('http://localhost:8000/geography/analyze-image-question', {
+            const response = await fetch(endpoint, {
                 method: 'POST',
 
                 body: formData,
@@ -76,7 +80,7 @@ export default function VisionAnswering({ onBack, initialSubject }) {
                             className="bg-transparent text-sm font-black focus:outline-none text-[var(--primary-purple)] cursor-pointer"
                         >
                             {subject === 'history' ? (
-                                [3, 4, 5, 7, 10, 14].map(m => <option key={m} value={m} className="bg-[var(--bg-card)]">{m}</option>)
+                                [3, 5].map(m => <option key={m} value={m} className="bg-[var(--bg-card)]">{m}</option>)
                             ) : (
                                 [1, 2, 3, 4, 5, 6, 8, 10, 12, 14].map(m => <option key={m} value={m} className="bg-[var(--bg-card)]">{m}</option>)
                             )}

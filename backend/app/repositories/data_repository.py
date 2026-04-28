@@ -9,6 +9,7 @@ class DataRepository:
     _instance = None
     _history_data: Dict[str, Any] = {}
     _geography_data: Dict[str, Any] = {}
+    _history_sources_data: Dict[str, Any] = {}
     _loaded = False
 
     def __new__(cls):
@@ -20,6 +21,7 @@ class DataRepository:
         if not self._loaded:
             self._history_data = load_json(settings.hist_data_path)
             self._geography_data = load_json(settings.geog_data_path)
+            self._history_sources_data = load_json(settings.history_sources_data_path)
             self._loaded = True
 
     def get_history_data(self) -> Dict[str, Any]:
@@ -29,3 +31,7 @@ class DataRepository:
     def get_geography_data(self) -> Dict[str, Any]:
         self._ensure_loaded()
         return self._geography_data
+
+    def get_history_sources_data(self) -> Dict[str, Any]:
+        self._ensure_loaded()
+        return self._history_sources_data

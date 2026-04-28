@@ -5,6 +5,7 @@ from app.services.history_context_service import HistoryContextService
 from app.services.geography_service import GeographyService
 from app.services.paper_service import PaperService
 from app.services.geography_image_service import GeographyImageAnalysisService
+from app.services.history_sources_service import HistorySourcesService
 
 # Singletons
 _data_repository = DataRepository()
@@ -27,3 +28,9 @@ def get_paper_service(data_repository: DataRepository = Depends(get_data_reposit
 
 def get_geography_image_analysis_service(llm_service: LLMService = Depends(get_llm_service)) -> GeographyImageAnalysisService:
     return GeographyImageAnalysisService(llm_service)
+
+def get_history_sources_service(
+    llm_service: LLMService = Depends(get_llm_service),
+    data_repository: DataRepository = Depends(get_data_repository)
+) -> HistorySourcesService:
+    return HistorySourcesService(llm_service, data_repository)
