@@ -45,48 +45,54 @@ class HistorySourcesService:
         Returns: {"relevant": bool, "reason": str}
         """
         system_prompt = """
-You are an image relevance classifier for Pakistan Studies History (Paper 1 source questions).
+You are a STRICT image relevance classifier for Cambridge O-Level Pakistan Studies History (Paper 1).
+Your ONLY job is to determine if the uploaded image contains valid historical content for this specific syllabus.
 
-Rule:
-- Accept ONLY images related to Pakistan/Subcontinent history from 1500 CE to present.
-- Reject unrelated images (selfies, products, random notes, science/math/geography-only visuals).
-- Reject history topics outside the scope when clearly non-Pakistan/Subcontinent focused.
+STRICT RULES:
+1. The image MUST contain historical content related to the Indian Subcontinent/Pakistan from 1500 CE to present.
+2. Acceptable content:
+   - Historical text sources mentioning key figures (Mughals, British, Sir Syed, Jinnah, etc.) or events (1857 War, Partition, Khilafat Movement).
+   - Historical political cartoons or historical photographs of relevant leaders/events.
+   - O-Level past paper questions explicitly about Pakistan Studies History.
+3. UNACCEPTABLE content (Must return false):
+   - Generic text documents, random handwriting, or essays with NO specific historical keywords.
+   - Selfies, objects, products, screenshots of code, unrelated books.
+   - Geography maps, charts, or science/math problems.
+   - History of other regions (e.g., European history, American history) unless directly tied to the Subcontinent.
 
-Accept examples:
-- Mughal era, decline of Mughals, British expansion in India, War of Independence 1857
-- Sir Syed, Aligarh Movement, Partition of Bengal, Khilafat, Pakistan Movement, post-1947 Pakistan
-- Source-based exam pages, political cartoons, historical photographs/documents in this syllabus scope
+If you are not 100% sure the image is about Pakistan Studies History, return relevant: false.
 
-Return STRICT JSON only:
-{"relevant": true/false, "reason": "short reason"}
+Return STRICT JSON ONLY in this exact format:
+{"relevant": true/false, "reason": "brief reason explaining why it is or isn't relevant based on visible content"}
 """
         user_prompt = (
-            "Classify whether this uploaded image is relevant to Pakistan history "
-            f"(1500-present). Optional user query: {query}"
+            "Analyze this image and classify its relevance to O-Level Pakistan Studies History. "
+            f"Optional user query context: {query}"
         )
 
         def _parse_json_or_none(raw_text: str):
             if not raw_text:
                 return None
+            
             text = raw_text.strip()
             try:
                 return json.loads(text)
-            except Exception:
+            except json.JSONDecodeError:
                 pass
 
-            fenced = re.search(r"```(?:json)?\s*(\{[\s\S]*?\})\s*```", text, flags=re.IGNORECASE)
-            if fenced:
-                try:
-                    return json.loads(fenced.group(1).strip())
-                except Exception:
-                    pass
+            patterns = [
+                r"```(?:json)?\s*(\{[\s\S]*?\})\s*```",
+                r"(\{[\s\S]*\})"
+            ]
 
-            inline = re.search(r"(\{[\s\S]*\})", text)
-            if inline:
-                try:
-                    return json.loads(inline.group(1).strip())
-                except Exception:
-                    pass
+            for pattern in patterns:
+                match = re.search(pattern, text, flags=re.IGNORECASE)
+                if match:
+                    try:
+                        return json.loads(match.group(1).strip())
+                    except json.JSONDecodeError:
+                        continue
+            
             return None
 
         try:
@@ -98,24 +104,28 @@ Return STRICT JSON only:
                     "reason": str(parsed.get("reason", "Could not verify history relevance.")).strip()
                 }
 
+            # If the model fails to return JSON, we assume it's NOT relevant to be safe,
+            # unless we detect VERY strong historical keywords in its raw text output.
             lowered = raw.lower()
-            positive_tokens = [
-                "pakistan", "subcontinent", "mughal", "british", "partition",
-                "sir syed", "war of independence", "source", "paper 1", "history"
+            strong_keywords = [
+                "mughal", "british east india", "war of independence", "sir syed", 
+                "aligarh", "partition of bengal", "khilafat", "allama iqbal", 
+                "quaid-e-azam", "jinnah", "pakistan movement", "ayub khan"
             ]
-            negative_tokens = [
-                "selfie", "product", "invoice", "math", "physics", "chemistry", "geography map"
-            ]
-            positive_score = sum(1 for token in positive_tokens if token in lowered)
-            negative_score = sum(1 for token in negative_tokens if token in lowered)
+            if any(keyword in lowered for keyword in strong_keywords):
+                return {
+                    "relevant": True,
+                    "reason": "Classifier returned non-JSON output, but found strong historical keywords."
+                }
+            
             return {
-                "relevant": positive_score > negative_score,
-                "reason": "Classifier returned non-JSON output; used text fallback."
+                "relevant": False,
+                "reason": "Classifier returned invalid format and no historical keywords found."
             }
         except Exception:
             return {
                 "relevant": False,
-                "reason": "Relevance check unavailable; refusing to avoid wrong-subject answering."
+                "reason": "Relevance check unavailable; refusing to answer to ensure subject accuracy."
             }
 
     def analyze_source_image(self, image_base64: str, query: str, marks: int) -> str:
@@ -125,23 +135,25 @@ Return STRICT JSON only:
         context = self._build_dataset_context(query)
         if marks == 3:
             system_prompt = f"""
-You are a Cambridge O-Level Pakistan Studies History examiner for source-based Paper 1 questions.
+You are a Cambridge O-Level Pakistan Studies History examiner. 
 
-TASK TYPE: 3-mark source question (textual source in uploaded image)
+TASK TYPE: 3-mark source question
 
-INSTRUCTIONS:
-1. Read the source text from the image and transcribe the source accurately first.
-2. Rephrase the extracted source in simple student-friendly language.
-3. Give EXACTLY 3 concise rephrased points from the source only.
-4. Do not add outside facts unless absolutely needed for one-line clarification.
-5. Keep response focused and exam-ready.
+CRITICAL INSTRUCTIONS:
+1. Read the source text from the uploaded image.
+2. COMPLETELY IGNORE whether the user's question perfectly matches the source's exact vocabulary. (e.g. if the user asks about "Mughal rule" but the source is about "Robert Clive and Nawab Siraj-ud-Daula", treat them as historically connected).
+3. DO NOT evaluate the user's question. DO NOT ever say "The source does not mention...". 
+4. Your ONLY task is to extract the main facts actually written in the source and rewrite them into a single, direct, factual paragraph.
+5. NO introductory sentences (like "The source states that"). NO bullet points. NO excuses. Just the facts from the source rephrased.
+6. The answer MUST be strictly between 40 to 80 words.
+7. Use simple, easy-to-understand English suitable for a high school student.
 
 USE THIS DATASET CONTEXT (for alignment with Paper 1 style):
 {context}
 """
             user_prompt = (
                 "The student uploaded a history source image for a 3-mark question. "
-                f"Question hint from user: {query}. Extract and rephrase source text into exactly 3 points."
+                f"Question hint from user: {query}. Extract and summarize the source's contents in a direct 40-80 word paragraph. DO NOT make excuses about missing information."
             )
         else:
             system_prompt = f"""
@@ -149,19 +161,20 @@ You are a Cambridge O-Level Pakistan Studies History examiner for source-based P
 
 TASK TYPE: 5-mark source question (image + question analysis)
 
-INSTRUCTIONS:
-1. Identify the asked question from the image/query.
-2. Analyze the source image content carefully (people, text, symbols, historical cues, tone, purpose).
-3. Provide EXACTLY 5 relevant, mark-worthy points linked to the asked question.
-4. Keep each point specific and evidence-led from what is visible in the source.
-5. If required, use historical background knowledge briefly, but prioritize visual/source evidence.
+CRITICAL INSTRUCTIONS:
+1. Analyze the source image content carefully (people, text, symbols, historical cues, tone, purpose).
+2. Provide EXACTLY 5 relevant, mark-worthy bullet points linked to the asked question.
+3. Keep each point specific and evidence-led from what is visible in the source.
+4. DO NOT output any headers, steps, introductions, or conclusions (e.g., no "Step 1", no "Conclusion").
+5. Output ONLY the 5 bullet points directly.
+6. Use simple, easy-to-understand English suitable for a high school student.
 
 USE THIS DATASET CONTEXT (for alignment with Paper 1 style):
 {context}
 """
             user_prompt = (
                 "The student uploaded a history source image for a 5-mark question. "
-                f"Question hint from user: {query}. Provide exactly 5 relevant points from the source."
+                f"Question hint from user: {query}. Provide exactly 5 relevant bullet points directly, with no extra text, steps, or conclusions."
             )
 
         return self.llm_service.generate_vision_response(system_prompt, user_prompt, image_base64)
