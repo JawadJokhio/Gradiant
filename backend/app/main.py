@@ -9,6 +9,7 @@ from app.api.geography_map_routes import router as map_router
 from app.api.routes_papers import router as papers_router
 from app.api.geography_image_routes import router as image_analysis_router
 from app.api.history_sources_routes import router as history_sources_router
+from app.api.math_routes import router as math_router
 
 app = FastAPI(title=settings.app_name)
 
@@ -29,6 +30,7 @@ app.include_router(map_router)
 app.include_router(papers_router)
 app.include_router(image_analysis_router)
 app.include_router(history_sources_router)
+app.include_router(math_router)
 
 if __name__ == "__main__":
     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)

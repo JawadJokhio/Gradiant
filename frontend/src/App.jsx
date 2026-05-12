@@ -11,6 +11,7 @@ import TextAnswering from './components/TextAnswering'
 import VisionAnswering from './components/VisionAnswering'
 import WeaknessAnalysis from './components/WeaknessAnalysis'
 import PaperExplorer from './components/PaperExplorer'
+import MathModule from './components/math/MathModule'
 
 const subjectsData = {
     history: { id: 'history', name: 'History', color: 'from-purple-600 to-purple-800' },
@@ -18,7 +19,7 @@ const subjectsData = {
     economics: { id: 'economics', name: 'Economics', color: 'from-emerald-600 to-teal-800' },
     islamiat: { id: 'islamiat', name: 'Islamiat', color: 'from-green-600 to-emerald-800' },
     physics: { id: 'physics', name: 'Physics', color: 'from-indigo-600 to-purple-800' },
-    chemistry: { id: 'chemistry', name: 'Chemistry', color: 'from-rose-600 to-pink-800' }
+    math: { id: 'math', name: 'Mathematics', color: 'from-amber-500 to-orange-600' }
 }
 
 function App() {
@@ -67,6 +68,10 @@ function App() {
 
         if (activeSubject === 'geography' && activeMode === 'geography') {
             return <GeographyModule onBack={handleBack} />
+        }
+
+        if (activeSubject === 'math') {
+            return <MathModule onBack={handleBack} />
         }
 
         if (activeMode === 'vision') {

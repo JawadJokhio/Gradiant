@@ -7,7 +7,7 @@ const subjects = [
     { id: 'economics', name: 'Economics', icon: <TrendingUp size={24} />, color: 'bg-emerald-600', description: 'Market Dynamics & Macroeconomics' },
     { id: 'islamiat', name: 'Islamiat', icon: <Book size={24} />, color: 'bg-green-600', description: 'Quranic Studies & Islamic History' },
     { id: 'physics', name: 'Physics', icon: <Zap size={24} />, color: 'bg-indigo-600', description: 'Mechanics, Waves & Nuclear Physics' },
-    { id: 'chemistry', name: 'Chemistry', icon: <Beaker size={24} />, color: 'bg-rose-600', description: 'Organic & Inorganic Chemistry' },
+    { id: 'math', name: 'Mathematics', icon: <BrainCircuit size={24} />, color: 'bg-amber-500', description: 'O-Level Mathematics (4024) Step-by-Step' },
 ]
 
 export default function SubjectDashboard({ onSelectSubject, onSelectMode }) {
