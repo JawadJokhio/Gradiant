@@ -5,7 +5,9 @@ GET  /api/math/concepts        — list all concept keys
 GET  /api/math/concepts/{key}  — get a concept by key
 """
 
+# pyrefly: ignore [missing-import]
 from fastapi import APIRouter, HTTPException
+# pyrefly: ignore [missing-import]
 from pydantic import BaseModel, Field, field_validator
 
 from app.services.math_service import solve_math_question
