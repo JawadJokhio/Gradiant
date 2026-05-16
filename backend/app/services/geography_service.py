@@ -133,7 +133,8 @@ class GeographyService:
                 "type": "path",
                 "label": item.get("name", ""),
                 "data": item["path"],
-                "color": item.get("color", "#3b82f6")
+                "color": item.get("color", "#3b82f6"),
+                "facts": item.get("facts")
             })
 
         elif "locations" in item:

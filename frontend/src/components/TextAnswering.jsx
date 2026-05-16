@@ -16,18 +16,23 @@ export default function TextAnswering({ onBack, initialSubject }) {
 
         const formData = new FormData()
         formData.append('query', query)
-        formData.append('subject', subject)
-        formData.append('mode', 'text')
         formData.append('marks', marks.toString())
 
-        try {
-            const response = await fetch('http://localhost:8000/history/ask-ai', {
-                method: 'POST',
+        // Use different endpoints based on subject
+        const endpoint = subject === 'geography' 
+            ? 'http://localhost:8000/geography/analyze-map'
+            : 'http://localhost:8000/history/ask-ai';
 
+        try {
+            const response = await fetch(endpoint, {
+                method: 'POST',
                 body: formData,
             })
             const data = await response.json()
-            setExplanation(data.answer)
+            
+            // Geography endpoint returns .explanation, History returns .answer
+            const resultText = subject === 'geography' ? data.explanation : data.answer;
+            setExplanation(resultText)
         } catch (error) {
             console.error("Analysis error:", error)
             setExplanation("**Error:** AI engine connection failed. Please check your backend.\n\n### Concept Explainer (Simulation)\nSince you asked about **" + subject + "**, here is a conceptual breakdown:\n- **Definition:** Core principles of the topic.\n- **Significance:** Why this is tested in the O-Level syllabus.\n- **Exam Strategy:** How to approach this in a Paper 1 or Paper 2 context.")

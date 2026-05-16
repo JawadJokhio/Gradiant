@@ -70,7 +70,7 @@ function App() {
             return <GeographyModule onBack={handleBack} />
         }
 
-        if (activeSubject === 'math') {
+        if (activeSubject === 'math' && (!activeMode || activeMode === 'text')) {
             return <MathModule onBack={handleBack} />
         }
 

@@ -65,6 +65,8 @@ STRICT OUTPUT RULES — follow exactly:
 5. Use plain Unicode maths notation in expressions (e.g. x² not x^2, √ not sqrt, π not pi).
    Write fractions as a/b. Write superscripts using Unicode superscript digits where possible.
 6. Be precise — give exact answers where possible (e.g. 2√3, not 3.46).
+7. GRAPH DRAWING: If the question asks to 'draw', 'plot', or 'sketch' a graph, you MUST include the specific instruction: "Please go to the Image section of math for graph drawing tools." in your `final_answer`. You should still provide necessary calculations or coordinates in the steps.
+8. UNITS: You MUST include relevant units (e.g. cm, m², kg, s, °) in the `final_answer` if they are provided in the question or are standard for the result.
 """
 
 
@@ -105,17 +107,27 @@ def _validate_steps(steps: list) -> list:
 def solve_math_question(question: str, question_number: int, marks: int) -> dict:
     """
     Main entry point: send question to LLM and return structured solution.
-    
-    Returns:
-        {
-          "question_number": int,
-          "marks": int,
-          "steps": [...],
-          "final_answer": str,
-          "mark_commentary": str,
-          "raw_question": str
-        }
     """
+    # Pre-check for graph drawing requests
+    graph_keywords = ["draw", "plot", "sketch"]
+    q_lower = question.lower()
+    if any(kw in q_lower for kw in graph_keywords):
+        return {
+            "question_number": question_number,
+            "marks": marks,
+            "steps": [
+                {
+                    "step_number": 1,
+                    "description": "Graph Drawing Instruction",
+                    "expression": "Please go to the Image section of math for graph drawing tools.",
+                    "concept_key": None,
+                }
+            ],
+            "final_answer": "Please go to the Image section of math for graph drawing tools.",
+            "mark_commentary": "Interactive graph drawing is handled in the specialized Vision/Image section.",
+            "raw_question": question,
+        }
+
     user_prompt = (
         f"Question {question_number} [{marks} mark{'s' if marks != 1 else ''}]\n\n"
         f"{question.strip()}\n\n"
