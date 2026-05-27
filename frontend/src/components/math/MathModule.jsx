@@ -1,6 +1,6 @@
 import { useState, useRef, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowLeft, Calculator, Send, Sparkles, Hash, Award, RefreshCw, AlertTriangle } from 'lucide-react'
+import { ArrowLeft, Calculator, Send, Sparkles, Hash, Award, RefreshCw, AlertTriangle, Image as ImageIcon, X, Camera } from 'lucide-react'
 import MathCalculatorInput from './MathCalculatorInput'
 import MathSolutionViewer from './MathSolutionViewer'
 
@@ -14,10 +14,13 @@ export default function MathModule({ onBack }) {
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
     const [showPad, setShowPad] = useState(true)
+    const [image, setImage] = useState(null)
+    const [previewUrl, setPreviewUrl] = useState(null)
     const textareaRef = useRef(null)
+    const fileInputRef = useRef(null)
 
     // Validation
-    const isValid = question.trim().length >= 3 && marks !== null
+    const isValid = (question.trim().length >= 3 || image) && marks !== null
 
     const handleSolve = useCallback(async () => {
         if (!isValid || loading) return
@@ -26,15 +29,29 @@ export default function MathModule({ onBack }) {
         setSolution(null)
 
         try {
-            const res = await fetch('http://localhost:8000/api/math/solve', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    question: question.trim(),
-                    question_number: parseInt(questionNumber),
-                    marks: parseInt(marks),
-                }),
-            })
+            let res;
+            if (image) {
+                const formData = new FormData()
+                formData.append('image', image)
+                formData.append('query', question.trim())
+                formData.append('marks', marks.toString())
+                
+                res = await fetch('http://localhost:8000/api/math/analyze-image', {
+                    method: 'POST',
+                    body: formData,
+                })
+            } else {
+                res = await fetch('http://localhost:8000/api/math/solve', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        question: question.trim(),
+                        question_number: parseInt(questionNumber),
+                        marks: parseInt(marks),
+                    }),
+                })
+            }
+
             if (!res.ok) {
                 const err = await res.json().catch(() => ({}))
                 throw new Error(err.detail || `Server error ${res.status}`)
@@ -46,7 +63,21 @@ export default function MathModule({ onBack }) {
         } finally {
             setLoading(false)
         }
-    }, [isValid, loading, question, questionNumber, marks])
+    }, [isValid, loading, question, questionNumber, marks, image])
+
+    const handleImageChange = (e) => {
+        const file = e.target.files[0]
+        if (file) {
+            setImage(file)
+            setPreviewUrl(URL.createObjectURL(file))
+        }
+    }
+
+    const removeImage = () => {
+        setImage(null)
+        setPreviewUrl(null)
+        if (fileInputRef.current) fileInputRef.current.value = ''
+    }
 
     const handleReset = () => {
         setQuestion('')
@@ -184,8 +215,8 @@ export default function MathModule({ onBack }) {
                             value={question}
                             onChange={e => setQuestion(e.target.value)}
                             onKeyDown={e => { if (e.key === 'Enter' && e.ctrlKey) handleSolve() }}
-                            placeholder="Type or use the calculator pad below…&#10;e.g. Solve x² + 5x + 6 = 0"
-                            rows={5}
+                            placeholder={image ? "Add notes about the image (optional)…" : "Type or use the calculator pad below…\ne.g. Solve x² + 5x + 6 = 0"}
+                            rows={image ? 3 : 5}
                             className="w-full rounded-2xl px-5 py-4 text-sm leading-7 outline-none resize-none transition-all"
                             style={{
                                 background: '#1a1228',
@@ -195,6 +226,45 @@ export default function MathModule({ onBack }) {
                                 scrollbarWidth: 'thin',
                             }}
                         />
+                        
+                        {/* Image Upload Area */}
+                        <div className="mt-3">
+                            <input
+                                type="file"
+                                ref={fileInputRef}
+                                onChange={handleImageChange}
+                                accept="image/*"
+                                className="hidden"
+                            />
+                            
+                            {!previewUrl ? (
+                                <button
+                                    onClick={() => fileInputRef.current?.click()}
+                                    className="w-full flex flex-col items-center justify-center gap-2 py-8 rounded-2xl border-2 border-dashed transition-all hover:bg-white/5"
+                                    style={{ borderColor: 'rgba(245,158,11,0.2)', color: 'rgba(245,158,11,0.6)' }}
+                                >
+                                    <ImageIcon size={24} />
+                                    <span className="text-xs font-bold uppercase tracking-widest">Upload Question Image</span>
+                                </button>
+                            ) : (
+                                <div className="relative rounded-2xl overflow-hidden border-2" style={{ borderColor: 'rgba(245,158,11,0.4)' }}>
+                                    <img src={previewUrl} alt="Preview" className="w-full h-48 object-cover opacity-80" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-4">
+                                        <div className="flex-1">
+                                            <p className="text-xs font-bold text-white truncate">{image.name}</p>
+                                            <p className="text-[10px] text-white/50">Ready to analyze</p>
+                                        </div>
+                                        <button
+                                            onClick={removeImage}
+                                            className="p-2 rounded-full bg-red-500/20 text-red-500 hover:bg-red-500 hover:text-white transition-all"
+                                        >
+                                            <X size={16} />
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                        
                         <p className="text-right text-xs mt-1" style={{ color: 'rgba(255,255,255,0.2)' }}>
                             Ctrl+Enter to solve
                         </p>

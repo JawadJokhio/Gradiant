@@ -1,6 +1,7 @@
 import json
 import re
 from app.repositories.data_repository import DataRepository
+from app.utils.nlp_utils import nlp_processor
 
 class HistoryContextService:
     def __init__(self, data_repository: DataRepository):
@@ -14,13 +15,15 @@ class HistoryContextService:
         matches = []
         marking_examples = []
             
+        # NLP Preprocessing of query
+        query_words = set(nlp_processor.preprocess(query))
+        
         # Check specific textbook topics first (Nigel Kelly context)
         specific_topics = data.get("specific_topics", {})
-        topic_lower_words = set(re.findall(r'\w+', query_lower))
         
         for key, topic_data in specific_topics.items():
-            key_words = set(key.split('_'))
-            common = topic_lower_words.intersection(key_words)
+            key_words = set(nlp_processor.preprocess(key.replace('_', ' ')))
+            common = query_words.intersection(key_words)
             match = False
             if len(key_words) == 1 and len(common) == 1: match = True
             elif len(common) >= 2: match = True
@@ -59,7 +62,8 @@ class HistoryContextService:
                         points = scheme.get("mark_scheme_points", scheme.get("points", []))
                         tips = scheme.get("examiner_tips", [])
                         
-                        if any(word in question.lower() for word in query_lower.split() if len(word) > 4):
+                        question_words = set(nlp_processor.preprocess(question))
+                        if len(query_words.intersection(question_words)) >= 2:
                             marking_examples.append({
                                 "year": year, 
                                 "question": question, 

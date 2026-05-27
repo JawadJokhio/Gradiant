@@ -1,17 +1,19 @@
 """
 Math API Routes
 POST /api/math/solve   — solve a math question step-by-step
+POST /api/math/analyze-image — solve a math question from an image
 GET  /api/math/concepts        — list all concept keys
 GET  /api/math/concepts/{key}  — get a concept by key
 """
 
 # pyrefly: ignore [missing-import]
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, UploadFile, File, Form
 # pyrefly: ignore [missing-import]
 from pydantic import BaseModel, Field, field_validator
 
-from app.services.math_service import solve_math_question
+from app.services.math_service import solve_math_question, solve_math_image_question
 from app.services.math_concepts import get_concept, list_all_concepts
+from app.utils.helpers import extract_base64_from_file
 
 router = APIRouter(prefix="/api/math", tags=["Math"])
 
@@ -46,6 +48,7 @@ class MathSolveResponse(BaseModel):
     final_answer: str
     mark_commentary: str
     raw_question: str
+    visual_data: str | None = None
 
 
 class ConceptResponse(BaseModel):
@@ -72,6 +75,50 @@ async def solve(request: MathSolveRequest):
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Math solver error: {str(e)}")
+
+
+@router.post("/analyze-image", response_model=MathSolveResponse)
+async def analyze_image(
+    image: UploadFile = File(...),
+    query: str = Form(""),
+    marks: int = Form(4)
+):
+    """
+    Solves a math question from an uploaded image.
+    Includes subject relevance validation.
+    """
+    try:
+        content = await image.read()
+        base64_img = extract_base64_from_file(content)
+        
+        result = solve_math_image_question(
+            image_base64=base64_img,
+            query=query,
+            marks=marks
+        )
+        
+        if "error" in result:
+            # If it's a relevance error, we return it in a way the frontend can handle or raise 400
+            # Thinking: User asked for a "prompt" showing the message.
+            # We can return it inside the response so the frontend shows it nicely.
+            # But the schema requires steps. We can use a single step to show the error.
+            return MathSolveResponse(
+                question_number=1,
+                marks=marks,
+                steps=[{
+                    "step_number": 1,
+                    "description": "Validation Error",
+                    "expression": result["message"],
+                    "concept_key": None
+                }],
+                final_answer="Subject Irrelevant",
+                mark_commentary=result.get("relevance_reason", "Not Math"),
+                raw_question="Image Upload"
+            )
+            
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Math image solver error: {str(e)}")
 
 
 @router.get("/concepts", response_model=list[str])

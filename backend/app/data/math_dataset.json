@@ -1,0 +1,46 @@
+{
+  "syllabus": "Cambridge O-Level Mathematics (4024)",
+  "topics": {
+    "algebra": {
+      "keywords": ["solve", "equation", "x", "y", "simplify", "factorize", "quadratic", "formula", "inequality", "simultaneous", "subject of formula"],
+      "patterns": ["x\\^2", "y\\^2", "\\(x[\\+\\-]\\d+\\)", "=\\s*0", "solve\\s+for", "expand"],
+      "examiner_tips": "Always show the quadratic formula before substituting values. For simultaneous equations, clearly state which method you are using: elimination or substitution."
+    },
+    "geometry": {
+      "keywords": ["angle", "triangle", "circle", "rectangle", "area", "perimeter", "volume", "radius", "diameter", "theorem", "congruent", "similar", "construction"],
+      "patterns": ["cm\\^2", "cm\\^3", "angle\\s+abc", "circle\\s+theorems", "degrees", "\\d+°"],
+      "examiner_tips": "In circle theorems, you must state the property name (e.g., 'angles in the same segment') to get full marks for reasoning."
+    },
+    "number": {
+      "keywords": ["fraction", "percentage", "decimal", "ratio", "proportion", "hcf", "lcm", "standard form", "significant figures", "estimation"],
+      "patterns": ["\\d+/%", "\\d+:\\d+", "\\d+\\.\\d+", "\\d+\\s*x\\s*10\\^[\\+\\-]\\d+"],
+      "examiner_tips": "Give answers to 3 significant figures unless otherwise stated. Standard form must have a coefficient between 1 and 10."
+    },
+    "trigonometry": {
+      "keywords": ["sin", "cos", "tan", "theta", "hypotenuse", "pythagoras", "elevation", "depression", "bearing", "sine rule", "cosine rule"],
+      "patterns": ["sin\\(\\d+\\)", "cos\\(\\d+\\)", "a\\^2\\+b\\^2=c\\^2", "opposite/hypotenuse"],
+      "examiner_tips": "Bearings must always be 3 digits (e.g., 045° instead of 45°) and measured from North."
+    },
+    "statistics": {
+      "keywords": ["mean", "median", "mode", "range", "cumulative frequency", "probability", "histogram", "scatter", "correlation", "line of best fit"],
+      "patterns": ["Σ", "f\\s*x", "interquartile", "probability\\s+of"],
+      "examiner_tips": "For 'line of best fit', ensure there are an equal balance of points on either side of your line."
+    }
+  },
+  "relevance_keywords": [
+    "solve", "calculate", "find", "determine", "show", "simplify", "evaluate", "list", "write down",
+    "x", "y", "z", "a", "b", "c", "theta", "pi", "radius", "area", "volume", "square", "root",
+    "length", "width", "height", "base", "cm", "m", "kg", "s", "angle", "degree", "°",
+    "grade", "marks", "table", "diagram", "graph", "plot", "scatter", "figure", "fig",
+    "grid", "axis", "coordinates", "geometry", "line", "curve", "shape", "vector",
+    "papacambridge", "past paper", "cambridge", "o-level", "igcse", "4024", "0580", "paper"
+  ],
+  "marking_patterns": {
+    "show_that": "Provide all intermediate steps. Marks are only for the method.",
+    "calculate": "Provide the final numerical answer. Method marks available for showing formula.",
+    "sketch": "Relative positions matter more than exact scale. Labels are mandatory. Generate SVG for this.",
+    "construct": "Requires accurate geometry. Provide construction steps and a generated SVG diagram.",
+    "plot": "Plot points accurately on a grid. Provide an SVG graph.",
+    "transform": "Include reflection, rotation, translation, or enlargement. Show the original and object in an SVG."
+  }
+}

@@ -157,7 +157,7 @@ export default function MathSolutionViewer({ solution }) {
 
     if (!solution) return null
 
-    const { steps = [], final_answer, mark_commentary, question_number, marks, raw_question } = solution
+    const { steps = [], final_answer, mark_commentary, question_number, marks, raw_question, visual_data } = solution
 
     return (
         <div className="h-full flex flex-col">
@@ -204,6 +204,21 @@ export default function MathSolutionViewer({ solution }) {
                         onConceptClick={(key) => setActiveConceptKey(key)}
                     />
                 ))}
+
+                {/* Visuals (SVG Graphs/Diagrams) */}
+                {visual_data && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="mt-6 p-4 rounded-2xl bg-white/5 border border-white/10 overflow-hidden"
+                    >
+                        <p className="text-[10px] font-black uppercase tracking-widest text-amber-500 mb-3 ml-1">Visual Representation</p>
+                        <div 
+                            className="w-full flex justify-center math-svg-container shadow-2xl rounded-xl p-2 bg-slate-900/40"
+                            dangerouslySetInnerHTML={{ __html: visual_data }} 
+                        />
+                    </motion.div>
+                )}
 
                 {/* Final answer card */}
                 {final_answer && (

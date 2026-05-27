@@ -30,9 +30,9 @@ async def analyze_geography_image_question(
     if not relevance.get("relevant", False):
         return AIAnswerResponse(
             answer=(
-                "Uploaded image geography se relevant nahi lag rahi, is liye answer generate nahi kiya gaya. "
+                f"Uploaded image geography se relevant nahi lag rahi. "
                 f"Reason: {relevance.get('reason', 'Not geography-related image.')} "
-                "Please geography map/graph/diagram ya past-paper figure upload karein."
+                "Please geography map, graph, diagram ya past-paper figure upload karein."
             ),
             marks=marks
         )

@@ -9,6 +9,8 @@ import HistoryExaminer from './components/HistoryExaminer'
 import GeographyModule from './components/GeographyModule'
 import TextAnswering from './components/TextAnswering'
 import VisionAnswering from './components/VisionAnswering'
+import MCQExplainer from './components/economics/MCQExplainer'
+import Paper2Examiner from './components/economics/Paper2Examiner'
 import WeaknessAnalysis from './components/WeaknessAnalysis'
 import PaperExplorer from './components/PaperExplorer'
 import MathModule from './components/math/MathModule'
@@ -74,13 +76,21 @@ function App() {
             return <MathModule onBack={handleBack} />
         }
 
-        if (activeMode === 'vision') {
-            return <VisionAnswering onBack={handleBack} initialSubject={activeSubject} />
+        if (activeSubject === 'economics' && activeMode === 'paper2') {
+            return <Paper2Examiner onBack={handleBack} />
         }
 
-        if (activeMode === 'text') {
+        if (activeMode === 'text' || activeMode === 'vision') {
             if (activeSubject === 'history') {
-                return <HistoryExaminer onBack={handleBack} />
+                return activeMode === 'vision'
+                    ? <VisionAnswering onBack={handleBack} initialSubject="history" />
+                    : <HistoryExaminer onBack={handleBack} />
+            }
+            if (activeSubject === 'economics') {
+                return <MCQExplainer onBack={handleBack} />
+            }
+            if (activeMode === 'vision') {
+                return <VisionAnswering onBack={handleBack} initialSubject={activeSubject} />
             }
             return <TextAnswering onBack={handleBack} initialSubject={activeSubject} />
         }

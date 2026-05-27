@@ -36,6 +36,10 @@ class Settings(BaseSettings):
     def history_sources_data_path(self) -> str:
         return os.path.join(self.base_dir, "data", "history_sources", "paper1_sources_dataset.json")
 
+    @property
+    def econ_data_path(self) -> str:
+        return os.path.join(self.base_dir, "data", "economics", "economics_dataset.json")
+
     @field_validator("groq_api_key", "hf_api_key", "openrouter_api_key", "gemini_api_key", mode="before")
     @classmethod
     def normalize_api_keys(cls, value):

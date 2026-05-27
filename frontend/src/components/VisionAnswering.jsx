@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Camera, Upload, ArrowLeft, Send, CheckCircle2, Copy, RefreshCw, X, ChevronLeft, Sparkles, Brain, BookOpen } from 'lucide-react'
+import MathSolutionViewer from './math/MathSolutionViewer'
 
 export default function VisionAnswering({ onBack, initialSubject }) {
 
@@ -10,6 +11,7 @@ export default function VisionAnswering({ onBack, initialSubject }) {
     const [marks, setMarks] = useState(4)
     const [isAnalyzing, setIsAnalyzing] = useState(false)
     const [answer, setAnswer] = useState(null)
+    const [mathSolution, setMathSolution] = useState(null)
 
     const handleImageUpload = (e) => {
         const file = e.target.files?.[0]
@@ -34,16 +36,28 @@ export default function VisionAnswering({ onBack, initialSubject }) {
 
         const endpoint = subject === 'history'
             ? 'http://localhost:8000/history-sources/analyze-image-question'
+            : subject === 'math'
+            ? 'http://localhost:8000/api/math/analyze-image'
             : 'http://localhost:8000/geography/analyze-image-question'
 
         try {
             const response = await fetch(endpoint, {
                 method: 'POST',
-
                 body: formData,
             })
             const data = await response.json()
-            setAnswer(data.answer)
+            
+            if (subject === 'math') {
+                if (data.steps) {
+                    setMathSolution(data);
+                    // Also keep a text version for simple rendering if needed
+                    setAnswer("Math solution generated.");
+                } else {
+                    setAnswer(data.message || "Failed to analyze math question.");
+                }
+            } else {
+                setAnswer(data.answer)
+            }
         } catch (error) {
             console.error("Analysis error:", error)
             setAnswer("**Error:** Failed to connect to the AI engine. Please ensure the backend is running.\n\n### Marking Scheme Protocol (Simulation)\n- **Point 1:** Identifying the key historical event shown.\n- **Explanation:** Detailing the impact on the subcontinent (2 marks).\n- **Context:** Linking to the wider O-Level syllabus requirements.")
@@ -72,20 +86,22 @@ export default function VisionAnswering({ onBack, initialSubject }) {
                     <div className={`px-4 py-1.5 rounded-full bg-[var(--primary-purple-light)]/10 border border-[var(--border-color)] text-[var(--primary-purple)] text-[10px] font-black uppercase tracking-widest`}>
                         {subject}
                     </div>
-                    <div className="flex items-center gap-3 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl px-4 py-2 shadow-sm">
-                        <span className="text-[10px] font-black text-[var(--text-muted)] uppercase tracking-tighter">Marks Selection</span>
-                        <select
-                            value={marks}
-                            onChange={(e) => setMarks(Number(e.target.value))}
-                            className="bg-transparent text-sm font-black focus:outline-none text-[var(--primary-purple)] cursor-pointer"
-                        >
-                            {subject === 'history' ? (
-                                [3, 5].map(m => <option key={m} value={m} className="bg-[var(--bg-card)]">{m}</option>)
-                            ) : (
-                                [1, 2, 3, 4, 5, 6, 8, 10, 12, 14].map(m => <option key={m} value={m} className="bg-[var(--bg-card)]">{m}</option>)
-                            )}
-                        </select>
-                    </div>
+                    {subject !== 'math' && (
+                        <div className="flex items-center gap-3 bg-[var(--bg-card)] border border-[var(--border-color)] rounded-xl px-4 py-2 shadow-sm">
+                            <span className="text-[10px] font-black text-[var(--text-muted)] uppercase tracking-tighter">Marks Selection</span>
+                            <select
+                                value={marks}
+                                onChange={(e) => setMarks(Number(e.target.value))}
+                                className="bg-transparent text-sm font-black focus:outline-none text-[var(--primary-purple)] cursor-pointer"
+                            >
+                                {subject === 'history' ? (
+                                    [3, 5].map(m => <option key={m} value={m} className="bg-[var(--bg-card)]">{m}</option>)
+                                ) : (
+                                    [1, 2, 3, 4, 5, 6, 8, 10, 12, 14].map(m => <option key={m} value={m} className="bg-[var(--bg-card)]">{m}</option>)
+                                )}
+                            </select>
+                        </div>
+                    )}
                 </div>
             </header>
 
@@ -196,40 +212,61 @@ export default function VisionAnswering({ onBack, initialSubject }) {
                                 <div className="flex items-center gap-3 text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-900/10 px-5 py-3 rounded-2xl border border-emerald-100 dark:border-emerald-900/20 text-xs font-black uppercase tracking-tighter">
                                     <CheckCircle2 size={18} /> Analysis Complete
                                 </div>
-                                <div className="prose prose-purple dark:prose-invert max-w-none text-[var(--text-dark)] leading-relaxed font-medium">
-                                    {answer.split('\n').map((line, i) => {
-                                        if (line.startsWith('### [1]')) return (
-                                            <div key={i} className="mt-8 mb-4 p-5 bg-[var(--primary-purple-light)]/10 border-l-4 border-[var(--primary-purple)] rounded-xl">
-                                                <h4 className="text-base font-black text-[var(--primary-purple)] uppercase tracking-widest">1. Marking Protocol</h4>
-                                            </div>
-                                        )
-                                        if (line.startsWith('### [2]')) return (
-                                            <div key={i} className="mt-10 mb-4 p-5 bg-blue-50 dark:bg-blue-900/10 border-l-4 border-blue-600 rounded-xl">
-                                                <h4 className="text-base font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest">2. Model Script</h4>
-                                            </div>
-                                        )
-                                        if (line.startsWith('### [3]')) return (
-                                            <div key={i} className="mt-10 mb-4 p-5 bg-rose-50 dark:bg-rose-900/10 border-l-4 border-rose-500 rounded-xl">
-                                                <h4 className="text-base font-black text-rose-400 uppercase tracking-widest">3. Marking Pitfalls</h4>
-                                            </div>
-                                        )
-                                        if (line.startsWith('### [4]')) return (
-                                            <div key={i} className="mt-10 mb-4 p-5 bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-600 rounded-xl">
-                                                <h4 className="text-base font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">4. Tutor Wisdom</h4>
-                                            </div>
-                                        )
-                                        if (line.startsWith('###')) return <h4 key={i} className="text-xl font-black text-[var(--primary-purple)] mt-10 mb-5">{line.replace('###', '')}</h4>
-                                        if (line.startsWith('- **')) {
-                                            const parts = line.replace('- **', '').split('**')
-                                            return (
-                                                <div key={i} className="mb-4 pl-5 border-l-2 border-[var(--border-color)] py-1">
-                                                    <strong className="text-[var(--primary-purple)] font-black">{parts[0]}</strong> {parts[2]}
+                                {subject === 'math' && mathSolution ? (
+                                    <div className="math-rendering-layer pb-20">
+                                        <MathSolutionViewer solution={mathSolution} />
+                                    </div>
+                                ) : (
+                                    <div className="prose prose-purple dark:prose-invert max-w-none text-[var(--text-dark)] leading-relaxed font-medium">
+                                        {answer.split('\n').map((line, i) => {
+                                            if (line.startsWith('### [1]')) return (
+                                                <div key={i} className="mt-8 mb-4 p-5 bg-[var(--primary-purple-light)]/10 border-l-4 border-[var(--primary-purple)] rounded-xl">
+                                                    <h4 className="text-base font-black text-[var(--primary-purple)] uppercase tracking-widest">1. Marking Protocol</h4>
                                                 </div>
                                             )
-                                        }
-                                        return <p key={i} className={`${line ? 'mb-5' : 'h-4'} text-[var(--text-dark)]`}>{line}</p>
-                                    })}
-                                </div>
+                                            if (line.startsWith('### [2]')) return (
+                                                <div key={i} className="mt-10 mb-4 p-5 bg-blue-50 dark:bg-blue-900/10 border-l-4 border-blue-600 rounded-xl">
+                                                    <h4 className="text-base font-black text-blue-600 dark:text-blue-400 uppercase tracking-widest">2. Model Script</h4>
+                                                </div>
+                                            )
+                                            if (line.startsWith('### [3]')) return (
+                                                <div key={i} className="mt-10 mb-4 p-5 bg-rose-50 dark:bg-rose-900/10 border-l-4 border-rose-500 rounded-xl">
+                                                    <h4 className="text-base font-black text-rose-400 uppercase tracking-widest">3. Marking Pitfalls</h4>
+                                                </div>
+                                            )
+                                            if (line.startsWith('### [4]')) return (
+                                                <div key={i} className="mt-10 mb-4 p-5 bg-emerald-50 dark:bg-emerald-900/10 border-l-4 border-emerald-600 rounded-xl">
+                                                    <h4 className="text-base font-black text-emerald-600 dark:text-emerald-400 uppercase tracking-widest">4. Tutor Wisdom</h4>
+                                                </div>
+                                            )
+                                            
+                                            // Handle SVG block
+                                            if (line.includes('|||SVG_START|||')) {
+                                                const svgContent = answer.split('|||SVG_START|||')[1]?.split('|||SVG_END|||')[0];
+                                                return (
+                                                    <div 
+                                                        key={i} 
+                                                        className="my-8 p-4 bg-slate-900 rounded-2xl border border-white/10 flex justify-center overflow-hidden shadow-2xl"
+                                                        dangerouslySetInnerHTML={{ __html: svgContent }}
+                                                    />
+                                                )
+                                            }
+                                            if (line.includes('|||SVG_END|||') || (i > 0 && answer.split('\n')[i-1].includes('|||SVG_START|||'))) return null;
+                                            if (answer.split('|||SVG_START|||')[1]?.split('|||SVG_END|||')[0]?.includes(line)) return null;
+
+                                            if (line.startsWith('###')) return <h4 key={i} className="text-xl font-black text-[var(--primary-purple)] mt-10 mb-5">{line.replace('###', '')}</h4>
+                                            if (line.startsWith('- **')) {
+                                                const parts = line.replace('- **', '').split('**')
+                                                return (
+                                                    <div key={i} className="mb-4 pl-5 border-l-2 border-[var(--border-color)] py-1">
+                                                        <strong className="text-[var(--primary-purple)] font-black">{parts[0]}</strong> {parts[2]}
+                                                    </div>
+                                                )
+                                            }
+                                            return <p key={i} className={`${line ? 'mb-5' : 'h-4'} text-[var(--text-dark)]`}>{line}</p>
+                                        })}
+                                    </div>
+                                )}
                             </motion.div>
                         ) : (
                             <div className="h-full flex flex-col items-center justify-center text-center space-y-6 opacity-30 px-10">

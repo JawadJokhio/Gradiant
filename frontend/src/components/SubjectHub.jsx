@@ -23,43 +23,51 @@ export default function SubjectHub({ subject, onSelectMode, onBack }) {
                 </header>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    {/* Vision Scanner Card */}
+                    {/* Vision Scanner / MCQ Image Card */}
                     <motion.button
                         whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)' }}
-                        onClick={() => onSelectMode('vision')}
+                        onClick={() => onSelectMode(subject.id === 'economics' ? 'paper2' : 'vision')}
                         className="group relative overflow-hidden p-8 rounded-[2.5rem] bg-[var(--bg-card)] border border-[var(--border-color)] transition-all text-left flex flex-col gap-6 shadow-xl shadow-purple-900/5 dark:shadow-black/20"
                     >
                         <div className="w-16 h-16 rounded-2xl bg-[var(--primary-purple)] text-white dark:text-[#0f0a1e] flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                             <Camera size={32} />
                         </div>
                         <div>
-                            <h3 className="text-2xl font-black text-[var(--primary-purple)] mb-2">Vision Scanner</h3>
+                            <h3 className="text-2xl font-black text-[var(--primary-purple)] mb-2">
+                                {subject.id === 'economics' ? 'Paper 2 Examiner' : 'Vision Scanner'}
+                            </h3>
                             <p className="text-[var(--text-muted)] font-medium leading-relaxed">
-                                Upload pictures of your {subject.name} past papers for instant, marking-scheme-aligned solutions and examiner analysis.
+                                {subject.id === 'economics'
+                                    ? 'Solve structured Paper 2 questions with Section A multi-image context and Section B command-word mark handling.'
+                                    : `Upload pictures of your ${subject.name} past papers for instant, marking-scheme-aligned solutions and examiner analysis.`}
                             </p>
                         </div>
                         <div className="mt-auto flex items-center gap-2 text-xs font-black text-[var(--primary-purple)] uppercase tracking-widest">
-                            Start Scanning <ChevronRight size={18} />
+                            {subject.id === 'economics' ? 'Open Paper 2' : 'Start Scanning'} <ChevronRight size={18} />
                         </div>
                     </motion.button>
 
-                    {/* Text Explainer Card */}
+                    {/* Text / MCQ Explainer Card */}
                     <motion.button
                         whileHover={{ y: -8, boxShadow: '0 20px 40px rgba(0, 0, 0, 0.1)' }}
                         onClick={() => onSelectMode('text')}
                         className="group relative overflow-hidden p-8 rounded-[2.5rem] bg-[var(--bg-card)] border border-[var(--border-color)] transition-all text-left flex flex-col gap-6 shadow-xl shadow-purple-900/5 dark:shadow-black/20"
                     >
-                        <div className="w-16 h-16 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                        <div className={`w-16 h-16 rounded-2xl text-white flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform ${subject.id === 'economics' ? 'bg-emerald-600' : 'bg-blue-600'}`}>
                             <MessageSquare size={32} />
                         </div>
                         <div>
-                            <h3 className="text-2xl font-black text-[var(--primary-purple)] mb-2">Concept Explainer</h3>
+                            <h3 className="text-2xl font-black text-[var(--primary-purple)] mb-2">
+                                {subject.id === 'economics' ? 'MCQ Explainer' : 'Concept Explainer'}
+                            </h3>
                             <p className="text-[var(--text-muted)] font-medium leading-relaxed">
-                                Ask any theoretical or conceptual question about {subject.name} and get precise, exam-focused explanations.
+                                {subject.id === 'economics'
+                                    ? 'Type or paste any Economics MCQ — AI will identify the correct answer, explain the reasoning, and flag common examiner traps.'
+                                    : `Ask any theoretical or conceptual question about ${subject.name} and get precise, exam-focused explanations.`}
                             </p>
                         </div>
-                        <div className="mt-auto flex items-center gap-2 text-xs font-black text-blue-600 uppercase tracking-widest">
-                            Ask AI Examiner <ChevronRight size={18} />
+                        <div className={`mt-auto flex items-center gap-2 text-xs font-black uppercase tracking-widest ${subject.id === 'economics' ? 'text-emerald-600' : 'text-blue-600'}`}>
+                            {subject.id === 'economics' ? 'Explain MCQ' : 'Ask AI Examiner'} <ChevronRight size={18} />
                         </div>
                     </motion.button>
 

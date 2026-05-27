@@ -1,0 +1,160 @@
+{
+  "syllabus": "Cambridge O-Level Economics (2281)",
+  "coverage": "Oct/Nov 2025 — Oct/Nov 2005 (20 years)",
+  "topics": {
+    "basic_economic_problem": {
+      "keywords": ["scarcity", "choice", "opportunity cost", "factors of production", "land", "labour", "capital", "enterprise", "production possibility curve", "PPC", "PFF"],
+      "key_definitions": {
+        "scarcity": "Unlimited wants but limited resources.",
+        "opportunity_cost": "The next best alternative foregone when making a choice.",
+        "PPC": "Shows maximum combinations of two goods an economy can produce with given resources at full employment.",
+        "factors_of_production": "Land (natural resources), Labour (human effort), Capital (man-made resources), Enterprise (risk-taking)."
+      },
+      "mcq_traps": [
+        "Do not confuse 'movement along PPC' (efficient production) with 'shift of PPC' (change in productive capacity).",
+        "Opportunity cost is always the NEXT BEST alternative, not just any alternative lost.",
+        "Capital goods are man-made, not money or financial assets."
+      ]
+    },
+    "allocation_of_resources": {
+      "keywords": ["market economy", "planned economy", "mixed economy", "price mechanism", "demand", "supply", "equilibrium", "market failure", "externalities", "public goods", "merit goods", "demerit goods"],
+      "key_definitions": {
+        "market_failure": "When the free market fails to allocate resources efficiently.",
+        "externality": "A cost or benefit affecting a third party not involved in the transaction.",
+        "public_good": "Non-excludable and non-rival (e.g. street lighting, national defence).",
+        "merit_good": "A good under-consumed in a free market (e.g. education, healthcare).",
+        "demerit_good": "A good over-consumed in a free market (e.g. cigarettes, alcohol)."
+      },
+      "mcq_traps": [
+        "Public goods: BOTH non-excludable AND non-rival must be true.",
+        "Merit goods are NOT the same as public goods — merit goods can be provided privately.",
+        "Negative externality → social cost > private cost (market over-produces).",
+        "Positive externality → social benefit > private benefit (market under-produces)."
+      ]
+    },
+    "microeconomics_demand": {
+      "keywords": ["demand", "law of demand", "determinants of demand", "price", "income", "substitutes", "complements", "tastes", "population", "elastic", "inelastic", "PED", "YED", "XED"],
+      "key_definitions": {
+        "demand": "The willingness and ability to buy a product at a given price.",
+        "law_of_demand": "As price rises, quantity demanded falls (ceteris paribus).",
+        "PED": "Price Elasticity of Demand = % change in QD / % change in Price.",
+        "normal_good": "YED > 0 (demand rises with income).",
+        "inferior_good": "YED < 0 (demand falls as income rises).",
+        "complementary_goods": "XED < 0 (e.g. cars and petrol).",
+        "substitute_goods": "XED > 0 (e.g. tea and coffee)."
+      },
+      "mcq_traps": [
+        "MOVEMENT along demand curve = change in PRICE only.",
+        "SHIFT of demand curve = change in any other determinant (income, tastes, etc.).",
+        "If PED > 1 → elastic: lower price increases total revenue.",
+        "If PED < 1 → inelastic: higher price increases total revenue.",
+        "Giffen good: inferior good where demand RISES as price RISES (very rare exception)."
+      ]
+    },
+    "microeconomics_supply": {
+      "keywords": ["supply", "law of supply", "determinants of supply", "costs of production", "technology", "subsidies", "taxes", "PES", "joint supply", "competitive supply"],
+      "key_definitions": {
+        "supply": "The willingness and ability of producers to sell at a given price.",
+        "law_of_supply": "As price rises, quantity supplied rises (ceteris paribus).",
+        "PES": "Price Elasticity of Supply = % change in QS / % change in Price.",
+        "subsidy": "A payment from government to producers to lower costs and increase supply.",
+        "indirect_tax": "A tax on goods/services that shifts supply curve left."
+      },
+      "mcq_traps": [
+        "A subsidy shifts supply RIGHT (increases) — it reduces costs for producers.",
+        "An indirect tax shifts supply LEFT (decreases) — it increases costs for producers.",
+        "PES is inelastic if: few spare resources, production takes a long time, perishable goods.",
+        "Joint supply: producing more of one good automatically produces more of another (e.g. beef and leather)."
+      ]
+    },
+    "price_determination": {
+      "keywords": ["equilibrium", "excess demand", "excess supply", "price mechanism", "market clearing", "rationing function", "incentive function", "signalling function"],
+      "mcq_traps": [
+        "If price is ABOVE equilibrium → excess supply → price falls.",
+        "If price is BELOW equilibrium → excess demand → price rises.",
+        "In a free market, price acts as both signal AND incentive simultaneously."
+      ]
+    },
+    "macroeconomics": {
+      "keywords": ["GDP", "GNP", "economic growth", "inflation", "unemployment", "balance of payments", "aggregate demand", "aggregate supply", "fiscal policy", "monetary policy", "supply-side policy", "CPI", "RPI"],
+      "key_definitions": {
+        "GDP": "Total value of goods and services produced within a country in one year.",
+        "GNP": "GDP + net income from abroad.",
+        "inflation": "A sustained rise in the general price level.",
+        "unemployment": "People who are willing and able to work but cannot find a job.",
+        "aggregate_demand": "Total spending in an economy: C + I + G + (X - M).",
+        "fiscal_policy": "Government use of taxation and spending to influence the economy.",
+        "monetary_policy": "Central bank control of interest rates and money supply."
+      },
+      "mcq_traps": [
+        "Real GDP adjusts for inflation; nominal GDP does not.",
+        "Cyclical unemployment rises in recession; structural unemployment is due to change in industry.",
+        "Current account deficit means imports > exports (value of goods and services).",
+        "Expansionary fiscal policy = increase spending OR cut taxes."
+      ]
+    },
+    "international_trade": {
+      "keywords": ["comparative advantage", "absolute advantage", "free trade", "protectionism", "tariff", "quota", "exchange rate", "balance of payments", "current account", "capital account"],
+      "key_definitions": {
+        "comparative_advantage": "Produce the good with the LOWEST opportunity cost.",
+        "tariff": "A tax on imported goods.",
+        "quota": "A physical limit on the quantity of imports.",
+        "exchange_rate": "The price of one currency expressed in terms of another."
+      },
+      "mcq_traps": [
+        "Comparative advantage is about OPPORTUNITY COST, not absolute output.",
+        "A fall in exchange rate → exports cheaper → exports rise; imports dearer → imports fall.",
+        "Tariff raises government revenue; quota does NOT.",
+        "Appreciation of currency → exports more expensive → current account likely worsens."
+      ]
+    },
+    "money_and_banking": {
+      "keywords": ["money", "functions of money", "commercial banks", "central bank", "interest rates", "money supply", "credit creation"],
+      "key_definitions": {
+        "functions_of_money": "Medium of exchange, store of value, unit of account, standard of deferred payment.",
+        "interest_rate": "The cost of borrowing money or the reward for saving."
+      },
+      "mcq_traps": [
+        "Higher interest rates → less borrowing → less spending → inflation may fall.",
+        "Central bank controls monetary policy; government controls fiscal policy.",
+        "Money must satisfy ALL four functions — barter only satisfies exchange."
+      ]
+    },
+    "government_intervention": {
+      "keywords": ["maximum price", "minimum price", "price ceiling", "price floor", "indirect tax", "subsidy", "nationalization", "privatization", "regulation"],
+      "key_definitions": {
+        "maximum_price": "Set BELOW equilibrium to keep goods affordable → causes shortage.",
+        "minimum_price": "Set ABOVE equilibrium to protect producers/workers → causes surplus.",
+        "minimum_wage": "A minimum price for labour — set above equilibrium → unemployment may rise."
+      },
+      "mcq_traps": [
+        "Maximum price causes SHORTAGE (excess demand).",
+        "Minimum price causes SURPLUS (excess supply).",
+        "Minimum wage only matters if set ABOVE the market wage rate.",
+        "Subsidies help producers; maximum prices help consumers."
+      ]
+    }
+  },
+  "exam_tips": [
+    "Read every option carefully — 'quantity demanded' vs 'demand' are different (movement vs shift).",
+    "Eliminate obviously wrong options first, then use economic theory to choose between remaining options.",
+    "Look for words like 'ceteris paribus' — it means all other things are held equal.",
+    "Diagrams described in MCQs: always trace through the effect step by step.",
+    "For elasticity MCQs: remember PED inelastic goods (necessities) vs elastic goods (luxuries).",
+    "For macroeconomics MCQs: AD = C + I + G + (X - M) is your key formula.",
+    "Opportunity cost: always identify WHAT is given up, not just that something IS given up.",
+    "Cambridge 2281 distractors often confuse cause and effect — trace the chain of logic carefully.",
+    "YED negative = inferior good; YED positive = normal good; YED > 1 = luxury good.",
+    "Market failure means FREE MARKET fails — not that all markets fail."
+  ],
+  "high_frequency_topics": [
+    "Shifting demand/supply curves with correct reasoning",
+    "Calculating and interpreting PED",
+    "Effects of indirect taxes and subsidies",
+    "Maximum and minimum prices",
+    "Government macroeconomic objectives and conflicts",
+    "Comparative advantage calculations",
+    "Types of unemployment",
+    "Effects of exchange rate changes on trade"
+  ]
+}

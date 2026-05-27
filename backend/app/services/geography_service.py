@@ -1,6 +1,7 @@
 import re
 from typing import List, Dict, Tuple, Any
 from app.repositories.data_repository import DataRepository
+from app.utils.nlp_utils import nlp_processor
 
 class GeographyService:
     CATEGORY_ALIASES = {
@@ -71,7 +72,9 @@ class GeographyService:
         # Re-build _word_index to store integer indexes pointing to _all_items for better memory
         self._word_index.clear()
         for idx, (category, item, name, item_search_str) in enumerate(self._all_items):
-            for word in item_search_str.split():
+            # Using NLP preprocessing for indexing
+            tokens = nlp_processor.preprocess(item_search_str)
+            for word in tokens:
                 if word:
                     if word not in self._word_index:
                         self._word_index[word] = set()
@@ -86,7 +89,8 @@ class GeographyService:
 
     def match_entities(self, query: str) -> List[Tuple[int, str, Any]]:
         query_lower = query.lower()
-        query_words = set(query_lower.split())
+        # Using NLP preprocessing for query tokens
+        query_words = set(nlp_processor.preprocess(query))
         
         modifiers = ["sea", "dry", "international", "intl", "domestic", "sez", "epz", "industrial"]
         active_modifiers = [mod for mod in modifiers if mod in query_lower]
