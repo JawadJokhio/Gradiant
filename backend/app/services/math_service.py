@@ -69,6 +69,9 @@ STRICT OUTPUT RULES:
    - For quadratic graphs: provide a properly scaled SVG showing the curve, vertex, and intercepts.
 6. MATH NOTATION: Use Unicode characters (e.g., x², √, π, θ). Do not use LaTeX formatting like \frac{}{}. Use standard fraction notation (e.g., 3/4).
 7. PRECISION: Provide exact values (surds, π) unless decimal approximation is requested.
+8. Only answer what the question asks. Do not add unrelated explanations, examples, or background theory.
+9. Always use only the exact information given in the question. Do not infer or assume extra relationships that are not explicitly stated.
+10. If a graph or diagram is required, include only the visual output needed for that part and no irrelevant commentary.
 """
 
 
@@ -403,31 +406,224 @@ def _render_svg_plot(points: list[tuple[float, float]], title: str = None, line:
 
 def _asks_for_math_draw(text: str) -> bool:
     """Check if the text contains verbs asking the student to draw or transform a graph/diagram."""
-    draw_keywords = ["draw", "plot", "sketch", "construct", "reflect", "rotate", "translate", "enlarge"]
+    draw_keywords = ["draw", "plot", "sketch", "construct", "reflect", "rotate", "translate", "enlarge", "graph", "diagram", "curve", "axis"]
     pattern = r"\b(" + "|".join(draw_keywords) + r")\b"
     return bool(re.search(pattern, text, re.IGNORECASE))
 
 
 def _is_scatter_question(text: str) -> bool:
     """Detect if the question is a scatter diagram question."""
-    scatter_kw = ["scatter", "line of best fit", "best fit", "correlation", "physics mark", "mathematics mark",
-                  "scatter diagram", "scatter graph", "plot the", "remaining point"]
     lowered = text.lower()
-    return any(kw in lowered for kw in scatter_kw)
+    scatter_patterns = [
+        r"scatter",
+        r"line of best fit",
+        r"best fit",
+        r"correlation",
+        r"scatter diagram",
+        r"scatter graph",
+        r"plot the remaining",
+        r"first 6 points",
+        r"first six points",
+        r"mathematics mark",
+        r"physics mark",
+    ]
+    return any(re.search(pattern, lowered) for pattern in scatter_patterns)
 
 
 def _extract_table_data(text: str) -> list[tuple[float, float]]:
-    """Extract two-row table data (x, y pairs) from OCR text."""
-    numbers = re.findall(r"(?<![\d.])([0-9]{2,3})(?![\d.])", text)
-    nums = [float(n) for n in numbers if 20 <= float(n) <= 100]
+    """Extract coordinate table data from OCR text."""
+    if not text:
+        return []
+
+    table_points = _extract_scatter_table_points(text)
+    if table_points:
+        return table_points
+
+    numbers = re.findall(r"([+-]?\d+(?:\.\d+)?)", text)
+    values = []
+    for n in numbers:
+        try:
+            value = float(n)
+            if 0 <= value <= 100:
+                values.append(value)
+        except ValueError:
+            continue
+
     pairs = []
-    mid = len(nums) // 2
-    if mid >= 2:
-        xs = nums[:mid]
-        ys = nums[mid:]
-        for x, y in zip(xs, ys):
-            pairs.append((x, y))
+    if len(values) >= 4 and len(values) % 2 == 0:
+        half = len(values) // 2
+        xs = values[:half]
+        ys = values[half:]
+        if len(xs) == len(ys):
+            pairs = [(x, y) for x, y in zip(xs, ys)]
+
+    if not pairs:
+        for match in re.finditer(r"\(?\s*([+-]?\d+(?:\.\d+)?)\s*[,;\s]\s*([+-]?\d+(?:\.\d+)?)\s*\)?", text):
+            try:
+                x = float(match.group(1))
+                y = float(match.group(2))
+                if 0 <= x <= 100 and 0 <= y <= 100:
+                    pairs.append((x, y))
+            except ValueError:
+                continue
+
     return pairs
+
+
+def _remove_axis_sequences(values: list[float]) -> list[float]:
+    """Remove long arithmetic sequences of axis labels (e.g. 20,30,40,...) from row values."""
+    if len(values) < 4:
+        return values
+
+    def is_axis_seq(seq: list[float]) -> bool:
+        if len(seq) < 4:
+            return False
+        diff = round(seq[1] - seq[0], 6)
+        if abs(abs(diff) - 10) > 1e-6:
+            return False
+        return all(abs((seq[i+1] - seq[i]) - diff) < 1e-6 for i in range(len(seq) - 1))
+
+    def strip_sequence(vals: list[float], start: int, end: int) -> list[float]:
+        return vals[:start] + vals[end:]
+
+    cleaned = values[:]
+
+    # Remove prefix axis sequences
+    for i in range(len(cleaned), 3, -1):
+        if is_axis_seq(cleaned[:i]):
+            if len(cleaned) - i >= 3:
+                cleaned = cleaned[i:]
+            break
+
+    # Remove suffix axis sequences
+    for i in range(0, len(cleaned) - 3):
+        seq = cleaned[i:]
+        if is_axis_seq(seq):
+            if i >= 3:
+                cleaned = cleaned[:i]
+            break
+
+    # Remove internal axis-like runs if they appear and leave enough values
+    i = 0
+    while i < len(cleaned) - 3:
+        j = i + 4
+        while j <= len(cleaned) and is_axis_seq(cleaned[i:j]):
+            if j == len(cleaned) or not is_axis_seq(cleaned[i:j+1]):
+                break
+            j += 1
+        if is_axis_seq(cleaned[i:j]):
+            if len(cleaned) - (j - i) >= 3:
+                cleaned = strip_sequence(cleaned, i, j)
+                continue
+        i += 1
+
+    return cleaned
+
+
+def _extract_scatter_table_points(text: str) -> list[tuple[float, float]]:
+    """Extract Maths and Physics row data when table labels are present."""
+    if not text:
+        return []
+
+    math_match = re.search(r"mathematics marks?\s*([0-9\s,\.\-]+?)(?=physics marks?|$)", text, flags=re.I)
+    phys_match = re.search(r"physics marks?\s*([0-9\s,\.\-]+?)(?=mathematics marks?|$)", text, flags=re.I)
+
+    if not math_match or not phys_match:
+        math_match = re.search(r"mathematics mark[s]?\s*([0-9\s,\.\-]+?)(?=physics mark[s]?|$)", text, flags=re.I)
+        phys_match = re.search(r"physics mark[s]?\s*([0-9\s,\.\-]+?)(?=mathematics mark[s]?|$)", text, flags=re.I)
+
+    if not math_match or not phys_match:
+        return []
+
+    def parse_row(row_text: str) -> list[float]:
+        values = [float(n) for n in re.findall(r"[0-9]+(?:\.[0-9]+)?", row_text)]
+        return _remove_axis_sequences(values)
+
+    math_values = parse_row(math_match.group(1))
+    phys_values = parse_row(phys_match.group(1))
+
+    if len(math_values) != len(phys_values) or len(math_values) == 0:
+        return []
+
+    return [(x, y) for x, y in zip(math_values, phys_values)]
+
+
+def _is_first_six_plotted(text: str) -> bool:
+    """Detect if the scatter question states that the first 6 points are already plotted."""
+    lowered = text.lower()
+    return any(phrase in lowered for phrase in [
+        "first 6 points",
+        "first six points",
+        "first 6",
+        "first six",
+        "first six points have been plotted",
+        "first 6 points have been plotted",
+        "first six points have already been plotted",
+        "first 6 points have already been plotted",
+    ])
+
+
+def _build_scatter_solution_from_table(points: list[tuple[float, float]], extracted_text: str) -> dict | None:
+    """Generate a deterministic scatter question solution for table-based data."""
+    if len(points) < 3:
+        return None
+
+    if not _is_first_six_plotted(extracted_text):
+        return None
+
+    missing_points = points[6:]
+    if not missing_points:
+        return None
+
+    coords_text = ", ".join(f"({int(x)},{int(y)})" for x, y in missing_points)
+    fit = _compute_best_fit_line(points)
+    est_x = None
+    est_y = 75.0
+    if fit:
+        slope, intercept = fit
+        if slope != 0:
+            est_x = round((est_y - intercept) / slope, 1)
+
+    if est_x is not None:
+        answer_text = f"Missing points: {coords_text}. Estimated Mathematics mark ≈ {est_x}."
+        estimate_expression = f"Draw from y=75 to the line, then across to the x-axis to estimate x ≈ {est_x}."
+    else:
+        answer_text = f"Missing points: {coords_text}. Cannot estimate the Mathematics mark because the line of best fit is undefined."
+        estimate_expression = "The line of best fit could not be computed, so the estimate is unavailable."
+
+    steps = [
+        {
+            "step_number": 1,
+            "description": "Identify the 3 missing points from the table because the first 6 points have already been plotted.",
+            "expression": f"Missing points to plot: {coords_text}",
+            "concept_key": "scatter_graph",
+        },
+        {
+            "step_number": 2,
+            "description": "Plot the remaining points exactly at the missing coordinates from the table.",
+            "expression": coords_text,
+            "concept_key": "scatter_graph",
+        },
+        {
+            "step_number": 3,
+            "description": "Draw a line of best fit that passes close to as many points as possible with roughly equal numbers on either side.",
+            "expression": "Line of best fit drawn through the scatter so points lie balanced above and below.",
+            "concept_key": "scatter_graph",
+        },
+        {
+            "step_number": 4,
+            "description": "Use the line of best fit to estimate Xavier's mathematics mark from Physics = 75.",
+            "expression": estimate_expression,
+            "concept_key": "scatter_graph",
+        },
+    ]
+
+    return {
+        "steps": steps,
+        "final_answer": answer_text,
+        "mark_commentary": "Part (a) identifies the missing points; part (b) draws the line of best fit; part (c) estimates Xavier's mark.",
+        "visual_data": None,
+    }
 
 
 def _render_scatter_svg(
@@ -452,8 +648,19 @@ def _render_scatter_svg(
 
     plot_w = W - pad_left - pad_right
     plot_h = H - pad_top - pad_bottom
-    x_span = x_max - x_min
-    y_span = y_max - y_min
+
+    actual_min_x = min(x for x, _ in all_points)
+    actual_max_x = max(x for x, _ in all_points)
+    actual_min_y = min(y for _, y in all_points)
+    actual_max_y = max(y for _, y in all_points)
+
+    x_min = min(x_min, actual_min_x - 4)
+    x_max = max(x_max, actual_max_x + 4)
+    y_min = min(y_min, actual_min_y - 4)
+    y_max = max(y_max, actual_max_y + 4)
+
+    x_span = x_max - x_min if x_max != x_min else 1
+    y_span = y_max - y_min if y_max != y_min else 1
 
     def px(x_val: float) -> float:
         return pad_left + (x_val - x_min) / x_span * plot_w
@@ -575,20 +782,19 @@ def _build_graph_visual(query: str, extracted_text: str) -> str | None:
 
     # Scatter diagram detection (highest priority for this type of question)
     if _is_scatter_question(combined_text):
-        # Try to extract data table pairs from the text
         pairs = _extract_table_data(extracted_text) or _extract_table_data(query)
-        if len(pairs) >= 6:
-            # Estimate Xavier's reading via best fit line
+        if len(pairs) >= 2:
             fit = _compute_best_fit_line(pairs)
             est_x = None
-            est_y = 75.0  # Xavier's physics mark
+            est_y = None
             if fit:
                 slope, intercept = fit
                 if slope != 0:
+                    est_y = 75.0
                     est_x = round((est_y - intercept) / slope, 1)
             return _render_scatter_svg(
                 all_points=pairs,
-                pre_plotted=6,
+                pre_plotted=min(6, len(pairs)),
                 estimate_y=est_y,
                 estimate_x=est_x,
             )
@@ -660,6 +866,9 @@ def solve_math_question(question: str, question_number: int, marks: int) -> dict
     user_prompt = (
         f"Question {question_number} [{marks} mark{'s' if marks != 1 else ''}]\n\n"
         f"{question.strip()}\n\n"
+        "TASK: Solve ONLY this question. Use only the relationships explicitly stated in the question. "
+        "Do not infer extra angle or algebraic relationships that are not written in the question. "
+        "Do not add unrelated theory, examples, or commentary. "
         f"Provide a complete, mark-scheme-quality step-by-step solution calibrated for {marks} mark(s)."
     )
 
@@ -667,7 +876,7 @@ def solve_math_question(question: str, question_number: int, marks: int) -> dict
         system_prompt=SYSTEM_PROMPT,
         user_prompt=user_prompt,
         max_tokens=3000,
-        temperature=0.2,
+        temperature=0.0,
     )
 
     # Parse JSON
@@ -749,80 +958,11 @@ def check_math_image_relevance(image_base64: str, extracted_text: str = "") -> d
             
             # Text-based fallback if JSON fails
             lowered = raw.lower()
-            if any(x in lowere                return {"relevant": True, "reason": "Vision (Text Fallback)"}
-
-            return {"relevant": False, "reason": "No math features detected by vision."}
-        except Exception as e:
-            return {"relevant": False, "reason": f"Vision analysis encountered an error: {str(e)}"}
-
-    # NLP Preprocessing
-    keywords = nlp_processor.get_keywords(extracted_text)
-
-    # Pattern & Keyword Matching
-    matched = False
-    relevance_keywords = MATH_DATASET.get("relevance_keywords", [])
-
-    # Check for keywords
-    for kw in relevance_keywords:
-        if kw.lower() in keywords:
-            matched = True
-            break
-
-    # Check for patterns (formulas/symbols)
-    if not matched:
-        for topic in MATH_DATASET.get("topics", {}).values():
-            patterns = topic.get("patterns", [])
-            for pattern in patterns:
-                if re.search(pattern, extracted_text, re.IGNORECASE):
-                    matched = True
-                    break
-            if matched:
-                break
-
-    return {
-        "relevant": matched,
-        "reason": "Pattern matched" if matched else "No relevant math symbols, keywords, or patterns found in this image.",
-        "extracted_text": extracted_text
-    }
-
-eck_math_image_relevance(image_base64: str, extracted_text: str = "") -> dict:
-    """
-    Validate that the image contains math content using OCR, NLP, and Dataset matching.
-    """
-    if not extracted_text:
-        extracted_text = extract_text_via_ocr(image_base64)
-    if not extracted_text:
-        extracted_text = extract_text_from_vision(image_base64)
-    extracted_text = _normalize_extracted_math_text(extracted_text)
-    
-    # If OCR returns nothing, we use LLM vision for a final relevance check (fallback)
-    if not extracted_text:
-        system_prompt = """You are a math relevance classifier.
-        Check if the image contains:
-        1. Mathematical symbols or equations
-        2. Graphs (coordinate grids, curves, bar/line charts)
-        3. Geometric diagrams (shapes, angles, triangles)
-        4. O-Level/IGCSE math past paper layout
-        
-        Return JSON ONLY: {"relevant": true, "reason": "explain why"} or {"relevant": false, "reason": "explain why"}"""
-        user_prompt = "Classify this image for math relevance."
-        try:
-            raw = llm.generate_vision_response(system_prompt, user_prompt, image_base64)
-            # Use regex to find JSON block safely
-            match = re.search(r"\{.*\}", raw, re.DOTALL)
-            if match:
-                data = json.loads(match.group(0))
-                return {"relevant": data.get("relevant", False), "reason": f"Vision: {data.get('reason', 'Check successful')}"}
-            
-            # Text-based fallback if JSON fails
-            lowered = raw.lower()
             if any(x in lowered for x in ["relevant: true", "is relevant", "contains math", "has graph"]):
                 return {"relevant": True, "reason": "Vision (Text Fallback)"}
-                
+
             return {"relevant": False, "reason": "No math features detected by vision."}
         except Exception as e:
-            # If everything else fails, but it's a diagram question, we might want to be lenient
-            # but for now, provide a better error
             return {"relevant": False, "reason": f"Vision analysis encountered an error: {str(e)}"}
 
     # NLP Preprocessing
@@ -854,7 +994,6 @@ eck_math_image_relevance(image_base64: str, extracted_text: str = "") -> dict:
         "reason": "Pattern matched" if matched else "No relevant math symbols, keywords, or patterns found in this image.",
         "extracted_text": extracted_text
     }
-
 
 def solve_math_image_question(image_base64: str, query: str, marks: int) -> dict:
     """
@@ -883,10 +1022,39 @@ def solve_math_image_question(image_base64: str, query: str, marks: int) -> dict
     scatter_svg: str | None = None
     if is_scatter:
         scatter_pairs = _extract_table_data(extracted_text) or _extract_table_data(query)
+        if len(scatter_pairs) < 2:
+            scatter_pairs = []
+
+    if is_scatter and scatter_pairs:
+        # Add a deterministic fallback for well-formed scatter-table questions.
+        fit = _compute_best_fit_line(scatter_pairs)
+        est_x: float | None = None
+        est_y = 75.0
+        if fit:
+            slope, intercept = fit
+            if slope != 0:
+                est_x = round((est_y - intercept) / slope, 1)
+        scatter_svg = _render_scatter_svg(
+            all_points=scatter_pairs,
+            pre_plotted=min(6, len(scatter_pairs)),
+            estimate_y=est_y,
+            estimate_x=est_x,
+        )
+        deterministic_solution = _build_scatter_solution_from_table(scatter_pairs, extracted_text or query)
+        if deterministic_solution:
+            return {
+                "question_number": 1,
+                "marks": marks,
+                "steps": deterministic_solution["steps"],
+                "final_answer": deterministic_solution["final_answer"],
+                "mark_commentary": deterministic_solution["mark_commentary"],
+                "visual_data": scatter_svg,
+                "raw_question": extracted_text or query,
+            }
 
     # Build a very specific supplemental system directive
     scatter_injection = ""
-    if is_scatter and scatter_pairs:
+    if is_scatter and scatter_pairs and _is_first_six_plotted(extracted_text or query):
         rows = "\n".join(f"  Point {i+1}: Maths={x:.0f}, Physics={y:.0f}" for i, (x, y) in enumerate(scatter_pairs))
         scatter_injection = (
             f"\n\n### SCATTER DATA DETECTED FROM IMAGE\n"
@@ -896,8 +1064,7 @@ def solve_math_image_question(image_base64: str, query: str, marks: int) -> dict
             f"(if any) must be plotted by the student.\n"
             f"For part (a): State which 3 points to plot and give their exact (Maths, Physics) coordinates.\n"
             f"For part (b): Describe how to draw the line of best fit (passing close to as many points as possible).\n"
-            f"For part (c): Use the line of best fit to estimate Xavier's Mathematics mark when his Physics mark is 75. "
-            f"The answer is approximately 62.\n"
+            f"For part (c): Use the line of best fit to estimate Xavier's Mathematics mark when his Physics mark is 75.\n"
             f"Set visual_data to null — the SVG diagram will be generated programmatically.\n"
         )
 
@@ -917,7 +1084,9 @@ def solve_math_image_question(image_base64: str, query: str, marks: int) -> dict
     user_prompt = (
         f"This is a {marks}-mark Cambridge O-Level Mathematics question (multipart).\n"
         f"User query: {query}\n\n"
-        f"TASK: Solve EVERY visible sub-part of the question shown in the image. "
+        f"TASK: Solve ONLY the visible question parts in the image. Use only the relationships explicitly stated in the image text. "
+        f"Do not infer extra angle or algebraic relationships that are not visible in the question. "
+        f"Do not add unrelated theory, examples, or general comments. "
         f"Provide complete, step-by-step, mark-scheme quality answers for each part. "
         f"Do not skip any part. For graph/plot parts, describe the action and include the exact coordinates. "
         f"Return your answer as a single valid JSON object matching the required structure."
