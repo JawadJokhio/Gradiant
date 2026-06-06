@@ -155,6 +155,21 @@ def _extract_coordinate_pairs(text: str) -> list[tuple[float, float]]:
     return points
 
 
+def extract_diagram_description_from_vision(image_base64: str) -> str:
+    """Describe the visible diagram, labels, angles and markings from the image."""
+    system_prompt = """You are a math diagram interpreter.
+    Describe only the shapes, lines, angle labels, equal-side markings, text labels and measurements visible in the image.
+    Return plain text only, with no explanation, no reasoning, and no JSON.
+    """
+    user_prompt = "Describe the diagram and labels in the image."
+    try:
+        raw = llm.generate_vision_response(system_prompt, user_prompt, image_base64)
+        return raw.strip()
+    except Exception as e:
+        print(f"Vision Diagram Error: {e}")
+        return ""
+
+
 def extract_text_from_vision(image_base64: str) -> str:
     """Extract visible text from the image using the configured vision model."""
     system_prompt = """You are a math image text extractor.
@@ -431,41 +446,28 @@ def _is_scatter_question(text: str) -> bool:
 
 
 def _extract_table_data(text: str) -> list[tuple[float, float]]:
-    """Extract coordinate table data from OCR text."""
+    """Extract coordinate table data from OCR text for scatter diagrams only."""
     if not text:
         return []
 
+    # Prefer explicit Mathematics vs Physics table rows.
     table_points = _extract_scatter_table_points(text)
     if table_points:
         return table_points
 
-    numbers = re.findall(r"([+-]?\d+(?:\.\d+)?)", text)
-    values = []
-    for n in numbers:
-        try:
-            value = float(n)
-            if 0 <= value <= 100:
-                values.append(value)
-        except ValueError:
-            continue
+    lowered = text.lower()
+    if not any(keyword in lowered for keyword in ["scatter", "best fit", "line of best fit", "correlation", "mathematics", "physics"]):
+        return []
 
     pairs = []
-    if len(values) >= 4 and len(values) % 2 == 0:
-        half = len(values) // 2
-        xs = values[:half]
-        ys = values[half:]
-        if len(xs) == len(ys):
-            pairs = [(x, y) for x, y in zip(xs, ys)]
-
-    if not pairs:
-        for match in re.finditer(r"\(?\s*([+-]?\d+(?:\.\d+)?)\s*[,;\s]\s*([+-]?\d+(?:\.\d+)?)\s*\)?", text):
-            try:
-                x = float(match.group(1))
-                y = float(match.group(2))
-                if 0 <= x <= 100 and 0 <= y <= 100:
-                    pairs.append((x, y))
-            except ValueError:
-                continue
+    for match in re.finditer(r"\(?\s*([+-]?\d+(?:\.\d+)?)\s*[,;]\s*([+-]?\d+(?:\.\d+)?)\s*\)?", text):
+        try:
+            x = float(match.group(1))
+            y = float(match.group(2))
+            if 0 <= x <= 100 and 0 <= y <= 100:
+                pairs.append((x, y))
+        except ValueError:
+            continue
 
     return pairs
 
@@ -1014,6 +1016,13 @@ def solve_math_image_question(image_base64: str, query: str, marks: int) -> dict
 
     # --- Detect question type for targeted prompting ---
     combined_text = f"{query} {extracted_text}"
+    is_diagram = _is_geometry_diagram_question(combined_text)
+    diagram_description = ""
+    if is_diagram:
+        diagram_description = extract_diagram_description_from_vision(image_base64)
+        if diagram_description:
+            combined_text = f"{combined_text} {diagram_description}"
+
     is_scatter = _is_scatter_question(combined_text)
     asks_draw = _asks_for_math_draw(combined_text)
 
@@ -1021,7 +1030,7 @@ def solve_math_image_question(image_base64: str, query: str, marks: int) -> dict
     scatter_pairs: list[tuple[float, float]] = []
     scatter_svg: str | None = None
     if is_scatter:
-        scatter_pairs = _extract_table_data(extracted_text) or _extract_table_data(query)
+        scatter_pairs = _extract_table_data(combined_text) or _extract_table_data(query) or _extract_table_data(extracted_text)
         if len(scatter_pairs) < 2:
             scatter_pairs = []
 
@@ -1068,6 +1077,19 @@ def solve_math_image_question(image_base64: str, query: str, marks: int) -> dict
             f"Set visual_data to null — the SVG diagram will be generated programmatically.\n"
         )
 
+    geometry_injection = ""
+    if is_diagram:
+        geometry_injection = (
+            "\n\n### GEOMETRY DIAGRAM RULES\n"
+            "This image contains a geometry diagram with angles, lines, or triangles. Use only the exact labels, angles, markings and text shown in the image. "
+            "Do not invent additional angles, sides, or relationships that are not present in the diagram. "
+            "If the diagram description lists equal sides or angle markings, use them directly in your reasoning."
+        )
+
+    extracted_image_reference = extracted_text
+    if diagram_description:
+        extracted_image_reference += "\nDiagram description: " + diagram_description
+
     system_prompt = (
         SYSTEM_PROMPT
         + "\n\n### IMPORTANT: IMAGE ANALYSIS RULES\n"
@@ -1076,8 +1098,9 @@ def solve_math_image_question(image_base64: str, query: str, marks: int) -> dict
         + "3. For each step, the `expression` field MUST contain the actual working, coordinates, formula, or computed result.\n"
         + "4. The `part` field for each step MUST exactly match the sub-part label (e.g. 'a', 'b', 'c', 'i', 'ii').\n"
         + "5. `final_answer` must summarise the final result for EACH sub-part.\n"
+        + geometry_injection
         + scatter_injection
-        + "\nExtracted image text for reference:\n" + extracted_text
+        + "\nExtracted image text for reference:\n" + extracted_image_reference
         + "\n\n" + context
     )
 
