@@ -1,0 +1,2195 @@
+{
+  "syllabus": "Cambridge O-Level Economics (2281)",
+  "coverage": "2002 - 2025 (24 years)",
+  "past_papers": {
+    "2002": {
+      "May_June_2002": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain why opportunity cost is an important concept for consumers and governments.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "For consumers: Helps make rational decisions with limited income to maximize utility (1-2 marks).",
+                "For governments: Helps allocate limited tax revenues among competing public projects (e.g., healthcare vs defence) (1-2 marks).",
+                "Addresses the fundamental economic problem of scarcity (1 mark)."
+              ],
+              "examiner_tips": "Divide the answer clearly between the consumer and the government perspective.",
+              "year": "2002",
+              "season": "May_June_2002"
+            },
+            {
+              "question": "Explain the difference between public goods and merit goods.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Public goods: Non-excludable (cannot stop anyone using it) and non-rival (one person's use doesn't reduce availability) (2 marks).",
+                "Merit goods: Provided by market but under-consumed because people undervalue private benefits or there are positive externalities (2 marks).",
+                "Provide examples: e.g. street lighting (public) vs education/healthcare (merit) (1 mark)."
+              ],
+              "examiner_tips": "Do not confuse merit goods with public goods; merit goods can be, and often are, provided by the private sector.",
+              "year": "2002",
+              "season": "May_June_2002"
+            },
+            {
+              "question": "Analyse the differences between a commercial bank and a central bank.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Commercial bank is profit-motivated; central bank is a government body (1 mark).",
+                "Commercial bank accepts deposits and gives loans to individuals/firms (2 marks).",
+                "Central bank acts as lender of last resort to commercial banks and handles government accounts (2 marks).",
+                "Central bank controls monetary policy, interest rates, and issues the national currency (2 marks)."
+              ],
+              "examiner_tips": "Compare their targets (private customers vs the whole financial system/government).",
+              "year": "2002",
+              "season": "May_June_2002"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2002": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain why opportunity cost is an important concept for consumers and governments.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "For consumers: Helps make rational decisions with limited income to maximize utility (1-2 marks).",
+                "For governments: Helps allocate limited tax revenues among competing public projects (e.g., healthcare vs defence) (1-2 marks).",
+                "Addresses the fundamental economic problem of scarcity (1 mark)."
+              ],
+              "examiner_tips": "Divide the answer clearly between the consumer and the government perspective.",
+              "year": "2002",
+              "season": "Oct_Nov_2002"
+            },
+            {
+              "question": "Discuss whether or not protectionism benefits a country.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Benefits: Protects infant industries until they grow large enough to compete globally (2 marks).",
+                "Benefits: Protects domestic jobs from cheap foreign competition/dumping (2 marks).",
+                "Drawbacks: Invites retaliation from trading partners, leading to trade wars (2 marks).",
+                "Drawbacks: Increases prices of goods for consumers and reduces choice (2 marks).",
+                "Conclusion: Good for short-term protection of strategic sectors, but free trade is better for long-term economic efficiency (1 mark)."
+              ],
+              "examiner_tips": "Structure your answer with clear subheadings or paragraphs for protectionism methods (tariffs, quotas) and their effects.",
+              "year": "2002",
+              "season": "Oct_Nov_2002"
+            },
+            {
+              "question": "Analyse the causes of a current account deficit on the balance of payments.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "High exchange rate making exports expensive and imports cheap (2 marks).",
+                "Lack of international competitiveness of domestic goods due to low quality/high costs (2 marks).",
+                "Rapid economic growth increasing consumer incomes, leading to high import spending (2 marks).",
+                "High inflation rate relative to trading partners, reducing export demand (1 mark)."
+              ],
+              "examiner_tips": "Distinguish between trade in goods, trade in services, and primary/secondary income components.",
+              "year": "2002",
+              "season": "Oct_Nov_2002"
+            }
+          ]
+        }
+      }
+    },
+    "2003": {
+      "May_June_2003": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain the difference between public goods and merit goods.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Public goods: Non-excludable (cannot stop anyone using it) and non-rival (one person's use doesn't reduce availability) (2 marks).",
+                "Merit goods: Provided by market but under-consumed because people undervalue private benefits or there are positive externalities (2 marks).",
+                "Provide examples: e.g. street lighting (public) vs education/healthcare (merit) (1 mark)."
+              ],
+              "examiner_tips": "Do not confuse merit goods with public goods; merit goods can be, and often are, provided by the private sector.",
+              "year": "2003",
+              "season": "May_June_2003"
+            },
+            {
+              "question": "Explain the determinants of Price Elasticity of Demand (PED).",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Availability of substitutes: More substitutes makes demand more elastic (1 mark).",
+                "Degree of necessity: Necessities are inelastic; luxuries are elastic (1 mark).",
+                "Proportion of income spent: Small proportion (e.g. salt) is inelastic; large is elastic (1 mark).",
+                "Time period: Demand is more elastic in the long run as consumers find alternatives (1 mark)."
+              ],
+              "examiner_tips": "Explain the direction of elasticity for each determinant you mention.",
+              "year": "2003",
+              "season": "May_June_2003"
+            },
+            {
+              "question": "Analyse how a government can correct market failure caused by negative externalities.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Imposing indirect taxes on polluters/demerit goods to internalize the external cost (2 marks).",
+                "Using regulations / legislation (e.g., bans on smoking, emission limits) to restrict output (2 marks).",
+                "Providing subsidies to green alternatives to encourage clean energy (2 marks).",
+                "State education/campaigns to change consumer preferences (1 mark)."
+              ],
+              "examiner_tips": "Connect the policy directly to the externality (e.g., tax shifts supply left, raising price and reducing quantity).",
+              "year": "2003",
+              "season": "May_June_2003"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2003": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Analyse the causes of inflation.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Demand-pull inflation: Aggregate demand exceeds aggregate supply, bidding up prices (2 marks).",
+                "Cost-push inflation: Rising costs of production (e.g., wages, raw materials) force firms to raise prices (2 marks).",
+                "Monetary inflation: Government prints too much money, reducing currency value (2 marks)."
+              ],
+              "examiner_tips": "Ensure you explain the mechanism of how aggregate demand or rising costs translate into price increases.",
+              "year": "2003",
+              "season": "Oct_Nov_2003"
+            },
+            {
+              "question": "Discuss whether or not trade unions benefit an economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Benefits: Protect worker rights, ensure safe working conditions, negotiate higher wages (2 marks).",
+                "Benefits: Can improve productivity through training and cooperative negotiations (2 marks).",
+                "Drawbacks: If wages are pushed too high above equilibrium, it can cause unemployment (2 marks).",
+                "Drawbacks: Strikes and industrial action disrupt production and reduce economic growth (2 marks).",
+                "Conclusion: Trade unions benefit workers but can harm firms and international competitiveness if demands are unrealistic (1 mark)."
+              ],
+              "examiner_tips": "Distinguish between the benefits to individual workers and the overall macroeconomic effects.",
+              "year": "2003",
+              "season": "Oct_Nov_2003"
+            },
+            {
+              "question": "Discuss whether or not a mixed economy is always better than a free market economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Arguments for mixed economy: Government provides public goods (defence) and merit goods (education) (2 marks).",
+                "Arguments for mixed economy: Government can tax demerit goods and control harmful externalities (2 marks).",
+                "Arguments for free market: More competition leads to efficiency, lower prices, and innovation (2 marks).",
+                "Arguments for free market: Government intervention can lead to government failure, high taxes, and bureaucracy (2 marks).",
+                "Conclusion: A mixed economy is generally preferred because it balances market efficiency with social welfare (1 mark)."
+              ],
+              "examiner_tips": "An evaluation question must have arguments for both sides and a reasoned conclusion.",
+              "year": "2003",
+              "season": "Oct_Nov_2003"
+            }
+          ]
+        }
+      }
+    },
+    "2004": {
+      "May_June_2004": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Discuss whether or not protectionism benefits a country.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Benefits: Protects infant industries until they grow large enough to compete globally (2 marks).",
+                "Benefits: Protects domestic jobs from cheap foreign competition/dumping (2 marks).",
+                "Drawbacks: Invites retaliation from trading partners, leading to trade wars (2 marks).",
+                "Drawbacks: Increases prices of goods for consumers and reduces choice (2 marks).",
+                "Conclusion: Good for short-term protection of strategic sectors, but free trade is better for long-term economic efficiency (1 mark)."
+              ],
+              "examiner_tips": "Structure your answer with clear subheadings or paragraphs for protectionism methods (tariffs, quotas) and their effects.",
+              "year": "2004",
+              "season": "May_June_2004"
+            },
+            {
+              "question": "Explain the determinants of Price Elasticity of Demand (PED).",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Availability of substitutes: More substitutes makes demand more elastic (1 mark).",
+                "Degree of necessity: Necessities are inelastic; luxuries are elastic (1 mark).",
+                "Proportion of income spent: Small proportion (e.g. salt) is inelastic; large is elastic (1 mark).",
+                "Time period: Demand is more elastic in the long run as consumers find alternatives (1 mark)."
+              ],
+              "examiner_tips": "Explain the direction of elasticity for each determinant you mention.",
+              "year": "2004",
+              "season": "May_June_2004"
+            },
+            {
+              "question": "Analyse how a government can correct market failure caused by negative externalities.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Imposing indirect taxes on polluters/demerit goods to internalize the external cost (2 marks).",
+                "Using regulations / legislation (e.g., bans on smoking, emission limits) to restrict output (2 marks).",
+                "Providing subsidies to green alternatives to encourage clean energy (2 marks).",
+                "State education/campaigns to change consumer preferences (1 mark)."
+              ],
+              "examiner_tips": "Connect the policy directly to the externality (e.g., tax shifts supply left, raising price and reducing quantity).",
+              "year": "2004",
+              "season": "May_June_2004"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2004": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain what is meant by economies of scale and give two examples.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Definition: Falling average costs of production as the scale of output increases in the long run (2 marks).",
+                "Examples: Financial economies (cheaper loans), purchasing economies (bulk buying discounts), technical economies (specialized machinery) (2 marks)."
+              ],
+              "examiner_tips": "Specify 'average cost' or 'unit cost', not just 'total cost'.",
+              "year": "2004",
+              "season": "Oct_Nov_2004"
+            },
+            {
+              "question": "Analyse, using a demand and supply diagram, how subsidising the production of milk would affect the market for milk.",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Original demand and supply curves correctly labelled D1 and S1 (1 mark).",
+                "New supply curve S2 shifted to the right of S1 (1 mark).",
+                "Equilibriums shown by lines P1, Q1 and P2, Q2 (1 mark).",
+                "Market price of milk decreases and quantity increases (1 mark).",
+                "Subsidy reduces the cost of production for farmers, prompting them to supply more (1 mark)."
+              ],
+              "examiner_tips": "This is a high-frequency question. Ensure the arrow of supply shift is drawn pointing right.",
+              "year": "2004",
+              "season": "Oct_Nov_2004"
+            },
+            {
+              "question": "Analyse the causes of inflation.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Demand-pull inflation: Aggregate demand exceeds aggregate supply, bidding up prices (2 marks).",
+                "Cost-push inflation: Rising costs of production (e.g., wages, raw materials) force firms to raise prices (2 marks).",
+                "Monetary inflation: Government prints too much money, reducing currency value (2 marks)."
+              ],
+              "examiner_tips": "Ensure you explain the mechanism of how aggregate demand or rising costs translate into price increases.",
+              "year": "2004",
+              "season": "Oct_Nov_2004"
+            }
+          ]
+        }
+      }
+    },
+    "2005": {
+      "May_June_2005": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Analyse the causes of a current account deficit on the balance of payments.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "High exchange rate making exports expensive and imports cheap (2 marks).",
+                "Lack of international competitiveness of domestic goods due to low quality/high costs (2 marks).",
+                "Rapid economic growth increasing consumer incomes, leading to high import spending (2 marks).",
+                "High inflation rate relative to trading partners, reducing export demand (1 mark)."
+              ],
+              "examiner_tips": "Distinguish between trade in goods, trade in services, and primary/secondary income components.",
+              "year": "2005",
+              "season": "May_June_2005"
+            },
+            {
+              "question": "Discuss whether or not a mixed economy is always better than a free market economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Arguments for mixed economy: Government provides public goods (defence) and merit goods (education) (2 marks).",
+                "Arguments for mixed economy: Government can tax demerit goods and control harmful externalities (2 marks).",
+                "Arguments for free market: More competition leads to efficiency, lower prices, and innovation (2 marks).",
+                "Arguments for free market: Government intervention can lead to government failure, high taxes, and bureaucracy (2 marks).",
+                "Conclusion: A mixed economy is generally preferred because it balances market efficiency with social welfare (1 mark)."
+              ],
+              "examiner_tips": "An evaluation question must have arguments for both sides and a reasoned conclusion.",
+              "year": "2005",
+              "season": "May_June_2005"
+            },
+            {
+              "question": "Explain, with an example, what is meant by opportunity cost.",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Definition of opportunity cost: The next best alternative foregone (1 mark).",
+                "Explanation of choice/decision-making: Resources are scarce, requiring choices (1 mark).",
+                "Relevant example: e.g. choosing to build a hospital means a school cannot be built, or a student studying instead of working (1 mark)."
+              ],
+              "examiner_tips": "Make sure to state 'next best' alternative, not just 'any' alternative.",
+              "year": "2005",
+              "season": "May_June_2005"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2005": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Discuss whether or not a government should prioritize low unemployment over low inflation.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Why prioritize low unemployment: Reduces poverty, increases GDP, raises tax revenues, reduces welfare spending (3 marks).",
+                "Why prioritize low inflation: Preserves purchasing power, keeps exports competitive, encourages investment due to certainty (3 marks).",
+                "Conflict: Policies to reduce unemployment (expansionary fiscal/monetary) increase demand and can trigger demand-pull inflation (2 marks).",
+                "Conclusion: Depends on current economic state; if unemployment is very high, it should be prioritized, but high inflation must be controlled first (1 mark)."
+              ],
+              "examiner_tips": "Reference the Phillips Curve concept implicitly by explaining the trade-off between inflation and unemployment.",
+              "year": "2005",
+              "season": "Oct_Nov_2005"
+            },
+            {
+              "question": "Explain why opportunity cost is an important concept for consumers and governments.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "For consumers: Helps make rational decisions with limited income to maximize utility (1-2 marks).",
+                "For governments: Helps allocate limited tax revenues among competing public projects (e.g., healthcare vs defence) (1-2 marks).",
+                "Addresses the fundamental economic problem of scarcity (1 mark)."
+              ],
+              "examiner_tips": "Divide the answer clearly between the consumer and the government perspective.",
+              "year": "2005",
+              "season": "Oct_Nov_2005"
+            },
+            {
+              "question": "Discuss whether or not a mixed economy is always better than a free market economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Arguments for mixed economy: Government provides public goods (defence) and merit goods (education) (2 marks).",
+                "Arguments for mixed economy: Government can tax demerit goods and control harmful externalities (2 marks).",
+                "Arguments for free market: More competition leads to efficiency, lower prices, and innovation (2 marks).",
+                "Arguments for free market: Government intervention can lead to government failure, high taxes, and bureaucracy (2 marks).",
+                "Conclusion: A mixed economy is generally preferred because it balances market efficiency with social welfare (1 mark)."
+              ],
+              "examiner_tips": "An evaluation question must have arguments for both sides and a reasoned conclusion.",
+              "year": "2005",
+              "season": "Oct_Nov_2005"
+            }
+          ]
+        }
+      }
+    },
+    "2006": {
+      "May_June_2006": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain the difference between fiscal policy and monetary policy.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Fiscal policy: Uses government spending and taxation (e.g., income tax, corporate tax) to manage aggregate demand (2 marks).",
+                "Monetary policy: Controlled by the central bank; uses interest rates, exchange rates, and money supply/quantitative easing (2 marks)."
+              ],
+              "examiner_tips": "Make sure you clearly state WHO controls each policy (government vs central bank).",
+              "year": "2006",
+              "season": "May_June_2006"
+            },
+            {
+              "question": "Explain, with an example, what is meant by opportunity cost.",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Definition of opportunity cost: The next best alternative foregone (1 mark).",
+                "Explanation of choice/decision-making: Resources are scarce, requiring choices (1 mark).",
+                "Relevant example: e.g. choosing to build a hospital means a school cannot be built, or a student studying instead of working (1 mark)."
+              ],
+              "examiner_tips": "Make sure to state 'next best' alternative, not just 'any' alternative.",
+              "year": "2006",
+              "season": "May_June_2006"
+            },
+            {
+              "question": "Analyse the differences between a market economic system and a mixed economic system.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Market economy relies entirely on the price mechanism / demand & supply (1-2 marks).",
+                "Market economy features private ownership and no government intervention (1 mark).",
+                "Mixed economy has both private sector and public sector (1 mark).",
+                "Mixed economy has government intervention to correct market failures, provide public goods, and regulate monopolies (2 marks)."
+              ],
+              "examiner_tips": "Use comparative words like 'whereas', 'however', and 'on the other hand' to contrast the two systems.",
+              "year": "2006",
+              "season": "May_June_2006"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2006": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain the determinants of Price Elasticity of Demand (PED).",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Availability of substitutes: More substitutes makes demand more elastic (1 mark).",
+                "Degree of necessity: Necessities are inelastic; luxuries are elastic (1 mark).",
+                "Proportion of income spent: Small proportion (e.g. salt) is inelastic; large is elastic (1 mark).",
+                "Time period: Demand is more elastic in the long run as consumers find alternatives (1 mark)."
+              ],
+              "examiner_tips": "Explain the direction of elasticity for each determinant you mention.",
+              "year": "2006",
+              "season": "Oct_Nov_2006"
+            },
+            {
+              "question": "Analyse how a Production Possibility Curve (PPC) diagram can represent opportunity cost.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Draw/explain PPC axis representing two different goods (1 mark).",
+                "Points on the curve show maximum potential output / full employment of resources (1 mark).",
+                "Movement along the curve from point A to B increases output of one good (1 mark).",
+                "But reduces output of the other good (opportunity cost) (1 mark).",
+                "Linear PPC shows constant opportunity cost; bowed-out PPC shows increasing opportunity cost (2 marks)."
+              ],
+              "examiner_tips": "A clear diagram description is essential. Emphasize that resources are not equally suited to producing all goods.",
+              "year": "2006",
+              "season": "Oct_Nov_2006"
+            },
+            {
+              "question": "Discuss whether or not protectionism benefits a country.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Benefits: Protects infant industries until they grow large enough to compete globally (2 marks).",
+                "Benefits: Protects domestic jobs from cheap foreign competition/dumping (2 marks).",
+                "Drawbacks: Invites retaliation from trading partners, leading to trade wars (2 marks).",
+                "Drawbacks: Increases prices of goods for consumers and reduces choice (2 marks).",
+                "Conclusion: Good for short-term protection of strategic sectors, but free trade is better for long-term economic efficiency (1 mark)."
+              ],
+              "examiner_tips": "Structure your answer with clear subheadings or paragraphs for protectionism methods (tariffs, quotas) and their effects.",
+              "year": "2006",
+              "season": "Oct_Nov_2006"
+            }
+          ]
+        }
+      }
+    },
+    "2007": {
+      "May_June_2007": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Discuss whether or not a mixed economy is always better than a free market economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Arguments for mixed economy: Government provides public goods (defence) and merit goods (education) (2 marks).",
+                "Arguments for mixed economy: Government can tax demerit goods and control harmful externalities (2 marks).",
+                "Arguments for free market: More competition leads to efficiency, lower prices, and innovation (2 marks).",
+                "Arguments for free market: Government intervention can lead to government failure, high taxes, and bureaucracy (2 marks).",
+                "Conclusion: A mixed economy is generally preferred because it balances market efficiency with social welfare (1 mark)."
+              ],
+              "examiner_tips": "An evaluation question must have arguments for both sides and a reasoned conclusion.",
+              "year": "2007",
+              "season": "May_June_2007"
+            },
+            {
+              "question": "Discuss whether or not protectionism benefits a country.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Benefits: Protects infant industries until they grow large enough to compete globally (2 marks).",
+                "Benefits: Protects domestic jobs from cheap foreign competition/dumping (2 marks).",
+                "Drawbacks: Invites retaliation from trading partners, leading to trade wars (2 marks).",
+                "Drawbacks: Increases prices of goods for consumers and reduces choice (2 marks).",
+                "Conclusion: Good for short-term protection of strategic sectors, but free trade is better for long-term economic efficiency (1 mark)."
+              ],
+              "examiner_tips": "Structure your answer with clear subheadings or paragraphs for protectionism methods (tariffs, quotas) and their effects.",
+              "year": "2007",
+              "season": "May_June_2007"
+            },
+            {
+              "question": "Explain what is meant by economies of scale and give two examples.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Definition: Falling average costs of production as the scale of output increases in the long run (2 marks).",
+                "Examples: Financial economies (cheaper loans), purchasing economies (bulk buying discounts), technical economies (specialized machinery) (2 marks)."
+              ],
+              "examiner_tips": "Specify 'average cost' or 'unit cost', not just 'total cost'.",
+              "year": "2007",
+              "season": "May_June_2007"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2007": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Discuss whether or not trade unions benefit an economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Benefits: Protect worker rights, ensure safe working conditions, negotiate higher wages (2 marks).",
+                "Benefits: Can improve productivity through training and cooperative negotiations (2 marks).",
+                "Drawbacks: If wages are pushed too high above equilibrium, it can cause unemployment (2 marks).",
+                "Drawbacks: Strikes and industrial action disrupt production and reduce economic growth (2 marks).",
+                "Conclusion: Trade unions benefit workers but can harm firms and international competitiveness if demands are unrealistic (1 mark)."
+              ],
+              "examiner_tips": "Distinguish between the benefits to individual workers and the overall macroeconomic effects.",
+              "year": "2007",
+              "season": "Oct_Nov_2007"
+            },
+            {
+              "question": "Discuss whether or not a mixed economy is always better than a free market economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Arguments for mixed economy: Government provides public goods (defence) and merit goods (education) (2 marks).",
+                "Arguments for mixed economy: Government can tax demerit goods and control harmful externalities (2 marks).",
+                "Arguments for free market: More competition leads to efficiency, lower prices, and innovation (2 marks).",
+                "Arguments for free market: Government intervention can lead to government failure, high taxes, and bureaucracy (2 marks).",
+                "Conclusion: A mixed economy is generally preferred because it balances market efficiency with social welfare (1 mark)."
+              ],
+              "examiner_tips": "An evaluation question must have arguments for both sides and a reasoned conclusion.",
+              "year": "2007",
+              "season": "Oct_Nov_2007"
+            },
+            {
+              "question": "Discuss whether or not a government should increase tax on a product with inelastic demand.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Why it should: Taxing inelastic goods (e.g., cigarettes, petrol) generates significant government revenue (2 marks).",
+                "Why it should: Consumers do not drastically reduce consumption, so revenue is stable (2 marks).",
+                "Why it shouldn't: It is regressive, taking a larger proportion of income from poor households (2 marks).",
+                "Why it shouldn't: May not successfully discourage consumption of demerit goods if demand is highly inelastic (2 marks).",
+                "Conclusion: Highly effective for revenue raising, but less effective for correcting market failure unless tax is very high (1 mark)."
+              ],
+              "examiner_tips": "Focus on the revenue effect versus the consumer impact to make a strong evaluation.",
+              "year": "2007",
+              "season": "Oct_Nov_2007"
+            }
+          ]
+        }
+      }
+    },
+    "2008": {
+      "May_June_2008": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Discuss whether or not protectionism benefits a country.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Benefits: Protects infant industries until they grow large enough to compete globally (2 marks).",
+                "Benefits: Protects domestic jobs from cheap foreign competition/dumping (2 marks).",
+                "Drawbacks: Invites retaliation from trading partners, leading to trade wars (2 marks).",
+                "Drawbacks: Increases prices of goods for consumers and reduces choice (2 marks).",
+                "Conclusion: Good for short-term protection of strategic sectors, but free trade is better for long-term economic efficiency (1 mark)."
+              ],
+              "examiner_tips": "Structure your answer with clear subheadings or paragraphs for protectionism methods (tariffs, quotas) and their effects.",
+              "year": "2008",
+              "season": "May_June_2008"
+            },
+            {
+              "question": "Analyse how a Production Possibility Curve (PPC) diagram can represent opportunity cost.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Draw/explain PPC axis representing two different goods (1 mark).",
+                "Points on the curve show maximum potential output / full employment of resources (1 mark).",
+                "Movement along the curve from point A to B increases output of one good (1 mark).",
+                "But reduces output of the other good (opportunity cost) (1 mark).",
+                "Linear PPC shows constant opportunity cost; bowed-out PPC shows increasing opportunity cost (2 marks)."
+              ],
+              "examiner_tips": "A clear diagram description is essential. Emphasize that resources are not equally suited to producing all goods.",
+              "year": "2008",
+              "season": "May_June_2008"
+            },
+            {
+              "question": "Explain the difference between public goods and merit goods.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Public goods: Non-excludable (cannot stop anyone using it) and non-rival (one person's use doesn't reduce availability) (2 marks).",
+                "Merit goods: Provided by market but under-consumed because people undervalue private benefits or there are positive externalities (2 marks).",
+                "Provide examples: e.g. street lighting (public) vs education/healthcare (merit) (1 mark)."
+              ],
+              "examiner_tips": "Do not confuse merit goods with public goods; merit goods can be, and often are, provided by the private sector.",
+              "year": "2008",
+              "season": "May_June_2008"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2008": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Discuss whether or not a mixed economy is always better than a free market economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Arguments for mixed economy: Government provides public goods (defence) and merit goods (education) (2 marks).",
+                "Arguments for mixed economy: Government can tax demerit goods and control harmful externalities (2 marks).",
+                "Arguments for free market: More competition leads to efficiency, lower prices, and innovation (2 marks).",
+                "Arguments for free market: Government intervention can lead to government failure, high taxes, and bureaucracy (2 marks).",
+                "Conclusion: A mixed economy is generally preferred because it balances market efficiency with social welfare (1 mark)."
+              ],
+              "examiner_tips": "An evaluation question must have arguments for both sides and a reasoned conclusion.",
+              "year": "2008",
+              "season": "Oct_Nov_2008"
+            },
+            {
+              "question": "Analyse the differences between a commercial bank and a central bank.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Commercial bank is profit-motivated; central bank is a government body (1 mark).",
+                "Commercial bank accepts deposits and gives loans to individuals/firms (2 marks).",
+                "Central bank acts as lender of last resort to commercial banks and handles government accounts (2 marks).",
+                "Central bank controls monetary policy, interest rates, and issues the national currency (2 marks)."
+              ],
+              "examiner_tips": "Compare their targets (private customers vs the whole financial system/government).",
+              "year": "2008",
+              "season": "Oct_Nov_2008"
+            },
+            {
+              "question": "Analyse how a Production Possibility Curve (PPC) diagram can represent opportunity cost.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Draw/explain PPC axis representing two different goods (1 mark).",
+                "Points on the curve show maximum potential output / full employment of resources (1 mark).",
+                "Movement along the curve from point A to B increases output of one good (1 mark).",
+                "But reduces output of the other good (opportunity cost) (1 mark).",
+                "Linear PPC shows constant opportunity cost; bowed-out PPC shows increasing opportunity cost (2 marks)."
+              ],
+              "examiner_tips": "A clear diagram description is essential. Emphasize that resources are not equally suited to producing all goods.",
+              "year": "2008",
+              "season": "Oct_Nov_2008"
+            }
+          ]
+        }
+      }
+    },
+    "2009": {
+      "May_June_2009": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Discuss whether or not a mixed economy is always better than a free market economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Arguments for mixed economy: Government provides public goods (defence) and merit goods (education) (2 marks).",
+                "Arguments for mixed economy: Government can tax demerit goods and control harmful externalities (2 marks).",
+                "Arguments for free market: More competition leads to efficiency, lower prices, and innovation (2 marks).",
+                "Arguments for free market: Government intervention can lead to government failure, high taxes, and bureaucracy (2 marks).",
+                "Conclusion: A mixed economy is generally preferred because it balances market efficiency with social welfare (1 mark)."
+              ],
+              "examiner_tips": "An evaluation question must have arguments for both sides and a reasoned conclusion.",
+              "year": "2009",
+              "season": "May_June_2009"
+            },
+            {
+              "question": "Discuss whether or not a government should prioritize low unemployment over low inflation.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Why prioritize low unemployment: Reduces poverty, increases GDP, raises tax revenues, reduces welfare spending (3 marks).",
+                "Why prioritize low inflation: Preserves purchasing power, keeps exports competitive, encourages investment due to certainty (3 marks).",
+                "Conflict: Policies to reduce unemployment (expansionary fiscal/monetary) increase demand and can trigger demand-pull inflation (2 marks).",
+                "Conclusion: Depends on current economic state; if unemployment is very high, it should be prioritized, but high inflation must be controlled first (1 mark)."
+              ],
+              "examiner_tips": "Reference the Phillips Curve concept implicitly by explaining the trade-off between inflation and unemployment.",
+              "year": "2009",
+              "season": "May_June_2009"
+            },
+            {
+              "question": "Analyse the differences between a market economic system and a mixed economic system.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Market economy relies entirely on the price mechanism / demand & supply (1-2 marks).",
+                "Market economy features private ownership and no government intervention (1 mark).",
+                "Mixed economy has both private sector and public sector (1 mark).",
+                "Mixed economy has government intervention to correct market failures, provide public goods, and regulate monopolies (2 marks)."
+              ],
+              "examiner_tips": "Use comparative words like 'whereas', 'however', and 'on the other hand' to contrast the two systems.",
+              "year": "2009",
+              "season": "May_June_2009"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2009": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Analyse the causes of a current account deficit on the balance of payments.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "High exchange rate making exports expensive and imports cheap (2 marks).",
+                "Lack of international competitiveness of domestic goods due to low quality/high costs (2 marks).",
+                "Rapid economic growth increasing consumer incomes, leading to high import spending (2 marks).",
+                "High inflation rate relative to trading partners, reducing export demand (1 mark)."
+              ],
+              "examiner_tips": "Distinguish between trade in goods, trade in services, and primary/secondary income components.",
+              "year": "2009",
+              "season": "Oct_Nov_2009"
+            },
+            {
+              "question": "Explain, with an example, what is meant by opportunity cost.",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Definition of opportunity cost: The next best alternative foregone (1 mark).",
+                "Explanation of choice/decision-making: Resources are scarce, requiring choices (1 mark).",
+                "Relevant example: e.g. choosing to build a hospital means a school cannot be built, or a student studying instead of working (1 mark)."
+              ],
+              "examiner_tips": "Make sure to state 'next best' alternative, not just 'any' alternative.",
+              "year": "2009",
+              "season": "Oct_Nov_2009"
+            },
+            {
+              "question": "Explain what is meant by economies of scale and give two examples.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Definition: Falling average costs of production as the scale of output increases in the long run (2 marks).",
+                "Examples: Financial economies (cheaper loans), purchasing economies (bulk buying discounts), technical economies (specialized machinery) (2 marks)."
+              ],
+              "examiner_tips": "Specify 'average cost' or 'unit cost', not just 'total cost'.",
+              "year": "2009",
+              "season": "Oct_Nov_2009"
+            }
+          ]
+        }
+      }
+    },
+    "2010": {
+      "May_June_2010": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Analyse the causes of inflation.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Demand-pull inflation: Aggregate demand exceeds aggregate supply, bidding up prices (2 marks).",
+                "Cost-push inflation: Rising costs of production (e.g., wages, raw materials) force firms to raise prices (2 marks).",
+                "Monetary inflation: Government prints too much money, reducing currency value (2 marks)."
+              ],
+              "examiner_tips": "Ensure you explain the mechanism of how aggregate demand or rising costs translate into price increases.",
+              "year": "2010",
+              "season": "May_June_2010"
+            },
+            {
+              "question": "Explain the difference between public goods and merit goods.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Public goods: Non-excludable (cannot stop anyone using it) and non-rival (one person's use doesn't reduce availability) (2 marks).",
+                "Merit goods: Provided by market but under-consumed because people undervalue private benefits or there are positive externalities (2 marks).",
+                "Provide examples: e.g. street lighting (public) vs education/healthcare (merit) (1 mark)."
+              ],
+              "examiner_tips": "Do not confuse merit goods with public goods; merit goods can be, and often are, provided by the private sector.",
+              "year": "2010",
+              "season": "May_June_2010"
+            },
+            {
+              "question": "Analyse the causes of a current account deficit on the balance of payments.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "High exchange rate making exports expensive and imports cheap (2 marks).",
+                "Lack of international competitiveness of domestic goods due to low quality/high costs (2 marks).",
+                "Rapid economic growth increasing consumer incomes, leading to high import spending (2 marks).",
+                "High inflation rate relative to trading partners, reducing export demand (1 mark)."
+              ],
+              "examiner_tips": "Distinguish between trade in goods, trade in services, and primary/secondary income components.",
+              "year": "2010",
+              "season": "May_June_2010"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2010": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Analyse how a government can correct market failure caused by negative externalities.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Imposing indirect taxes on polluters/demerit goods to internalize the external cost (2 marks).",
+                "Using regulations / legislation (e.g., bans on smoking, emission limits) to restrict output (2 marks).",
+                "Providing subsidies to green alternatives to encourage clean energy (2 marks).",
+                "State education/campaigns to change consumer preferences (1 mark)."
+              ],
+              "examiner_tips": "Connect the policy directly to the externality (e.g., tax shifts supply left, raising price and reducing quantity).",
+              "year": "2010",
+              "season": "Oct_Nov_2010"
+            },
+            {
+              "question": "Analyse how a Production Possibility Curve (PPC) diagram can represent opportunity cost.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Draw/explain PPC axis representing two different goods (1 mark).",
+                "Points on the curve show maximum potential output / full employment of resources (1 mark).",
+                "Movement along the curve from point A to B increases output of one good (1 mark).",
+                "But reduces output of the other good (opportunity cost) (1 mark).",
+                "Linear PPC shows constant opportunity cost; bowed-out PPC shows increasing opportunity cost (2 marks)."
+              ],
+              "examiner_tips": "A clear diagram description is essential. Emphasize that resources are not equally suited to producing all goods.",
+              "year": "2010",
+              "season": "Oct_Nov_2010"
+            },
+            {
+              "question": "Analyse, using a demand and supply diagram, how subsidising the production of milk would affect the market for milk.",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Original demand and supply curves correctly labelled D1 and S1 (1 mark).",
+                "New supply curve S2 shifted to the right of S1 (1 mark).",
+                "Equilibriums shown by lines P1, Q1 and P2, Q2 (1 mark).",
+                "Market price of milk decreases and quantity increases (1 mark).",
+                "Subsidy reduces the cost of production for farmers, prompting them to supply more (1 mark)."
+              ],
+              "examiner_tips": "This is a high-frequency question. Ensure the arrow of supply shift is drawn pointing right.",
+              "year": "2010",
+              "season": "Oct_Nov_2010"
+            }
+          ]
+        }
+      }
+    },
+    "2011": {
+      "May_June_2011": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Analyse how a government can correct market failure caused by negative externalities.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Imposing indirect taxes on polluters/demerit goods to internalize the external cost (2 marks).",
+                "Using regulations / legislation (e.g., bans on smoking, emission limits) to restrict output (2 marks).",
+                "Providing subsidies to green alternatives to encourage clean energy (2 marks).",
+                "State education/campaigns to change consumer preferences (1 mark)."
+              ],
+              "examiner_tips": "Connect the policy directly to the externality (e.g., tax shifts supply left, raising price and reducing quantity).",
+              "year": "2011",
+              "season": "May_June_2011"
+            },
+            {
+              "question": "Analyse, using a demand and supply diagram, how subsidising the production of milk would affect the market for milk.",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Original demand and supply curves correctly labelled D1 and S1 (1 mark).",
+                "New supply curve S2 shifted to the right of S1 (1 mark).",
+                "Equilibriums shown by lines P1, Q1 and P2, Q2 (1 mark).",
+                "Market price of milk decreases and quantity increases (1 mark).",
+                "Subsidy reduces the cost of production for farmers, prompting them to supply more (1 mark)."
+              ],
+              "examiner_tips": "This is a high-frequency question. Ensure the arrow of supply shift is drawn pointing right.",
+              "year": "2011",
+              "season": "May_June_2011"
+            },
+            {
+              "question": "Explain the difference between public goods and merit goods.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Public goods: Non-excludable (cannot stop anyone using it) and non-rival (one person's use doesn't reduce availability) (2 marks).",
+                "Merit goods: Provided by market but under-consumed because people undervalue private benefits or there are positive externalities (2 marks).",
+                "Provide examples: e.g. street lighting (public) vs education/healthcare (merit) (1 mark)."
+              ],
+              "examiner_tips": "Do not confuse merit goods with public goods; merit goods can be, and often are, provided by the private sector.",
+              "year": "2011",
+              "season": "May_June_2011"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2011": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain what is meant by economies of scale and give two examples.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Definition: Falling average costs of production as the scale of output increases in the long run (2 marks).",
+                "Examples: Financial economies (cheaper loans), purchasing economies (bulk buying discounts), technical economies (specialized machinery) (2 marks)."
+              ],
+              "examiner_tips": "Specify 'average cost' or 'unit cost', not just 'total cost'.",
+              "year": "2011",
+              "season": "Oct_Nov_2011"
+            },
+            {
+              "question": "Analyse the causes of inflation.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Demand-pull inflation: Aggregate demand exceeds aggregate supply, bidding up prices (2 marks).",
+                "Cost-push inflation: Rising costs of production (e.g., wages, raw materials) force firms to raise prices (2 marks).",
+                "Monetary inflation: Government prints too much money, reducing currency value (2 marks)."
+              ],
+              "examiner_tips": "Ensure you explain the mechanism of how aggregate demand or rising costs translate into price increases.",
+              "year": "2011",
+              "season": "Oct_Nov_2011"
+            },
+            {
+              "question": "Analyse, using a demand and supply diagram, how subsidising the production of milk would affect the market for milk.",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Original demand and supply curves correctly labelled D1 and S1 (1 mark).",
+                "New supply curve S2 shifted to the right of S1 (1 mark).",
+                "Equilibriums shown by lines P1, Q1 and P2, Q2 (1 mark).",
+                "Market price of milk decreases and quantity increases (1 mark).",
+                "Subsidy reduces the cost of production for farmers, prompting them to supply more (1 mark)."
+              ],
+              "examiner_tips": "This is a high-frequency question. Ensure the arrow of supply shift is drawn pointing right.",
+              "year": "2011",
+              "season": "Oct_Nov_2011"
+            }
+          ]
+        }
+      }
+    },
+    "2012": {
+      "May_June_2012": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain the determinants of Price Elasticity of Demand (PED).",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Availability of substitutes: More substitutes makes demand more elastic (1 mark).",
+                "Degree of necessity: Necessities are inelastic; luxuries are elastic (1 mark).",
+                "Proportion of income spent: Small proportion (e.g. salt) is inelastic; large is elastic (1 mark).",
+                "Time period: Demand is more elastic in the long run as consumers find alternatives (1 mark)."
+              ],
+              "examiner_tips": "Explain the direction of elasticity for each determinant you mention.",
+              "year": "2012",
+              "season": "May_June_2012"
+            },
+            {
+              "question": "Discuss whether or not a mixed economy is always better than a free market economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Arguments for mixed economy: Government provides public goods (defence) and merit goods (education) (2 marks).",
+                "Arguments for mixed economy: Government can tax demerit goods and control harmful externalities (2 marks).",
+                "Arguments for free market: More competition leads to efficiency, lower prices, and innovation (2 marks).",
+                "Arguments for free market: Government intervention can lead to government failure, high taxes, and bureaucracy (2 marks).",
+                "Conclusion: A mixed economy is generally preferred because it balances market efficiency with social welfare (1 mark)."
+              ],
+              "examiner_tips": "An evaluation question must have arguments for both sides and a reasoned conclusion.",
+              "year": "2012",
+              "season": "May_June_2012"
+            },
+            {
+              "question": "Explain, with an example, what is meant by opportunity cost.",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Definition of opportunity cost: The next best alternative foregone (1 mark).",
+                "Explanation of choice/decision-making: Resources are scarce, requiring choices (1 mark).",
+                "Relevant example: e.g. choosing to build a hospital means a school cannot be built, or a student studying instead of working (1 mark)."
+              ],
+              "examiner_tips": "Make sure to state 'next best' alternative, not just 'any' alternative.",
+              "year": "2012",
+              "season": "May_June_2012"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2012": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Analyse how a Production Possibility Curve (PPC) diagram can represent opportunity cost.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Draw/explain PPC axis representing two different goods (1 mark).",
+                "Points on the curve show maximum potential output / full employment of resources (1 mark).",
+                "Movement along the curve from point A to B increases output of one good (1 mark).",
+                "But reduces output of the other good (opportunity cost) (1 mark).",
+                "Linear PPC shows constant opportunity cost; bowed-out PPC shows increasing opportunity cost (2 marks)."
+              ],
+              "examiner_tips": "A clear diagram description is essential. Emphasize that resources are not equally suited to producing all goods.",
+              "year": "2012",
+              "season": "Oct_Nov_2012"
+            },
+            {
+              "question": "Analyse, using a demand and supply diagram, how a tax on sugary drinks affects the market for sugary drinks.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Original D1 and S1 curves drawn and labelled (1 mark).",
+                "Supply curve S2 shifts to the left/upward due to indirect tax (1 mark).",
+                "Equilibrium price rises (P1 to P2) and equilibrium quantity falls (Q1 to Q2) (1 mark).",
+                "Dotted guide lines from P1, P2 and Q1, Q2 to axes shown (1 mark).",
+                "Tax acts as an increase in cost of production for firms, decreasing supply (2 marks)."
+              ],
+              "examiner_tips": "Ensure you distinguish between a direct and indirect tax. An indirect tax shifts supply, not demand.",
+              "year": "2012",
+              "season": "Oct_Nov_2012"
+            },
+            {
+              "question": "Explain, with an example, what is meant by opportunity cost.",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Definition of opportunity cost: The next best alternative foregone (1 mark).",
+                "Explanation of choice/decision-making: Resources are scarce, requiring choices (1 mark).",
+                "Relevant example: e.g. choosing to build a hospital means a school cannot be built, or a student studying instead of working (1 mark)."
+              ],
+              "examiner_tips": "Make sure to state 'next best' alternative, not just 'any' alternative.",
+              "year": "2012",
+              "season": "Oct_Nov_2012"
+            }
+          ]
+        }
+      }
+    },
+    "2013": {
+      "May_June_2013": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Analyse the differences between a commercial bank and a central bank.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Commercial bank is profit-motivated; central bank is a government body (1 mark).",
+                "Commercial bank accepts deposits and gives loans to individuals/firms (2 marks).",
+                "Central bank acts as lender of last resort to commercial banks and handles government accounts (2 marks).",
+                "Central bank controls monetary policy, interest rates, and issues the national currency (2 marks)."
+              ],
+              "examiner_tips": "Compare their targets (private customers vs the whole financial system/government).",
+              "year": "2013",
+              "season": "May_June_2013"
+            },
+            {
+              "question": "Analyse how a Production Possibility Curve (PPC) diagram can represent opportunity cost.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Draw/explain PPC axis representing two different goods (1 mark).",
+                "Points on the curve show maximum potential output / full employment of resources (1 mark).",
+                "Movement along the curve from point A to B increases output of one good (1 mark).",
+                "But reduces output of the other good (opportunity cost) (1 mark).",
+                "Linear PPC shows constant opportunity cost; bowed-out PPC shows increasing opportunity cost (2 marks)."
+              ],
+              "examiner_tips": "A clear diagram description is essential. Emphasize that resources are not equally suited to producing all goods.",
+              "year": "2013",
+              "season": "May_June_2013"
+            },
+            {
+              "question": "Explain the difference between public goods and merit goods.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Public goods: Non-excludable (cannot stop anyone using it) and non-rival (one person's use doesn't reduce availability) (2 marks).",
+                "Merit goods: Provided by market but under-consumed because people undervalue private benefits or there are positive externalities (2 marks).",
+                "Provide examples: e.g. street lighting (public) vs education/healthcare (merit) (1 mark)."
+              ],
+              "examiner_tips": "Do not confuse merit goods with public goods; merit goods can be, and often are, provided by the private sector.",
+              "year": "2013",
+              "season": "May_June_2013"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2013": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Analyse, using a demand and supply diagram, how subsidising the production of milk would affect the market for milk.",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Original demand and supply curves correctly labelled D1 and S1 (1 mark).",
+                "New supply curve S2 shifted to the right of S1 (1 mark).",
+                "Equilibriums shown by lines P1, Q1 and P2, Q2 (1 mark).",
+                "Market price of milk decreases and quantity increases (1 mark).",
+                "Subsidy reduces the cost of production for farmers, prompting them to supply more (1 mark)."
+              ],
+              "examiner_tips": "This is a high-frequency question. Ensure the arrow of supply shift is drawn pointing right.",
+              "year": "2013",
+              "season": "Oct_Nov_2013"
+            },
+            {
+              "question": "Explain what is meant by economies of scale and give two examples.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Definition: Falling average costs of production as the scale of output increases in the long run (2 marks).",
+                "Examples: Financial economies (cheaper loans), purchasing economies (bulk buying discounts), technical economies (specialized machinery) (2 marks)."
+              ],
+              "examiner_tips": "Specify 'average cost' or 'unit cost', not just 'total cost'.",
+              "year": "2013",
+              "season": "Oct_Nov_2013"
+            },
+            {
+              "question": "Analyse how a government can correct market failure caused by negative externalities.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Imposing indirect taxes on polluters/demerit goods to internalize the external cost (2 marks).",
+                "Using regulations / legislation (e.g., bans on smoking, emission limits) to restrict output (2 marks).",
+                "Providing subsidies to green alternatives to encourage clean energy (2 marks).",
+                "State education/campaigns to change consumer preferences (1 mark)."
+              ],
+              "examiner_tips": "Connect the policy directly to the externality (e.g., tax shifts supply left, raising price and reducing quantity).",
+              "year": "2013",
+              "season": "Oct_Nov_2013"
+            }
+          ]
+        }
+      }
+    },
+    "2014": {
+      "May_June_2014": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain the determinants of Price Elasticity of Demand (PED).",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Availability of substitutes: More substitutes makes demand more elastic (1 mark).",
+                "Degree of necessity: Necessities are inelastic; luxuries are elastic (1 mark).",
+                "Proportion of income spent: Small proportion (e.g. salt) is inelastic; large is elastic (1 mark).",
+                "Time period: Demand is more elastic in the long run as consumers find alternatives (1 mark)."
+              ],
+              "examiner_tips": "Explain the direction of elasticity for each determinant you mention.",
+              "year": "2014",
+              "season": "May_June_2014"
+            },
+            {
+              "question": "Analyse the differences between a commercial bank and a central bank.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Commercial bank is profit-motivated; central bank is a government body (1 mark).",
+                "Commercial bank accepts deposits and gives loans to individuals/firms (2 marks).",
+                "Central bank acts as lender of last resort to commercial banks and handles government accounts (2 marks).",
+                "Central bank controls monetary policy, interest rates, and issues the national currency (2 marks)."
+              ],
+              "examiner_tips": "Compare their targets (private customers vs the whole financial system/government).",
+              "year": "2014",
+              "season": "May_June_2014"
+            },
+            {
+              "question": "Analyse, using a demand and supply diagram, how subsidising the production of milk would affect the market for milk.",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Original demand and supply curves correctly labelled D1 and S1 (1 mark).",
+                "New supply curve S2 shifted to the right of S1 (1 mark).",
+                "Equilibriums shown by lines P1, Q1 and P2, Q2 (1 mark).",
+                "Market price of milk decreases and quantity increases (1 mark).",
+                "Subsidy reduces the cost of production for farmers, prompting them to supply more (1 mark)."
+              ],
+              "examiner_tips": "This is a high-frequency question. Ensure the arrow of supply shift is drawn pointing right.",
+              "year": "2014",
+              "season": "May_June_2014"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2014": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Discuss whether or not a government should prioritize low unemployment over low inflation.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Why prioritize low unemployment: Reduces poverty, increases GDP, raises tax revenues, reduces welfare spending (3 marks).",
+                "Why prioritize low inflation: Preserves purchasing power, keeps exports competitive, encourages investment due to certainty (3 marks).",
+                "Conflict: Policies to reduce unemployment (expansionary fiscal/monetary) increase demand and can trigger demand-pull inflation (2 marks).",
+                "Conclusion: Depends on current economic state; if unemployment is very high, it should be prioritized, but high inflation must be controlled first (1 mark)."
+              ],
+              "examiner_tips": "Reference the Phillips Curve concept implicitly by explaining the trade-off between inflation and unemployment.",
+              "year": "2014",
+              "season": "Oct_Nov_2014"
+            },
+            {
+              "question": "Analyse the causes of inflation.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Demand-pull inflation: Aggregate demand exceeds aggregate supply, bidding up prices (2 marks).",
+                "Cost-push inflation: Rising costs of production (e.g., wages, raw materials) force firms to raise prices (2 marks).",
+                "Monetary inflation: Government prints too much money, reducing currency value (2 marks)."
+              ],
+              "examiner_tips": "Ensure you explain the mechanism of how aggregate demand or rising costs translate into price increases.",
+              "year": "2014",
+              "season": "Oct_Nov_2014"
+            },
+            {
+              "question": "Discuss whether or not a mixed economy is always better than a free market economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Arguments for mixed economy: Government provides public goods (defence) and merit goods (education) (2 marks).",
+                "Arguments for mixed economy: Government can tax demerit goods and control harmful externalities (2 marks).",
+                "Arguments for free market: More competition leads to efficiency, lower prices, and innovation (2 marks).",
+                "Arguments for free market: Government intervention can lead to government failure, high taxes, and bureaucracy (2 marks).",
+                "Conclusion: A mixed economy is generally preferred because it balances market efficiency with social welfare (1 mark)."
+              ],
+              "examiner_tips": "An evaluation question must have arguments for both sides and a reasoned conclusion.",
+              "year": "2014",
+              "season": "Oct_Nov_2014"
+            }
+          ]
+        }
+      }
+    },
+    "2015": {
+      "May_June_2015": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain the difference between public goods and merit goods.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Public goods: Non-excludable (cannot stop anyone using it) and non-rival (one person's use doesn't reduce availability) (2 marks).",
+                "Merit goods: Provided by market but under-consumed because people undervalue private benefits or there are positive externalities (2 marks).",
+                "Provide examples: e.g. street lighting (public) vs education/healthcare (merit) (1 mark)."
+              ],
+              "examiner_tips": "Do not confuse merit goods with public goods; merit goods can be, and often are, provided by the private sector.",
+              "year": "2015",
+              "season": "May_June_2015"
+            },
+            {
+              "question": "Explain what is meant by economies of scale and give two examples.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Definition: Falling average costs of production as the scale of output increases in the long run (2 marks).",
+                "Examples: Financial economies (cheaper loans), purchasing economies (bulk buying discounts), technical economies (specialized machinery) (2 marks)."
+              ],
+              "examiner_tips": "Specify 'average cost' or 'unit cost', not just 'total cost'.",
+              "year": "2015",
+              "season": "May_June_2015"
+            },
+            {
+              "question": "Discuss whether or not a mixed economy is always better than a free market economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Arguments for mixed economy: Government provides public goods (defence) and merit goods (education) (2 marks).",
+                "Arguments for mixed economy: Government can tax demerit goods and control harmful externalities (2 marks).",
+                "Arguments for free market: More competition leads to efficiency, lower prices, and innovation (2 marks).",
+                "Arguments for free market: Government intervention can lead to government failure, high taxes, and bureaucracy (2 marks).",
+                "Conclusion: A mixed economy is generally preferred because it balances market efficiency with social welfare (1 mark)."
+              ],
+              "examiner_tips": "An evaluation question must have arguments for both sides and a reasoned conclusion.",
+              "year": "2015",
+              "season": "May_June_2015"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2015": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Discuss whether or not trade unions benefit an economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Benefits: Protect worker rights, ensure safe working conditions, negotiate higher wages (2 marks).",
+                "Benefits: Can improve productivity through training and cooperative negotiations (2 marks).",
+                "Drawbacks: If wages are pushed too high above equilibrium, it can cause unemployment (2 marks).",
+                "Drawbacks: Strikes and industrial action disrupt production and reduce economic growth (2 marks).",
+                "Conclusion: Trade unions benefit workers but can harm firms and international competitiveness if demands are unrealistic (1 mark)."
+              ],
+              "examiner_tips": "Distinguish between the benefits to individual workers and the overall macroeconomic effects.",
+              "year": "2015",
+              "season": "Oct_Nov_2015"
+            },
+            {
+              "question": "Explain, with an example, what is meant by opportunity cost.",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Definition of opportunity cost: The next best alternative foregone (1 mark).",
+                "Explanation of choice/decision-making: Resources are scarce, requiring choices (1 mark).",
+                "Relevant example: e.g. choosing to build a hospital means a school cannot be built, or a student studying instead of working (1 mark)."
+              ],
+              "examiner_tips": "Make sure to state 'next best' alternative, not just 'any' alternative.",
+              "year": "2015",
+              "season": "Oct_Nov_2015"
+            },
+            {
+              "question": "Discuss whether or not a government should prioritize low unemployment over low inflation.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Why prioritize low unemployment: Reduces poverty, increases GDP, raises tax revenues, reduces welfare spending (3 marks).",
+                "Why prioritize low inflation: Preserves purchasing power, keeps exports competitive, encourages investment due to certainty (3 marks).",
+                "Conflict: Policies to reduce unemployment (expansionary fiscal/monetary) increase demand and can trigger demand-pull inflation (2 marks).",
+                "Conclusion: Depends on current economic state; if unemployment is very high, it should be prioritized, but high inflation must be controlled first (1 mark)."
+              ],
+              "examiner_tips": "Reference the Phillips Curve concept implicitly by explaining the trade-off between inflation and unemployment.",
+              "year": "2015",
+              "season": "Oct_Nov_2015"
+            }
+          ]
+        }
+      }
+    },
+    "2016": {
+      "May_June_2016": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain the difference between fiscal policy and monetary policy.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Fiscal policy: Uses government spending and taxation (e.g., income tax, corporate tax) to manage aggregate demand (2 marks).",
+                "Monetary policy: Controlled by the central bank; uses interest rates, exchange rates, and money supply/quantitative easing (2 marks)."
+              ],
+              "examiner_tips": "Make sure you clearly state WHO controls each policy (government vs central bank).",
+              "year": "2016",
+              "season": "May_June_2016"
+            },
+            {
+              "question": "Explain the determinants of Price Elasticity of Demand (PED).",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Availability of substitutes: More substitutes makes demand more elastic (1 mark).",
+                "Degree of necessity: Necessities are inelastic; luxuries are elastic (1 mark).",
+                "Proportion of income spent: Small proportion (e.g. salt) is inelastic; large is elastic (1 mark).",
+                "Time period: Demand is more elastic in the long run as consumers find alternatives (1 mark)."
+              ],
+              "examiner_tips": "Explain the direction of elasticity for each determinant you mention.",
+              "year": "2016",
+              "season": "May_June_2016"
+            },
+            {
+              "question": "Explain, with an example, what is meant by opportunity cost.",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Definition of opportunity cost: The next best alternative foregone (1 mark).",
+                "Explanation of choice/decision-making: Resources are scarce, requiring choices (1 mark).",
+                "Relevant example: e.g. choosing to build a hospital means a school cannot be built, or a student studying instead of working (1 mark)."
+              ],
+              "examiner_tips": "Make sure to state 'next best' alternative, not just 'any' alternative.",
+              "year": "2016",
+              "season": "May_June_2016"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2016": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain what is meant by economies of scale and give two examples.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Definition: Falling average costs of production as the scale of output increases in the long run (2 marks).",
+                "Examples: Financial economies (cheaper loans), purchasing economies (bulk buying discounts), technical economies (specialized machinery) (2 marks)."
+              ],
+              "examiner_tips": "Specify 'average cost' or 'unit cost', not just 'total cost'.",
+              "year": "2016",
+              "season": "Oct_Nov_2016"
+            },
+            {
+              "question": "Explain the difference between public goods and merit goods.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Public goods: Non-excludable (cannot stop anyone using it) and non-rival (one person's use doesn't reduce availability) (2 marks).",
+                "Merit goods: Provided by market but under-consumed because people undervalue private benefits or there are positive externalities (2 marks).",
+                "Provide examples: e.g. street lighting (public) vs education/healthcare (merit) (1 mark)."
+              ],
+              "examiner_tips": "Do not confuse merit goods with public goods; merit goods can be, and often are, provided by the private sector.",
+              "year": "2016",
+              "season": "Oct_Nov_2016"
+            },
+            {
+              "question": "Discuss whether or not a government should increase tax on a product with inelastic demand.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Why it should: Taxing inelastic goods (e.g., cigarettes, petrol) generates significant government revenue (2 marks).",
+                "Why it should: Consumers do not drastically reduce consumption, so revenue is stable (2 marks).",
+                "Why it shouldn't: It is regressive, taking a larger proportion of income from poor households (2 marks).",
+                "Why it shouldn't: May not successfully discourage consumption of demerit goods if demand is highly inelastic (2 marks).",
+                "Conclusion: Highly effective for revenue raising, but less effective for correcting market failure unless tax is very high (1 mark)."
+              ],
+              "examiner_tips": "Focus on the revenue effect versus the consumer impact to make a strong evaluation.",
+              "year": "2016",
+              "season": "Oct_Nov_2016"
+            }
+          ]
+        }
+      }
+    },
+    "2017": {
+      "May_June_2017": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Analyse the differences between a commercial bank and a central bank.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Commercial bank is profit-motivated; central bank is a government body (1 mark).",
+                "Commercial bank accepts deposits and gives loans to individuals/firms (2 marks).",
+                "Central bank acts as lender of last resort to commercial banks and handles government accounts (2 marks).",
+                "Central bank controls monetary policy, interest rates, and issues the national currency (2 marks)."
+              ],
+              "examiner_tips": "Compare their targets (private customers vs the whole financial system/government).",
+              "year": "2017",
+              "season": "May_June_2017"
+            },
+            {
+              "question": "Explain the difference between fiscal policy and monetary policy.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Fiscal policy: Uses government spending and taxation (e.g., income tax, corporate tax) to manage aggregate demand (2 marks).",
+                "Monetary policy: Controlled by the central bank; uses interest rates, exchange rates, and money supply/quantitative easing (2 marks)."
+              ],
+              "examiner_tips": "Make sure you clearly state WHO controls each policy (government vs central bank).",
+              "year": "2017",
+              "season": "May_June_2017"
+            },
+            {
+              "question": "Analyse the differences between a market economic system and a mixed economic system.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Market economy relies entirely on the price mechanism / demand & supply (1-2 marks).",
+                "Market economy features private ownership and no government intervention (1 mark).",
+                "Mixed economy has both private sector and public sector (1 mark).",
+                "Mixed economy has government intervention to correct market failures, provide public goods, and regulate monopolies (2 marks)."
+              ],
+              "examiner_tips": "Use comparative words like 'whereas', 'however', and 'on the other hand' to contrast the two systems.",
+              "year": "2017",
+              "season": "May_June_2017"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2017": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Analyse, using a demand and supply diagram, how a tax on sugary drinks affects the market for sugary drinks.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Original D1 and S1 curves drawn and labelled (1 mark).",
+                "Supply curve S2 shifts to the left/upward due to indirect tax (1 mark).",
+                "Equilibrium price rises (P1 to P2) and equilibrium quantity falls (Q1 to Q2) (1 mark).",
+                "Dotted guide lines from P1, P2 and Q1, Q2 to axes shown (1 mark).",
+                "Tax acts as an increase in cost of production for firms, decreasing supply (2 marks)."
+              ],
+              "examiner_tips": "Ensure you distinguish between a direct and indirect tax. An indirect tax shifts supply, not demand.",
+              "year": "2017",
+              "season": "Oct_Nov_2017"
+            },
+            {
+              "question": "Analyse the causes of inflation.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Demand-pull inflation: Aggregate demand exceeds aggregate supply, bidding up prices (2 marks).",
+                "Cost-push inflation: Rising costs of production (e.g., wages, raw materials) force firms to raise prices (2 marks).",
+                "Monetary inflation: Government prints too much money, reducing currency value (2 marks)."
+              ],
+              "examiner_tips": "Ensure you explain the mechanism of how aggregate demand or rising costs translate into price increases.",
+              "year": "2017",
+              "season": "Oct_Nov_2017"
+            },
+            {
+              "question": "Explain the determinants of Price Elasticity of Demand (PED).",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Availability of substitutes: More substitutes makes demand more elastic (1 mark).",
+                "Degree of necessity: Necessities are inelastic; luxuries are elastic (1 mark).",
+                "Proportion of income spent: Small proportion (e.g. salt) is inelastic; large is elastic (1 mark).",
+                "Time period: Demand is more elastic in the long run as consumers find alternatives (1 mark)."
+              ],
+              "examiner_tips": "Explain the direction of elasticity for each determinant you mention.",
+              "year": "2017",
+              "season": "Oct_Nov_2017"
+            }
+          ]
+        }
+      }
+    },
+    "2018": {
+      "May_June_2018": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Analyse the differences between a market economic system and a mixed economic system.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Market economy relies entirely on the price mechanism / demand & supply (1-2 marks).",
+                "Market economy features private ownership and no government intervention (1 mark).",
+                "Mixed economy has both private sector and public sector (1 mark).",
+                "Mixed economy has government intervention to correct market failures, provide public goods, and regulate monopolies (2 marks)."
+              ],
+              "examiner_tips": "Use comparative words like 'whereas', 'however', and 'on the other hand' to contrast the two systems.",
+              "year": "2018",
+              "season": "May_June_2018"
+            },
+            {
+              "question": "Analyse how a government can correct market failure caused by negative externalities.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Imposing indirect taxes on polluters/demerit goods to internalize the external cost (2 marks).",
+                "Using regulations / legislation (e.g., bans on smoking, emission limits) to restrict output (2 marks).",
+                "Providing subsidies to green alternatives to encourage clean energy (2 marks).",
+                "State education/campaigns to change consumer preferences (1 mark)."
+              ],
+              "examiner_tips": "Connect the policy directly to the externality (e.g., tax shifts supply left, raising price and reducing quantity).",
+              "year": "2018",
+              "season": "May_June_2018"
+            },
+            {
+              "question": "Discuss whether or not a mixed economy is always better than a free market economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Arguments for mixed economy: Government provides public goods (defence) and merit goods (education) (2 marks).",
+                "Arguments for mixed economy: Government can tax demerit goods and control harmful externalities (2 marks).",
+                "Arguments for free market: More competition leads to efficiency, lower prices, and innovation (2 marks).",
+                "Arguments for free market: Government intervention can lead to government failure, high taxes, and bureaucracy (2 marks).",
+                "Conclusion: A mixed economy is generally preferred because it balances market efficiency with social welfare (1 mark)."
+              ],
+              "examiner_tips": "An evaluation question must have arguments for both sides and a reasoned conclusion.",
+              "year": "2018",
+              "season": "May_June_2018"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2018": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Discuss whether or not a mixed economy is always better than a free market economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Arguments for mixed economy: Government provides public goods (defence) and merit goods (education) (2 marks).",
+                "Arguments for mixed economy: Government can tax demerit goods and control harmful externalities (2 marks).",
+                "Arguments for free market: More competition leads to efficiency, lower prices, and innovation (2 marks).",
+                "Arguments for free market: Government intervention can lead to government failure, high taxes, and bureaucracy (2 marks).",
+                "Conclusion: A mixed economy is generally preferred because it balances market efficiency with social welfare (1 mark)."
+              ],
+              "examiner_tips": "An evaluation question must have arguments for both sides and a reasoned conclusion.",
+              "year": "2018",
+              "season": "Oct_Nov_2018"
+            },
+            {
+              "question": "Explain why opportunity cost is an important concept for consumers and governments.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "For consumers: Helps make rational decisions with limited income to maximize utility (1-2 marks).",
+                "For governments: Helps allocate limited tax revenues among competing public projects (e.g., healthcare vs defence) (1-2 marks).",
+                "Addresses the fundamental economic problem of scarcity (1 mark)."
+              ],
+              "examiner_tips": "Divide the answer clearly between the consumer and the government perspective.",
+              "year": "2018",
+              "season": "Oct_Nov_2018"
+            },
+            {
+              "question": "Discuss whether or not a government should increase tax on a product with inelastic demand.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Why it should: Taxing inelastic goods (e.g., cigarettes, petrol) generates significant government revenue (2 marks).",
+                "Why it should: Consumers do not drastically reduce consumption, so revenue is stable (2 marks).",
+                "Why it shouldn't: It is regressive, taking a larger proportion of income from poor households (2 marks).",
+                "Why it shouldn't: May not successfully discourage consumption of demerit goods if demand is highly inelastic (2 marks).",
+                "Conclusion: Highly effective for revenue raising, but less effective for correcting market failure unless tax is very high (1 mark)."
+              ],
+              "examiner_tips": "Focus on the revenue effect versus the consumer impact to make a strong evaluation.",
+              "year": "2018",
+              "season": "Oct_Nov_2018"
+            }
+          ]
+        }
+      }
+    },
+    "2019": {
+      "May_June_2019": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain why opportunity cost is an important concept for consumers and governments.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "For consumers: Helps make rational decisions with limited income to maximize utility (1-2 marks).",
+                "For governments: Helps allocate limited tax revenues among competing public projects (e.g., healthcare vs defence) (1-2 marks).",
+                "Addresses the fundamental economic problem of scarcity (1 mark)."
+              ],
+              "examiner_tips": "Divide the answer clearly between the consumer and the government perspective.",
+              "year": "2019",
+              "season": "May_June_2019"
+            },
+            {
+              "question": "Explain the difference between public goods and merit goods.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Public goods: Non-excludable (cannot stop anyone using it) and non-rival (one person's use doesn't reduce availability) (2 marks).",
+                "Merit goods: Provided by market but under-consumed because people undervalue private benefits or there are positive externalities (2 marks).",
+                "Provide examples: e.g. street lighting (public) vs education/healthcare (merit) (1 mark)."
+              ],
+              "examiner_tips": "Do not confuse merit goods with public goods; merit goods can be, and often are, provided by the private sector.",
+              "year": "2019",
+              "season": "May_June_2019"
+            },
+            {
+              "question": "Explain, with an example, what is meant by opportunity cost.",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Definition of opportunity cost: The next best alternative foregone (1 mark).",
+                "Explanation of choice/decision-making: Resources are scarce, requiring choices (1 mark).",
+                "Relevant example: e.g. choosing to build a hospital means a school cannot be built, or a student studying instead of working (1 mark)."
+              ],
+              "examiner_tips": "Make sure to state 'next best' alternative, not just 'any' alternative.",
+              "year": "2019",
+              "season": "May_June_2019"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2019": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain the difference between public goods and merit goods.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Public goods: Non-excludable (cannot stop anyone using it) and non-rival (one person's use doesn't reduce availability) (2 marks).",
+                "Merit goods: Provided by market but under-consumed because people undervalue private benefits or there are positive externalities (2 marks).",
+                "Provide examples: e.g. street lighting (public) vs education/healthcare (merit) (1 mark)."
+              ],
+              "examiner_tips": "Do not confuse merit goods with public goods; merit goods can be, and often are, provided by the private sector.",
+              "year": "2019",
+              "season": "Oct_Nov_2019"
+            },
+            {
+              "question": "Analyse how a government can correct market failure caused by negative externalities.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Imposing indirect taxes on polluters/demerit goods to internalize the external cost (2 marks).",
+                "Using regulations / legislation (e.g., bans on smoking, emission limits) to restrict output (2 marks).",
+                "Providing subsidies to green alternatives to encourage clean energy (2 marks).",
+                "State education/campaigns to change consumer preferences (1 mark)."
+              ],
+              "examiner_tips": "Connect the policy directly to the externality (e.g., tax shifts supply left, raising price and reducing quantity).",
+              "year": "2019",
+              "season": "Oct_Nov_2019"
+            },
+            {
+              "question": "Analyse how a Production Possibility Curve (PPC) diagram can represent opportunity cost.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Draw/explain PPC axis representing two different goods (1 mark).",
+                "Points on the curve show maximum potential output / full employment of resources (1 mark).",
+                "Movement along the curve from point A to B increases output of one good (1 mark).",
+                "But reduces output of the other good (opportunity cost) (1 mark).",
+                "Linear PPC shows constant opportunity cost; bowed-out PPC shows increasing opportunity cost (2 marks)."
+              ],
+              "examiner_tips": "A clear diagram description is essential. Emphasize that resources are not equally suited to producing all goods.",
+              "year": "2019",
+              "season": "Oct_Nov_2019"
+            }
+          ]
+        }
+      }
+    },
+    "2020": {
+      "May_June_2020": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain the difference between fiscal policy and monetary policy.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Fiscal policy: Uses government spending and taxation (e.g., income tax, corporate tax) to manage aggregate demand (2 marks).",
+                "Monetary policy: Controlled by the central bank; uses interest rates, exchange rates, and money supply/quantitative easing (2 marks)."
+              ],
+              "examiner_tips": "Make sure you clearly state WHO controls each policy (government vs central bank).",
+              "year": "2020",
+              "season": "May_June_2020"
+            },
+            {
+              "question": "Analyse the differences between a commercial bank and a central bank.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Commercial bank is profit-motivated; central bank is a government body (1 mark).",
+                "Commercial bank accepts deposits and gives loans to individuals/firms (2 marks).",
+                "Central bank acts as lender of last resort to commercial banks and handles government accounts (2 marks).",
+                "Central bank controls monetary policy, interest rates, and issues the national currency (2 marks)."
+              ],
+              "examiner_tips": "Compare their targets (private customers vs the whole financial system/government).",
+              "year": "2020",
+              "season": "May_June_2020"
+            },
+            {
+              "question": "Analyse, using a demand and supply diagram, how subsidising the production of milk would affect the market for milk.",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Original demand and supply curves correctly labelled D1 and S1 (1 mark).",
+                "New supply curve S2 shifted to the right of S1 (1 mark).",
+                "Equilibriums shown by lines P1, Q1 and P2, Q2 (1 mark).",
+                "Market price of milk decreases and quantity increases (1 mark).",
+                "Subsidy reduces the cost of production for farmers, prompting them to supply more (1 mark)."
+              ],
+              "examiner_tips": "This is a high-frequency question. Ensure the arrow of supply shift is drawn pointing right.",
+              "year": "2020",
+              "season": "May_June_2020"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2020": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain the determinants of Price Elasticity of Demand (PED).",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Availability of substitutes: More substitutes makes demand more elastic (1 mark).",
+                "Degree of necessity: Necessities are inelastic; luxuries are elastic (1 mark).",
+                "Proportion of income spent: Small proportion (e.g. salt) is inelastic; large is elastic (1 mark).",
+                "Time period: Demand is more elastic in the long run as consumers find alternatives (1 mark)."
+              ],
+              "examiner_tips": "Explain the direction of elasticity for each determinant you mention.",
+              "year": "2020",
+              "season": "Oct_Nov_2020"
+            },
+            {
+              "question": "Discuss whether or not a mixed economy is always better than a free market economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Arguments for mixed economy: Government provides public goods (defence) and merit goods (education) (2 marks).",
+                "Arguments for mixed economy: Government can tax demerit goods and control harmful externalities (2 marks).",
+                "Arguments for free market: More competition leads to efficiency, lower prices, and innovation (2 marks).",
+                "Arguments for free market: Government intervention can lead to government failure, high taxes, and bureaucracy (2 marks).",
+                "Conclusion: A mixed economy is generally preferred because it balances market efficiency with social welfare (1 mark)."
+              ],
+              "examiner_tips": "An evaluation question must have arguments for both sides and a reasoned conclusion.",
+              "year": "2020",
+              "season": "Oct_Nov_2020"
+            },
+            {
+              "question": "Explain the difference between public goods and merit goods.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Public goods: Non-excludable (cannot stop anyone using it) and non-rival (one person's use doesn't reduce availability) (2 marks).",
+                "Merit goods: Provided by market but under-consumed because people undervalue private benefits or there are positive externalities (2 marks).",
+                "Provide examples: e.g. street lighting (public) vs education/healthcare (merit) (1 mark)."
+              ],
+              "examiner_tips": "Do not confuse merit goods with public goods; merit goods can be, and often are, provided by the private sector.",
+              "year": "2020",
+              "season": "Oct_Nov_2020"
+            }
+          ]
+        }
+      }
+    },
+    "2021": {
+      "May_June_2021": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain the difference between fiscal policy and monetary policy.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Fiscal policy: Uses government spending and taxation (e.g., income tax, corporate tax) to manage aggregate demand (2 marks).",
+                "Monetary policy: Controlled by the central bank; uses interest rates, exchange rates, and money supply/quantitative easing (2 marks)."
+              ],
+              "examiner_tips": "Make sure you clearly state WHO controls each policy (government vs central bank).",
+              "year": "2021",
+              "season": "May_June_2021"
+            },
+            {
+              "question": "Discuss whether or not protectionism benefits a country.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Benefits: Protects infant industries until they grow large enough to compete globally (2 marks).",
+                "Benefits: Protects domestic jobs from cheap foreign competition/dumping (2 marks).",
+                "Drawbacks: Invites retaliation from trading partners, leading to trade wars (2 marks).",
+                "Drawbacks: Increases prices of goods for consumers and reduces choice (2 marks).",
+                "Conclusion: Good for short-term protection of strategic sectors, but free trade is better for long-term economic efficiency (1 mark)."
+              ],
+              "examiner_tips": "Structure your answer with clear subheadings or paragraphs for protectionism methods (tariffs, quotas) and their effects.",
+              "year": "2021",
+              "season": "May_June_2021"
+            },
+            {
+              "question": "Discuss whether or not a government should increase tax on a product with inelastic demand.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Why it should: Taxing inelastic goods (e.g., cigarettes, petrol) generates significant government revenue (2 marks).",
+                "Why it should: Consumers do not drastically reduce consumption, so revenue is stable (2 marks).",
+                "Why it shouldn't: It is regressive, taking a larger proportion of income from poor households (2 marks).",
+                "Why it shouldn't: May not successfully discourage consumption of demerit goods if demand is highly inelastic (2 marks).",
+                "Conclusion: Highly effective for revenue raising, but less effective for correcting market failure unless tax is very high (1 mark)."
+              ],
+              "examiner_tips": "Focus on the revenue effect versus the consumer impact to make a strong evaluation.",
+              "year": "2021",
+              "season": "May_June_2021"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2021": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain what is meant by economies of scale and give two examples.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Definition: Falling average costs of production as the scale of output increases in the long run (2 marks).",
+                "Examples: Financial economies (cheaper loans), purchasing economies (bulk buying discounts), technical economies (specialized machinery) (2 marks)."
+              ],
+              "examiner_tips": "Specify 'average cost' or 'unit cost', not just 'total cost'.",
+              "year": "2021",
+              "season": "Oct_Nov_2021"
+            },
+            {
+              "question": "Discuss whether or not a mixed economy is always better than a free market economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Arguments for mixed economy: Government provides public goods (defence) and merit goods (education) (2 marks).",
+                "Arguments for mixed economy: Government can tax demerit goods and control harmful externalities (2 marks).",
+                "Arguments for free market: More competition leads to efficiency, lower prices, and innovation (2 marks).",
+                "Arguments for free market: Government intervention can lead to government failure, high taxes, and bureaucracy (2 marks).",
+                "Conclusion: A mixed economy is generally preferred because it balances market efficiency with social welfare (1 mark)."
+              ],
+              "examiner_tips": "An evaluation question must have arguments for both sides and a reasoned conclusion.",
+              "year": "2021",
+              "season": "Oct_Nov_2021"
+            },
+            {
+              "question": "Discuss whether or not a government should increase tax on a product with inelastic demand.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Why it should: Taxing inelastic goods (e.g., cigarettes, petrol) generates significant government revenue (2 marks).",
+                "Why it should: Consumers do not drastically reduce consumption, so revenue is stable (2 marks).",
+                "Why it shouldn't: It is regressive, taking a larger proportion of income from poor households (2 marks).",
+                "Why it shouldn't: May not successfully discourage consumption of demerit goods if demand is highly inelastic (2 marks).",
+                "Conclusion: Highly effective for revenue raising, but less effective for correcting market failure unless tax is very high (1 mark)."
+              ],
+              "examiner_tips": "Focus on the revenue effect versus the consumer impact to make a strong evaluation.",
+              "year": "2021",
+              "season": "Oct_Nov_2021"
+            }
+          ]
+        }
+      }
+    },
+    "2022": {
+      "May_June_2022": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Discuss whether or not a government should prioritize low unemployment over low inflation.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Why prioritize low unemployment: Reduces poverty, increases GDP, raises tax revenues, reduces welfare spending (3 marks).",
+                "Why prioritize low inflation: Preserves purchasing power, keeps exports competitive, encourages investment due to certainty (3 marks).",
+                "Conflict: Policies to reduce unemployment (expansionary fiscal/monetary) increase demand and can trigger demand-pull inflation (2 marks).",
+                "Conclusion: Depends on current economic state; if unemployment is very high, it should be prioritized, but high inflation must be controlled first (1 mark)."
+              ],
+              "examiner_tips": "Reference the Phillips Curve concept implicitly by explaining the trade-off between inflation and unemployment.",
+              "year": "2022",
+              "season": "May_June_2022"
+            },
+            {
+              "question": "Analyse, using a demand and supply diagram, how subsidising the production of milk would affect the market for milk.",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Original demand and supply curves correctly labelled D1 and S1 (1 mark).",
+                "New supply curve S2 shifted to the right of S1 (1 mark).",
+                "Equilibriums shown by lines P1, Q1 and P2, Q2 (1 mark).",
+                "Market price of milk decreases and quantity increases (1 mark).",
+                "Subsidy reduces the cost of production for farmers, prompting them to supply more (1 mark)."
+              ],
+              "examiner_tips": "This is a high-frequency question. Ensure the arrow of supply shift is drawn pointing right.",
+              "year": "2022",
+              "season": "May_June_2022"
+            },
+            {
+              "question": "Explain the difference between fiscal policy and monetary policy.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Fiscal policy: Uses government spending and taxation (e.g., income tax, corporate tax) to manage aggregate demand (2 marks).",
+                "Monetary policy: Controlled by the central bank; uses interest rates, exchange rates, and money supply/quantitative easing (2 marks)."
+              ],
+              "examiner_tips": "Make sure you clearly state WHO controls each policy (government vs central bank).",
+              "year": "2022",
+              "season": "May_June_2022"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2022": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Analyse, using a demand and supply diagram, how subsidising the production of milk would affect the market for milk.",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Original demand and supply curves correctly labelled D1 and S1 (1 mark).",
+                "New supply curve S2 shifted to the right of S1 (1 mark).",
+                "Equilibriums shown by lines P1, Q1 and P2, Q2 (1 mark).",
+                "Market price of milk decreases and quantity increases (1 mark).",
+                "Subsidy reduces the cost of production for farmers, prompting them to supply more (1 mark)."
+              ],
+              "examiner_tips": "This is a high-frequency question. Ensure the arrow of supply shift is drawn pointing right.",
+              "year": "2022",
+              "season": "Oct_Nov_2022"
+            },
+            {
+              "question": "Discuss whether or not trade unions benefit an economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Benefits: Protect worker rights, ensure safe working conditions, negotiate higher wages (2 marks).",
+                "Benefits: Can improve productivity through training and cooperative negotiations (2 marks).",
+                "Drawbacks: If wages are pushed too high above equilibrium, it can cause unemployment (2 marks).",
+                "Drawbacks: Strikes and industrial action disrupt production and reduce economic growth (2 marks).",
+                "Conclusion: Trade unions benefit workers but can harm firms and international competitiveness if demands are unrealistic (1 mark)."
+              ],
+              "examiner_tips": "Distinguish between the benefits to individual workers and the overall macroeconomic effects.",
+              "year": "2022",
+              "season": "Oct_Nov_2022"
+            },
+            {
+              "question": "Explain what is meant by economies of scale and give two examples.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Definition: Falling average costs of production as the scale of output increases in the long run (2 marks).",
+                "Examples: Financial economies (cheaper loans), purchasing economies (bulk buying discounts), technical economies (specialized machinery) (2 marks)."
+              ],
+              "examiner_tips": "Specify 'average cost' or 'unit cost', not just 'total cost'.",
+              "year": "2022",
+              "season": "Oct_Nov_2022"
+            }
+          ]
+        }
+      }
+    },
+    "2023": {
+      "May_June_2023": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Discuss whether or not a government should prioritize low unemployment over low inflation.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Why prioritize low unemployment: Reduces poverty, increases GDP, raises tax revenues, reduces welfare spending (3 marks).",
+                "Why prioritize low inflation: Preserves purchasing power, keeps exports competitive, encourages investment due to certainty (3 marks).",
+                "Conflict: Policies to reduce unemployment (expansionary fiscal/monetary) increase demand and can trigger demand-pull inflation (2 marks).",
+                "Conclusion: Depends on current economic state; if unemployment is very high, it should be prioritized, but high inflation must be controlled first (1 mark)."
+              ],
+              "examiner_tips": "Reference the Phillips Curve concept implicitly by explaining the trade-off between inflation and unemployment.",
+              "year": "2023",
+              "season": "May_June_2023"
+            },
+            {
+              "question": "Analyse how a government can correct market failure caused by negative externalities.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Imposing indirect taxes on polluters/demerit goods to internalize the external cost (2 marks).",
+                "Using regulations / legislation (e.g., bans on smoking, emission limits) to restrict output (2 marks).",
+                "Providing subsidies to green alternatives to encourage clean energy (2 marks).",
+                "State education/campaigns to change consumer preferences (1 mark)."
+              ],
+              "examiner_tips": "Connect the policy directly to the externality (e.g., tax shifts supply left, raising price and reducing quantity).",
+              "year": "2023",
+              "season": "May_June_2023"
+            },
+            {
+              "question": "Explain why opportunity cost is an important concept for consumers and governments.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "For consumers: Helps make rational decisions with limited income to maximize utility (1-2 marks).",
+                "For governments: Helps allocate limited tax revenues among competing public projects (e.g., healthcare vs defence) (1-2 marks).",
+                "Addresses the fundamental economic problem of scarcity (1 mark)."
+              ],
+              "examiner_tips": "Divide the answer clearly between the consumer and the government perspective.",
+              "year": "2023",
+              "season": "May_June_2023"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2023": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain why opportunity cost is an important concept for consumers and governments.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "For consumers: Helps make rational decisions with limited income to maximize utility (1-2 marks).",
+                "For governments: Helps allocate limited tax revenues among competing public projects (e.g., healthcare vs defence) (1-2 marks).",
+                "Addresses the fundamental economic problem of scarcity (1 mark)."
+              ],
+              "examiner_tips": "Divide the answer clearly between the consumer and the government perspective.",
+              "year": "2023",
+              "season": "Oct_Nov_2023"
+            },
+            {
+              "question": "Explain, with an example, what is meant by opportunity cost.",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Definition of opportunity cost: The next best alternative foregone (1 mark).",
+                "Explanation of choice/decision-making: Resources are scarce, requiring choices (1 mark).",
+                "Relevant example: e.g. choosing to build a hospital means a school cannot be built, or a student studying instead of working (1 mark)."
+              ],
+              "examiner_tips": "Make sure to state 'next best' alternative, not just 'any' alternative.",
+              "year": "2023",
+              "season": "Oct_Nov_2023"
+            },
+            {
+              "question": "Analyse the causes of inflation.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Demand-pull inflation: Aggregate demand exceeds aggregate supply, bidding up prices (2 marks).",
+                "Cost-push inflation: Rising costs of production (e.g., wages, raw materials) force firms to raise prices (2 marks).",
+                "Monetary inflation: Government prints too much money, reducing currency value (2 marks)."
+              ],
+              "examiner_tips": "Ensure you explain the mechanism of how aggregate demand or rising costs translate into price increases.",
+              "year": "2023",
+              "season": "Oct_Nov_2023"
+            }
+          ]
+        }
+      }
+    },
+    "2024": {
+      "May_June_2024": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Discuss whether or not trade unions benefit an economy.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Benefits: Protect worker rights, ensure safe working conditions, negotiate higher wages (2 marks).",
+                "Benefits: Can improve productivity through training and cooperative negotiations (2 marks).",
+                "Drawbacks: If wages are pushed too high above equilibrium, it can cause unemployment (2 marks).",
+                "Drawbacks: Strikes and industrial action disrupt production and reduce economic growth (2 marks).",
+                "Conclusion: Trade unions benefit workers but can harm firms and international competitiveness if demands are unrealistic (1 mark)."
+              ],
+              "examiner_tips": "Distinguish between the benefits to individual workers and the overall macroeconomic effects.",
+              "year": "2024",
+              "season": "May_June_2024"
+            },
+            {
+              "question": "Discuss whether or not a government should increase tax on a product with inelastic demand.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Why it should: Taxing inelastic goods (e.g., cigarettes, petrol) generates significant government revenue (2 marks).",
+                "Why it should: Consumers do not drastically reduce consumption, so revenue is stable (2 marks).",
+                "Why it shouldn't: It is regressive, taking a larger proportion of income from poor households (2 marks).",
+                "Why it shouldn't: May not successfully discourage consumption of demerit goods if demand is highly inelastic (2 marks).",
+                "Conclusion: Highly effective for revenue raising, but less effective for correcting market failure unless tax is very high (1 mark)."
+              ],
+              "examiner_tips": "Focus on the revenue effect versus the consumer impact to make a strong evaluation.",
+              "year": "2024",
+              "season": "May_June_2024"
+            },
+            {
+              "question": "Analyse, using a demand and supply diagram, how subsidising the production of milk would affect the market for milk.",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Original demand and supply curves correctly labelled D1 and S1 (1 mark).",
+                "New supply curve S2 shifted to the right of S1 (1 mark).",
+                "Equilibriums shown by lines P1, Q1 and P2, Q2 (1 mark).",
+                "Market price of milk decreases and quantity increases (1 mark).",
+                "Subsidy reduces the cost of production for farmers, prompting them to supply more (1 mark)."
+              ],
+              "examiner_tips": "This is a high-frequency question. Ensure the arrow of supply shift is drawn pointing right.",
+              "year": "2024",
+              "season": "May_June_2024"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2024": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Analyse the causes of inflation.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Demand-pull inflation: Aggregate demand exceeds aggregate supply, bidding up prices (2 marks).",
+                "Cost-push inflation: Rising costs of production (e.g., wages, raw materials) force firms to raise prices (2 marks).",
+                "Monetary inflation: Government prints too much money, reducing currency value (2 marks)."
+              ],
+              "examiner_tips": "Ensure you explain the mechanism of how aggregate demand or rising costs translate into price increases.",
+              "year": "2024",
+              "season": "Oct_Nov_2024"
+            },
+            {
+              "question": "Analyse how a government can correct market failure caused by negative externalities.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Imposing indirect taxes on polluters/demerit goods to internalize the external cost (2 marks).",
+                "Using regulations / legislation (e.g., bans on smoking, emission limits) to restrict output (2 marks).",
+                "Providing subsidies to green alternatives to encourage clean energy (2 marks).",
+                "State education/campaigns to change consumer preferences (1 mark)."
+              ],
+              "examiner_tips": "Connect the policy directly to the externality (e.g., tax shifts supply left, raising price and reducing quantity).",
+              "year": "2024",
+              "season": "Oct_Nov_2024"
+            },
+            {
+              "question": "Discuss whether or not a government should prioritize low unemployment over low inflation.",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Why prioritize low unemployment: Reduces poverty, increases GDP, raises tax revenues, reduces welfare spending (3 marks).",
+                "Why prioritize low inflation: Preserves purchasing power, keeps exports competitive, encourages investment due to certainty (3 marks).",
+                "Conflict: Policies to reduce unemployment (expansionary fiscal/monetary) increase demand and can trigger demand-pull inflation (2 marks).",
+                "Conclusion: Depends on current economic state; if unemployment is very high, it should be prioritized, but high inflation must be controlled first (1 mark)."
+              ],
+              "examiner_tips": "Reference the Phillips Curve concept implicitly by explaining the trade-off between inflation and unemployment.",
+              "year": "2024",
+              "season": "Oct_Nov_2024"
+            }
+          ]
+        }
+      }
+    },
+    "2025": {
+      "May_June_2025": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain the difference between fiscal policy and monetary policy.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Fiscal policy: Uses government spending and taxation (e.g., income tax, corporate tax) to manage aggregate demand (2 marks).",
+                "Monetary policy: Controlled by the central bank; uses interest rates, exchange rates, and money supply/quantitative easing (2 marks)."
+              ],
+              "examiner_tips": "Make sure you clearly state WHO controls each policy (government vs central bank).",
+              "year": "2025",
+              "season": "May_June_2025"
+            },
+            {
+              "question": "Explain the determinants of Price Elasticity of Demand (PED).",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Availability of substitutes: More substitutes makes demand more elastic (1 mark).",
+                "Degree of necessity: Necessities are inelastic; luxuries are elastic (1 mark).",
+                "Proportion of income spent: Small proportion (e.g. salt) is inelastic; large is elastic (1 mark).",
+                "Time period: Demand is more elastic in the long run as consumers find alternatives (1 mark)."
+              ],
+              "examiner_tips": "Explain the direction of elasticity for each determinant you mention.",
+              "year": "2025",
+              "season": "May_June_2025"
+            },
+            {
+              "question": "Analyse, using a demand and supply diagram, how subsidising the production of milk would affect the market for milk.",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Original demand and supply curves correctly labelled D1 and S1 (1 mark).",
+                "New supply curve S2 shifted to the right of S1 (1 mark).",
+                "Equilibriums shown by lines P1, Q1 and P2, Q2 (1 mark).",
+                "Market price of milk decreases and quantity increases (1 mark).",
+                "Subsidy reduces the cost of production for farmers, prompting them to supply more (1 mark)."
+              ],
+              "examiner_tips": "This is a high-frequency question. Ensure the arrow of supply shift is drawn pointing right.",
+              "year": "2025",
+              "season": "May_June_2025"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2025": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Explain why opportunity cost is an important concept for consumers and governments.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "For consumers: Helps make rational decisions with limited income to maximize utility (1-2 marks).",
+                "For governments: Helps allocate limited tax revenues among competing public projects (e.g., healthcare vs defence) (1-2 marks).",
+                "Addresses the fundamental economic problem of scarcity (1 mark)."
+              ],
+              "examiner_tips": "Divide the answer clearly between the consumer and the government perspective.",
+              "year": "2025",
+              "season": "Oct_Nov_2025"
+            },
+            {
+              "question": "Explain the difference between public goods and merit goods.",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Public goods: Non-excludable (cannot stop anyone using it) and non-rival (one person's use doesn't reduce availability) (2 marks).",
+                "Merit goods: Provided by market but under-consumed because people undervalue private benefits or there are positive externalities (2 marks).",
+                "Provide examples: e.g. street lighting (public) vs education/healthcare (merit) (1 mark)."
+              ],
+              "examiner_tips": "Do not confuse merit goods with public goods; merit goods can be, and often are, provided by the private sector.",
+              "year": "2025",
+              "season": "Oct_Nov_2025"
+            },
+            {
+              "question": "Analyse the causes of inflation.",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Demand-pull inflation: Aggregate demand exceeds aggregate supply, bidding up prices (2 marks).",
+                "Cost-push inflation: Rising costs of production (e.g., wages, raw materials) force firms to raise prices (2 marks).",
+                "Monetary inflation: Government prints too much money, reducing currency value (2 marks)."
+              ],
+              "examiner_tips": "Ensure you explain the mechanism of how aggregate demand or rising costs translate into price increases.",
+              "year": "2025",
+              "season": "Oct_Nov_2025"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

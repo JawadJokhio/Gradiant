@@ -5,7 +5,27 @@ from nltk.stem import WordNetLemmatizer
 import string
 import re
 
-# Ensure nltk data is handled (assuming downloaded in background/manually)
+_NLTK_RESOURCES = (
+    ("punkt_tab", "tokenizers/punkt_tab"),
+    ("punkt", "tokenizers/punkt"),
+    ("stopwords", "corpora/stopwords"),
+    ("wordnet", "corpora/wordnet"),
+    ("omw-1.4", "corpora/omw-1.4"),
+)
+
+
+def _ensure_nltk_data() -> None:
+    """Download NLTK corpora/tokenizers if missing (e.g. fresh venv)."""
+    for package, path in _NLTK_RESOURCES:
+        try:
+            nltk.data.find(path)
+        except LookupError:
+            nltk.download(package, quiet=True)
+
+
+_ensure_nltk_data()
+
+
 class NLPProcessor:
     def __init__(self):
         self.lemmatizer = WordNetLemmatizer()

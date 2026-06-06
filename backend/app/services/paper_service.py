@@ -23,5 +23,7 @@ class PaperService:
     def _get_subject_data(self, subject: str) -> dict:
         if subject.lower() == "history":
             return self.data_repository.get_history_data()
+        elif subject.lower() == "economics":
+            return self.data_repository.get_economics_past_papers_data()
         else:
             return self.data_repository.get_geography_data()

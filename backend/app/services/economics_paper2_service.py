@@ -303,9 +303,6 @@ def _market_diagram_svg(shift_curve: str, direction: str) -> str:
 
 
 def _apply_deterministic_diagrams(data: dict, section: str, source_context: str) -> dict:
-    if section != "A":
-        return data
-
     parts = data.get("detected_parts")
     if not isinstance(parts, list):
         return data
@@ -315,27 +312,38 @@ def _apply_deterministic_diagrams(data: dict, section: str, source_context: str)
             continue
         part.setdefault("diagram_svg", None)
         part_text = " ".join(str(part.get(key, "")) for key in ("part", "question", "answer"))
-        combined = f"{part_text}\n{source_context}"
-        if not _asks_for_diagram(combined):
+        
+        # Determine if this part actually asks for a diagram
+        if len(parts) == 1:
+            asks = _asks_for_diagram(part_text) or _asks_for_diagram(source_context)
+        else:
+            asks = _asks_for_diagram(part_text)
+            
+        if not asks:
+            part["diagram_svg"] = None
             continue
-        shift = _infer_market_shift(combined)
-        if shift:
-            part["diagram_svg"] = _market_diagram_svg(*shift)
+            
+        if section == "A":
+            shift = _infer_market_shift(part_text)
+            if not shift:
+                shift = _infer_market_shift(source_context)
+            if shift:
+                part["diagram_svg"] = _market_diagram_svg(*shift)
+            else:
+                part["diagram_svg"] = None
 
     return data
 
 
-def _extract_image_context(image_base64: str, section: str, index: int, total: int, query: str = "") -> str:
+def _extract_image_context(image_base64: str, section: str, index: int, total: int) -> str:
     system = f"""{PAPER2_SYSTEM_PROMPT}
 
 This step is extraction only. Read image {index} of {total} for Section {section}.
-Transcribe all visible case material, diagrams/tables, question parts, command words, and marks.
+Transcribe ALL visible case material, diagrams/tables, question parts, command words, and marks completely. Do not skip or summarize any parts.
 If a question part asks the student to draw/sketch/label/show/illustrate a diagram, copy that requirement exactly.
 If marks are visible, copy them exactly. If marks are not visible, say 'marks not visible'.
 Do not answer yet."""
-    user_msg = "Extract the Paper 2 question context from this image."
-    if query:
-        user_msg += f"\nUser note: {query}"
+    user_msg = "Extract the entire Paper 2 question context from this image. Transcribe all visible parts."
 
     return llm.generate_vision_response(system, user_msg, image_base64)
 
@@ -357,7 +365,8 @@ Marks rule:
 - If no command word is clear, answer cautiously and set marks to null.
 """
     raw = llm.generate_response(system, user_msg, max_tokens=2500)
-    return _extract_json(raw, section, "text", "command word inference")
+    result = _extract_json(raw, section, "text", "command word inference")
+    return _apply_deterministic_diagrams(result, section, query)
 
 
 def answer_paper2_images(section: str, image_base64_list: list[str], query: str = "") -> dict:
@@ -366,7 +375,7 @@ def answer_paper2_images(section: str, image_base64_list: list[str], query: str 
     extracted_contexts = []
 
     for index, image_base64 in enumerate(image_base64_list, start=1):
-        extracted = _extract_image_context(image_base64, section, index, total, query)
+        extracted = _extract_image_context(image_base64, section, index, total)
         extracted_contexts.append(f"### IMAGE {index} OF {total}\n{extracted}")
 
     combined_context = "\n\n".join(extracted_contexts)
@@ -379,7 +388,7 @@ def answer_paper2_images(section: str, image_base64_list: list[str], query: str 
         else "Section B image mode uses one uploaded image. Use the marks visible in the image."
     )
 
-    user_msg = f"""Answer this Economics Paper 2 Section {section} image question.
+    user_msg = f"""You MUST identify and answer ALL question parts present in the image context of this Economics Paper 2 Section {section} exam. Do not skip any parts (e.g. answer all of part a, b, c, d, e, f if they are visible in the context).
 
 {section_rule}
 Use visible marks beside each part. Keep every answer aligned with the O-Level mark demand.
@@ -393,7 +402,7 @@ For an increase in supply, draw S1 shifting right/down to S2, demand unchanged, 
 Combined extracted image context:
 {combined_context}
 
-User note:
+User note/instructions (use this to guide your answers, but you MUST still output answers for all visible question parts):
 {query or "No extra note provided."}
 """
     raw = llm.generate_response(system, user_msg, max_tokens=3000)

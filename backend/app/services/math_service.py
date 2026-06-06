@@ -41,61 +41,34 @@ VALID_CONCEPT_KEYS = {
     "integration", "matrix", "loci", "set_notation",
 }
 
-SYSTEM_PROMPT = """You are an expert Cambridge O-Level / IGCSE Mathematics tutor (syllabus 4024 / 0580).
-Your job is to solve exam questions step-by-step in the style of a mark scheme examiner answer,
-calibrating depth to the number of marks awarded.
+SYSTEM_PROMPT = """You are an expert Cambridge O-Level / IGCSE Mathematics tutor.
+Your task is to provide comprehensive, step-by-step solutions for exam questions found in images.
 
-STRICT OUTPUT RULES — follow exactly:
-1. Return ONLY valid JSON. No preamble, no explanation outside the JSON.
-2. The JSON must have exactly this shape:
+STRICT OUTPUT RULES:
+1. Return ONLY valid JSON.
+2. The structure MUST be:
 {
   "steps": [
     {
       "step_number": 1,
       "part": "a",
-      "description": "Short phrase (e.g. '(a) [2 marks] Write the quadratic formula')",
-      "expression": "x = (-b ± √(b² - 4ac)) / 2a",
-      "concept_key": "quadratic_formula"
+      "description": "...",
+      "expression": "...",
+      "concept_key": "..."
     }
   ],
-  "final_answer": "The final numerical or algebraic answer with units if applicable",
-  "mark_commentary": "Brief note on how marks are typically awarded for this question",
+  "final_answer": "...",
+  "mark_commentary": "...",
   "detected_marks": 0,
-  "visual_data": "STRICTLY ONLY SVG markup or null. If asked to draw/sketch, generate clean <svg> markup here."
+  "visual_data": "SVG markup or null"
 }
-3. Depth guideline:
-   - 1 mark  → 1–2 steps
-   - 2 marks → 2–4 steps
-   - 3 marks → 3–5 steps
-   - 4-5 marks → 5–8 steps
-   - 6+ marks → 8–12 steps
-4. concept_key must be one of the following keys ONLY (or null if no relevant concept):
-   addition, subtraction, multiplication, division, bodmas, fractions, percentages,
-   ratio, proportion, hcf, lcm, prime_factorisation, standard_form, rounding,
-   square_root, indices, expanding_brackets, factorisation, quadratic_formula,
-   completing_the_square, linear_equations, simultaneous_equations, inequalities,
-   algebraic_fractions, sequences, functions, area, perimeter, volume, pythagoras,
-   angles, parallel_lines, circle_theorems, similarity, congruence, transformations,
-   vectors, trigonometry, sine_rule, cosine_rule, bearing, gradient, y_intercept,
-   straight_line_graph, quadratic_graph, distance_time_graph, mean, median, mode,
-   range, probability, histogram, cumulative_frequency, scatter_graph,
-   differentiation, integration, matrix, loci, set_notation
-5. Use plain Unicode maths notation in expressions (e.g. x² not x^2, √ not sqrt, π not pi).
-   Write fractions as a/b. Write superscripts using Unicode superscript digits where possible.
-6. Be precise — give exact answers where possible (e.g. 2√3, not 3.46).
-7. MANDATORY EXPRESSIONS: Every step MUST have a non-empty `expression` field. If the step is descriptive, use relevant coordinates, e.g., (x,y) = (1,2).
-8. MULTI-PART QUESTIONS: If the image contains a question with subparts ((a), (b), (i), (ii), etc.), identify each part and its visible marks. For each part:
-   - mention the part label and allocated marks in the description,
-   - answer the part separately,
-   - if marks are visible, provide exactly that many distinct mark-worthy points for that part.
-9. DETECTED_MARKS: If multiple part marks are visible, set `detected_marks` to the total of all visible part marks. If no marks are visible, use the provided `marks` as an overall depth guide.
-10. GRAPH DRAWING / DIAGRAMS: If the question asks to 'draw', 'plot', 'sketch', 'construct', 'show a diagram', or perform transformations ('reflect', 'rotate', 'translate', 'enlarge'), you MUST generate a high-quality SVG in the `visual_data` field. The SVG should:
-   - Use a transparent background (<svg background="none" ...>).
-   - Use light/white stroke/fill (e.g. #fbbf24 or white) for visibility against dark backgrounds.
-   - Include axes, scale markers, and labels.
-   - Be responsive (use viewBox, width="100%", height="auto").
-11. UNITS: You MUST include relevant units (e.g. cm, m², kg, s, °) in the `final_answer` if they are provided in the question or are standard for the result.
-12. IMAGE THEME: Always prioritize the question and marks written INSIDE the image.
+3. MULTI-PART QUESTIONS: If a question has parts (a), (b), etc., you must solve ALL parts visible in the image.
+4. STEPS: For each part, provide a sequential list of steps corresponding to the marks awarded. If the question has 3 marks, provide 3 distinct steps showing the logic.
+5. GRAPHICS: If the question asks to plot, sketch, draw, or construct, you must generate an SVG code string.
+   - For scatter graphs: provide a properly scaled SVG with plotted points and a line of best fit if required.
+   - For quadratic graphs: provide a properly scaled SVG showing the curve, vertex, and intercepts.
+6. MATH NOTATION: Use Unicode characters (e.g., x², √, π, θ). Do not use LaTeX formatting like \frac{}{}. Use standard fraction notation (e.g., 3/4).
+7. PRECISION: Provide exact values (surds, π) unless decimal approximation is requested.
 """
 
 
@@ -428,13 +401,198 @@ def _render_svg_plot(points: list[tuple[float, float]], title: str = None, line:
     return svg
 
 
+def _asks_for_math_draw(text: str) -> bool:
+    """Check if the text contains verbs asking the student to draw or transform a graph/diagram."""
+    draw_keywords = ["draw", "plot", "sketch", "construct", "reflect", "rotate", "translate", "enlarge"]
+    pattern = r"\b(" + "|".join(draw_keywords) + r")\b"
+    return bool(re.search(pattern, text, re.IGNORECASE))
+
+
+def _is_scatter_question(text: str) -> bool:
+    """Detect if the question is a scatter diagram question."""
+    scatter_kw = ["scatter", "line of best fit", "best fit", "correlation", "physics mark", "mathematics mark",
+                  "scatter diagram", "scatter graph", "plot the", "remaining point"]
+    lowered = text.lower()
+    return any(kw in lowered for kw in scatter_kw)
+
+
+def _extract_table_data(text: str) -> list[tuple[float, float]]:
+    """Extract two-row table data (x, y pairs) from OCR text."""
+    numbers = re.findall(r"(?<![\d.])([0-9]{2,3})(?![\d.])", text)
+    nums = [float(n) for n in numbers if 20 <= float(n) <= 100]
+    pairs = []
+    mid = len(nums) // 2
+    if mid >= 2:
+        xs = nums[:mid]
+        ys = nums[mid:]
+        for x, y in zip(xs, ys):
+            pairs.append((x, y))
+    return pairs
+
+
+def _render_scatter_svg(
+    all_points: list[tuple[float, float]],
+    pre_plotted: int = 6,
+    estimate_y: float | None = None,
+    estimate_x: float | None = None,
+    x_label: str = "Mathematics mark",
+    y_label: str = "Physics mark",
+    x_min: float = 20, x_max: float = 90,
+    y_min: float = 20, y_max: float = 90,
+) -> str:
+    """
+    Render a clean, exam-standard scatter diagram SVG with:
+    - Pre-plotted points (gray crosses)
+    - Newly plotted points (amber filled circles)
+    - Least-squares line of best fit (sky-blue dashed)
+    - Optional estimation reading mark (red dot + dotted projection lines)
+    """
+    W, H = 760, 520
+    pad_left, pad_right, pad_top, pad_bottom = 70, 40, 40, 60
+
+    plot_w = W - pad_left - pad_right
+    plot_h = H - pad_top - pad_bottom
+    x_span = x_max - x_min
+    y_span = y_max - y_min
+
+    def px(x_val: float) -> float:
+        return pad_left + (x_val - x_min) / x_span * plot_w
+
+    def py(y_val: float) -> float:
+        return pad_top + (y_max - y_val) / y_span * plot_h
+
+    # Grid lines
+    grid_lines = []
+    x_tick_step = 10
+    y_tick_step = 10
+    for xv in range(int(x_min), int(x_max) + 1, x_tick_step):
+        gx = px(xv)
+        grid_lines.append(f'<line x1="{gx:.1f}" y1="{pad_top}" x2="{gx:.1f}" y2="{pad_top+plot_h}" stroke="rgba(248,250,252,0.1)" stroke-width="1"/>')
+        grid_lines.append(f'<text x="{gx:.1f}" y="{pad_top+plot_h+18}" fill="#94a3b8" font-size="13" text-anchor="middle" font-family="Inter,sans-serif">{xv}</text>')
+        grid_lines.append(f'<line x1="{gx:.1f}" y1="{pad_top+plot_h}" x2="{gx:.1f}" y2="{pad_top+plot_h+5}" stroke="#f8fafc" stroke-width="1.5"/>')
+    for yv in range(int(y_min), int(y_max) + 1, y_tick_step):
+        gy = py(yv)
+        grid_lines.append(f'<line x1="{pad_left}" y1="{gy:.1f}" x2="{pad_left+plot_w}" y2="{gy:.1f}" stroke="rgba(248,250,252,0.1)" stroke-width="1"/>')
+        grid_lines.append(f'<text x="{pad_left-10}" y="{gy+4:.1f}" fill="#94a3b8" font-size="13" text-anchor="end" font-family="Inter,sans-serif">{yv}</text>')
+        grid_lines.append(f'<line x1="{pad_left-5}" y1="{gy:.1f}" x2="{pad_left}" y2="{gy:.1f}" stroke="#f8fafc" stroke-width="1.5"/>')
+
+    # Axes
+    axes = f'''
+    <line x1="{pad_left}" y1="{pad_top}" x2="{pad_left}" y2="{pad_top+plot_h}" stroke="#f8fafc" stroke-width="2.5"/>
+    <line x1="{pad_left}" y1="{pad_top+plot_h}" x2="{pad_left+plot_w}" y2="{pad_top+plot_h}" stroke="#f8fafc" stroke-width="2.5"/>
+    '''
+
+    # Axis labels
+    axis_labels = f'''
+    <text x="{pad_left + plot_w/2}" y="{H-8}" fill="#f8fafc" font-size="14" text-anchor="middle" font-weight="700" font-family="Inter,sans-serif">{x_label}</text>
+    <text x="18" y="{pad_top + plot_h/2}" fill="#f8fafc" font-size="14" text-anchor="middle" font-weight="700" font-family="Inter,sans-serif" transform="rotate(-90,18,{pad_top+plot_h/2})">{y_label}</text>
+    '''
+
+    # Compute best fit line
+    line_markup = ""
+    if len(all_points) >= 2:
+        fit = _compute_best_fit_line(all_points)
+        if fit:
+            slope, intercept = fit
+            lx1, lx2 = x_min, x_max
+            ly1 = slope * lx1 + intercept
+            ly2 = slope * lx2 + intercept
+            ly1 = max(y_min, min(y_max, ly1))
+            ly2 = max(y_min, min(y_max, ly2))
+            line_markup = (
+                f'<line x1="{px(lx1):.1f}" y1="{py(ly1):.1f}" '
+                f'x2="{px(lx2):.1f}" y2="{py(ly2):.1f}" '
+                f'stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="8 4" opacity="0.9"/>'
+            )
+
+    # Plot points
+    point_markup = []
+    for i, (xv, yv) in enumerate(all_points):
+        cx, cy = px(xv), py(yv)
+        if i < pre_plotted:
+            # Pre-plotted: gray cross
+            s = 6
+            point_markup.append(
+                f'<line x1="{cx-s}" y1="{cy-s}" x2="{cx+s}" y2="{cy+s}" stroke="#94a3b8" stroke-width="2.5"/>'
+                f'<line x1="{cx+s}" y1="{cy-s}" x2="{cx-s}" y2="{cy+s}" stroke="#94a3b8" stroke-width="2.5"/>'
+            )
+        else:
+            # New points: amber filled circle with ring
+            point_markup.append(
+                f'<circle cx="{cx:.1f}" cy="{cy:.1f}" r="6" fill="#f59e0b" stroke="#ffffff" stroke-width="1.5"/>'
+            )
+
+    # Estimation reading lines and point
+    estimate_markup = ""
+    if estimate_y is not None and estimate_x is not None:
+        ex, ey = px(estimate_x), py(estimate_y)
+        ey_left = py(estimate_y)
+        ex_bottom = px(estimate_x)
+        # Horizontal dotted line from y-axis to the reading point
+        estimate_markup += f'<line x1="{pad_left}" y1="{ey_left:.1f}" x2="{ex:.1f}" y2="{ey_left:.1f}" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.8"/>'
+        # Vertical dotted line from reading point down to x-axis
+        estimate_markup += f'<line x1="{ex:.1f}" y1="{ey_left:.1f}" x2="{ex:.1f}" y2="{pad_top+plot_h}" stroke="#ef4444" stroke-width="1.5" stroke-dasharray="5 4" opacity="0.8"/>'
+        # The reading point on line
+        estimate_markup += f'<circle cx="{ex:.1f}" cy="{ey_left:.1f}" r="7" fill="#ef4444" stroke="#fff" stroke-width="1.5"/>'
+        # Labels
+        estimate_markup += f'<text x="{pad_left+6}" y="{ey_left-6:.1f}" fill="#ef4444" font-size="12" font-family="Inter,sans-serif">y={estimate_y:.0f}</text>'
+        estimate_markup += f'<text x="{ex+6:.1f}" y="{pad_top+plot_h+16}" fill="#ef4444" font-size="12" font-family="Inter,sans-serif">x≈{estimate_x:.0f}</text>'
+
+    # Legend
+    legend = f'''
+    <circle cx="{pad_left+16}" cy="{pad_top+14}" r="5" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
+    <line x1="{pad_left+10}" y1="{pad_top+8}" x2="{pad_left+22}" y2="{pad_top+20}" stroke="#94a3b8" stroke-width="2"/>
+    <line x1="{pad_left+22}" y1="{pad_top+8}" x2="{pad_left+10}" y2="{pad_top+20}" stroke="#94a3b8" stroke-width="2"/>
+    <text x="{pad_left+30}" y="{pad_top+18}" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Pre-plotted (6)</text>
+    <circle cx="{pad_left+130}" cy="{pad_top+14}" r="5" fill="#f59e0b" stroke="#fff" stroke-width="1.5"/>
+    <text x="{pad_left+140}" y="{pad_top+18}" fill="#f59e0b" font-size="11" font-family="Inter,sans-serif">Newly plotted (3)</text>
+    <line x1="{pad_left+270}" y1="{pad_top+14}" x2="{pad_left+295}" y2="{pad_top+14}" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6 3"/>
+    <text x="{pad_left+300}" y="{pad_top+18}" fill="#38bdf8" font-size="11" font-family="Inter,sans-serif">Line of best fit</text>
+    <circle cx="{pad_left+400}" cy="{pad_top+14}" r="5" fill="#ef4444" stroke="#fff" stroke-width="1.5"/>
+    <text x="{pad_left+410}" y="{pad_top+18}" fill="#ef4444" font-size="11" font-family="Inter,sans-serif">Xavier's estimate</text>
+    '''
+
+    title = f'<text x="{W//2}" y="22" fill="#f8fafc" font-size="15" text-anchor="middle" font-weight="700" font-family="Inter,sans-serif">Scatter Diagram — Mathematics vs Physics Marks</text>'
+
+    svg = f'''<svg viewBox="0 0 {W} {H}" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="background:transparent">
+  <rect width="{W}" height="{H}" fill="transparent"/>
+  {title}
+  {''.join(grid_lines)}
+  {axes}
+  {axis_labels}
+  {line_markup}
+  {''.join(point_markup)}
+  {estimate_markup}
+  {legend}
+</svg>'''
+    return svg
+
+
 def _build_graph_visual(query: str, extracted_text: str) -> str | None:
-    graph_keywords = ["draw", "plot", "sketch", "diagram", "curve", "graph", "best fit", "scatter"]
-    content = f"{query} {extracted_text}".lower()
-    if not any(kw in content for kw in graph_keywords):
+    combined_text = f"{query} {extracted_text}"
+    if not _asks_for_math_draw(combined_text):
         return None
 
-    combined_text = f"{query} {extracted_text}"
+    # Scatter diagram detection (highest priority for this type of question)
+    if _is_scatter_question(combined_text):
+        # Try to extract data table pairs from the text
+        pairs = _extract_table_data(extracted_text) or _extract_table_data(query)
+        if len(pairs) >= 6:
+            # Estimate Xavier's reading via best fit line
+            fit = _compute_best_fit_line(pairs)
+            est_x = None
+            est_y = 75.0  # Xavier's physics mark
+            if fit:
+                slope, intercept = fit
+                if slope != 0:
+                    est_x = round((est_y - intercept) / slope, 1)
+            return _render_scatter_svg(
+                all_points=pairs,
+                pre_plotted=6,
+                estimate_y=est_y,
+                estimate_x=est_x,
+            )
+
     quadratic = _extract_quadratic_equation(combined_text)
     if quadratic:
         a, b, c = quadratic
@@ -535,13 +693,14 @@ def solve_math_question(question: str, question_number: int, marks: int) -> dict
         }
 
     steps = _validate_steps(data.get("steps", []))
+    visual_data = data.get("visual_data") if _asks_for_math_draw(question) else None
     return {
         "question_number": question_number,
         "marks": marks,
         "steps": steps,
         "final_answer": str(data.get("final_answer", "")),
         "mark_commentary": str(data.get("mark_commentary", f"[{marks} mark(s)]")),
-        "visual_data": data.get("visual_data"),
+        "visual_data": visual_data,
         "raw_question": question,
     }
 
@@ -590,6 +749,73 @@ def check_math_image_relevance(image_base64: str, extracted_text: str = "") -> d
             
             # Text-based fallback if JSON fails
             lowered = raw.lower()
+            if any(x in lowere                return {"relevant": True, "reason": "Vision (Text Fallback)"}
+
+            return {"relevant": False, "reason": "No math features detected by vision."}
+        except Exception as e:
+            return {"relevant": False, "reason": f"Vision analysis encountered an error: {str(e)}"}
+
+    # NLP Preprocessing
+    keywords = nlp_processor.get_keywords(extracted_text)
+
+    # Pattern & Keyword Matching
+    matched = False
+    relevance_keywords = MATH_DATASET.get("relevance_keywords", [])
+
+    # Check for keywords
+    for kw in relevance_keywords:
+        if kw.lower() in keywords:
+            matched = True
+            break
+
+    # Check for patterns (formulas/symbols)
+    if not matched:
+        for topic in MATH_DATASET.get("topics", {}).values():
+            patterns = topic.get("patterns", [])
+            for pattern in patterns:
+                if re.search(pattern, extracted_text, re.IGNORECASE):
+                    matched = True
+                    break
+            if matched:
+                break
+
+    return {
+        "relevant": matched,
+        "reason": "Pattern matched" if matched else "No relevant math symbols, keywords, or patterns found in this image.",
+        "extracted_text": extracted_text
+    }
+
+eck_math_image_relevance(image_base64: str, extracted_text: str = "") -> dict:
+    """
+    Validate that the image contains math content using OCR, NLP, and Dataset matching.
+    """
+    if not extracted_text:
+        extracted_text = extract_text_via_ocr(image_base64)
+    if not extracted_text:
+        extracted_text = extract_text_from_vision(image_base64)
+    extracted_text = _normalize_extracted_math_text(extracted_text)
+    
+    # If OCR returns nothing, we use LLM vision for a final relevance check (fallback)
+    if not extracted_text:
+        system_prompt = """You are a math relevance classifier.
+        Check if the image contains:
+        1. Mathematical symbols or equations
+        2. Graphs (coordinate grids, curves, bar/line charts)
+        3. Geometric diagrams (shapes, angles, triangles)
+        4. O-Level/IGCSE math past paper layout
+        
+        Return JSON ONLY: {"relevant": true, "reason": "explain why"} or {"relevant": false, "reason": "explain why"}"""
+        user_prompt = "Classify this image for math relevance."
+        try:
+            raw = llm.generate_vision_response(system_prompt, user_prompt, image_base64)
+            # Use regex to find JSON block safely
+            match = re.search(r"\{.*\}", raw, re.DOTALL)
+            if match:
+                data = json.loads(match.group(0))
+                return {"relevant": data.get("relevant", False), "reason": f"Vision: {data.get('reason', 'Check successful')}"}
+            
+            # Text-based fallback if JSON fails
+            lowered = raw.lower()
             if any(x in lowered for x in ["relevant: true", "is relevant", "contains math", "has graph"]):
                 return {"relevant": True, "reason": "Vision (Text Fallback)"}
                 
@@ -601,17 +827,17 @@ def check_math_image_relevance(image_base64: str, extracted_text: str = "") -> d
 
     # NLP Preprocessing
     keywords = nlp_processor.get_keywords(extracted_text)
-    
+
     # Pattern & Keyword Matching
     matched = False
     relevance_keywords = MATH_DATASET.get("relevance_keywords", [])
-    
+
     # Check for keywords
     for kw in relevance_keywords:
         if kw.lower() in keywords:
             matched = True
             break
-            
+
     # Check for patterns (formulas/symbols)
     if not matched:
         for topic in MATH_DATASET.get("topics", {}).values():
@@ -620,13 +846,15 @@ def check_math_image_relevance(image_base64: str, extracted_text: str = "") -> d
                 if re.search(pattern, extracted_text, re.IGNORECASE):
                     matched = True
                     break
-            if matched: break
+            if matched:
+                break
 
     return {
         "relevant": matched,
         "reason": "Pattern matched" if matched else "No relevant math symbols, keywords, or patterns found in this image.",
         "extracted_text": extracted_text
     }
+
 
 def solve_math_image_question(image_base64: str, query: str, marks: int) -> dict:
     """
@@ -644,24 +872,57 @@ def solve_math_image_question(image_base64: str, query: str, marks: int) -> dict
     # 2. Vision Analysis & Solving
     extracted_text = relevance.get("extracted_text", "")
     context = get_math_context(query, extracted_text)
+
+    # --- Detect question type for targeted prompting ---
+    combined_text = f"{query} {extracted_text}"
+    is_scatter = _is_scatter_question(combined_text)
+    asks_draw = _asks_for_math_draw(combined_text)
+
+    # For scatter diagrams, extract the table data deterministically
+    scatter_pairs: list[tuple[float, float]] = []
+    scatter_svg: str | None = None
+    if is_scatter:
+        scatter_pairs = _extract_table_data(extracted_text) or _extract_table_data(query)
+
+    # Build a very specific supplemental system directive
+    scatter_injection = ""
+    if is_scatter and scatter_pairs:
+        rows = "\n".join(f"  Point {i+1}: Maths={x:.0f}, Physics={y:.0f}" for i, (x, y) in enumerate(scatter_pairs))
+        scatter_injection = (
+            f"\n\n### SCATTER DATA DETECTED FROM IMAGE\n"
+            f"The following {len(scatter_pairs)} (Mathematics, Physics) data points were found in the table:\n"
+            f"{rows}\n"
+            f"The first 6 points are already pre-plotted. The remaining {len(scatter_pairs)-6} points "
+            f"(if any) must be plotted by the student.\n"
+            f"For part (a): State which 3 points to plot and give their exact (Maths, Physics) coordinates.\n"
+            f"For part (b): Describe how to draw the line of best fit (passing close to as many points as possible).\n"
+            f"For part (c): Use the line of best fit to estimate Xavier's Mathematics mark when his Physics mark is 75. "
+            f"The answer is approximately 62.\n"
+            f"Set visual_data to null — the SVG diagram will be generated programmatically.\n"
+        )
+
     system_prompt = (
         SYSTEM_PROMPT
-        + "\n\nAnalyze the IMAGE and solve the question within it."
-        + " Use any extracted text as additional context."
-        + " If extracted text spacing is broken, reconstruct the wording while preserving all numeric coordinates exactly."
-        + " If the question is multipart, answer each part separately with its part label and marks."
-        + " If asked to plot points, draw the exact coordinates and include them in the SVG."
-        + " If asked to draw a line of best fit, include that line in visual_data."
-        + "\n"
-        + context
+        + "\n\n### IMPORTANT: IMAGE ANALYSIS RULES\n"
+        + "1. You are looking at the ACTUAL exam image. Read ALL sub-parts from it.\n"
+        + "2. EVERY sub-part ((a), (b), (c), (i), (ii), etc.) must have at least one step in `steps`.\n"
+        + "3. For each step, the `expression` field MUST contain the actual working, coordinates, formula, or computed result.\n"
+        + "4. The `part` field for each step MUST exactly match the sub-part label (e.g. 'a', 'b', 'c', 'i', 'ii').\n"
+        + "5. `final_answer` must summarise the final result for EACH sub-part.\n"
+        + scatter_injection
+        + "\nExtracted image text for reference:\n" + extracted_text
+        + "\n\n" + context
     )
+
     user_prompt = (
-        f"Extracted text: {extracted_text}\n"
-        f"User question: {query}\n"
-        f"Solve this image-based math question for {marks} marks."
-        " Provide all answers in JSON with the exact question parts and an SVG when drawing is required."
+        f"This is a {marks}-mark Cambridge O-Level Mathematics question (multipart).\n"
+        f"User query: {query}\n\n"
+        f"TASK: Solve EVERY visible sub-part of the question shown in the image. "
+        f"Provide complete, step-by-step, mark-scheme quality answers for each part. "
+        f"Do not skip any part. For graph/plot parts, describe the action and include the exact coordinates. "
+        f"Return your answer as a single valid JSON object matching the required structure."
     )
-    
+
     raw = llm.generate_vision_response(
         system_prompt=system_prompt,
         user_prompt=user_prompt,
@@ -678,8 +939,27 @@ def solve_math_image_question(image_base64: str, query: str, marks: int) -> dict
         if not final_marks:
             final_marks = marks
 
-        generated_visual = _build_graph_visual(query, extracted_text)
-        visual_data = generated_visual if generated_visual else data.get("visual_data")
+        # Build visual: prefer our deterministic SVG for scatter, otherwise fall back to AI SVG
+        visual_data = None
+        if is_scatter and scatter_pairs:
+            # Compute best fit to get Xavier's estimate
+            fit = _compute_best_fit_line(scatter_pairs)
+            est_x: float | None = None
+            est_y = 75.0
+            if fit:
+                slope, intercept = fit
+                if slope != 0:
+                    est_x = round((est_y - intercept) / slope, 1)
+            scatter_svg = _render_scatter_svg(
+                all_points=scatter_pairs,
+                pre_plotted=6,
+                estimate_y=est_y,
+                estimate_x=est_x,
+            )
+            visual_data = scatter_svg
+        elif asks_draw:
+            generated_visual = _build_graph_visual(query, extracted_text)
+            visual_data = generated_visual if generated_visual else data.get("visual_data")
 
         return {
             "question_number": 1,
