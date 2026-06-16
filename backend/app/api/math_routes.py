@@ -81,7 +81,7 @@ async def solve(request: MathSolveRequest):
 async def analyze_image(
     image: UploadFile = File(...),
     query: str = Form(""),
-    marks: int = Form(4)
+    marks: int | None = Form(None)
 ):
     """
     Solves a math question from an uploaded image.

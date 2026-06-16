@@ -4,7 +4,7 @@ import { ArrowLeft, Calculator, Send, Sparkles, Hash, Award, RefreshCw, AlertTri
 import MathCalculatorInput from './MathCalculatorInput'
 import MathSolutionViewer from './MathSolutionViewer'
 
-const MARKS_OPTIONS = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20]
+const MARKS_OPTIONS = ['Auto', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 15, 20]
 
 export default function MathModule({ onBack }) {
     const [question, setQuestion] = useState('')
@@ -19,8 +19,8 @@ export default function MathModule({ onBack }) {
     const textareaRef = useRef(null)
     const fileInputRef = useRef(null)
 
-    // Validation
-    const isValid = (question.trim().length >= 3 || image) && marks !== null
+    // Validation: if image is present, marks is not strictly required if using Auto
+    const isValid = (question.trim().length >= 3 || image) && (marks !== null || image)
 
     const handleSolve = useCallback(async () => {
         if (!isValid || loading) return
@@ -34,7 +34,7 @@ export default function MathModule({ onBack }) {
                 const formData = new FormData()
                 formData.append('image', image)
                 formData.append('query', question.trim())
-                formData.append('marks', marks.toString())
+                formData.append('marks', marks === 'Auto' ? '4' : marks.toString())
                 
                 res = await fetch('http://localhost:8000/api/math/analyze-image', {
                     method: 'POST',
@@ -47,7 +47,7 @@ export default function MathModule({ onBack }) {
                     body: JSON.stringify({
                         question: question.trim(),
                         question_number: parseInt(questionNumber),
-                        marks: parseInt(marks),
+                        marks: marks === 'Auto' || marks === null ? 1 : parseInt(marks),
                     }),
                 })
             }
@@ -165,7 +165,7 @@ export default function MathModule({ onBack }) {
                             <select
                                 id="math-marks-select"
                                 value={marks ?? ''}
-                                onChange={e => setMarks(e.target.value ? parseInt(e.target.value) : null)}
+                                onChange={e => setMarks(e.target.value === 'Auto' ? 'Auto' : e.target.value ? parseInt(e.target.value) : null)}
                                 className="w-full rounded-xl px-4 py-3 text-sm font-bold outline-none transition-all appearance-none cursor-pointer"
                                 style={{
                                     background: '#1a1228',
@@ -173,9 +173,9 @@ export default function MathModule({ onBack }) {
                                     color: marks ? '#fff' : 'rgba(255,255,255,0.35)',
                                 }}
                             >
-                                <option value="">Select marks (controls solution depth)</option>
+                                <option value="">Select marks</option>
                                 {MARKS_OPTIONS.map(m => (
-                                    <option key={m} value={m}>{m} mark{m !== 1 ? 's' : ''}</option>
+                                    <option key={m} value={m}>{m} {m !== 'Auto' ? `mark${m !== 1 ? 's' : ''}` : '(Detect from image)'}</option>
                                 ))}
                             </select>
                         </div>
@@ -183,7 +183,7 @@ export default function MathModule({ onBack }) {
 
                     {/* Marks quick-pick */}
                     <div className="flex flex-wrap gap-2">
-                        {[1, 2, 3, 4, 5, 6, 8, 10].map(m => (
+                        {['Auto', 1, 2, 3, 4, 5, 10].map(m => (
                             <button
                                 key={m}
                                 id={`marks-quick-${m}`}

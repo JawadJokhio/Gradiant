@@ -41,37 +41,48 @@ VALID_CONCEPT_KEYS = {
     "integration", "matrix", "loci", "set_notation",
 }
 
-SYSTEM_PROMPT = """You are an expert Cambridge O-Level / IGCSE Mathematics tutor.
-Your task is to provide comprehensive, step-by-step solutions for exam questions found in images.
+SYSTEM_PROMPT = """You are a master Cambridge O-Level (4024) and IGCSE (0580) Mathematics Examiner.
+Your goal is to provide high-precision, mark-scheme-accurate solutions to math questions.
 
 STRICT OUTPUT RULES:
 1. Return ONLY valid JSON.
-2. The structure MUST be:
+2. Structure:
 {
   "steps": [
     {
       "step_number": 1,
       "part": "a",
-      "description": "...",
-      "expression": "...",
-      "concept_key": "..."
+      "description": "Clear explanation of the step",
+      "expression": "Mathematical working/result using Unicode (x², √, π, θ)",
+      "concept_key": "valid_key_from_list"
     }
   ],
-  "final_answer": "...",
-  "mark_commentary": "...",
+  "final_answer": "Concise summary of final results for all parts",
+  "mark_commentary": "Brief note on mark allocation (e.g., M1 for method, A1 for accuracy)",
   "detected_marks": 0,
-  "visual_data": "SVG markup or null"
+  "visual_data": "Generated SVG ONLY if explicitly asked to draw/graph/plot, else null"
 }
-3. MULTI-PART QUESTIONS: If a question has parts (a), (b), etc., you must solve ALL parts visible in the image.
-4. STEPS: For each part, provide a sequential list of steps corresponding to the marks awarded. If the question has 3 marks, provide 3 distinct steps showing the logic.
-5. GRAPHICS: If the question asks to plot, sketch, draw, or construct, you must generate an SVG code string.
-   - For scatter graphs: provide a properly scaled SVG with plotted points and a line of best fit if required.
-   - For quadratic graphs: provide a properly scaled SVG showing the curve, vertex, and intercepts.
-6. MATH NOTATION: Use Unicode characters (e.g., x², √, π, θ). Do not use LaTeX formatting like \frac{}{}. Use standard fraction notation (e.g., 3/4).
-7. PRECISION: Provide exact values (surds, π) unless decimal approximation is requested.
-8. Only answer what the question asks. Do not add unrelated explanations, examples, or background theory.
-9. Always use only the exact information given in the question. Do not infer or assume extra relationships that are not explicitly stated.
-10. If a graph or diagram is required, include only the visual output needed for that part and no irrelevant commentary.
+
+MARK SCHEME ACCURACY:
+- Calibrate the number of steps to the total marks. A 4-mark question should have roughly 3-4 distinct logical steps.
+- Use 'M1' for method marks, 'A1' for accuracy marks in the mark_commentary if possible.
+
+MULTI-PART QUESTIONS:
+- If a question has parts (a), (b), (c) etc., you MUST solve ALL of them.
+- Label each step with the correct 'part'.
+
+NOTATION:
+- Use Unicode: x², x³, √, π, θ, ±, ≤, ≥, ×, ÷, °.
+- Do NOT use LaTeX like \\frac{a}{b}. Use a/b or vertical spacing if needed.
+- For coordinates, use (x, y).
+
+GRAPHICS & VISUALS:
+- If the student is asked to 'draw', 'plot', 'sketch', 'construct', or 'reflect/rotate', you must generate a high-quality SVG.
+- The SVG must have:
+  - Clear axis labels and scale.
+  - A grid if appropriate.
+  - Distinct colors for different elements (e.g., #f59e0b for curves, #38bdf8 for lines).
+  - All labels (vertex, intercepts, points) must be clearly visible.
 """
 
 
@@ -250,171 +261,168 @@ def _compute_best_fit_line(points: list[tuple[float, float]]) -> tuple[float, fl
     return slope, intercept
 
 
-def _render_quadratic_svg(a: float, b: float, c: float, title: str = None) -> str:
-    """Render a neat SVG for a quadratic function and label the vertex and y-intercept."""
-    width = 760
-    height = 460
-    padding = 64
+def _render_quadratic_svg(a: float, b: float, c: float, title: str = "Quadratic Graph") -> str:
+    """Render a premium, clean SVG for a quadratic function with clear points and grids."""
+    width, height = 760, 500
+    padding = 60
 
+    # Key points
     x_vertex = -b / (2 * a)
     y_vertex = a * x_vertex**2 + b * x_vertex + c
-
-    x_min = min(-5, x_vertex - 4)
-    x_max = max(5, x_vertex + 4)
-    discriminant = b**2 - 4 * a * c
-    if discriminant >= 0:
-        root1 = (-b - discriminant**0.5) / (2 * a)
-        root2 = (-b + discriminant**0.5) / (2 * a)
-        x_min = min(x_min, root1, root2)
-        x_max = max(x_max, root1, root2)
-
-    x_min = min(x_min, 0)
-    x_max = max(x_max, 0)
-    x_padding = max(1.0, (x_max - x_min) * 0.08)
-    x_min -= x_padding
-    x_max += x_padding
-    x_span = x_max - x_min if x_max != x_min else 1
-
-    y_all = [a * x**2 + b * x + c for x in [x_min, x_max, 0, x_vertex]]
-    y_all.append(0)
-    y_min = min(y_all)
-    y_max = max(y_all)
-    y_padding = max(1.0, (y_max - y_min) * 0.12)
-    y_min -= y_padding
-    y_max += y_padding
-    y_span = y_max - y_min if y_max != y_min else 1
-
-    def px_x(x):
-        return padding + (x - x_min) / x_span * (width - 2 * padding)
-
-    def px_y(y):
-        return height - padding - (y - y_min) / y_span * (height - 2 * padding)
-
-    x_axis_y = px_y(0)
-    y_axis_x = px_x(0)
-
-    points = []
-    step = max((x_max - x_min) / 80, 0.1)
-    x = x_min
-    while x <= x_max + 1e-9:
-        y = a * x**2 + b * x + c
-        points.append((x, y))
-        x += step
-
-    path_data = " ".join(f"{px_x(x):.2f},{px_y(y):.2f}" for x, y in points)
-    axis_color = "#f8fafc"
-    grid_color = "rgba(248,250,252,0.12)"
-    curve_color = "#f59e0b"
-    marker_color = "#38bdf8"
-
     y_intercept = (0, c)
-    vertex = (x_vertex, y_vertex)
 
-    labels = [
-        f"<text x=\"{px_x(y_intercept[0]) + 12:.2f}\" y=\"{px_y(y_intercept[1]) - 8:.2f}\" fill=\"{marker_color}\" font-size=\"12\" text-anchor=\"start\">(0,{y_intercept[1]:.0f})</text>",
-        f"<text x=\"{px_x(vertex[0]) + 12:.2f}\" y=\"{px_y(vertex[1]) - 8:.2f}\" fill=\"{marker_color}\" font-size=\"12\" text-anchor=\"start\">({vertex[0]:.2f},{vertex[1]:.0f})</text>",
-    ]
+    # Dynamic scaling
+    x_min, x_max = -6, 6
+    if abs(x_vertex) > 4:
+        x_min = min(x_min, x_vertex - 2)
+        x_max = max(x_max, x_vertex + 2)
 
-    ticks = []
-    for x_tick in range(int(math.floor(x_min)), int(math.ceil(x_max)) + 1):
-        ticks.append(f"<line x1=\"{px_x(x_tick):.2f}\" y1=\"{x_axis_y - 4:.2f}\" x2=\"{px_x(x_tick):.2f}\" y2=\"{x_axis_y + 4:.2f}\" stroke=\"{axis_color}\" stroke-width=1 />")
-        ticks.append(f"<text x=\"{px_x(x_tick):.2f}\" y=\"{x_axis_y + 18:.2f}\" fill=\"{axis_color}\" font-size=\"12\" text-anchor=\"middle\">{x_tick}</text>")
-    for y_tick in range(int(math.floor(y_min)), int(math.ceil(y_max)) + 1):
-        ticks.append(f"<line x1=\"{y_axis_x - 4:.2f}\" y1=\"{px_y(y_tick):.2f}\" x2=\"{y_axis_x + 4:.2f}\" y2=\"{px_y(y_tick):.2f}\" stroke=\"{axis_color}\" stroke-width=1 />")
-        ticks.append(f"<text x=\"{y_axis_x - 10:.2f}\" y=\"{px_y(y_tick) + 4:.2f}\" fill=\"{axis_color}\" font-size=\"12\" text-anchor=\"end\">{y_tick}</text>")
+    x_span = x_max - x_min
+    
+    # Calculate y-range based on x-range
+    sample_xs = [x_min, x_max, 0, x_vertex]
+    sample_ys = [a * x**2 + b * x + c for x in sample_xs]
+    sample_ys.append(0) # Include axis
+    y_min, y_max = min(sample_ys), max(sample_ys)
+    
+    y_extra = (y_max - y_min) * 0.15 or 1.0
+    y_min -= y_extra
+    y_max += y_extra
+    y_span = y_max - y_min
 
-    title_markup = f"<text x=\"50%\" y=\"24\" fill=\"{axis_color}\" font-size=\"16\" text-anchor=\"middle\" font-weight=\"700\">{title}</text>" if title else ""
+    def px_x(x): return padding + (x - x_min) / x_span * (width - 2 * padding)
+    def px_y(y): return height - padding - (y - y_min) / y_span * (height - 2 * padding)
 
-    svg = f"""<svg viewBox=\"0 0 {width} {height}\" width=\"100%\" height=\"auto\" background=\"none\" xmlns=\"http://www.w3.org/2000/svg\">
-      <rect x=\"0\" y=\"0\" width=\"100%\" height=\"100%\" fill=\"transparent\" />
-      {title_markup}
-      <line x1=\"{y_axis_x:.2f}\" y1=\"{padding}\" x2=\"{y_axis_x:.2f}\" y2=\"{height - padding}\" stroke=\"{axis_color}\" stroke-width=\"2\" />
-      <line x1=\"{padding}\" y1=\"{x_axis_y:.2f}\" x2=\"{width - padding}\" y2=\"{x_axis_y:.2f}\" stroke=\"{axis_color}\" stroke-width=\"2\" />
-      {''.join(ticks)}
-      <polyline points=\"{path_data}\" fill=\"none\" stroke=\"{curve_color}\" stroke-width=\"2.5\" stroke-linejoin=\"round\" stroke-linecap=\"round\" />
-      <circle cx=\"{px_x(y_intercept[0]):.2f}\" cy=\"{px_y(y_intercept[1]):.2f}\" r=\"4\" fill=\"{marker_color}\" stroke=\"#ffffff\" stroke-width=\"1.2\" />
-      <circle cx=\"{px_x(vertex[0]):.2f}\" cy=\"{px_y(vertex[1]):.2f}\" r=\"4\" fill=\"{marker_color}\" stroke=\"#ffffff\" stroke-width=\"1.2\" />
-      {''.join(labels)}
+    x_zero_y = px_y(0)
+    y_zero_x = px_x(0)
+
+    # Path points
+    points = []
+    seg = 100
+    for i in range(seg + 1):
+        qx = x_min + (i / seg) * x_span
+        qy = a * qx**2 + b * qx + c
+        if y_min - y_extra*2 <= qy <= y_max + y_extra*2:
+            points.append(f"{px_x(qx):.1f},{px_y(qy):.1f}")
+    
+    path_data = " ".join(points)
+
+    # Grid and Ticks
+    def get_step(span):
+        if span <= 10: return 1
+        if span <= 25: return 5
+        if span <= 100: return 10
+        return 20
+
+    x_step = get_step(x_span)
+    y_step = get_step(y_span)
+
+    grid_elements = []
+    # Vertical grid & x-ticks
+    for xt in range(int(math.floor(x_min / x_step) * x_step), int(math.ceil(x_max / x_step) * x_step) + 1, x_step):
+        gx = px_x(xt)
+        if padding <= gx <= width - padding:
+            grid_elements.append(f'<line x1="{gx:.1f}" y1="{padding}" x2="{gx:.1f}" y2="{height-padding}" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4 4"/>')
+            grid_elements.append(f'<text x="{gx:.1f}" y="{x_zero_y + 18 if x_zero_y < height - 40 else height - 44}" fill="rgba(255,255,255,0.4)" font-size="12" text-anchor="middle">{xt}</text>')
+
+    # Horizontal grid & y-ticks
+    for yt in range(int(math.floor(y_min / y_step) * y_step), int(math.ceil(y_max / y_step) * y_step) + 1, y_step):
+        gy = px_y(yt)
+        if padding <= gy <= height - padding:
+            grid_elements.append(f'<line x1="{padding}" y1="{gy:.1f}" x2="{width-padding}" y2="{gy:.1f}" stroke="rgba(255,255,255,0.05)" stroke-width="1" stroke-dasharray="4 4"/>')
+            grid_elements.append(f'<text x="{y_zero_x - 10 if y_zero_x > 40 else padding + 10}" y="{gy + 4:.1f}" fill="rgba(255,255,255,0.4)" font-size="12" text-anchor="end">{yt}</text>')
+
+    # Point labels
+    marker_markup = f"""
+      <circle cx="{px_x(0):.1f}" cy="{px_y(c):.1f}" r="5" fill="#ef4444" stroke="#fff" stroke-width="1.5" />
+      <text x="{px_x(0) + 10:.1f}" y="{px_y(c) - 10:.1f}" fill="#ef4444" font-size="13" font-weight="700" filter="drop-shadow(0 1px 2px rgba(0,0,0,0.5))">(0, {c:g})</text>
+      
+      <circle cx="{px_x(x_vertex):.1f}" cy="{px_y(y_vertex):.1f}" r="5" fill="#22c55e" stroke="#fff" stroke-width="1.5" />
+      <text x="{px_x(x_vertex) + 10:.1f}" y="{px_y(y_vertex) + 15:.1f}" fill="#22c55e" font-size="13" font-weight="700" filter="drop-shadow(0 1px 2px rgba(0,0,0,0.5))">({x_vertex:g}, {y_vertex:g})</text>
+    """
+
+    svg = f"""<svg viewBox="0 0 {width} {height}" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="background:transparent; font-family: 'Inter', sans-serif;">
+      <rect width="100%" height="100%" fill="transparent" />
+      <text x="{width/2}" y="30" fill="#fff" font-size="18" font-weight="900" text-anchor="middle" style="letter-spacing: 0.05em; opacity: 0.9;">{title}</text>
+      
+      <!-- Grids -->
+      {''.join(grid_elements)}
+      
+      <!-- Axes -->
+      <line x1="{padding}" y1="{x_zero_y:.1f}" x2="{width-padding}" y2="{x_zero_y:.1f}" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+      <line x1="{y_zero_x:.1f}" y1="{padding}" x2="{y_zero_x:.1f}" y2="{height-padding}" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+      
+      <!-- Curve -->
+      <polyline points="{path_data}" fill="none" stroke="#3b82f6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" filter="drop-shadow(0 0 8px rgba(59,130,246,0.3))" />
+      
+      {marker_markup}
+      
+      <text x="{width-padding+10}" y="{x_zero_y+5}" fill="rgba(255,255,255,0.5)" font-size="14" font-weight="700">x</text>
+      <text x="{y_zero_x-5}" y="{padding-15}" fill="rgba(255,255,255,0.5)" font-size="14" font-weight="700">y</text>
     </svg>"""
     return svg
 
 
-def _render_svg_plot(points: list[tuple[float, float]], title: str = None, line: tuple[float, float] | None = None) -> str:
-    """Generate a clean SVG plot for extracted graph points."""
+def _render_svg_plot(points: list[tuple[float, float]], title: str = "Function Plot", line: tuple[float, float] | None = None) -> str:
+    """Generate a clean, professional SVG plot for extracted graph points."""
     if not points:
         return ""
 
-    width = 760
-    height = 460
-    padding = 52
-    min_x = min(x for x, _ in points)
-    max_x = max(x for x, _ in points)
-    min_y = min(y for _, y in points)
-    max_y = max(y for _, y in points)
-    min_x = min(min_x, 0)
-    max_x = max(max_x, 0)
-    min_y = min(min_y, 0)
-    max_y = max(max_y, 0)
+    width, height = 760, 500
+    padding = 60
 
-    x_padding = max(1.0, (max_x - min_x) * 0.08)
-    y_padding = max(1.0, (max_y - min_y) * 0.08)
-    min_x -= x_padding
-    max_x += x_padding
-    min_y -= y_padding
-    max_y += y_padding
+    xs = [p[0] for p in points]
+    ys = [p[1] for p in points]
+    
+    min_x, max_x = min(min(xs), 0), max(max(xs), 0)
+    min_y, max_y = min(min(ys), 0), max(max(ys), 0)
+    
+    x_span = max_x - min_x or 1
+    y_span = max_y - min_y or 1
+    
+    # Extra padding for curves
+    min_x -= x_span * 0.1
+    max_x += x_span * 0.1
+    min_y -= y_span * 0.1
+    max_y += y_span * 0.1
+    x_span = max_x - min_x
+    y_span = max_y - min_y
 
-    x_span = max_x - min_x if max_x != min_x else 1
-    y_span = max_y - min_y if max_y != min_y else 1
+    def px_x(x): return padding + (x - min_x) / x_span * (width - 2 * padding)
+    def px_y(y): return height - padding - (y - min_y) / y_span * (height - 2 * padding)
 
-    def px_x(x):
-        return padding + (x - min_x) / x_span * (width - 2 * padding)
+    x_zero_y = px_y(0)
+    y_zero_x = px_x(0)
 
-    def px_y(y):
-        return height - padding - (y - min_y) / y_span * (height - 2 * padding)
-
-    x_axis_y = px_y(0)
-    y_axis_x = px_x(0)
-
-    polyline = " ".join(f"{px_x(x):.2f},{px_y(y):.2f}" for x, y in points)
-    axis_color = "#f8fafc"
-    grid_color = "rgba(248,250,252,0.12)"
-    point_color = "#f59e0b"
-
+    polyline = " ".join(f"{px_x(x):.1f},{px_y(y):.1f}" for x, y in points)
+    
     line_markup = ""
     if line is not None:
         slope, intercept = line
-        x1 = min_x
-        y1 = slope * x1 + intercept
-        x2 = max_x
-        y2 = slope * x2 + intercept
-        line_markup = f"<line x1=\"{px_x(x1):.2f}\" y1=\"{px_y(y1):.2f}\" x2=\"{px_x(x2):.2f}\" y2=\"{px_y(y2):.2f}\" stroke=\"#38bdf8\" stroke-width=2 stroke-dasharray=\"6 4\" />"
-
-    labels = []
-    labels.append(f"<text x=\"{y_axis_x - 10:.2f}\" y=\"{px_y(min_y) + 4:.2f}\" fill=\"{axis_color}\" font-size=\"12\" text-anchor=\"middle\">{min_y}</text>")
-    labels.append(f"<text x=\"{y_axis_x - 10:.2f}\" y=\"{px_y(max_y) + 4:.2f}\" fill=\"{axis_color}\" font-size=\"12\" text-anchor=\"middle\">{max_y}</text>")
-    labels.append(f"<text x=\"{px_x(min_x):.2f}\" y=\"{x_axis_y + 18:.2f}\" fill=\"{axis_color}\" font-size=\"12\" text-anchor=\"middle\">{min_x}</text>")
-    labels.append(f"<text x=\"{px_x(max_x):.2f}\" y=\"{x_axis_y + 18:.2f}\" fill=\"{axis_color}\" font-size=\"12\" text-anchor=\"middle\">{max_x}</text>")
+        lx1, lx2 = min_x, max_x
+        ly1, ly2 = slope * lx1 + intercept, slope * lx2 + intercept
+        line_markup = f'<line x1="{px_x(lx1):.1f}" y1="{px_y(ly1):.1f}" x2="{px_x(lx2):.1f}" y2="{px_y(ly2):.1f}" stroke="#38bdf8" stroke-width="2.5" stroke-dasharray="6 4" filter="drop-shadow(0 0 4px rgba(56,189,248,0.4))" />'
 
     points_markup = "".join(
-        f"<circle cx=\"{px_x(x):.2f}\" cy=\"{px_y(y):.2f}\" r=\"4\" fill=\"{point_color}\" stroke=\"#ffffff\" stroke-width=\"1.4\" />"
+        f'<circle cx="{px_x(x):.1f}" cy="{px_y(y):.1f}" r="4.5" fill="#f59e0b" stroke="#fff" stroke-width="1.5" />'
         for x, y in points
     )
 
-    title_markup = f"<text x=\"50%\" y=\"24\" fill=\"{axis_color}\" font-size=\"16\" text-anchor=\"middle\" font-weight=\"700\">{title}</text>" if title else ""
+    svg = f"""<svg viewBox="0 0 {width} {height}" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="background:transparent; font-family: 'Inter', sans-serif;">
+      <rect width="100%" height="100%" fill="transparent" />
+      <text x="{width/2}" y="30" fill="#fff" font-size="18" font-weight="900" text-anchor="middle" style="letter-spacing: 0.05em; opacity: 0.9;">{title}</text>
+      
+      <!-- Axes -->
+      <line x1="{padding}" y1="{x_zero_y:.1f}" x2="{width-padding}" y2="{x_zero_y:.1f}" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+      <line x1="{y_zero_x:.1f}" y1="{padding}" x2="{y_zero_x:.1f}" y2="{height-padding}" stroke="rgba(255,255,255,0.2)" stroke-width="2" />
+      
+      <!-- Labels -->
+      <text x="{width-padding+10}" y="{x_zero_y+5}" fill="rgba(255,255,255,0.4)" font-size="12">x</text>
+      <text x="{y_zero_x-5}" y="{padding-10}" fill="rgba(255,255,255,0.4)" font-size="12">y</text>
 
-    svg = f"""<svg viewBox=\"0 0 {width} {height}\" width=\"100%\" height=\"auto\" background=\"none\" xmlns=\"http://www.w3.org/2000/svg\">
-      <rect x=\"0\" y=\"0\" width=\"100%\" height=\"100%\" fill=\"transparent\" />
-      {title_markup}
-      <line x1=\"{y_axis_x:.2f}\" y1=\"{padding:.2f}\" x2=\"{y_axis_x:.2f}\" y2=\"{height - padding:.2f}\" stroke=\"{axis_color}\" stroke-width=2 />
-      <line x1=\"{padding:.2f}\" y1=\"{x_axis_y:.2f}\" x2=\"{width - padding:.2f}\" y2=\"{x_axis_y:.2f}\" stroke=\"{axis_color}\" stroke-width=2 />
-      <line x1=\"{padding}\" y1=\"{padding + 40}\" x2=\"{width - padding}\" y2=\"{padding + 40}\" stroke=\"{grid_color}\" stroke-width=1 />
-      <line x1=\"{padding}\" y1=\"{height - padding - 40}\" x2=\"{width - padding}\" y2=\"{height - padding - 40}\" stroke=\"{grid_color}\" stroke-width=1 />
-      <line x1=\"{padding + 40}\" y1=\"{padding}\" x2=\"{padding + 40}\" y2=\"{height - padding}\" stroke=\"{grid_color}\" stroke-width=1 />
-      <line x1=\"{width - padding - 40}\" y1=\"{padding}\" x2=\"{width - padding - 40}\" y2=\"{height - padding}\" stroke=\"{grid_color}\" stroke-width=1 />
       {line_markup}
-      <polyline points=\"{polyline}\" fill=\"none\" stroke=\"{point_color}\" stroke-width=2.5 stroke-linejoin=round stroke-linecap=round />
+      <polyline points="{polyline}" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round" />
       {points_markup}
-      {''.join(labels)}
     </svg>"""
     return svg
 
@@ -443,6 +451,19 @@ def _is_scatter_question(text: str) -> bool:
         r"physics mark",
     ]
     return any(re.search(pattern, lowered) for pattern in scatter_patterns)
+
+
+def _is_geometry_diagram_question(text: str) -> bool:
+    """Detect if the question refers to a geometry diagram (angles, lines, triangles, etc.)."""
+    lowered = text.lower()
+    geometry_patterns = [
+        r"angle", r"calculate x", r"value of x", r"value of y",
+        r"triangle", r"quadrilateral", r"circle", r"tangent",
+        r"parallel line", r"perpendicular", r"isosceles", r"equilateral",
+        r"congruent", r"similar", r"bearing", r"length of", r"cm",
+        r"find the angle", r"show that", r"bisector"
+    ]
+    return any(re.search(pattern, lowered) for pattern in geometry_patterns)
 
 
 def _extract_table_data(text: str) -> list[tuple[float, float]]:
@@ -566,64 +587,80 @@ def _is_first_six_plotted(text: str) -> bool:
 
 
 def _build_scatter_solution_from_table(points: list[tuple[float, float]], extracted_text: str) -> dict | None:
-    """Generate a deterministic scatter question solution for table-based data."""
-    if len(points) < 3:
+    """Generate a data-driven scatter question solution."""
+    if len(points) < 2:
         return None
 
-    if not _is_first_six_plotted(extracted_text):
-        return None
+    # Detect how many points are already plotted
+    pre_plotted = 6 # Default for many papers, but we should be flexible
+    if "first 8" in extracted_text.lower(): pre_plotted = 8
+    elif "first 5" in extracted_text.lower(): pre_plotted = 5
 
-    missing_points = points[6:]
+    missing_points = points[pre_plotted:]
     if not missing_points:
-        return None
+        # Check if they just want the line of best fit or estimation
+        pass
 
-    coords_text = ", ".join(f"({int(x)},{int(y)})" for x, y in missing_points)
+    coords_text = ", ".join(f"({x:g},{y:g})" for x, y in missing_points) if missing_points else "None (all plotted)"
     fit = _compute_best_fit_line(points)
+    
+    # Try to detect estimation request
+    # Often it's like "Estimate the marks for Physics if Mathematics is 75"
     est_x = None
-    est_y = 75.0
-    if fit:
+    est_y = None
+    
+    # Simple heuristic for common questions
+    if "physics" in extracted_text.lower() and "75" in extracted_text:
+        est_y = 75.0
+    
+    if fit and est_y is not None:
         slope, intercept = fit
         if slope != 0:
             est_x = round((est_y - intercept) / slope, 1)
 
-    if est_x is not None:
-        answer_text = f"Missing points: {coords_text}. Estimated Mathematics mark ≈ {est_x}."
-        estimate_expression = f"Draw from y=75 to the line, then across to the x-axis to estimate x ≈ {est_x}."
-    else:
-        answer_text = f"Missing points: {coords_text}. Cannot estimate the Mathematics mark because the line of best fit is undefined."
-        estimate_expression = "The line of best fit could not be computed, so the estimate is unavailable."
+    steps = []
+    step_num = 1
+    
+    if missing_points:
+        steps.append({
+            "step_number": step_num,
+            "part": "a",
+            "description": f"Identify the missing points from the table to be plotted.",
+            "expression": f"Points: {coords_text}",
+            "concept_key": "scatter_graph",
+        })
+        step_num += 1
+        steps.append({
+            "step_number": step_num,
+            "part": "a",
+            "description": "Plot these points precisely on the grid.",
+            "expression": "Points plotted.",
+            "concept_key": "scatter_graph",
+        })
+        step_num += 1
 
-    steps = [
-        {
-            "step_number": 1,
-            "description": "Identify the 3 missing points from the table because the first 6 points have already been plotted.",
-            "expression": f"Missing points to plot: {coords_text}",
+    steps.append({
+        "step_number": step_num,
+        "part": "b",
+        "description": "Draw a line of best fit. It should be a single straight line that follows the trend of the data points.",
+        "expression": "Line of best fit drawn.",
+        "concept_key": "scatter_graph",
+    })
+    step_num += 1
+
+    if est_x is not None:
+        steps.append({
+            "step_number": step_num,
+            "part": "c",
+            "description": f"Use the line of best fit to estimate the value when y = {est_y}.",
+            "expression": f"x ≈ {est_x}",
             "concept_key": "scatter_graph",
-        },
-        {
-            "step_number": 2,
-            "description": "Plot the remaining points exactly at the missing coordinates from the table.",
-            "expression": coords_text,
-            "concept_key": "scatter_graph",
-        },
-        {
-            "step_number": 3,
-            "description": "Draw a line of best fit that passes close to as many points as possible with roughly equal numbers on either side.",
-            "expression": "Line of best fit drawn through the scatter so points lie balanced above and below.",
-            "concept_key": "scatter_graph",
-        },
-        {
-            "step_number": 4,
-            "description": "Use the line of best fit to estimate Xavier's mathematics mark from Physics = 75.",
-            "expression": estimate_expression,
-            "concept_key": "scatter_graph",
-        },
-    ]
+        })
 
     return {
         "steps": steps,
-        "final_answer": answer_text,
-        "mark_commentary": "Part (a) identifies the missing points; part (b) draws the line of best fit; part (c) estimates Xavier's mark.",
+        "final_answer": f"Missing points: {coords_text}. Estimate: {est_x if est_x else 'N/A'}",
+        "mark_commentary": "Marks awarded for plotting (2), line of best fit (1), and estimation (1).",
         "visual_data": None,
     }
 
@@ -633,10 +670,10 @@ def _render_scatter_svg(
     pre_plotted: int = 6,
     estimate_y: float | None = None,
     estimate_x: float | None = None,
-    x_label: str = "Mathematics mark",
-    y_label: str = "Physics mark",
-    x_min: float = 20, x_max: float = 90,
-    y_min: float = 20, y_max: float = 90,
+    x_label: str = "x-axis",
+    y_label: str = "y-axis",
+    x_min: float | None = None, x_max: float | None = None,
+    y_min: float | None = None, y_max: float | None = None,
 ) -> str:
     """
     Render a clean, exam-standard scatter diagram SVG with:
@@ -651,15 +688,13 @@ def _render_scatter_svg(
     plot_w = W - pad_left - pad_right
     plot_h = H - pad_top - pad_bottom
 
-    actual_min_x = min(x for x, _ in all_points)
-    actual_max_x = max(x for x, _ in all_points)
-    actual_min_y = min(y for _, y in all_points)
-    actual_max_y = max(y for _, y in all_points)
+    if x_min is None: x_min = min(x for x, _ in all_points) - 5
+    if x_max is None: x_max = max(x for x, _ in all_points) + 5
+    if y_min is None: y_min = min(y for _, y in all_points) - 5
+    if y_max is None: y_max = max(y for _, y in all_points) + 5
 
-    x_min = min(x_min, actual_min_x - 4)
-    x_max = max(x_max, actual_max_x + 4)
-    y_min = min(y_min, actual_min_y - 4)
-    y_max = max(y_max, actual_max_y + 4)
+    x_min = min(x_min, 0)
+    y_min = min(y_min, 0)
 
     x_span = x_max - x_min if x_max != x_min else 1
     y_span = y_max - y_min if y_max != y_min else 1
@@ -671,19 +706,28 @@ def _render_scatter_svg(
         return pad_top + (y_max - y_val) / y_span * plot_h
 
     # Grid lines
+    def get_step(span):
+        if span <= 10: return 1
+        if span <= 25: return 5
+        if span <= 100: return 10
+        return 20
+
+    x_tick_step = get_step(x_span)
+    y_tick_step = get_step(y_span)
+
     grid_lines = []
-    x_tick_step = 10
-    y_tick_step = 10
-    for xv in range(int(x_min), int(x_max) + 1, x_tick_step):
+    for xv in range(int(math.floor(x_min / x_tick_step) * x_tick_step), int(math.ceil(x_max / x_tick_step) * x_tick_step) + 1, x_tick_step):
         gx = px(xv)
-        grid_lines.append(f'<line x1="{gx:.1f}" y1="{pad_top}" x2="{gx:.1f}" y2="{pad_top+plot_h}" stroke="rgba(248,250,252,0.1)" stroke-width="1"/>')
-        grid_lines.append(f'<text x="{gx:.1f}" y="{pad_top+plot_h+18}" fill="#94a3b8" font-size="13" text-anchor="middle" font-family="Inter,sans-serif">{xv}</text>')
-        grid_lines.append(f'<line x1="{gx:.1f}" y1="{pad_top+plot_h}" x2="{gx:.1f}" y2="{pad_top+plot_h+5}" stroke="#f8fafc" stroke-width="1.5"/>')
-    for yv in range(int(y_min), int(y_max) + 1, y_tick_step):
+        if pad_left <= gx <= W - pad_right:
+            grid_lines.append(f'<line x1="{gx:.1f}" y1="{pad_top}" x2="{gx:.1f}" y2="{pad_top+plot_h}" stroke="rgba(248,250,252,0.05)" stroke-width="1" stroke-dasharray="4 4"/>')
+            grid_lines.append(f'<text x="{gx:.1f}" y="{pad_top+plot_h+18}" fill="#94a3b8" font-size="13" text-anchor="middle" font-family="Inter,sans-serif">{xv}</text>')
+            grid_lines.append(f'<line x1="{gx:.1f}" y1="{pad_top+plot_h}" x2="{gx:.1f}" y2="{pad_top+plot_h+5}" stroke="#f8fafc" stroke-width="1.5"/>')
+    for yv in range(int(math.floor(y_min / y_tick_step) * y_tick_step), int(math.ceil(y_max / y_tick_step) * y_tick_step) + 1, y_tick_step):
         gy = py(yv)
-        grid_lines.append(f'<line x1="{pad_left}" y1="{gy:.1f}" x2="{pad_left+plot_w}" y2="{gy:.1f}" stroke="rgba(248,250,252,0.1)" stroke-width="1"/>')
-        grid_lines.append(f'<text x="{pad_left-10}" y="{gy+4:.1f}" fill="#94a3b8" font-size="13" text-anchor="end" font-family="Inter,sans-serif">{yv}</text>')
-        grid_lines.append(f'<line x1="{pad_left-5}" y1="{gy:.1f}" x2="{pad_left}" y2="{gy:.1f}" stroke="#f8fafc" stroke-width="1.5"/>')
+        if pad_top <= gy <= H - pad_bottom:
+            grid_lines.append(f'<line x1="{pad_left}" y1="{gy:.1f}" x2="{pad_left+plot_w}" y2="{gy:.1f}" stroke="rgba(248,250,252,0.05)" stroke-width="1" stroke-dasharray="4 4"/>')
+            grid_lines.append(f'<text x="{pad_left-10}" y="{gy+4:.1f}" fill="#94a3b8" font-size="13" text-anchor="end" font-family="Inter,sans-serif">{yv}</text>')
+            grid_lines.append(f'<line x1="{pad_left-5}" y1="{gy:.1f}" x2="{pad_left}" y2="{gy:.1f}" stroke="#f8fafc" stroke-width="1.5"/>')
 
     # Axes
     axes = f'''
@@ -752,16 +796,20 @@ def _render_scatter_svg(
     <circle cx="{pad_left+16}" cy="{pad_top+14}" r="5" fill="none" stroke="#94a3b8" stroke-width="1.5"/>
     <line x1="{pad_left+10}" y1="{pad_top+8}" x2="{pad_left+22}" y2="{pad_top+20}" stroke="#94a3b8" stroke-width="2"/>
     <line x1="{pad_left+22}" y1="{pad_top+8}" x2="{pad_left+10}" y2="{pad_top+20}" stroke="#94a3b8" stroke-width="2"/>
-    <text x="{pad_left+30}" y="{pad_top+18}" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Pre-plotted (6)</text>
+    <text x="{pad_left+30}" y="{pad_top+18}" fill="#94a3b8" font-size="11" font-family="Inter,sans-serif">Pre-plotted ({pre_plotted})</text>
     <circle cx="{pad_left+130}" cy="{pad_top+14}" r="5" fill="#f59e0b" stroke="#fff" stroke-width="1.5"/>
-    <text x="{pad_left+140}" y="{pad_top+18}" fill="#f59e0b" font-size="11" font-family="Inter,sans-serif">Newly plotted (3)</text>
+    <text x="{pad_left+140}" y="{pad_top+18}" fill="#f59e0b" font-size="11" font-family="Inter,sans-serif">Newly plotted ({len(all_points)-pre_plotted})</text>
     <line x1="{pad_left+270}" y1="{pad_top+14}" x2="{pad_left+295}" y2="{pad_top+14}" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6 3"/>
     <text x="{pad_left+300}" y="{pad_top+18}" fill="#38bdf8" font-size="11" font-family="Inter,sans-serif">Line of best fit</text>
-    <circle cx="{pad_left+400}" cy="{pad_top+14}" r="5" fill="#ef4444" stroke="#fff" stroke-width="1.5"/>
-    <text x="{pad_left+410}" y="{pad_top+18}" fill="#ef4444" font-size="11" font-family="Inter,sans-serif">Xavier's estimate</text>
     '''
+    if estimate_x is not None:
+        legend += f'''
+        <circle cx="{pad_left+420}" cy="{pad_top+14}" r="5" fill="#ef4444" stroke="#fff" stroke-width="1.5"/>
+        <text x="{pad_left+430}" y="{pad_top+18}" fill="#ef4444" font-size="11" font-family="Inter,sans-serif">Estimated point</text>
+        '''
 
-    title = f'<text x="{W//2}" y="22" fill="#f8fafc" font-size="15" text-anchor="middle" font-weight="700" font-family="Inter,sans-serif">Scatter Diagram — Mathematics vs Physics Marks</text>'
+    title_text = f"Scatter Diagram — {x_label} vs {y_label}"
+    title = f'<text x="{W//2}" y="22" fill="#f8fafc" font-size="15" text-anchor="middle" font-weight="700" font-family="Inter,sans-serif">{title_text}</text>'
 
     svg = f'''<svg viewBox="0 0 {W} {H}" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" style="background:transparent">
   <rect width="{W}" height="{H}" fill="transparent"/>
@@ -866,12 +914,12 @@ def solve_math_question(question: str, question_number: int, marks: int) -> dict
         }
 
     user_prompt = (
-        f"Question {question_number} [{marks} mark{'s' if marks != 1 else ''}]\n\n"
+        f"EXAM QUESTION {question_number} [{marks} MARKS]\n\n"
         f"{question.strip()}\n\n"
-        "TASK: Solve ONLY this question. Use only the relationships explicitly stated in the question. "
-        "Do not infer extra angle or algebraic relationships that are not written in the question. "
-        "Do not add unrelated theory, examples, or commentary. "
-        f"Provide a complete, mark-scheme-quality step-by-step solution calibrated for {marks} mark(s)."
+        f"As a master O-Level examiner, provide a high-precision, step-by-step solution. "
+        f"The depth of your explanation and the number of steps must be strictly calibrated to the {marks} marks awarded. "
+        "Show all necessary algebraic manipulations and intermediate results. "
+        "Use Unicode notation for all mathematical symbols."
     )
 
     raw = llm.generate_response(
@@ -1123,13 +1171,24 @@ def solve_math_image_question(image_base64: str, query: str, marks: int) -> dict
 
     # 3. Parse and Return
     try:
+        # Parse JSON
         json_str = _extract_json(raw)
         data = json.loads(json_str)
         steps = _validate_steps(data.get("steps", []))
-        # Use detected marks if available, else fallback
-        final_marks = data.get("detected_marks", marks)
-        if not final_marks:
-            final_marks = marks
+        
+        # --- IMPROVED MARK DETECTION PRIORITY ---
+        # If AI found marks in paper, use them. 
+        # If user passed 4 (default), but AI found 2, AI wins.
+        # If user passed something else, they probably know better.
+        ai_detected_marks = data.get("detected_marks")
+        final_marks = marks
+        if ai_detected_marks and ai_detected_marks > 0:
+            # If provided marks is 4 (the suspect default), update it.
+            if marks == 4:
+                final_marks = ai_detected_marks
+            else:
+                # If provided marks is significantly different, we trust AI findings more for '4'
+                final_marks = ai_detected_marks
 
         # Build visual: prefer our deterministic SVG for scatter, otherwise fall back to AI SVG
         visual_data = None

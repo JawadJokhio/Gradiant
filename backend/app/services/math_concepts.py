@@ -6,517 +6,598 @@ Covers Cambridge IGCSE / O-Level syllabus topics (0580 / 4024)
 MATH_CONCEPTS = {
     # ── Number ────────────────────────────────────────────────────────────────
     "addition": {
-        "title": "Addition",
+        "title": "Addition & Fundamental Arithmetic",
         "explanation": (
-            "Addition is the process of combining two or more numbers to get a total. "
-            "The numbers being added are called addends and the result is the sum. "
-            "The order doesn't matter: a + b = b + a (commutative property)."
+            "Addition is the fundamental operation of combining quantities. In O-Level mathematics, "
+            "this extends to integers, decimals, and fractions. Key properties include the Commutative law "
+            "(a + b = b + a) and the Associative law (a + (b + c) = (a + b) + c). "
+            "Always ensure alignment of decimal points when performing manual addition."
         ),
-        "example": "23 + 47 = 70  |  3.5 + 1.2 = 4.7",
+        "example": "23.45 + 1.2 = 24.65 | Sum of interior angles in a triangle = 180°.",
     },
     "subtraction": {
-        "title": "Subtraction",
+        "title": "Subtraction & Differences",
         "explanation": (
-            "Subtraction finds the difference between two numbers. "
-            "a − b asks 'how much more is a than b?' Unlike addition, order matters."
+            "Subtraction represents the difference between two values or a 'reduction' in quantity. "
+            "It is the inverse of addition. In algebraic contexts, subtracting a negative number "
+            "is equivalent to adding its positive counterpart: a - (-b) = a + b. "
+            "In bearings, subtraction is often used to find 'back bearings' (Heading - 180°)."
         ),
-        "example": "85 − 37 = 48  |  10.0 − 3.6 = 6.4",
+        "example": "85 - 37 = 48 | Temperature drop from 5°C to -2°C: 5 - (-2) = 7°C difference.",
     },
     "multiplication": {
-        "title": "Multiplication",
+        "title": "Multiplication & Scaling",
         "explanation": (
-            "Multiplication is repeated addition. a × b means add a to itself b times. "
-            "The result is called the product. It is commutative: a × b = b × a."
+            "Multiplication is repeated addition or the scaling of a quantity. The result is the 'product'. "
+            "Important properties: Multiplicative Identity (a × 1 = a) and the Distributive Law (a(b + c) = ab + ac). "
+            "When multiplying decimals, the total number of decimal places in the product equals the sum "
+            "of decimal places in the factors."
         ),
-        "example": "6 × 7 = 42  |  2.5 × 4 = 10",
+        "example": "1.2 × 0.3 = 0.36 | Area of a rectangle = length × width.",
     },
     "division": {
-        "title": "Division",
+        "title": "Division & Ratios",
         "explanation": (
-            "Division splits a number into equal parts. a ÷ b asks 'how many groups of b fit into a?' "
-            "The result is the quotient. Division by zero is undefined."
+            "Division is the process of splitting a quantity into equal parts or finding how many times "
+            "one number is contained within another. The result is the 'quotient'. "
+            "Division by zero is undefined. In O-Level, division is frequently expressed as a fraction: "
+            "a ÷ b = a/b."
         ),
-        "example": "48 ÷ 6 = 8  |  15 ÷ 4 = 3.75",
+        "example": "45 ÷ 9 = 5 | Speed = Distance ÷ Time.",
     },
     "bodmas": {
         "title": "Order of Operations (BODMAS / BIDMAS)",
         "explanation": (
-            "BODMAS defines the order to evaluate expressions: "
-            "Brackets → Orders (powers/roots) → Division → Multiplication → Addition → Subtraction. "
-            "Always work left-to-right within the same priority level."
+            "Standard priority for evaluating mathematical expressions: "
+            "1. Brackets (innermost first) "
+            "2. Orders (Indices/Powers/Roots) "
+            "3. Division and Multiplication (left to right) "
+            "4. Addition and Subtraction (left to right). "
+            "Failure to follow BODMAS is a common source of error in multi-step algebra."
         ),
-        "example": "3 + 4 × 2 = 3 + 8 = 11  (multiply first, not 14)",
+        "example": "10 - 2 × 3 = 10 - 6 = 4. (Incorrect: (10-2) × 3 = 24).",
     },
     "fractions": {
-        "title": "Fractions",
+        "title": "Fractions: Proper, Improper & Mixed",
         "explanation": (
-            "A fraction represents part of a whole: numerator/denominator. "
-            "To add/subtract fractions find a common denominator. "
-            "To multiply: multiply numerators and denominators separately. "
-            "To divide: multiply by the reciprocal."
+            "Fractions denote parts of a whole (Numerator/Denominator). "
+            "Proper: Num < Denom; Improper: Num > Denom; Mixed: Integer + Fraction. "
+            "To add/subtract: Use a Common Denominator. To multiply: Numerator × Numerator / Denom × Denom. "
+            "To divide: Multiply by the Reciprocal (Flip the second fraction)."
         ),
-        "example": "1/2 + 1/3 = 3/6 + 2/6 = 5/6  |  2/3 ÷ 4/5 = 2/3 × 5/4 = 10/12 = 5/6",
+        "example": "2/3 + 1/4 = 8/12 + 3/12 = 11/12 | 2/5 ÷ 4/7 = 2/5 × 7/4 = 14/20 = 7/10.",
     },
     "percentages": {
-        "title": "Percentages",
+        "title": "Percentages & Financial Math",
         "explanation": (
-            "A percentage expresses a number as parts per hundred. "
-            "To find x% of y: multiply y × x/100. "
-            "Percentage change = (change ÷ original) × 100."
+            "Percentages represent values as parts per 100. "
+            "Percentage Change = (Increase or Decrease / Original Value) × 100. "
+            "Reverse Percentages: If a price after a 20% increase is $120, find the original by: "
+            "Original = 120 / 1.20 = $100. Do NOT simply subtract 20% from the final price."
         ),
-        "example": "20% of 150 = 150 × 20/100 = 30  |  Increase 80 by 15%: 80 × 1.15 = 92",
+        "example": "15% VAT on $200 = $30. Total = $230.",
     },
     "ratio": {
-        "title": "Ratio",
+        "title": "Ratios & Sharing",
         "explanation": (
-            "A ratio compares two quantities of the same kind. "
-            "a : b means for every a of one thing there are b of another. "
-            "Simplify by dividing both parts by their HCF."
+            "A ratio compares quantities of the same units. To share a quantity in ratio a:b:c: "
+            "1. Add the parts (a+b+c) to find the 'total number of shares'. "
+            "2. Divide the quantity by the total shares to find the value of 'one share'. "
+            "3. Multiply each ratio part by this value."
         ),
-        "example": "12 : 8 simplifies to 3 : 2  |  Share 60 in ratio 2:3 → 24 and 36",
+        "example": "Share $100 in ratio 2:3. Total parts = 5. One part = $20. Shares = $40 and $60.",
     },
     "proportion": {
-        "title": "Proportion",
+        "title": "Proportion (Direct & Inverse)",
         "explanation": (
-            "Direct proportion: as one quantity increases, the other increases at the same rate (y = kx). "
-            "Inverse proportion: as one increases, the other decreases (y = k/x). "
-            "Use the unitary method: find the value for 1, then scale."
+            "Direct Proportion (y ∝ x): y = kx. As x doubles, y doubles. Graph is a straight line through origin. "
+            "Inverse Proportion (y ∝ 1/x): y = k/x. As x doubles, y halves. Graph is a hyperbola. "
+            "Solve by first finding the constant of proportionality 'k' using given values."
         ),
-        "example": "5 pens cost $3.50 → 1 pen costs $0.70 → 12 pens cost $8.40",
+        "example": "y ∝ x². If y=12 when x=2, then 12=k(4) → k=3. Rule is y=3x².",
     },
     "hcf": {
         "title": "Highest Common Factor (HCF)",
         "explanation": (
-            "The HCF of two numbers is the largest number that divides both exactly. "
-            "Find it by listing factors or using prime factorisation."
+            "The largest integer that divides two or more numbers without a remainder. "
+            "Efficient method: Use Prime Factorisation and take the lowest power of all common prime factors."
         ),
-        "example": "HCF(12, 18): factors of 12={1,2,3,4,6,12}, of 18={1,2,3,6,9,18} → HCF = 6",
+        "example": "12 (2² × 3) and 18 (2 × 3²). Common primes are 2 and 3. HCF = 2¹ × 3¹ = 6.",
     },
     "lcm": {
         "title": "Lowest Common Multiple (LCM)",
         "explanation": (
-            "The LCM is the smallest positive number that is a multiple of both given numbers. "
-            "Use prime factorisation: take each prime to its highest power."
+            "The smallest multiple common to two or more numbers. "
+            "Efficient method: Use Prime Factorisation and take the highest power of every prime factor "
+            "present in at least one number."
         ),
-        "example": "LCM(4, 6) = 12  |  LCM(12, 18) = 36",
+        "example": "12 (2² × 3) and 18 (2 × 3²). Primes are 2 and 3. LCM = 2² × 3² = 36.",
     },
     "prime_factorisation": {
-        "title": "Prime Factorisation",
+        "title": "Prime Factorisation & Index Notation",
         "explanation": (
-            "Writing a number as a product of its prime factors. "
-            "Use a factor tree or repeated division by the smallest prime."
+            "Expressing a number as a product of prime numbers. Every composite number has a unique "
+            "prime factorisation (Fundamental Theorem of Arithmetic). Helpfully used for finding HCF, "
+            "LCM, Square Roots, and Cube Roots without a calculator."
         ),
-        "example": "360 = 2³ × 3² × 5",
+        "example": "120 = 2 × 2 × 2 × 3 × 5 = 2³ × 3¹ × 5¹.",
     },
     "standard_form": {
         "title": "Standard Form (Scientific Notation)",
         "explanation": (
-            "Standard form writes a number as a × 10ⁿ where 1 ≤ a < 10 and n is an integer. "
-            "Large numbers: positive n. Small decimals: negative n."
+            "Writing numbers in the form A × 10ⁿ, where 1 ≤ A < 10 and n is an integer. "
+            "Moving the decimal N places left increases the power n by N. "
+            "Moving the decimal N places right decreases the power n by N."
         ),
-        "example": "4500 = 4.5 × 10³  |  0.0032 = 3.2 × 10⁻³",
+        "example": "0.00045 = 4.5 × 10⁻⁴ | 7,200,000 = 7.2 × 10⁶.",
     },
     "rounding": {
-        "title": "Rounding & Significant Figures",
+        "title": "Rounding, Estimation & Bounds",
         "explanation": (
-            "To round to n decimal places, look at the (n+1)th digit: if ≥5 round up, else round down. "
-            "Significant figures start from the first non-zero digit."
+            "Rounding to Decimal Places (d.p.) or Significant Figures (s.f.). "
+            "Bounds: If a length L = 5cm correct to the nearest cm, the lower bound (LB) is 4.5 and "
+            "the upper bound (UB) is 5.5. Range: 4.5 ≤ L < 5.5."
         ),
-        "example": "3.7462 to 2 d.p. = 3.75  |  0.004682 to 3 s.f. = 0.00468",
+        "example": "Round 0.04567 to 2 s.f. → 0.046. (The first s.f. is the first non-zero digit).",
     },
     "square_root": {
-        "title": "Square Root",
+        "title": "Powers, Squares & Roots",
         "explanation": (
-            "The square root of x (written √x) is the number y such that y² = x. "
-            "Every positive number has two square roots: +√x and −√x. "
-            "√x is defined only for x ≥ 0 in real numbers."
+            "Square numbers are integers raised to the power 2 (1, 4, 9, 16...). "
+            "The Square Root (√) is the inverse. Note: √x is always positive in O-Level geometry, "
+            "but algebraically x² = 9 implies x = ±3."
         ),
-        "example": "√49 = 7  |  √2 ≈ 1.414",
+        "example": "√144 = 12 | ∛64 = 4.",
     },
     "indices": {
-        "title": "Indices (Powers / Exponents)",
+        "title": "Laws of Indices",
         "explanation": (
-            "aⁿ means multiply a by itself n times. Key laws: "
-            "aᵐ × aⁿ = aᵐ⁺ⁿ, aᵐ ÷ aⁿ = aᵐ⁻ⁿ, (aᵐ)ⁿ = aᵐⁿ, a⁰ = 1, a⁻ⁿ = 1/aⁿ, a^(1/n) = ⁿ√a."
+            "Rules for manipulating powers: "
+            "1. aᵐ × aⁿ = aᵐ⁺ⁿ "
+            "2. aᵐ ÷ aⁿ = aᵐ⁻ⁿ "
+            "3. (aᵐ)ⁿ = aᵐⁿ "
+            "4. a⁻ⁿ = 1/aⁿ "
+            "5. a^(1/n) = ⁿ√a "
+            "6. a⁰ = 1 (for a≠0)."
         ),
-        "example": "2³ × 2⁴ = 2⁷ = 128  |  8^(2/3) = (∛8)² = 2² = 4",
+        "example": "25^(1/2) = √25 = 5 | 8^(2/3) = (∛8)² = 2² = 4.",
     },
 
     # ── Algebra ───────────────────────────────────────────────────────────────
     "expanding_brackets": {
-        "title": "Expanding Brackets",
+        "title": "Expanding & Simplifying",
         "explanation": (
-            "Multiply every term inside the bracket by the term outside. "
-            "For double brackets use FOIL: First, Outer, Inner, Last."
+            "Multiplying terms across parentheses. (a+b)(c+d) = ac + ad + bc + bd. "
+            "Special identities: "
+            "1. (a+b)² = a² + 2ab + b² "
+            "2. (a-b)² = a² - 2ab + b² "
+            "3. (a-b)(a+b) = a² - b² (Difference of Two Squares)."
         ),
-        "example": "3(x + 4) = 3x + 12  |  (x+2)(x+3) = x² + 5x + 6",
+        "example": "(x+5)(x-5) = x² - 25 | (2x + 3)² = 4x² + 12x + 9.",
     },
     "factorisation": {
-        "title": "Factorisation",
+        "title": "Factorisation Techniques",
         "explanation": (
-            "The reverse of expanding brackets. Find common factors and take them outside. "
-            "For quadratics: find two numbers that multiply to ac and add to b (ax² + bx + c)."
+            "Method 1: Highest Common Factor (Common term outside). "
+            "Method 2: Difference of Two Squares (x² - y² = (x-y)(x+y)). "
+            "Method 3: Quadratic Trinomials (Find two numbers that multiply to C and add to B). "
+            "Method 4: Grouping (For 4-term expressions)."
         ),
-        "example": "6x² + 9x = 3x(2x + 3)  |  x² + 5x + 6 = (x+2)(x+3)",
+        "example": "x² - 9 = (x-3)(x+3) | x² + 5x + 6 = (x+2)(x+3).",
     },
     "quadratic_formula": {
-        "title": "Quadratic Formula",
+        "title": "Solving Quadratics (Formula Method)",
         "explanation": (
-            "For ax² + bx + c = 0, the solutions are: x = (−b ± √(b²−4ac)) / (2a). "
-            "The discriminant b²−4ac tells you: >0 two real roots, =0 one repeated root, <0 no real roots."
+            "For ax² + bx + c = 0, x = [-b ± √(b² - 4ac)] / 2a. "
+            "The discriminant (Δ = b² - 4ac) determines the nature of roots: "
+            "Δ > 0: Two distinct real roots. "
+            "Δ = 0: One repeated real root. "
+            "Δ < 0: No real roots."
         ),
-        "example": "x²−5x+6=0: x = (5 ± √(25−24))/2 = (5 ± 1)/2 → x=3 or x=2",
+        "example": "x² - 3x + 2 = 0 → x = [3 ± √(9 - 8)]/2 = 2 or 1.",
     },
     "completing_the_square": {
         "title": "Completing the Square",
         "explanation": (
-            "Rewrite ax² + bx + c in the form a(x + p)² + q. "
-            "Step 1: factor out a. Step 2: add and subtract (b/2a)² inside. "
-            "Useful for finding vertex of a parabola."
+            "Writing x² + bx + c in the form (x + b/2)² - (b/2)² + c. "
+            "This is essential for finding the coordinates of the turning point (vertex) of a "
+            "quadratic graph. The vertex of y = (x+p)² + q is (-p, q)."
         ),
-        "example": "x² + 6x + 5 = (x+3)² − 9 + 5 = (x+3)² − 4",
+        "example": "x² + 4x + 7 = (x+2)² - 4 + 7 = (x+2)² + 3. Min point is (-2, 3).",
     },
     "linear_equations": {
-        "title": "Solving Linear Equations",
+        "title": "Linear Equations",
         "explanation": (
-            "Isolate the unknown by performing the same operation on both sides. "
-            "Aim: get x alone on one side. Work step-by-step, keeping the equation balanced."
+            "Solving for an unknown variable by maintaining equality (performing the same operations "
+            "on both sides). Always group like terms first. If the unknown is in a fraction, "
+            "multiply through by the denominator."
         ),
-        "example": "3x − 7 = 14 → 3x = 21 → x = 7",
+        "example": "3(x - 4) = 15 → x-4 = 5 → x = 9.",
     },
     "simultaneous_equations": {
         "title": "Simultaneous Equations",
         "explanation": (
-            "Two equations with two unknowns. Methods: elimination (multiply to match a coefficient, then add/subtract) "
-            "or substitution (express one variable in terms of the other and substitute)."
+            "Finding the unique (x, y) intersection of two lines. "
+            "Elimination: Multiply one or both equations to make coefficients of one variable "
+            "match, then add or subtract. Substitution: Express x in terms of y from one "
+            "equation and plug it into the other."
         ),
-        "example": "2x+y=7 and x−y=2 → add: 3x=9 → x=3, y=1",
+        "example": "2x+y=10, x-y=2. Adding them gives 3x=12 → x=4, y=2.",
     },
     "inequalities": {
-        "title": "Inequalities",
+        "title": "Linear & Graphical Inequalities",
         "explanation": (
-            "Solve like an equation but remember: multiplying or dividing by a negative number reverses the inequality sign. "
-            "Represent solutions on a number line; use open circles for strict inequalities."
+            "Solving inequalities is like solving equations, EXCEPT multiplying or dividing by "
+            "a negative number reverses the sign (e.g., -2x < 10 becomes x > -5). "
+            "On graphs, represent x < k as a dashed line and x ≤ k as a solid line. Shading "
+            "identifies the required region."
         ),
-        "example": "2x − 3 > 7 → 2x > 10 → x > 5",
+        "example": "5 - 2x ≥ 1 → -2x ≥ -4 → x ≤ 2.",
     },
     "algebraic_fractions": {
         "title": "Algebraic Fractions",
         "explanation": (
-            "Simplify by factorising numerator and denominator then cancelling common factors. "
-            "Add/subtract: find a common denominator. Multiply: multiply straight across."
+            "Operations on fractions containing variables. "
+            "Simplify by factorising first, then cancelling. "
+            "Example: (x²-1)/(x+1) = (x-1)(x+1)/(x+1) = x-1. "
+            "When adding, the Common Denominator is usually the product of the denominators."
         ),
-        "example": "(x²−4)/(x+2) = (x+2)(x−2)/(x+2) = x−2",
+        "example": "1/x + 1/(x+1) = (x+1 + x) / x(x+1) = (2x+1) / (x²+x).",
     },
     "sequences": {
-        "title": "Sequences & nth Term",
+        "title": "Number Sequences & nth Term",
         "explanation": (
-            "Arithmetic sequence: common difference d, nth term = a + (n−1)d. "
-            "Geometric sequence: common ratio r, nth term = arⁿ⁻¹. "
-            "Find the nth term rule by examining differences."
+            "Arithmetic (Linear): Constant difference. nth term = dn + (a-d). "
+            "Quadratic: Second difference is constant. nth term = an² + bn + c. "
+            "Geometric: Constant ratio. Powers of n. "
+            "To find nth term of a linear sequence, find the difference 'd' and adjust for term 1."
         ),
-        "example": "3, 7, 11, 15, … → d=4, nth term = 4n−1  →  10th term = 39",
+        "example": "5, 8, 11, 14... Diff=3. nth term = 3n + 2.",
     },
     "functions": {
-        "title": "Functions",
+        "title": "Functions & Inverse Functions",
         "explanation": (
-            "A function f maps each input x to exactly one output f(x). "
-            "Composite function: fg(x) = f(g(x)) — apply g first, then f. "
-            "Inverse function f⁻¹(x): swap x and y, then rearrange."
+            "Notation f(x) or f: x → ... "
+            "To find the inverse f⁻¹(x): "
+            "1. Let y = f(x). "
+            "2. Rearrange the equation to make x the subject. "
+            "3. Replace x with f⁻¹(x) and y with x. "
+            "Composite function fg(x) means f(g(x)) — solve inside-out."
         ),
-        "example": "f(x)=2x+1, g(x)=x²  →  fg(3)=f(9)=19  |  f⁻¹(x)=(x−1)/2",
+        "example": "f(x)=3x-1. Find f⁻¹. y=3x-1 → x=(y+1)/3 → f⁻¹(x)=(x+1)/3.",
     },
 
     # ── Geometry ──────────────────────────────────────────────────────────────
     "area": {
-        "title": "Area",
+        "title": "Area of 2D Shapes",
         "explanation": (
-            "Area measures the amount of space inside a 2D shape. Common formulas: "
-            "Rectangle = l × w, Triangle = ½bh, Circle = πr², Trapezium = ½(a+b)h, Parallelogram = bh."
+            "Rectangle: L × W | Triangle: ½ × B × H | Circle: πr² | Trapezium: ½(a+b)h. "
+            "Parallelogram: B × H. Sector of circle: (θ/360) × πr². "
+            "Remember that H must be the perpendicular height, not the slant length."
         ),
-        "example": "Rectangle 8cm × 5cm → Area = 40 cm²  |  Circle r=3: Area = 9π ≈ 28.27 cm²",
+        "example": "Trapezium with parallel sides 5, 9 and height 4: Area = ½(14)4 = 28.",
     },
     "perimeter": {
-        "title": "Perimeter",
+        "title": "Perimeter & Circumference",
         "explanation": (
-            "Perimeter is the total distance around the outside of a 2D shape. "
-            "For a circle, the perimeter is called the circumference: C = 2πr."
+            "The total distance around the boundary. Circumference = 2πr or πd. "
+            "Arc Length of a sector = (θ/360) × 2πr. "
+            "Perimeter of a sector = Arc Length + 2r. (Don't forget the radii!)."
         ),
-        "example": "Rectangle 8×5: P = 2(8+5) = 26 cm  |  Circle r=3: C = 6π ≈ 18.85 cm",
+        "example": "Circumference of a 10cm diameter circle = 10π ≈ 31.4cm.",
     },
     "volume": {
-        "title": "Volume",
+        "title": "Volume & Surface Area (3D)",
         "explanation": (
-            "Volume measures 3D space. Common formulas: Cuboid = lwh, Cylinder = πr²h, "
-            "Cone = ⅓πr²h, Sphere = 4/3πr³, Prism = cross-section area × length."
+            "Prism: Cross-section Area × Length. Cylinder: πr²h. "
+            "Pyramid: ⅓ × Base Area × H. Cone: ⅓πr²h. Sphere: 4/3πr³. "
+            "Total Surface Area includes faces (e.g. Cylinder = 2πr² + 2πrh)."
         ),
-        "example": "Cylinder r=2, h=5: V = π×4×5 = 20π ≈ 62.83 cm³",
+        "example": "Volume of sphere radius 3: 4/3 × π × 27 = 36π ≈ 113.1.",
     },
     "pythagoras": {
         "title": "Pythagoras' Theorem",
         "explanation": (
-            "In a right-angled triangle, the square of the hypotenuse equals the sum of the squares of the other two sides: "
-            "a² + b² = c² where c is the hypotenuse (longest side, opposite the right angle)."
+            "In any right-angled triangle, a² + b² = c², where c is the hypotenuse. "
+            "To find c: √(a² + b²). To find a: √(c² - b²). "
+            "Also applies in 3D: Diagonal² = L² + W² + H²."
         ),
-        "example": "a=3, b=4 → c² = 9+16 = 25 → c = 5",
+        "example": "Sides 5 and 12: Hypotenuse = √(25 + 144) = √169 = 13.",
     },
     "angles": {
-        "title": "Angle Properties",
+        "title": "Angle Geometry Rules",
         "explanation": (
-            "Key rules: angles on a straight line = 180°, angles around a point = 360°, "
-            "vertically opposite angles are equal. In a triangle: angles sum to 180°. "
-            "In a quadrilateral: angles sum to 360°."
+            "1. Angles on a line = 180°. "
+            "2. Angles at a point = 360°. "
+            "3. Vertically opposite angles are equal. "
+            "4. Triangle sum = 180°; Quadrilateral sum = 360°. "
+            "5. Sum of exterior angles in any polygon = 360°. "
+            "6. Sum of interior angles = (n-2) × 180°."
         ),
-        "example": "Two angles of a triangle are 65° and 75° → third angle = 180−65−75 = 40°",
+        "example": "Regular Hexagon: Interior sum = 4 × 180 = 720°. Each angle = 120°.",
     },
     "parallel_lines": {
-        "title": "Parallel Lines & Transversals",
+        "title": "Parallel Lines (F, Z, C Angles)",
         "explanation": (
-            "When a transversal crosses parallel lines: alternate angles are equal (Z-angles), "
-            "corresponding angles are equal (F-angles), co-interior angles add up to 180° (C-angles)."
+            "When parallel lines are cut by a transversal: "
+            "- Alternate angles are equal (Z-shape). "
+            "- Corresponding angles are equal (F-shape). "
+            "- Co-interior (Allied) angles sum to 180° (C-shape)."
         ),
-        "example": "If alternate angles: both equal 55°  |  Co-interior: 65° + 115° = 180°",
+        "example": "If angle A and B are alternate on parallel lines, A = B.",
     },
     "circle_theorems": {
         "title": "Circle Theorems",
         "explanation": (
-            "Key theorems: angle at centre = 2 × angle at circumference (same arc); "
-            "angles in the same segment are equal; angle in semicircle = 90°; "
-            "opposite angles in a cyclic quadrilateral sum to 180°; tangent is perpendicular to radius."
+            "1. Angle at center is twice angle at circumference. "
+            "2. Angle in a semicircle is 90°. "
+            "3. Angles in same segment are equal. "
+            "4. Opposite angles of cyclic quadrilateral sum to 180°. "
+            "5. Angle between tangent and radius is 90°. "
+            "6. Tangents from an external point are equal in length."
         ),
-        "example": "Central angle 80° → inscribed angle on same arc = 40°",
+        "example": "Opposite angles of a cyclic quad are 70° and x. x = 110°.",
     },
     "similarity": {
-        "title": "Similar Shapes",
+        "title": "Similarity (Lengths, Areas, Volumes)",
         "explanation": (
-            "Similar shapes have the same angles and proportional sides. "
-            "If the linear scale factor is k: area scale factor = k², volume scale factor = k³."
+            "Two shapes are similar if they have the same shape but different size (proportional). "
+            "If Length ratio = L₁:L₂ (scale factor k), then: "
+            "Area ratio = k². Volume ratio = k³. "
+            "This is a frequent O-Level paper question."
         ),
-        "example": "Similar triangles, sides 3 and 6 → scale factor 2, area ratio 4:1",
+        "example": "Scale factor 3. Area of small = 10. Area of large = 10 × 3² = 90.",
     },
     "congruence": {
-        "title": "Congruent Shapes",
+        "title": "Congruent Triangles",
         "explanation": (
-            "Congruent shapes are identical in shape and size. "
-            "Tests for congruent triangles: SSS, SAS, ASA, AAS, RHS."
+            "Condition for two triangles to be identical (congruent): "
+            "SSS (3 sides), SAS (2 sides, included angle), ASA (2 angles, included side), "
+            "AAs (2 angles, matching side), RHS (Right-angle, Hypotenuse, Side)."
         ),
-        "example": "Two triangles with sides 3,4,5 are congruent by SSS",
+        "example": "Two triangles with sides 6, 8, 10 are congruent by SSS.",
     },
     "transformations": {
         "title": "Transformations",
         "explanation": (
-            "Four main types: Translation (shift by vector), Reflection (flip over line), "
-            "Rotation (turn around point by angle), Enlargement (scale by factor from centre). "
-            "Describe each transformation fully."
+            "1. Reflection: Need 'Mirror Line' (e.g., y=x). "
+            "2. Rotation: Need 'Center', 'Angle', and 'Direction' (e.g., (0,0), 90°, CLOCKWISE). "
+            "3. Translation: Need 'Column Vector' (x/y). "
+            "4. Enlargement: Need 'Center' and 'Scale Factor'. (Negative factor flips and scales)."
         ),
-        "example": "Enlargement scale factor 2, centre (0,0): (3,4) → (6,8)",
+        "example": "Enlargement SF -2 center (0,0) doubles size and rotates 180°.",
     },
     "vectors": {
-        "title": "Vectors",
+        "title": "Vectors (Column & Geometric)",
         "explanation": (
-            "A vector has magnitude and direction. Written as column vector (x, y) or bold a. "
-            "Addition: add components. Scalar multiplication: multiply each component. "
-            "Magnitude |a| = √(x² + y²)."
+            "A quantity with magnitude and direction. AB = OB - OA (Position vectors). "
+            "Column vectors: (x / y). Multiple of vector: k(x / y) = (kx / ky). "
+            "Magnitude |v| = √(x² + y²). Resultant vector is the sum of vectors."
         ),
-        "example": "a=(3,4), |a|=5  |  2a=(6,8)  |  a+b=(3+1, 4+2)=(4,6)",
+        "example": "a = (3/4), b = (1/-2) → a + b = (4/2).",
     },
 
     # ── Trigonometry ──────────────────────────────────────────────────────────
     "trigonometry": {
         "title": "Trigonometry (SOH-CAH-TOA)",
         "explanation": (
-            "In a right-angled triangle: sin θ = Opposite/Hypotenuse, cos θ = Adjacent/Hypotenuse, tan θ = Opposite/Adjacent. "
-            "Use SOH-CAH-TOA to remember the ratios."
+            "Definitions for right-angled triangles: "
+            "Sin θ = Opp/Hyp | Cos θ = Adj/Hyp | Tan θ = Opp/Adj. "
+            "To find angle θ, use inverse functions: θ = sin⁻¹(Ratio). "
+            "Always check if your calculator is in 'DEG' (degrees) mode."
         ),
-        "example": "θ=30°, hyp=10 → opposite = 10 × sin30° = 10 × 0.5 = 5",
+        "example": "Adj=4, Hyp=5 → cos θ = 4/5 = 0.8 → θ = 36.9°.",
     },
     "sine_rule": {
-        "title": "Sine Rule",
+        "title": "Sine Rule (Non-Right Triangles)",
         "explanation": (
-            "In any triangle: a/sinA = b/sinB = c/sinC. "
-            "Use when you know: two angles and a side, or two sides and a non-included angle."
+            "a/sinA = b/sinB = c/sinC. "
+            "Use when you know: "
+            "1. Two angles and any side. "
+            "2. Two sides and a non-included angle (Beware of the ambiguous case!)."
         ),
-        "example": "a=7, A=40°, B=60° → b = 7 × sin60°/sin40° ≈ 9.42",
+        "example": "Side a=10, angle A=30°, angle B=45° → b = 10 sin 45 / sin 30 = 14.1.",
     },
     "cosine_rule": {
-        "title": "Cosine Rule",
+        "title": "Cosine Rule (Non-Right Triangles)",
         "explanation": (
-            "In any triangle: a² = b² + c² − 2bc cosA. "
-            "Rearranged for angle: cosA = (b²+c²−a²)/(2bc). "
-            "Use when you know: all three sides, or two sides and the included angle."
+            "Side: a² = b² + c² - 2bc cosA. "
+            "Angle: cosA = (b² + c² - a²) / 2bc. "
+            "Use when you know: "
+            "1. Three sides (SSS). "
+            "2. Two sides and the included angle (SAS)."
         ),
-        "example": "b=5, c=7, A=60° → a² = 25+49−2(35)(0.5) = 39 → a ≈ 6.24",
+        "example": "a=5, b=6, angle C=60° → c² = 25 + 36 - 2(30)(0.5) = 31. c = √31.",
     },
     "bearing": {
         "title": "Bearings",
         "explanation": (
-            "A bearing is a direction measured clockwise from North, written as a 3-digit number. "
-            "Back bearing = bearing ± 180°. Draw a diagram and use trigonometry to solve bearing problems."
+            "Directional measurements in O-Level: "
+            "1. Measured from North. "
+            "2. Measured CLOCKWISE. "
+            "3. Always THREE digits (e.g., 045° instead of 45°). "
+            "Back Bearing = Bearing ± 180°."
         ),
-        "example": "Bearing 065° means 65° clockwise from North (NE direction).",
+        "example": "The bearing of B from A is 070°. The bearing of A from B is 250°.",
     },
 
     # ── Graphs ────────────────────────────────────────────────────────────────
     "gradient": {
-        "title": "Gradient (Slope)",
+        "title": "Gradient (m)",
         "explanation": (
-            "Gradient = rise/run = (y₂−y₁)/(x₂−x₁). "
-            "Positive gradient: line goes uphill left-to-right. "
-            "Negative gradient: downhill. Zero gradient: horizontal. Undefined: vertical."
+            "Slope = (Change in y) / (Change in x) = (y₂ - y₁) / (x₂ - x₁). "
+            "Horizontal lines m=0. Vertical lines m is undefined. "
+            "Parallel lines have the same gradient. Perpendicular lines have gradients m₁m₂ = -1."
         ),
-        "example": "Points (1,2) and (4,8) → gradient = (8−2)/(4−1) = 6/3 = 2",
+        "example": "Points (0,0) and (2,6) → m = 6/2 = 3.",
     },
     "y_intercept": {
-        "title": "y-Intercept",
+        "title": "y-Intercept (c)",
         "explanation": (
-            "The y-intercept is where a line crosses the y-axis (x = 0). "
-            "In y = mx + c, c is the y-intercept. Set x = 0 and solve for y."
+            "The coordinate where the line crosses the y-axis (where x=0). "
+            "In the form y = mx + c, the constant term 'c' is the y-intercept. "
+            "In a practical graph (e.g. Distance-Time), this is often the starting value."
         ),
-        "example": "y = 3x + 5 → y-intercept = 5  (point (0, 5))",
+        "example": "y = 4x - 7 crosses the y-axis at (0, -7).",
     },
     "straight_line_graph": {
-        "title": "Straight Line Graphs (y = mx + c)",
+        "title": "Straight Line Graphs",
         "explanation": (
-            "m is the gradient, c is the y-intercept. "
-            "To draw: plot the y-intercept, then use gradient to find a second point. "
-            "Parallel lines have equal gradients. Perpendicular lines: m₁ × m₂ = −1."
+            "Standard form: y = mx + c. "
+            "To plot: Calculate 3 points, or plot 'c' and use 'm' (rise/run). "
+            "General form: Ax + By = D (can be rearranged to y = mx + c)."
         ),
-        "example": "y=2x+1: plot (0,1), move right 1 up 2 → (1,3). Draw line.",
+        "example": "2x + y = 5 → y = -2x + 5. Gradient = -2, y-intercept = 5.",
     },
     "quadratic_graph": {
-        "title": "Quadratic Graphs",
+        "title": "Quadratic Graphs (Parabolas)",
         "explanation": (
-            "y = ax² + bx + c gives a parabola. Positive a: U-shape (minimum). "
-            "Negative a: ∩-shape (maximum). Vertex at x = −b/(2a). "
-            "Roots = x-intercepts (where y=0)."
+            "Shape: Parabola. "
+            "If a > 0: 'Happy' face (Minimum point). "
+            "If a < 0: 'Sad' face (Maximum point). "
+            "The graph is symmetrical. The line of symmetry is x = -b/2a."
         ),
-        "example": "y=x²−4: vertex at (0,−4), crosses x-axis at x=±2",
+        "example": "y = x² + 2. Minimum point is (0,2). Symmetrical about y-axis.",
     },
     "distance_time_graph": {
-        "title": "Distance-Time Graph",
+        "title": "Distance and Speed-Time Graphs",
         "explanation": (
-            "Gradient = speed. Horizontal line = stationary. "
-            "Steeper line = greater speed. "
-            "Area under a speed-time graph = distance."
+            "Distance-Time: Gradient = Speed. Horizontal = Stationary. "
+            "Speed-Time: Gradient = Acceleration. Area under graph = Distance travelled. "
+            "Units must be consistent (e.g., m/s² for acceleration)."
         ),
-        "example": "Line from (0,0) to (4,20): speed = 20/4 = 5 m/s",
+        "example": "Area of a triangle shape on Speed-Time = ½ × base × peak speed.",
     },
 
     # ── Statistics ────────────────────────────────────────────────────────────
     "mean": {
-        "title": "Mean (Arithmetic Average)",
+        "title": "Mean (Average)",
         "explanation": (
-            "Mean = sum of all values ÷ number of values. "
-            "For grouped data: mean ≈ Σ(midpoint × frequency) ÷ Σfrequency."
+            "Mean = Σx / n. For grouped frequency: Mean = Σ(fx) / Σf. "
+            "It is the most representative average but is sensitive to 'outliers' (extreme values)."
         ),
-        "example": "Data: 4, 7, 9, 12 → mean = 32 ÷ 4 = 8",
+        "example": "Data: 2, 8, 11. Mean = (2+8+11)/3 = 7.",
     },
     "median": {
-        "title": "Median",
+        "title": "Median (Middle Value)",
         "explanation": (
-            "The median is the middle value when data is sorted. "
-            "For n values: median is at position (n+1)/2. "
-            "For even n, average the two middle values."
+            "The middle value of a sorted data set. Position = (n+1)/2. "
+            "If n is even, average the two middle values. "
+            "Median is useful because it is not affected by outliers."
         ),
-        "example": "Sorted: 3, 5, 7, 9, 11 → median = 7 (3rd of 5)",
+        "example": "2, 5, 8, 12, 19. Median = 8. (Middle of 5 numbers).",
     },
     "mode": {
-        "title": "Mode",
+        "title": "Mode (Most Frequent)",
         "explanation": (
-            "The mode is the most frequently occurring value. "
-            "A data set can have one mode (unimodal), two modes (bimodal), or no mode."
+            "The value that appears most often. In grouped data, we look for the 'Modal Class'. "
+            "A set can be bimodal if two values appear with the same highest frequency."
         ),
-        "example": "Data: 2, 3, 3, 5, 7, 3 → mode = 3",
+        "example": "Data: 2, 3, 3, 4, 5. Mode = 3.",
     },
     "range": {
-        "title": "Range",
+        "title": "Range & Spread",
         "explanation": (
-            "Range = largest value − smallest value. "
-            "It measures how spread out the data is. "
-            "A large range means more variability."
+            "Range = Highest Value - Lowest Value. "
+            "It is a simple measure of dispersion. Interquartile Range (IQR) = UQ - LQ is often "
+            "more useful in O-Level as it ignores extreme values."
         ),
-        "example": "Data: 3, 7, 12, 19 → range = 19 − 3 = 16",
+        "example": "Scores: 10, 45, 48, 50. Range = 40.",
     },
     "probability": {
         "title": "Probability",
         "explanation": (
-            "P(event) = number of favourable outcomes ÷ total possible outcomes. "
-            "0 ≤ P ≤ 1. P(A') = 1 − P(A). "
-            "Combined events: P(A and B) = P(A) × P(B) for independent events."
+            "P(A) = Favorable Outcomes / Total Outcomes. "
+            "0 ≤ P(A) ≤ 1. (0 = Impossible, 1 = Certain). "
+            "Mutually exclusive: P(A or B) = P(A) + P(B). "
+            "Independent events: P(A and B) = P(A) × P(B)."
         ),
-        "example": "Rolling a die: P(even) = 3/6 = 1/2",
+        "example": "Rolling a 6 and flipping Heads: 1/6 × 1/2 = 1/12.",
     },
     "histogram": {
         "title": "Histograms",
         "explanation": (
-            "Histograms display continuous data grouped into class intervals. "
-            "y-axis shows frequency density = frequency ÷ class width. "
-            "Area of each bar = frequency."
+            "Unlike bar charts, histograms handle continuous data with unequal class widths. "
+            "Frequency Density = Frequency / Class Width. "
+            "The AREA of the bar represents the frequency. Always check the y-axis label."
         ),
-        "example": "Class 10–15 (width 5), frequency 20 → frequency density = 20/5 = 4",
+        "example": "Class width 10, Frequency 50 → Freq Density = 5.",
     },
     "cumulative_frequency": {
         "title": "Cumulative Frequency",
         "explanation": (
-            "Running total of frequencies. Plot cumulative frequency against upper class boundary. "
-            "Read off: median (50th percentile), LQ (25th), UQ (75th), IQR = UQ − LQ."
+            "A running total of frequency. Plot points at the UPPER BOUND of each class. "
+            "Used to estimate: "
+            "- Median (50% of n) "
+            "- Lower Quartile (25% of n) "
+            "- Upper Quartile (75% of n) "
+            "- Percentiles."
         ),
-        "example": "n=80: median at 40th value, LQ at 20th, UQ at 60th",
+        "example": "If total n=120, median is read from CF=60 on the y-axis.",
     },
     "scatter_graph": {
         "title": "Scatter Graphs & Correlation",
         "explanation": (
-            "Scatter graphs show relationship between two variables. "
-            "Positive correlation: both increase together. Negative: one increases, other decreases. "
-            "Line of best fit passes through (x̄, ȳ)."
+            "Show the relationship between two variables. "
+            "Positive Correlation: Both increase. "
+            "Negative Correlation: One increases, other decreases. "
+            "No Correlation: Random points. "
+            "Line of Best Fit: A straight line that passes through the 'center' of points."
         ),
-        "example": "Height vs shoe size: positive correlation",
+        "example": "Correlation between height and weight is usually positive.",
     },
 
     # ── Calculus / Advanced ───────────────────────────────────────────────────
     "differentiation": {
-        "title": "Differentiation",
+        "title": "Differentiation (Gradient functions)",
         "explanation": (
-            "dy/dx gives the gradient of a curve at any point. "
-            "Rule: if y = axⁿ, then dy/dx = naxⁿ⁻¹. "
-            "Set dy/dx = 0 to find stationary points (maxima/minima)."
+            "Calculates the rate of change. If y = xⁿ, then dy/dx = nxⁿ⁻¹. "
+            "Used to: "
+            "1. Find the gradient of a curve at a specific x. "
+            "2. Find Turning Points (where dy/dx = 0)."
         ),
-        "example": "y = 3x² + 2x → dy/dx = 6x + 2  |  stationary point: 6x+2=0 → x=−1/3",
+        "example": "y = x³ + 5x → dy/dx = 3x² + 5.",
     },
     "integration": {
-        "title": "Integration",
+        "title": "Integration (Area Under Curve)",
         "explanation": (
-            "The reverse of differentiation. ∫axⁿ dx = axⁿ⁺¹/(n+1) + C. "
-            "Definite integral ∫[a,b] f(x)dx gives the area under the curve between x=a and x=b."
+            "The inverse of differentiation. ∫xⁿ dx = (xⁿ⁺¹)/(n+1) + C. "
+            "The '+ C' is the 'constant of integration'. "
+            "Definite integrals are used to calculate the exact area bound by a curve and an axis."
         ),
-        "example": "∫(3x²)dx = x³ + C  |  ∫₀²(x²)dx = [x³/3]₀² = 8/3",
+        "example": "∫(2x + 3)dx = x² + 3x + C.",
     },
     "matrix": {
         "title": "Matrices",
         "explanation": (
-            "A matrix is a rectangular array of numbers. "
-            "Matrix multiplication: (AB)ᵢⱼ = sum of row i of A × column j of B. "
-            "Only possible when columns of A = rows of B. Determinant of 2×2: ad−bc."
+            "Rectangular arrays of numbers. "
+            "Addition/Subtraction: Corresponding elements. "
+            "Multiplication: Row × Column. "
+            "Determinant |A| of (a b / c d) = ad - bc. "
+            "Inverse exists only if |A| ≠ 0."
         ),
-        "example": "[[1,2],[3,4]] × [[5],[6]] = [[1×5+2×6],[3×5+4×6]] = [[17],[39]]",
+        "example": "Inverse A = (1/|A|) × (d -b / -c a).",
     },
     "loci": {
-        "title": "Loci",
+        "title": "Loci & Constructions",
         "explanation": (
-            "A locus is the set of all points satisfying a given condition. "
-            "Common loci: fixed distance from a point (circle), equidistant from two points (perpendicular bisector), "
-            "equidistant from two lines (angle bisector)."
+            "Locus of points satisfying a condition: "
+            "- From a point: Circle. "
+            "- From 2 points: Perpendicular Bisector. "
+            "- From 2 lines: Angle Bisector. "
+            "- From 1 line: Parallel lines on either side."
         ),
-        "example": "Locus of points 3cm from point A = circle centre A, radius 3cm",
+        "example": "Construction of a scale map requires precise loci.",
     },
     "set_notation": {
-        "title": "Set Notation",
+        "title": "Sets & Venn Diagrams",
         "explanation": (
-            "A ∪ B = union (in A or B or both). A ∩ B = intersection (in both). "
-            "A' = complement (not in A). n(A) = number of elements in A. "
-            "Use Venn diagrams to visualise."
+            "∈: 'is an element of' | ∩: Intersection (AND) | ∪: Union (OR) | ξ: Universal Set. "
+            "A': Complement (elements not in A). "
+            "n(A): Number of elements. "
+            "Empty Set (∅): Set with zero elements."
         ),
-        "example": "A={1,2,3}, B={2,3,4} → A∪B={1,2,3,4}, A∩B={2,3}",
+        "example": "A ∩ B is the overlapping middle part of the circles.",
     },
 }
 
