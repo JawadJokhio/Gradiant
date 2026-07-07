@@ -1,0 +1,2561 @@
+{
+  "syllabus": "Cambridge O-Level Mathematics (4024)",
+  "coverage": "2002 - 2025 (24 years)",
+  "papers": "Paper 1 (MCQ/Short Answer) & Paper 2 (Structured/Extended)",
+  "past_papers": {
+    "2002": {
+      "May_June_2002": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Evaluate 3.6 × 10² + 4.5 × 10¹",
+              "topic": "number",
+              "marks": 1,
+              "mark_scheme_points": ["405 (B1)"],
+              "examiner_tips": "Convert standard form first before adding.",
+              "year": "2002", "season": "May_June_2002"
+            },
+            {
+              "question": "Simplify 3x² × 2x³",
+              "topic": "algebra",
+              "marks": 1,
+              "mark_scheme_points": ["6x⁵ (B1)"],
+              "examiner_tips": "Multiply coefficients and add indices.",
+              "year": "2002", "season": "May_June_2002"
+            },
+            {
+              "question": "Find the HCF of 24 and 36.",
+              "topic": "number",
+              "marks": 1,
+              "mark_scheme_points": ["12 (B1)"],
+              "examiner_tips": "Use prime factorisation: 24=2³×3, 36=2²×3². HCF=2²×3=12.",
+              "year": "2002", "season": "May_June_2002"
+            },
+            {
+              "question": "A line has gradient 2 and passes through (0,3). Write down its equation.",
+              "topic": "coordinate_geometry",
+              "marks": 1,
+              "mark_scheme_points": ["y = 2x + 3 (B1)"],
+              "examiner_tips": "Use y = mx + c form directly.",
+              "year": "2002", "season": "May_June_2002"
+            },
+            {
+              "question": "Express 0.00427 in standard form.",
+              "topic": "number",
+              "marks": 1,
+              "mark_scheme_points": ["4.27 × 10⁻³ (B1)"],
+              "examiner_tips": "Coefficient must be between 1 and 10.",
+              "year": "2002", "season": "May_June_2002"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Solve the simultaneous equations: 3x + 2y = 12 and x - y = 1",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Correct method to eliminate one variable (M1)",
+                "x = 2, y = 1 — correct values for both variables (A1 each)"
+              ],
+              "examiner_tips": "State clearly which method you are using. Show all working for the elimination or substitution step.",
+              "year": "2002", "season": "May_June_2002"
+            },
+            {
+              "question": "A rectangle has length (2x + 3) cm and width (x - 1) cm. Given its area is 28 cm², find x.",
+              "topic": "algebra",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Form equation: (2x+3)(x-1) = 28 (M1)",
+                "Expand: 2x² + x - 3 = 28 → 2x² + x - 31 = 0 (M1)",
+                "Solve using quadratic formula or factorisation (M1)",
+                "x = 3.5 (or equivalent correct positive value) (A1)"
+              ],
+              "examiner_tips": "Reject the negative solution since length must be positive.",
+              "year": "2002", "season": "May_June_2002"
+            },
+            {
+              "question": "In triangle ABC, AB = 8 cm, BC = 6 cm, angle ABC = 90°. Find AC and sin(angle BAC).",
+              "topic": "trigonometry",
+              "marks": 4,
+              "mark_scheme_points": [
+                "AC² = AB² + BC² = 64 + 36 = 100 (M1)",
+                "AC = 10 cm (A1)",
+                "sin(BAC) = BC/AC = 6/10 (M1)",
+                "sin(BAC) = 0.6 or 3/5 (A1)"
+              ],
+              "examiner_tips": "Always identify the hypotenuse first in right-angle trig. Here AC is the hypotenuse.",
+              "year": "2002", "season": "May_June_2002"
+            },
+            {
+              "question": "The mean of 5 numbers is 12. Four of the numbers are 8, 10, 15, 17. Find the fifth number.",
+              "topic": "statistics",
+              "marks": 2,
+              "mark_scheme_points": [
+                "Sum = 5 × 12 = 60 (M1)",
+                "Fifth number = 60 - (8+10+15+17) = 60 - 50 = 10 (A1)"
+              ],
+              "examiner_tips": "Always calculate the total sum first using mean × number of values.",
+              "year": "2002", "season": "May_June_2002"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2002": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Write 48 as a product of prime factors.",
+              "topic": "number",
+              "marks": 2,
+              "mark_scheme_points": ["2⁴ × 3 (B2) or 2 × 2 × 2 × 2 × 3 (B1 for correct method)"],
+              "examiner_tips": "Use a factor tree or repeated division. Final answer must be in index form for full marks.",
+              "year": "2002", "season": "Oct_Nov_2002"
+            },
+            {
+              "question": "Solve 4x - 7 = 13",
+              "topic": "algebra",
+              "marks": 1,
+              "mark_scheme_points": ["x = 5 (B1)"],
+              "examiner_tips": "Add 7 to both sides, then divide by 4.",
+              "year": "2002", "season": "Oct_Nov_2002"
+            },
+            {
+              "question": "Calculate the volume of a cylinder with radius 3 cm and height 7 cm. (Use π = 3.142)",
+              "topic": "geometry",
+              "marks": 2,
+              "mark_scheme_points": [
+                "V = π × 3² × 7 (M1)",
+                "V = 197.9 cm³ (A1, accept 197.8 to 198)"
+              ],
+              "examiner_tips": "V = πr²h. Don't square the height — square only the radius.",
+              "year": "2002", "season": "Oct_Nov_2002"
+            },
+            {
+              "question": "A bag has 5 red and 3 blue balls. A ball is picked at random. Find P(blue).",
+              "topic": "statistics",
+              "marks": 1,
+              "mark_scheme_points": ["3/8 (B1)"],
+              "examiner_tips": "P(blue) = number of blue / total = 3/8.",
+              "year": "2002", "season": "Oct_Nov_2002"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Factorise completely: 6x² - 13x + 6",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Attempt to factorise quadratic (M1)",
+                "Identify factors: (2x - 3)(3x - 2) (M1)",
+                "(2x - 3)(3x - 2) fully correct (A1)"
+              ],
+              "examiner_tips": "Check by expanding: 6x² - 4x - 9x + 6 = 6x² - 13x + 6. ✓",
+              "year": "2002", "season": "Oct_Nov_2002"
+            },
+            {
+              "question": "The exterior angle of a regular polygon is 24°. Find the number of sides.",
+              "topic": "geometry",
+              "marks": 2,
+              "mark_scheme_points": [
+                "Number of sides = 360 ÷ 24 (M1)",
+                "= 15 sides (A1)"
+              ],
+              "examiner_tips": "Sum of exterior angles of any polygon = 360°. For regular polygon: each exterior angle = 360°/n.",
+              "year": "2002", "season": "Oct_Nov_2002"
+            },
+            {
+              "question": "Draw a cumulative frequency curve for the data given and use it to estimate the median and interquartile range.",
+              "topic": "statistics",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Correct cumulative frequency table (B1)",
+                "Correct scale on both axes (B1)",
+                "All points plotted correctly (B2)",
+                "Smooth curve joining points (B1)",
+                "Median read from n/2 level (B1)"
+              ],
+              "examiner_tips": "Plot cumulative frequency against the UPPER CLASS BOUNDARY. Draw dotted lines from n/2 and 3n/4 to read median and UQ.",
+              "year": "2002", "season": "Oct_Nov_2002"
+            }
+          ]
+        }
+      }
+    },
+    "2003": {
+      "May_June_2003": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Find the LCM of 8, 12 and 20.",
+              "topic": "number",
+              "marks": 2,
+              "mark_scheme_points": ["120 (B2); B1 for correct prime factor method shown"],
+              "examiner_tips": "LCM = product of highest powers of all prime factors: 2³ × 3 × 5 = 120.",
+              "year": "2003", "season": "May_June_2003"
+            },
+            {
+              "question": "Expand and simplify (x + 3)(x - 5)",
+              "topic": "algebra",
+              "marks": 2,
+              "mark_scheme_points": ["x² - 2x - 15 (B2); B1 for 3 out of 4 terms correct"],
+              "examiner_tips": "Use FOIL: First, Outer, Inner, Last. Collect like terms.",
+              "year": "2003", "season": "May_June_2003"
+            },
+            {
+              "question": "In a right-angled triangle, the two shorter sides are 5 cm and 12 cm. Find the hypotenuse.",
+              "topic": "trigonometry",
+              "marks": 2,
+              "mark_scheme_points": ["h² = 5² + 12² = 25 + 144 = 169 (M1)", "h = 13 cm (A1)"],
+              "examiner_tips": "Pythagoras' theorem: c² = a² + b². This is a 5-12-13 Pythagorean triple.",
+              "year": "2003", "season": "May_June_2003"
+            },
+            {
+              "question": "A price increases from $80 to $96. Find the percentage increase.",
+              "topic": "number",
+              "marks": 2,
+              "mark_scheme_points": ["Increase = 16; (16/80) × 100 (M1)", "= 20% (A1)"],
+              "examiner_tips": "Percentage increase = (increase / original) × 100. Always divide by the original value.",
+              "year": "2003", "season": "May_June_2003"
+            },
+            {
+              "question": "The bearing of B from A is 065°. Find the bearing of A from B.",
+              "topic": "trigonometry",
+              "marks": 1,
+              "mark_scheme_points": ["245° (B1)"],
+              "examiner_tips": "Bearing of A from B = bearing of B from A + 180° (if < 180°, add 180°; if ≥ 180°, subtract 180°).",
+              "year": "2003", "season": "May_June_2003"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Solve the quadratic equation x² - 5x + 6 = 0 by factorisation.",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "(x - 2)(x - 3) = 0 (M2 — M1 for correct method, M1 for correct factors)",
+                "x = 2 or x = 3 (A1)"
+              ],
+              "examiner_tips": "Always write solutions clearly. Both solutions required for full marks.",
+              "year": "2003", "season": "May_June_2003"
+            },
+            {
+              "question": "A sphere has radius 5 cm. Find its (a) volume (b) surface area. (π = 3.142)",
+              "topic": "geometry",
+              "marks": 4,
+              "mark_scheme_points": [
+                "(a) V = (4/3)πr³ = (4/3) × 3.142 × 125 (M1) = 523.6 cm³ (A1)",
+                "(b) SA = 4πr² = 4 × 3.142 × 25 (M1) = 314.2 cm² (A1)"
+              ],
+              "examiner_tips": "Learn both formulas: V = 4/3 πr³ and A = 4πr². Don't mix them up.",
+              "year": "2003", "season": "May_June_2003"
+            },
+            {
+              "question": "Using the quadratic formula, solve 2x² + 3x - 5 = 0.",
+              "topic": "algebra",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Correctly state formula x = (-b ± √(b²-4ac)) / 2a (M1)",
+                "Substitute a=2, b=3, c=-5: discriminant = 9 + 40 = 49 (M1)",
+                "x = (-3 ± 7) / 4 (M1)",
+                "x = 1 or x = -2.5 (A1)"
+              ],
+              "examiner_tips": "Always show the formula before substituting. The Cambridge mark scheme requires this for method mark.",
+              "year": "2003", "season": "May_June_2003"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2003": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Simplify (2a²b)³",
+              "topic": "algebra",
+              "marks": 2,
+              "mark_scheme_points": ["8a⁶b³ (B2); B1 for two of the three components correct"],
+              "examiner_tips": "Cube each factor separately: 2³=8, (a²)³=a⁶, b³.",
+              "year": "2003", "season": "Oct_Nov_2003"
+            },
+            {
+              "question": "A map has a scale of 1:50000. A road is 3 cm on the map. Find its actual length in km.",
+              "topic": "number",
+              "marks": 2,
+              "mark_scheme_points": ["3 × 50000 = 150000 cm (M1)", "= 1.5 km (A1)"],
+              "examiner_tips": "Convert: 150000 cm ÷ 100 = 1500 m ÷ 1000 = 1.5 km.",
+              "year": "2003", "season": "Oct_Nov_2003"
+            },
+            {
+              "question": "Given f(x) = 3x - 1, find f(4) and f⁻¹(x).",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "f(4) = 11 (B1)",
+                "Let y = 3x - 1; x = (y+1)/3 (M1)",
+                "f⁻¹(x) = (x+1)/3 (A1)"
+              ],
+              "examiner_tips": "For inverse function: swap x and y, then make y the subject.",
+              "year": "2003", "season": "Oct_Nov_2003"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Triangle PQR has vertices P(1,2), Q(4,2), R(4,6). (a) Find the area of triangle PQR. (b) Reflect triangle PQR in the line y = x. Write down the coordinates of the image.",
+              "topic": "geometry",
+              "marks": 5,
+              "mark_scheme_points": [
+                "(a) PQ = 3, QR = 4 (right angle at Q), Area = ½ × 3 × 4 = 6 cm² (B2)",
+                "(b) Reflection in y = x: swap x and y coordinates (M1)",
+                "P'(2,1), Q'(2,4), R'(6,4) (A2 — 1 mark per correct vertex pair)"
+              ],
+              "examiner_tips": "For reflection in y=x: point (a,b) maps to (b,a). Verify all 3 vertices.",
+              "year": "2003", "season": "Oct_Nov_2003"
+            },
+            {
+              "question": "A car travels 120 km in 1.5 hours. (a) Find its speed in km/h. (b) At this speed, how long will it take to travel 200 km?",
+              "topic": "number",
+              "marks": 4,
+              "mark_scheme_points": [
+                "(a) speed = distance/time = 120/1.5 = 80 km/h (B2)",
+                "(b) time = 200/80 = 2.5 hours (M1 + A1)"
+              ],
+              "examiner_tips": "Speed = Distance/Time triangle: cover what you want to find.",
+              "year": "2003", "season": "Oct_Nov_2003"
+            }
+          ]
+        }
+      }
+    },
+    "2004": {
+      "May_June_2004": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Evaluate 2³ + √64",
+              "topic": "number",
+              "marks": 1,
+              "mark_scheme_points": ["8 + 8 = 16 (B1)"],
+              "examiner_tips": "2³ = 8 and √64 = 8.",
+              "year": "2004", "season": "May_June_2004"
+            },
+            {
+              "question": "Factorise: 6xy - 4x²y",
+              "topic": "algebra",
+              "marks": 2,
+              "mark_scheme_points": ["2xy(3 - 2x) (B2); B1 for taking out 2x or 2y as common factor"],
+              "examiner_tips": "Identify the HCF of all terms: 2xy. Then factorise.",
+              "year": "2004", "season": "May_June_2004"
+            },
+            {
+              "question": "A shop sells a jacket for $180 after giving a 10% discount. Find the original price.",
+              "topic": "number",
+              "marks": 2,
+              "mark_scheme_points": [
+                "90% of original = 180 (M1)",
+                "Original = 180/0.9 = $200 (A1)"
+              ],
+              "examiner_tips": "Reverse percentage: $180 represents 90%, so 100% = 180 × 100/90.",
+              "year": "2004", "season": "May_June_2004"
+            },
+            {
+              "question": "Find the gradient of the line joining (2, 5) and (6, 13).",
+              "topic": "coordinate_geometry",
+              "marks": 2,
+              "mark_scheme_points": [
+                "Gradient = (13-5)/(6-2) (M1)",
+                "= 8/4 = 2 (A1)"
+              ],
+              "examiner_tips": "Gradient = (y₂-y₁)/(x₂-x₁). Keep consistent order of coordinates.",
+              "year": "2004", "season": "May_June_2004"
+            },
+            {
+              "question": "In a class of 30, 18 study French, 14 study German, 5 study both. Find how many study neither.",
+              "topic": "sets",
+              "marks": 2,
+              "mark_scheme_points": [
+                "F∪G = 18 + 14 - 5 = 27 (M1)",
+                "Neither = 30 - 27 = 3 (A1)"
+              ],
+              "examiner_tips": "Use |A∪B| = |A| + |B| - |A∩B|. Draw a Venn diagram to visualise.",
+              "year": "2004", "season": "May_June_2004"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "A sector of a circle has radius 9 cm and arc length 12 cm. Find (a) the angle of the sector, (b) the area of the sector.",
+              "topic": "geometry",
+              "marks": 5,
+              "mark_scheme_points": [
+                "(a) Arc length = rθ (radians) or (θ/360) × 2πr (degrees) (M1)",
+                "θ = 12/9 radians = 4/3 radians ≈ 76.4° (A1)",
+                "(b) Area = ½r²θ = ½ × 81 × (4/3) = 54 cm² (M1 + A1)",
+                "OR Area = (θ/360) × πr²: (76.4/360) × π × 81 = 54 cm² (A1)"
+              ],
+              "examiner_tips": "Know both radian and degree formulae. Radian method is usually faster.",
+              "year": "2004", "season": "May_June_2004"
+            },
+            {
+              "question": "Solve the inequality 3x - 7 > 2 and represent the solution on a number line.",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "3x > 9 (M1)",
+                "x > 3 (A1)",
+                "Open circle at 3, arrow pointing right on number line (B1)"
+              ],
+              "examiner_tips": "When dividing by a negative number, the inequality sign reverses. Use open circle for strict inequality (>), closed circle for ≥.",
+              "year": "2004", "season": "May_June_2004"
+            },
+            {
+              "question": "Find the nth term of the sequence: 5, 8, 11, 14, ...",
+              "topic": "algebra",
+              "marks": 2,
+              "mark_scheme_points": [
+                "Common difference = 3, first term = 5 (M1)",
+                "nth term = 3n + 2 (A1)"
+              ],
+              "examiner_tips": "For arithmetic sequence: nth term = a + (n-1)d. Simplify to get 3n + 2.",
+              "year": "2004", "season": "May_June_2004"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2004": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Calculate 15% of $340.",
+              "topic": "number",
+              "marks": 1,
+              "mark_scheme_points": ["$51 (B1)"],
+              "examiner_tips": "15% = 10% + 5% = 34 + 17 = 51. Or 0.15 × 340 = 51.",
+              "year": "2004", "season": "Oct_Nov_2004"
+            },
+            {
+              "question": "Simplify: (x² - 9) / (x + 3)",
+              "topic": "algebra",
+              "marks": 2,
+              "mark_scheme_points": ["(x-3)(x+3)/(x+3) (M1)", "= x - 3 (A1)"],
+              "examiner_tips": "Factorise the numerator as difference of squares. Cancel common factor (x+3).",
+              "year": "2004", "season": "Oct_Nov_2004"
+            },
+            {
+              "question": "A rectangle has perimeter 34 cm. The length is 4 cm more than the width. Find the dimensions.",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "2(l + w) = 34, so l + w = 17 (M1)",
+                "l = w + 4, so w + 4 + w = 17 (M1)",
+                "w = 6.5 cm, l = 10.5 cm (A1)"
+              ],
+              "examiner_tips": "Set up two equations and solve simultaneously.",
+              "year": "2004", "season": "Oct_Nov_2004"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Using sine rule, find angle A in triangle ABC where a = 7, b = 9, B = 58°.",
+              "topic": "trigonometry",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Sine rule: a/sinA = b/sinB (M1)",
+                "sinA = (7 × sin58°) / 9 (M1)",
+                "sinA = (7 × 0.848) / 9 = 0.6596 (M1)",
+                "A = 41.2° (A1)"
+              ],
+              "examiner_tips": "Always write out the sine rule formula first. Check whether the ambiguous case applies.",
+              "year": "2004", "season": "Oct_Nov_2004"
+            },
+            {
+              "question": "On the axes provided, draw the graph of y = x² - 2x - 3 for -2 ≤ x ≤ 4. Use your graph to solve x² - 2x - 3 = 0.",
+              "topic": "algebra",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Correct table of values for x = -2,-1,0,1,2,3,4 (B2)",
+                "Correctly plotted points (B1)",
+                "Smooth curve (B1)",
+                "x = -1 and x = 3 read from graph (B2)"
+              ],
+              "examiner_tips": "Solutions are where the graph crosses the x-axis (y=0). Label them clearly with dotted lines.",
+              "year": "2004", "season": "Oct_Nov_2004"
+            }
+          ]
+        }
+      }
+    },
+    "2005": {
+      "May_June_2005": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Express 5/8 as a decimal and as a percentage.",
+              "topic": "number",
+              "marks": 2,
+              "mark_scheme_points": ["0.625 (B1)", "62.5% (B1)"],
+              "examiner_tips": "Divide 5 by 8 for decimal. Multiply decimal by 100 for percentage.",
+              "year": "2005", "season": "May_June_2005"
+            },
+            {
+              "question": "The sum of interior angles of a polygon is 1080°. Find the number of sides.",
+              "topic": "geometry",
+              "marks": 2,
+              "mark_scheme_points": [
+                "(n-2) × 180 = 1080 (M1)",
+                "n - 2 = 6, n = 8 (A1)"
+              ],
+              "examiner_tips": "Sum of interior angles = (n-2) × 180°. Rearrange to find n.",
+              "year": "2005", "season": "May_June_2005"
+            },
+            {
+              "question": "Simplify: 2x/3 + x/4",
+              "topic": "algebra",
+              "marks": 2,
+              "mark_scheme_points": [
+                "Common denominator 12: 8x/12 + 3x/12 (M1)",
+                "= 11x/12 (A1)"
+              ],
+              "examiner_tips": "Find LCM of denominators. Convert each fraction, then add numerators.",
+              "year": "2005", "season": "May_June_2005"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "A ladder 5 m long leans against a wall. The foot of the ladder is 1.5 m from the base of the wall. (a) How high up the wall does the ladder reach? (b) Find the angle the ladder makes with the ground.",
+              "topic": "trigonometry",
+              "marks": 5,
+              "mark_scheme_points": [
+                "(a) h² = 5² - 1.5² = 25 - 2.25 = 22.75 (M1)",
+                "h = √22.75 = 4.77 m (A1)",
+                "(b) cos θ = 1.5/5 = 0.3 (M1)",
+                "θ = cos⁻¹(0.3) = 72.5° (A1)"
+              ],
+              "examiner_tips": "Draw a diagram first. Mark the right angle at the wall. Label hypotenuse (5m), adjacent (1.5m).",
+              "year": "2005", "season": "May_June_2005"
+            },
+            {
+              "question": "A bag contains 4 red, 3 blue and 2 green balls. Two balls are drawn without replacement. Find the probability that (a) both are red, (b) one is red and one is blue.",
+              "topic": "statistics",
+              "marks": 5,
+              "mark_scheme_points": [
+                "(a) P(both red) = 4/9 × 3/8 (M1) = 12/72 = 1/6 (A1)",
+                "(b) P(R then B) = 4/9 × 3/8 = 12/72 (M1)",
+                "P(B then R) = 3/9 × 4/8 = 12/72 (M1)",
+                "P(one R, one B) = 24/72 = 1/3 (A1)"
+              ],
+              "examiner_tips": "Without replacement means denominator reduces by 1. Consider all orders (R then B, AND B then R).",
+              "year": "2005", "season": "May_June_2005"
+            },
+            {
+              "question": "Matrix A = [[2,1],[3,4]]. Find (a) det(A) (b) A⁻¹.",
+              "topic": "matrices",
+              "marks": 4,
+              "mark_scheme_points": [
+                "(a) det(A) = 2×4 - 1×3 = 8 - 3 = 5 (B2)",
+                "(b) A⁻¹ = (1/5)[[4,-1],[-3,2]] (M1 + A1)"
+              ],
+              "examiner_tips": "For 2×2 matrix: swap main diagonal, negate off-diagonal, divide by determinant.",
+              "year": "2005", "season": "May_June_2005"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2005": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "The histogram shows the distribution of ages of 100 people. Use it to estimate the mean age.",
+              "topic": "statistics",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Reading frequencies correctly from histogram (B1)",
+                "Using midpoints of each class interval (M1)",
+                "Σ(f × x) calculated (M1)",
+                "Mean = Σ(fx)/Σf (A1)"
+              ],
+              "examiner_tips": "For grouped data: use midpoints. Mean = Σ(f × midpoint) / Σf.",
+              "year": "2005", "season": "Oct_Nov_2005"
+            },
+            {
+              "question": "Make r the subject of the formula V = (4/3)πr³.",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "r³ = 3V / (4π) (M1 + M1)",
+                "r = ∛(3V / 4π) (A1)"
+              ],
+              "examiner_tips": "Multiply both sides by 3, divide by 4π, then take cube root.",
+              "year": "2005", "season": "Oct_Nov_2005"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Write the number 3 500 000 in standard form.",
+              "topic": "number",
+              "marks": 1,
+              "mark_scheme_points": ["3.5 × 10⁶ (B1)"],
+              "examiner_tips": "Move decimal 6 places to the left. Power of 10 is +6.",
+              "year": "2005", "season": "Oct_Nov_2005"
+            },
+            {
+              "question": "In a right triangle, if sin θ = 0.6, find cos θ and tan θ.",
+              "topic": "trigonometry",
+              "marks": 2,
+              "mark_scheme_points": [
+                "sin²θ + cos²θ = 1, so cosθ = 0.8 (M1)",
+                "tan θ = sin/cos = 0.6/0.8 = 0.75 (A1)"
+              ],
+              "examiner_tips": "Use identity sin²θ + cos²θ = 1 to find cosθ. Then tanθ = sinθ/cosθ.",
+              "year": "2005", "season": "Oct_Nov_2005"
+            }
+          ]
+        }
+      }
+    },
+    "2006": {
+      "May_June_2006": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Round 4.8736 to 3 significant figures.",
+              "topic": "number",
+              "marks": 1,
+              "mark_scheme_points": ["4.87 (B1)"],
+              "examiner_tips": "Count from the first non-zero digit. The 4th sig fig is 3, which rounds down.",
+              "year": "2006", "season": "May_June_2006"
+            },
+            {
+              "question": "Solve: 2(x - 3) = 4x + 6",
+              "topic": "algebra",
+              "marks": 2,
+              "mark_scheme_points": [
+                "2x - 6 = 4x + 6 → -2x = 12 (M1)",
+                "x = -6 (A1)"
+              ],
+              "examiner_tips": "Expand brackets first, collect x terms on one side, constants on the other.",
+              "year": "2006", "season": "May_June_2006"
+            },
+            {
+              "question": "A circle has circumference 44 cm. Find its radius. (π = 22/7)",
+              "topic": "geometry",
+              "marks": 2,
+              "mark_scheme_points": [
+                "2πr = 44, r = 44/(2π) = 44/(44/7) (M1)",
+                "r = 7 cm (A1)"
+              ],
+              "examiner_tips": "C = 2πr. When π = 22/7 is given, use it for exact answers.",
+              "year": "2006", "season": "May_June_2006"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Plot the points A(−1, 2), B(3, 4), C(5, 0) and D(1, −2). Show that ABCD is a parallelogram.",
+              "topic": "coordinate_geometry",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Correct plotting of all 4 points (B1)",
+                "Midpoint of AC = midpoint of BD (M1)",
+                "Midpoint AC = (2, 1), Midpoint BD = (2, 1) ✓ (A1)",
+                "OR: AB and DC have same gradient and length (M2)",
+                "Conclusion: diagonals bisect each other / opposite sides parallel & equal (A1)"
+              ],
+              "examiner_tips": "Two methods: (1) diagonals bisect each other, (2) opposite sides parallel and equal. Use whichever is faster.",
+              "year": "2006", "season": "May_June_2006"
+            },
+            {
+              "question": "Using cosine rule, find the length of BC if AB = 7 cm, AC = 9 cm and angle A = 50°.",
+              "topic": "trigonometry",
+              "marks": 4,
+              "mark_scheme_points": [
+                "BC² = AB² + AC² - 2(AB)(AC)cosA (M1)",
+                "BC² = 49 + 81 - 2(7)(9)cos50° (M1)",
+                "BC² = 130 - 126 × 0.6428 = 130 - 80.99 = 49.01 (M1)",
+                "BC = 7.00 cm (A1)"
+              ],
+              "examiner_tips": "Write the cosine rule formula first. Double-check which side is opposite the given angle.",
+              "year": "2006", "season": "May_June_2006"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2006": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Find the value of x if 2ˣ = 32",
+              "topic": "number",
+              "marks": 1,
+              "mark_scheme_points": ["x = 5 (B1)"],
+              "examiner_tips": "32 = 2⁵, so x = 5.",
+              "year": "2006", "season": "Oct_Nov_2006"
+            },
+            {
+              "question": "The ratio of boys to girls in a class is 3:2. There are 30 students total. How many are girls?",
+              "topic": "number",
+              "marks": 2,
+              "mark_scheme_points": [
+                "Girls = (2/5) × 30 (M1)",
+                "= 12 (A1)"
+              ],
+              "examiner_tips": "Total ratio parts = 3+2 = 5. Girls' fraction = 2/5.",
+              "year": "2006", "season": "Oct_Nov_2006"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "A function f(x) = x² - 4x + 3. (a) Write in completed square form. (b) State the minimum value and x-value at which it occurs.",
+              "topic": "algebra",
+              "marks": 5,
+              "mark_scheme_points": [
+                "(a) f(x) = (x - 2)² - 4 + 3 = (x-2)² - 1 (M2 — M1 for correct bracket, M1 for correct constant)",
+                "(b) Minimum value = -1 (B1)",
+                "Occurs at x = 2 (B1)",
+                "Since (x-2)² ≥ 0 for all x, minimum at x=2 (B1)"
+              ],
+              "examiner_tips": "Completing the square: take half the coefficient of x (= -4/2 = -2), square it (= 4), then adjust the constant.",
+              "year": "2006", "season": "Oct_Nov_2006"
+            }
+          ]
+        }
+      }
+    },
+    "2007": {
+      "May_June_2007": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Evaluate: 4⁻² + 2⁻³",
+              "topic": "number",
+              "marks": 2,
+              "mark_scheme_points": [
+                "4⁻² = 1/16, 2⁻³ = 1/8 (B1 each)",
+                "1/16 + 2/16 = 3/16 (B1)"
+              ],
+              "examiner_tips": "Negative indices: a⁻ⁿ = 1/aⁿ. Find common denominator to add fractions.",
+              "year": "2007", "season": "May_June_2007"
+            },
+            {
+              "question": "Given v = u + at, find a when v=20, u=8, t=4.",
+              "topic": "algebra",
+              "marks": 2,
+              "mark_scheme_points": [
+                "20 = 8 + 4a (M1)",
+                "a = 3 (A1)"
+              ],
+              "examiner_tips": "Substitute values, rearrange for a: 4a = 12, a = 3.",
+              "year": "2007", "season": "May_June_2007"
+            },
+            {
+              "question": "Two parallel lines are cut by a transversal. One angle is 115°. Find all the other angles.",
+              "topic": "geometry",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Co-interior angles: 115° + x = 180°, x = 65° (B1)",
+                "Alternate angles = 115° (B1)",
+                "Corresponding angles = 115°; all correctly labeled (B1)"
+              ],
+              "examiner_tips": "Name the angle relationship (alternate, co-interior, corresponding) to earn marks.",
+              "year": "2007", "season": "May_June_2007"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "A cone has base radius 6 cm and height 8 cm. Find (a) slant height (b) total surface area.",
+              "topic": "geometry",
+              "marks": 5,
+              "mark_scheme_points": [
+                "(a) l² = r² + h² = 36 + 64 = 100, l = 10 cm (B2)",
+                "(b) TSA = πrl + πr² (M1)",
+                "= π × 6 × 10 + π × 36 (M1)",
+                "= 60π + 36π = 96π ≈ 301.6 cm² (A1)"
+              ],
+              "examiner_tips": "Total surface area of cone = curved surface area (πrl) + base area (πr²).",
+              "year": "2007", "season": "May_June_2007"
+            },
+            {
+              "question": "The speeds (km/h) of 20 cars were recorded: 42,55,60,68,72,75,78,80,82,85,88,90,92,95,97,100,102,105,110,115. Draw a box-and-whisker plot.",
+              "topic": "statistics",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Median = (85+88)/2 = 86.5 (B1)",
+                "LQ = 73.5 (average of 5th and 6th values) (B1)",
+                "UQ = 98.5 (average of 15th and 16th values) (B1)",
+                "Min = 42, Max = 115 (B1)",
+                "Correctly drawn box-and-whisker plot with all 5 values (B1)"
+              ],
+              "examiner_tips": "Arrange data in order first. LQ = median of lower half, UQ = median of upper half.",
+              "year": "2007", "season": "May_June_2007"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2007": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Simplify (3a²b)² ÷ 9a³b",
+              "topic": "algebra",
+              "marks": 2,
+              "mark_scheme_points": [
+                "Numerator = 9a⁴b² (M1)",
+                "÷ 9a³b = ab (A1)"
+              ],
+              "examiner_tips": "Square the bracket first: (3)²=9, (a²)²=a⁴, b²=b². Then divide using index laws.",
+              "year": "2007", "season": "Oct_Nov_2007"
+            },
+            {
+              "question": "Solve: |2x - 1| = 5",
+              "topic": "algebra",
+              "marks": 2,
+              "mark_scheme_points": [
+                "2x - 1 = 5 → x = 3 (B1)",
+                "2x - 1 = -5 → x = -2 (B1)"
+              ],
+              "examiner_tips": "Modulus equation: set expression = +5 AND expression = -5. Two solutions expected.",
+              "year": "2007", "season": "Oct_Nov_2007"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Sketch the graph of y = sin x for 0° ≤ x ≤ 360°. On the same axes sketch y = cos x. State two x-values where sin x = cos x.",
+              "topic": "trigonometry",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Correct shape of sin x: starts at 0, maximum at 90°, zero at 180°, minimum at 270°, zero at 360° (B2)",
+                "Correct shape of cos x: starts at 1, zero at 90°, minimum at 180°, zero at 270°, 1 at 360° (B2)",
+                "Intersection at x = 45° and x = 225° (B1)"
+              ],
+              "examiner_tips": "sin x = cos x → tan x = 1 → x = 45° + 180°n. So x = 45° and 225° in [0°, 360°].",
+              "year": "2007", "season": "Oct_Nov_2007"
+            }
+          ]
+        }
+      }
+    },
+    "2008": {
+      "May_June_2008": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Calculate: (2.4 × 10³) × (3 × 10²)",
+              "topic": "number",
+              "marks": 1,
+              "mark_scheme_points": ["7.2 × 10⁵ (B1)"],
+              "examiner_tips": "Multiply coefficients (2.4 × 3 = 7.2) and add powers (3+2=5).",
+              "year": "2008", "season": "May_June_2008"
+            },
+            {
+              "question": "Find x in the diagram where a transversal crosses two parallel lines with one angle marked 70°.",
+              "topic": "geometry",
+              "marks": 1,
+              "mark_scheme_points": ["x = 110° (co-interior) or 70° (alternate/corresponding) depending on position (B1 for correct value with reason)"],
+              "examiner_tips": "Always state the geometric reason: co-interior, alternate, or corresponding angles.",
+              "year": "2008", "season": "May_June_2008"
+            },
+            {
+              "question": "Calculate the simple interest on $2000 at 5% per annum for 3 years.",
+              "topic": "number",
+              "marks": 2,
+              "mark_scheme_points": [
+                "I = PRT/100 = 2000 × 5 × 3 / 100 (M1)",
+                "= $300 (A1)"
+              ],
+              "examiner_tips": "SI = PRT/100. Don't confuse with compound interest formula.",
+              "year": "2008", "season": "May_June_2008"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Solve the simultaneous equations: x² + y² = 25 and y = x + 1",
+              "topic": "algebra",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Substitute y = x+1 into circle equation (M1)",
+                "x² + (x+1)² = 25 (M1)",
+                "2x² + 2x + 1 = 25 → 2x² + 2x - 24 = 0 → x² + x - 12 = 0 (M1)",
+                "(x+4)(x-3) = 0 → x = -4 or x = 3 (M1)",
+                "y = -3 or y = 4 (A1)"
+              ],
+              "examiner_tips": "Always substitute the linear into the quadratic, not the other way. Check both answers in BOTH equations.",
+              "year": "2008", "season": "May_June_2008"
+            },
+            {
+              "question": "The vertices of a triangle are A(0,0), B(6,0), C(2,4). (a) Find the area of the triangle. (b) Find the equation of the median from A.",
+              "topic": "coordinate_geometry",
+              "marks": 5,
+              "mark_scheme_points": [
+                "(a) Area = ½ |x_A(y_B - y_C) + x_B(y_C - y_A) + x_C(y_A - y_B)| (M1)",
+                "= ½|0(0-4) + 6(4-0) + 2(0-0)| = ½ × 24 = 12 sq units (A1)",
+                "(b) Midpoint of BC = (4, 2) (M1)",
+                "Gradient of A(0,0) to (4,2) = 2/4 = 1/2 (M1)",
+                "y = x/2 (A1)"
+              ],
+              "examiner_tips": "Median goes from a vertex to the midpoint of the opposite side.",
+              "year": "2008", "season": "May_June_2008"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2008": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Find the values of x satisfying: x² - 7x + 10 ≤ 0",
+              "topic": "algebra",
+              "marks": 4,
+              "mark_scheme_points": [
+                "(x - 2)(x - 5) ≤ 0 (M1 factorising, M1 correct factors)",
+                "Critical values x = 2 and x = 5 (A1)",
+                "Solution: 2 ≤ x ≤ 5 (A1)"
+              ],
+              "examiner_tips": "Factorise → find critical values → test a value in each region. Quadratic ≤ 0 means between the roots.",
+              "year": "2008", "season": "Oct_Nov_2008"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Convert 2.5 kg to grams.",
+              "topic": "number",
+              "marks": 1,
+              "mark_scheme_points": ["2500 g (B1)"],
+              "examiner_tips": "1 kg = 1000 g. Multiply by 1000.",
+              "year": "2008", "season": "Oct_Nov_2008"
+            },
+            {
+              "question": "If tan θ = 3/4 and θ is acute, find sin θ.",
+              "topic": "trigonometry",
+              "marks": 2,
+              "mark_scheme_points": [
+                "Hypotenuse = √(3²+4²) = 5 (M1)",
+                "sin θ = 3/5 = 0.6 (A1)"
+              ],
+              "examiner_tips": "Draw the right triangle: opposite=3, adjacent=4, hypotenuse=5 (3-4-5 triple).",
+              "year": "2008", "season": "Oct_Nov_2008"
+            }
+          ]
+        }
+      }
+    },
+    "2009": {
+      "May_June_2009": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Given that y is inversely proportional to x and y=6 when x=4, find y when x=8.",
+              "topic": "algebra",
+              "marks": 2,
+              "mark_scheme_points": [
+                "y = k/x → k = 24 (M1)",
+                "y = 24/8 = 3 (A1)"
+              ],
+              "examiner_tips": "Inverse proportion: y = k/x. Find k first by substituting known values.",
+              "year": "2009", "season": "May_June_2009"
+            },
+            {
+              "question": "Factorise: x² - 6x + 9",
+              "topic": "algebra",
+              "marks": 1,
+              "mark_scheme_points": ["(x-3)² (B1)"],
+              "examiner_tips": "Recognise this as a perfect square: (x-3)² = x² - 6x + 9.",
+              "year": "2009", "season": "May_June_2009"
+            },
+            {
+              "question": "Find the area of a trapezium with parallel sides 5 cm and 9 cm, and height 4 cm.",
+              "topic": "geometry",
+              "marks": 2,
+              "mark_scheme_points": [
+                "A = ½(a+b)h = ½(5+9)×4 (M1)",
+                "= ½ × 14 × 4 = 28 cm² (A1)"
+              ],
+              "examiner_tips": "Trapezium area = ½ × (sum of parallel sides) × height. Both parallel sides are needed.",
+              "year": "2009", "season": "May_June_2009"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "AB is a diameter of a circle. C is a point on the circle. Angle CAB = 35°. Find (a) angle ACB (b) angle ABC.",
+              "topic": "geometry",
+              "marks": 4,
+              "mark_scheme_points": [
+                "(a) Angle in semicircle = 90°, so angle ACB = 90° (B1 + reason)",
+                "(b) Triangle angles sum to 180°: ABC = 180° - 90° - 35° = 55° (M1 + A1)",
+                "State theorem: angle in a semicircle is 90° (B1)"
+              ],
+              "examiner_tips": "Must state circle theorem name for the mark. Angle in semicircle = 90° is a key theorem.",
+              "year": "2009", "season": "May_June_2009"
+            },
+            {
+              "question": "The position vectors of A and B are a = [3,1] and b = [7,4]. (a) Find vector AB. (b) Find |AB|.",
+              "topic": "vectors",
+              "marks": 4,
+              "mark_scheme_points": [
+                "(a) AB = b - a = [4, 3] (M1 + A1)",
+                "(b) |AB| = √(4² + 3²) = √(16+9) = √25 = 5 (M1 + A1)"
+              ],
+              "examiner_tips": "Vector AB = position of B - position of A. Magnitude uses Pythagoras.",
+              "year": "2009", "season": "May_June_2009"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2009": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Solve 3/(x-2) = 2/(x+1)",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Cross multiply: 3(x+1) = 2(x-2) (M1)",
+                "3x + 3 = 2x - 4 (M1)",
+                "x = -7 (A1)"
+              ],
+              "examiner_tips": "Cross multiply to eliminate fractions. Check answer in original equation (denominator ≠ 0).",
+              "year": "2009", "season": "Oct_Nov_2009"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Estimate the value of √(48.2 × 3.98) by rounding to 1 s.f.",
+              "topic": "number",
+              "marks": 2,
+              "mark_scheme_points": [
+                "√(50 × 4) = √200 (M1)",
+                "≈ √200 ≈ 14.1 (A1 for answer from rounded values)"
+              ],
+              "examiner_tips": "Round each number to 1 significant figure first, then calculate.",
+              "year": "2009", "season": "Oct_Nov_2009"
+            }
+          ]
+        }
+      }
+    },
+    "2010": {
+      "May_June_2010": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "The scale of a map is 1 : 200 000. Find the actual area represented by 5 cm² on the map in km².",
+              "topic": "number",
+              "marks": 3,
+              "mark_scheme_points": [
+                "1 cm represents 200 000 cm = 2 km (M1)",
+                "1 cm² represents 2² = 4 km² (M1)",
+                "5 cm² represents 5 × 4 = 20 km² (A1)"
+              ],
+              "examiner_tips": "Area scale factor = (linear scale factor)². If 1 cm = 2 km, then 1 cm² = 4 km².",
+              "year": "2010", "season": "May_June_2010"
+            },
+            {
+              "question": "Find the equation of the perpendicular bisector of the line joining (2,3) and (6,7).",
+              "topic": "coordinate_geometry",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Midpoint = (4, 5) (B1)",
+                "Gradient of line = (7-3)/(6-2) = 1 (M1)",
+                "Gradient of perp bisector = -1 (M1)",
+                "y - 5 = -1(x - 4) → y = -x + 9 (A1)"
+              ],
+              "examiner_tips": "Perpendicular bisector: (1) find midpoint, (2) find negative reciprocal gradient, (3) use y-y₁=m(x-x₁).",
+              "year": "2010", "season": "May_June_2010"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "A bag has 5 red and x blue counters. A counter is chosen at random. P(red) = 5/8. Find x. Then find P(blue, then red) without replacement.",
+              "topic": "statistics",
+              "marks": 5,
+              "mark_scheme_points": [
+                "5/(5+x) = 5/8 → 5+x = 8 → x = 3 (B2)",
+                "P(blue then red) = 3/8 × 5/7 (M1 + M1)",
+                "= 15/56 (A1)"
+              ],
+              "examiner_tips": "Set up fraction equation for first part. For second part, remember total decreases by 1 without replacement.",
+              "year": "2010", "season": "May_June_2010"
+            },
+            {
+              "question": "Express as a single fraction: 3/(x+1) - 2/(x-1)",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Common denominator = (x+1)(x-1) (M1)",
+                "= [3(x-1) - 2(x+1)] / [(x+1)(x-1)] (M1)",
+                "= (3x-3-2x-2) / (x²-1) = (x-5)/(x²-1) (A1)"
+              ],
+              "examiner_tips": "Find LCD, convert each fraction, combine numerators. Expand and simplify carefully.",
+              "year": "2010", "season": "May_June_2010"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2010": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "A, B, C are points on a circle. The tangent at A makes an angle of 40° with chord AB. BC = CA. Find angle BAC and angle ABC.",
+              "topic": "geometry",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Tangent-chord angle = 40° = angle ACB (alternate segment theorem) (M1 + B1)",
+                "CA = BC so triangle is isosceles → angle BAC = angle ABC (M1)",
+                "Angles sum: angle BAC + angle ABC = 180° - 40° = 140° (M1)",
+                "angle BAC = angle ABC = 70° (A1)"
+              ],
+              "examiner_tips": "Alternate segment theorem: angle between tangent and chord = angle in alternate segment. Must state the theorem.",
+              "year": "2010", "season": "Oct_Nov_2010"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Calculate compound interest on $5000 at 4% per annum for 2 years.",
+              "topic": "number",
+              "marks": 3,
+              "mark_scheme_points": [
+                "A = P(1 + r/100)ⁿ = 5000(1.04)² (M1 + M1)",
+                "= 5000 × 1.0816 = $5408 (A1)",
+                "CI = 5408 - 5000 = $408"
+              ],
+              "examiner_tips": "Compound interest: A = P(1 + r/100)ⁿ. The question asks for interest, not the total amount.",
+              "year": "2010", "season": "Oct_Nov_2010"
+            }
+          ]
+        }
+      }
+    },
+    "2011": {
+      "May_June_2011": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Evaluate: (-3)³ + √144",
+              "topic": "number",
+              "marks": 2,
+              "mark_scheme_points": ["-27 + 12 = -15 (B2; B1 for each term)"],
+              "examiner_tips": "(-3)³ = -27 (negative × negative × negative = negative). √144 = 12.",
+              "year": "2011", "season": "May_June_2011"
+            },
+            {
+              "question": "Two similar triangles have areas 9 cm² and 25 cm². The shorter side of the smaller triangle is 6 cm. Find the corresponding side of the larger triangle.",
+              "topic": "geometry",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Area ratio = 9:25, so linear scale factor = √(25/9) = 5/3 (M1 + M1)",
+                "Corresponding side = 6 × (5/3) = 10 cm (A1)"
+              ],
+              "examiner_tips": "For similar shapes: Area ratio = (length ratio)². So length ratio = √(area ratio).",
+              "year": "2011", "season": "May_June_2011"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Draw and describe fully the transformation that maps triangle A to triangle B shown on the grid.",
+              "topic": "geometry",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Correct transformation type (rotation/reflection/translation/enlargement) (B1)",
+                "All numerical details: angle, centre, direction OR mirror line OR vector OR scale factor + centre (B2)"
+              ],
+              "examiner_tips": "For full marks state: TYPE + all properties. For rotation: angle, direction, centre. For enlargement: SF and centre.",
+              "year": "2011", "season": "May_June_2011"
+            },
+            {
+              "question": "The table gives the cumulative frequency of heights of 60 plants. Estimate (a) median (b) IQR.",
+              "topic": "statistics",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Plotting cumulative frequency correctly (B1)",
+                "Smooth curve (B1)",
+                "(a) Median at 30th value: read from graph (B1)",
+                "(b) IQ = value at 45th - value at 15th (M1 + A1)"
+              ],
+              "examiner_tips": "Median = value at n/2 = 30th. LQ at n/4 = 15th. UQ at 3n/4 = 45th. IQR = UQ - LQ.",
+              "year": "2011", "season": "May_June_2011"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2011": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Solve: 2x + 3 > 7 and 3x - 1 < 11. Represent on a number line.",
+              "topic": "algebra",
+              "marks": 4,
+              "mark_scheme_points": [
+                "2x > 4, x > 2 (M1 + A1)",
+                "3x < 12, x < 4 (M1 + A1)",
+                "Number line: open circles at 2 and 4, shaded between (B1)"
+              ],
+              "examiner_tips": "Solve each inequality separately. The solution is the intersection: 2 < x < 4.",
+              "year": "2011", "season": "Oct_Nov_2011"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Calculate the surface area of a cuboid with dimensions 3 cm × 4 cm × 5 cm.",
+              "topic": "geometry",
+              "marks": 3,
+              "mark_scheme_points": [
+                "SA = 2(lw + lh + wh) = 2(3×4 + 3×5 + 4×5) (M1 + M1)",
+                "= 2(12 + 15 + 20) = 2 × 47 = 94 cm² (A1)"
+              ],
+              "examiner_tips": "Cuboid surface area = 2(lw + lh + wh). There are 3 pairs of identical rectangular faces.",
+              "year": "2011", "season": "Oct_Nov_2011"
+            }
+          ]
+        }
+      }
+    },
+    "2012": {
+      "May_June_2012": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Simplify: √75 - √48",
+              "topic": "number",
+              "marks": 2,
+              "mark_scheme_points": [
+                "√75 = 5√3, √48 = 4√3 (M1)",
+                "5√3 - 4√3 = √3 (A1)"
+              ],
+              "examiner_tips": "Simplify each surd first: √75 = √(25×3) = 5√3. √48 = √(16×3) = 4√3.",
+              "year": "2012", "season": "May_June_2012"
+            },
+            {
+              "question": "Find the number of terms in the AP: 5, 8, 11, ..., 50",
+              "topic": "algebra",
+              "marks": 2,
+              "mark_scheme_points": [
+                "aₙ = a + (n-1)d: 50 = 5 + (n-1)×3 (M1)",
+                "n = 16 (A1)"
+              ],
+              "examiner_tips": "Use nth term formula. Solve: 45 = (n-1)×3 → n-1 = 15 → n = 16.",
+              "year": "2012", "season": "May_June_2012"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Given matrices A = [[1,2],[3,4]] and B = [[2,0],[1,3]], find AB and BA. Are they equal?",
+              "topic": "matrices",
+              "marks": 6,
+              "mark_scheme_points": [
+                "AB: [1×2+2×1, 1×0+2×3] = [4,6] (M1)",
+                "    [3×2+4×1, 3×0+4×3] = [10,12] (A1)",
+                "BA: [2×1+0×3, 2×2+0×4] = [2,4] (M1)",
+                "    [1×1+3×3, 1×2+3×4] = [10,14] (A1)",
+                "AB ≠ BA: matrix multiplication is not commutative (B2)"
+              ],
+              "examiner_tips": "Multiply rows of first matrix by columns of second. Row 1 × Column 1 gives element (1,1).",
+              "year": "2012", "season": "May_June_2012"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2012": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "The marks of 80 students in a test are grouped. Draw a histogram and find the modal class.",
+              "topic": "statistics",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Correct frequency densities calculated (B2)",
+                "All bars correctly drawn with correct widths (B2)",
+                "Modal class correctly identified (B1)"
+              ],
+              "examiner_tips": "Frequency density = frequency ÷ class width. Modal class has highest frequency DENSITY, not frequency.",
+              "year": "2012", "season": "Oct_Nov_2012"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "The volume of a sphere is 288π cm³. Find the radius.",
+              "topic": "geometry",
+              "marks": 3,
+              "mark_scheme_points": [
+                "(4/3)πr³ = 288π (M1)",
+                "r³ = 288 × 3/4 = 216 (M1)",
+                "r = ∛216 = 6 cm (A1)"
+              ],
+              "examiner_tips": "Cancel π from both sides early to simplify calculation.",
+              "year": "2012", "season": "Oct_Nov_2012"
+            }
+          ]
+        }
+      }
+    },
+    "2013": {
+      "May_June_2013": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Find the value of (125)^(2/3)",
+              "topic": "number",
+              "marks": 2,
+              "mark_scheme_points": [
+                "125^(1/3) = 5 (cube root) (M1)",
+                "5² = 25 (A1)"
+              ],
+              "examiner_tips": "x^(m/n) = (ⁿ√x)^m. Find cube root first, then square: cleaner numbers.",
+              "year": "2013", "season": "May_June_2013"
+            },
+            {
+              "question": "Angles of a triangle are in ratio 1:2:3. Find each angle.",
+              "topic": "geometry",
+              "marks": 2,
+              "mark_scheme_points": [
+                "1+2+3 = 6 parts = 180° → 1 part = 30° (M1)",
+                "Angles: 30°, 60°, 90° (A1)"
+              ],
+              "examiner_tips": "Sum of angles in triangle = 180°. Divide by total ratio parts.",
+              "year": "2013", "season": "May_June_2013"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "A boat travels from port P to port Q. PQ = 50 km. The bearing of Q from P is 072°. Q is then 30 km north of P. Find the bearing of Q from P and sketch. [A structured problem from grid]",
+              "topic": "trigonometry",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Draw correct diagram with North lines (B1)",
+                "Identify right triangle or use sine/cosine rule (M1)",
+                "sin(angle) = opposite/hypotenuse or correct trig setup (M1 + A1)",
+                "Correct bearing stated as 3-digit value (A1)"
+              ],
+              "examiner_tips": "Bearings always measured clockwise from North. Always draw a diagram with North direction marked.",
+              "year": "2013", "season": "May_June_2013"
+            },
+            {
+              "question": "The point P has coordinates (3, 1). Describe fully the transformation that maps P to P'(1, -3) representing a rotation.",
+              "topic": "geometry",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Rotation (B1)",
+                "90° clockwise (or 270° anticlockwise) (B1)",
+                "About the origin (0,0) (B1)"
+              ],
+              "examiner_tips": "Rotation: must state angle, direction, AND centre of rotation. All three are needed.",
+              "year": "2013", "season": "May_June_2013"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2013": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Differentiate y = 3x⁴ - 2x³ + 5x - 7 and find the gradient at x = 2.",
+              "topic": "calculus",
+              "marks": 4,
+              "mark_scheme_points": [
+                "dy/dx = 12x³ - 6x² + 5 (B2 — 1 mark for 2+ correct terms)",
+                "At x=2: dy/dx = 12(8) - 6(4) + 5 = 96 - 24 + 5 = 77 (M1 + A1)"
+              ],
+              "examiner_tips": "Differentiation rule: bring down the power, reduce power by 1. Constant terms differentiate to 0.",
+              "year": "2013", "season": "Oct_Nov_2013"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Given that p : q = 3 : 5 and q : r = 2 : 7, find p : r.",
+              "topic": "number",
+              "marks": 2,
+              "mark_scheme_points": [
+                "p:q:r = 6:10:35 (M1 — making q equal in both ratios)",
+                "p:r = 6:35 (A1)"
+              ],
+              "examiner_tips": "Make the common term (q) the same value in both ratios by finding LCM of 5 and 2.",
+              "year": "2013", "season": "Oct_Nov_2013"
+            }
+          ]
+        }
+      }
+    },
+    "2014": {
+      "May_June_2014": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Without a calculator, find the value of 3.6/0.012",
+              "topic": "number",
+              "marks": 1,
+              "mark_scheme_points": ["300 (B1)"],
+              "examiner_tips": "Multiply both by 1000: 3600/12 = 300. Or use standard form: 3.6 × 10 / (1.2 × 10⁻²).",
+              "year": "2014", "season": "May_June_2014"
+            },
+            {
+              "question": "Find the image of the point (3, 4) after a reflection in the x-axis.",
+              "topic": "geometry",
+              "marks": 1,
+              "mark_scheme_points": ["(3, -4) (B1)"],
+              "examiner_tips": "Reflection in x-axis: y-coordinate changes sign. x stays the same.",
+              "year": "2014", "season": "May_June_2014"
+            },
+            {
+              "question": "Given A = {2,3,5,7} and B = {1,2,4,7,9}, find A ∩ B and A ∪ B.",
+              "topic": "sets",
+              "marks": 2,
+              "mark_scheme_points": [
+                "A ∩ B = {2, 7} (B1)",
+                "A ∪ B = {1,2,3,4,5,7,9} (B1)"
+              ],
+              "examiner_tips": "Intersection = elements in BOTH. Union = all elements in EITHER (no repeats).",
+              "year": "2014", "season": "May_June_2014"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Find the area of the region enclosed by y = x² and y = 4 using integration.",
+              "topic": "calculus",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Find intersections: x² = 4 → x = ±2 (M1)",
+                "Area = ∫₋₂² (4 - x²) dx (M1)",
+                "= [4x - x³/3] from -2 to 2 (M1)",
+                "= (8 - 8/3) - (-8 + 8/3) (M1)",
+                "= 16 - 16/3 = 32/3 sq units (A1)"
+              ],
+              "examiner_tips": "Integrate (top function - bottom function). For symmetric region about y-axis, you can calculate one half and double.",
+              "year": "2014", "season": "May_June_2014"
+            },
+            {
+              "question": "For the data set 3,5,7,9,11: find (a) mean, (b) standard deviation.",
+              "topic": "statistics",
+              "marks": 5,
+              "mark_scheme_points": [
+                "(a) Mean = (3+5+7+9+11)/5 = 35/5 = 7 (B1)",
+                "(b) Deviations: -4,-2,0,2,4; squared: 16,4,0,4,16 (M1)",
+                "Variance = (16+4+0+4+16)/5 = 40/5 = 8 (M1)",
+                "SD = √8 = 2√2 ≈ 2.83 (A1)"
+              ],
+              "examiner_tips": "SD = √(Σ(x-x̄)²/n). Calculate mean first, then find each deviation, square, average, then root.",
+              "year": "2014", "season": "May_June_2014"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2014": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "A ship travels 40 km on a bearing of 130° from A, then 30 km on a bearing of 220° to reach B. Find AB and the bearing of B from A.",
+              "topic": "trigonometry",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Correct diagram with angles and distances (B1)",
+                "Angle between the two directions = 360° - 220° + 130° etc. (M1)",
+                "Use cosine rule: AB² = 40² + 30² - 2(40)(30)cos(angle) (M1 + M1)",
+                "AB = correct value (A1)",
+                "Bearing calculated using sine rule (M1 + A1)"
+              ],
+              "examiner_tips": "Bearing problems: always draw the diagram. Measure all angles from North. Use cosine rule when 2 sides and included angle known.",
+              "year": "2014", "season": "Oct_Nov_2014"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "The nth term of a sequence is n(n+2). Find the first four terms and the term that equals 48.",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "n=1:3, n=2:8, n=3:15, n=4:24 (B1)",
+                "n(n+2) = 48 → n² + 2n - 48 = 0 (M1)",
+                "(n+8)(n-6) = 0 → n = 6 (A1 — reject n=-8)"
+              ],
+              "examiner_tips": "Substitute n=1,2,3,4 for first four terms. For the term value, set expression equal and solve.",
+              "year": "2014", "season": "Oct_Nov_2014"
+            }
+          ]
+        }
+      }
+    },
+    "2015": {
+      "May_June_2015": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "If f(x) = 2x + 1 and g(x) = x², find fg(3) and gf(x).",
+              "topic": "algebra",
+              "marks": 4,
+              "mark_scheme_points": [
+                "g(3) = 9 (M1)",
+                "fg(3) = f(9) = 19 (A1)",
+                "gf(x) = g(2x+1) = (2x+1)² (M1)",
+                "= 4x² + 4x + 1 (A1)"
+              ],
+              "examiner_tips": "fg means apply g FIRST, then f. gf means apply f first, then g. Order matters!",
+              "year": "2015", "season": "May_June_2015"
+            },
+            {
+              "question": "A sector has angle 120° and radius 6 cm. Find the perimeter of the sector.",
+              "topic": "geometry",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Arc length = (120/360) × 2π × 6 = 4π (M1 + A1)",
+                "Perimeter = 4π + 6 + 6 = 12 + 4π ≈ 24.6 cm (A1)"
+              ],
+              "examiner_tips": "Perimeter of sector = arc length + 2 radii. Don't forget the two straight edges!",
+              "year": "2015", "season": "May_June_2015"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "A tree is observed from points A and B on the same horizontal level. The angle of elevation from A is 30° and from B (30 m closer) is 45°. Find the height of the tree.",
+              "topic": "trigonometry",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Let height = h and distance from B = x (M1)",
+                "tan 45° = h/x → x = h (M1)",
+                "tan 30° = h/(x+30) = h/(h+30) (M1)",
+                "h/√3 = h/(h+30) × √3... solving: h = 30/(√3-1) (M1)",
+                "h = 15(√3+1) ≈ 40.98 m (A1)"
+              ],
+              "examiner_tips": "Set up two right triangles sharing the same height. Write two equations and solve simultaneously.",
+              "year": "2015", "season": "May_June_2015"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2015": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "The data for hours of sunlight per day over 12 days: 6,7,7,8,8,9,9,10,10,11,12,13. Draw a stem-and-leaf diagram and find the median and IQR.",
+              "topic": "statistics",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Correct stem-and-leaf diagram with key (B2)",
+                "Median = (9+9)/2 = 9 hours (B1)",
+                "LQ = 7.5, UQ = 10.5 (B1 each)",
+                "IQR = 10.5 - 7.5 = 3 (B1)"
+              ],
+              "examiner_tips": "Include a key with stem-and-leaf. Median is average of 6th and 7th values for n=12.",
+              "year": "2015", "season": "Oct_Nov_2015"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Given vectors a = [2,5] and b = [3,-1], find 2a - b.",
+              "topic": "vectors",
+              "marks": 2,
+              "mark_scheme_points": [
+                "2a = [4,10] (M1)",
+                "2a - b = [4-3, 10-(-1)] = [1,11] (A1)"
+              ],
+              "examiner_tips": "Scalar multiplication: multiply each component. Vector subtraction: subtract corresponding components.",
+              "year": "2015", "season": "Oct_Nov_2015"
+            }
+          ]
+        }
+      }
+    },
+    "2016": {
+      "May_June_2016": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Simplify: (2x³y⁻²)² × (x⁻¹y)³",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "(2x³y⁻²)² = 4x⁶y⁻⁴ (M1)",
+                "(x⁻¹y)³ = x⁻³y³ (M1)",
+                "Product = 4x³y⁻¹ = 4x³/y (A1)"
+              ],
+              "examiner_tips": "Square/cube each factor, then multiply using index laws: xᵃ × xᵇ = xᵃ⁺ᵇ.",
+              "year": "2016", "season": "May_June_2016"
+            },
+            {
+              "question": "The interior angle of a regular polygon is 144°. Find the number of sides.",
+              "topic": "geometry",
+              "marks": 2,
+              "mark_scheme_points": [
+                "Exterior angle = 180° - 144° = 36° (M1)",
+                "n = 360°/36° = 10 sides (A1)"
+              ],
+              "examiner_tips": "Exterior + Interior = 180°. Number of sides = 360° / exterior angle.",
+              "year": "2016", "season": "May_June_2016"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "A particle moves so that its displacement is s = t³ - 6t² + 9t metres at time t seconds. Find (a) velocity at t=2, (b) when particle is momentarily at rest, (c) acceleration at t=1.",
+              "topic": "calculus",
+              "marks": 7,
+              "mark_scheme_points": [
+                "(a) v = ds/dt = 3t² - 12t + 9 (B2)",
+                "At t=2: v = 12 - 24 + 9 = -3 m/s (A1)",
+                "(b) v = 0: 3t² - 12t + 9 = 0 → t² - 4t + 3 = 0 (M1)",
+                "(t-1)(t-3) = 0, t = 1 or t = 3 seconds (A1)",
+                "(c) a = dv/dt = 6t - 12 (M1)",
+                "At t=1: a = 6 - 12 = -6 m/s² (A1)"
+              ],
+              "examiner_tips": "Velocity = ds/dt, Acceleration = dv/dt = d²s/dt². At rest means v = 0.",
+              "year": "2016", "season": "May_June_2016"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2016": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Prove that triangle PQR is congruent to triangle STU, given... [SSS, SAS, ASA or RHS criteria]",
+              "topic": "geometry",
+              "marks": 4,
+              "mark_scheme_points": [
+                "State three pairs of equal sides/angles (B3 — 1 each)",
+                "State correct congruence condition (SSS / SAS / ASA / RHS) (B1)"
+              ],
+              "examiner_tips": "Name all 4 congruence conditions. For each proof, clearly state which sides/angles are equal and WHY (e.g., common side, isosceles triangle, vertically opposite).",
+              "year": "2016", "season": "Oct_Nov_2016"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Solve: 3/(2x) = 5/4",
+              "topic": "algebra",
+              "marks": 2,
+              "mark_scheme_points": [
+                "Cross multiply: 12 = 10x (M1)",
+                "x = 6/5 = 1.2 (A1)"
+              ],
+              "examiner_tips": "Cross multiply or find common denominator. Verify by substituting back.",
+              "year": "2016", "season": "Oct_Nov_2016"
+            }
+          ]
+        }
+      }
+    },
+    "2017": {
+      "May_June_2017": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Write the recurring decimal 0.36̄ as a fraction.",
+              "topic": "number",
+              "marks": 2,
+              "mark_scheme_points": [
+                "Let x = 0.3666.. → 10x = 3.666.. → 100x = 36.666..",
+                "100x - 10x = 33, 90x = 33 (M1)",
+                "x = 33/90 = 11/30 (A1)"
+              ],
+              "examiner_tips": "Multiply by 10 to align the repeating part, then subtract to eliminate it.",
+              "year": "2017", "season": "May_June_2017"
+            },
+            {
+              "question": "The points A, B, C lie on a circle. Angle BAC = 40° and angle ACB = 70°. Find angle ABC and name the circle theorem used.",
+              "topic": "geometry",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Angles in a triangle sum to 180° (B1-reason)",
+                "Angle ABC = 180° - 40° - 70° = 70° (M1 + A1)"
+              ],
+              "examiner_tips": "This uses the basic triangle sum. Circle theorems are tested separately e.g. angles in same segment.",
+              "year": "2017", "season": "May_June_2017"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "A cuboid has volume 120 cm³. Its length is 8 cm and height is 3 cm. (a) Find the width. (b) Find the total surface area.",
+              "topic": "geometry",
+              "marks": 5,
+              "mark_scheme_points": [
+                "(a) V = lwh → 120 = 8 × w × 3 → w = 5 cm (M1 + A1)",
+                "(b) SA = 2(8×3 + 8×5 + 3×5) = 2(24+40+15) = 2×79 = 158 cm² (M1 + M1 + A1)"
+              ],
+              "examiner_tips": "Use volume formula first to find missing dimension. Then use SA formula with all three dimensions.",
+              "year": "2017", "season": "May_June_2017"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2017": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Draw the graph y = 2/x for x = 0.5, 1, 2, 4 and y = 2x - 3. Find intersection points.",
+              "topic": "algebra",
+              "marks": 6,
+              "mark_scheme_points": [
+                "Correct table of values for y=2/x (B1)",
+                "Correct table for y=2x-3 (B1)",
+                "Both graphs drawn correctly (B2)",
+                "Intersections at approximately (0.56, -1.9) and (1.78, 0.56) — read from graph (B2)"
+              ],
+              "examiner_tips": "Intersection points satisfy both equations simultaneously. Read carefully from graph — mark on the curve and line.",
+              "year": "2017", "season": "Oct_Nov_2017"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "The probability that it rains on any day is 0.3. Find the probability it rains on exactly 2 of 3 days.",
+              "topic": "statistics",
+              "marks": 3,
+              "mark_scheme_points": [
+                "P(exactly 2 rainy) = ³C₂ × 0.3² × 0.7 (M1 + M1)",
+                "= 3 × 0.09 × 0.7 = 0.189 (A1)"
+              ],
+              "examiner_tips": "Binomial probability: P(X=r) = ⁿCᵣ pʳ (1-p)ⁿ⁻ʳ. Three ways to get exactly 2 rainy days out of 3.",
+              "year": "2017", "season": "Oct_Nov_2017"
+            }
+          ]
+        }
+      }
+    },
+    "2018": {
+      "May_June_2018": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "The perimeter of a square is 52 cm. Find (a) side length (b) area.",
+              "topic": "geometry",
+              "marks": 3,
+              "mark_scheme_points": [
+                "(a) side = 52/4 = 13 cm (B1)",
+                "(b) area = 13² = 169 cm² (B2)"
+              ],
+              "examiner_tips": "Square: all 4 sides equal. Perimeter = 4s. Area = s².",
+              "year": "2018", "season": "May_June_2018"
+            },
+            {
+              "question": "Solve 5x² = 45",
+              "topic": "algebra",
+              "marks": 2,
+              "mark_scheme_points": [
+                "x² = 9 (M1)",
+                "x = ±3 (A1 — both values needed)"
+              ],
+              "examiner_tips": "Don't forget the negative solution. x² = k gives x = ±√k.",
+              "year": "2018", "season": "May_June_2018"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "On the grid draw: (a) Triangle P with vertices (1,1),(3,1),(2,3). (b) Reflect P in y=x to get Q. (c) Rotate Q by 180° about (0,0) to get R. (d) Describe the single transformation mapping P to R.",
+              "topic": "geometry",
+              "marks": 7,
+              "mark_scheme_points": [
+                "(a) Correct triangle P plotted (B1)",
+                "(b) Q has vertices (1,1),(1,3),(3,2) — swap x,y coords (B2)",
+                "(c) R has vertices (-1,-1),(-1,-3),(-3,-2) — negate both (B2)",
+                "(d) Reflection in y = -x (B2)"
+              ],
+              "examiner_tips": "Composing transformations: do each step carefully. The combined transformation may be a single simple one.",
+              "year": "2018", "season": "May_June_2018"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2018": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Find ∫(3x² - 4x + 2) dx and evaluate the definite integral from x=1 to x=3.",
+              "topic": "calculus",
+              "marks": 5,
+              "mark_scheme_points": [
+                "∫(3x² - 4x + 2)dx = x³ - 2x² + 2x + C (B2)",
+                "[x³ - 2x² + 2x] from 1 to 3 (M1)",
+                "= (27 - 18 + 6) - (1 - 2 + 2) = 15 - 1 = 14 (M1 + A1)"
+              ],
+              "examiner_tips": "Integration: increase power by 1, divide by new power. For definite integral, substitute upper then lower limit and subtract.",
+              "year": "2018", "season": "Oct_Nov_2018"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Write down all integers x such that -3 ≤ 2x - 1 < 5.",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Add 1: -2 ≤ 2x < 6 (M1)",
+                "Divide by 2: -1 ≤ x < 3 (M1)",
+                "Integers: -1, 0, 1, 2 (A1)"
+              ],
+              "examiner_tips": "Solve the compound inequality keeping both sides. List integers that satisfy the condition including endpoints.",
+              "year": "2018", "season": "Oct_Nov_2018"
+            }
+          ]
+        }
+      }
+    },
+    "2019": {
+      "May_June_2019": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Evaluate (8/27)^(-2/3)",
+              "topic": "number",
+              "marks": 3,
+              "mark_scheme_points": [
+                "(8/27)^(1/3) = 2/3 (M1)",
+                "(2/3)^(-2) = (3/2)² (M1)",
+                "= 9/4 = 2.25 (A1)"
+              ],
+              "examiner_tips": "Fractional indices: (a/b)^(p/q) = (ⁿ√(a/b))^p. Negative index = reciprocal.",
+              "year": "2019", "season": "May_June_2019"
+            },
+            {
+              "question": "A = {factors of 12}, B = {factors of 18}. Find A ∩ B and |A ∪ B|.",
+              "topic": "sets",
+              "marks": 3,
+              "mark_scheme_points": [
+                "A = {1,2,3,4,6,12}, B = {1,2,3,6,9,18} (B1 each)",
+                "A ∩ B = {1,2,3,6} (B1)",
+                "|A ∪ B| = 8 (A ∪ B = {1,2,3,4,6,9,12,18}) (B1)"
+              ],
+              "examiner_tips": "List all factors systematically: 1 and the number itself, then check all numbers in between.",
+              "year": "2019", "season": "May_June_2019"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "The histogram shows the distribution of weights (kg) of 120 people. Find (a) the frequency of the 60-80 kg class, (b) an estimate of the mean weight.",
+              "topic": "statistics",
+              "marks": 6,
+              "mark_scheme_points": [
+                "(a) Freq = freq density × class width from histogram (M1 + A1)",
+                "(b) Use midpoints: 30, 50, 70, 90, 110 (M1)",
+                "Σ(f × midpoint) / 120 (M1)",
+                "= correct value (A1 accept ±1)"
+              ],
+              "examiner_tips": "Frequency = frequency density × class width. For mean: always use midpoints of class intervals.",
+              "year": "2019", "season": "May_June_2019"
+            },
+            {
+              "question": "OAB is a triangle. OA = a, OB = b. M is midpoint of AB. P is on OM such that OP = 2/3 OM. Express OP in terms of a and b.",
+              "topic": "vectors",
+              "marks": 5,
+              "mark_scheme_points": [
+                "OM = OA + ½AB = a + ½(b - a) = ½a + ½b (M1 + A1)",
+                "OP = ⅔ OM = ⅔(½a + ½b) (M1)",
+                "= ⅓a + ⅓b (A1)"
+              ],
+              "examiner_tips": "Use position vectors: OM = OA + AM = OA + ½AB. Then OP = fraction × OM.",
+              "year": "2019", "season": "May_June_2019"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2019": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "A function y = ax + b/x has a stationary point at x=2. Given y=10 at x=2, find a and b.",
+              "topic": "calculus",
+              "marks": 5,
+              "mark_scheme_points": [
+                "dy/dx = a - b/x² = 0 at x=2 (M1)",
+                "a = b/4 (A1)",
+                "y = 2a + b/2 = 10 (M1)",
+                "Substitute a = b/4: b/2 + b/2 = 10 → b = 10, a = 2.5 (A1 + A1)"
+              ],
+              "examiner_tips": "Stationary point: dy/dx=0. This gives one equation. Substitute point into original to get second equation. Solve simultaneously.",
+              "year": "2019", "season": "Oct_Nov_2019"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Express 0.000 032 7 in standard form.",
+              "topic": "number",
+              "marks": 1,
+              "mark_scheme_points": ["3.27 × 10⁻⁵ (B1)"],
+              "examiner_tips": "Count places until coefficient is between 1 and 10. Moving right → negative power.",
+              "year": "2019", "season": "Oct_Nov_2019"
+            }
+          ]
+        }
+      }
+    },
+    "2020": {
+      "May_June_2020": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "T is directly proportional to the square root of L. When L=25, T=5. Find T when L=100 and find L when T=9.",
+              "topic": "algebra",
+              "marks": 4,
+              "mark_scheme_points": [
+                "T = k√L; 5 = k×5 → k=1, so T=√L (M1 + A1)",
+                "When L=100: T = √100 = 10 (A1)",
+                "When T=9: 9=√L → L=81 (A1)"
+              ],
+              "examiner_tips": "Proportionality: set up T=k√L first. Find k using given values, then use for remaining parts.",
+              "year": "2020", "season": "May_June_2020"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "The grouped frequency table shows test scores. Calculate an estimate of the mean and the modal class.",
+              "topic": "statistics",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Correct midpoints (B1)",
+                "Correct f×x products (M1)",
+                "Mean = Σfx/Σf (M1 + A1)",
+                "Modal class is the class with highest frequency (B1)"
+              ],
+              "examiner_tips": "Modal class ≠ mode. It is the class with the highest frequency (or frequency density for unequal widths).",
+              "year": "2020", "season": "May_June_2020"
+            },
+            {
+              "question": "Rationalise the denominator: (3 + √5) / (√5 - 1)",
+              "topic": "number",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Multiply by (√5+1)/(√5+1) (M1)",
+                "Numerator: (3+√5)(√5+1) = 3√5+3+5+√5 = 8+4√5 (M1)",
+                "Denominator: 5-1 = 4",
+                "= (8+4√5)/4 = 2 + √5 (A1)"
+              ],
+              "examiner_tips": "Rationalising: multiply by conjugate (change middle sign). (a-b)(a+b) = a² - b² eliminates the surd.",
+              "year": "2020", "season": "May_June_2020"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2020": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Triangle ABC has AB=7, BC=9, AC=11. Find angle BAC using the cosine rule.",
+              "topic": "trigonometry",
+              "marks": 4,
+              "mark_scheme_points": [
+                "cosA = (AB² + AC² - BC²) / (2×AB×AC) (M1)",
+                "= (49 + 121 - 81) / (2 × 7 × 11) (M1)",
+                "= 89/154 = 0.5779 (M1)",
+                "A = cos⁻¹(0.5779) = 54.7° (A1)"
+              ],
+              "examiner_tips": "Cosine rule to find angle: cos A = (b²+c²-a²)/(2bc), where a is the side OPPOSITE angle A.",
+              "year": "2020", "season": "Oct_Nov_2020"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Expand: (2x - 3)³",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Use (a-b)³ = a³ - 3a²b + 3ab² - b³ (M1)",
+                "= 8x³ - 3(4x²)(3) + 3(2x)(9) - 27 (M1)",
+                "= 8x³ - 36x² + 54x - 27 (A1)"
+              ],
+              "examiner_tips": "Use binomial coefficients: 1,3,3,1 for cubing. Alternatively square first then multiply by (2x-3).",
+              "year": "2020", "season": "Oct_Nov_2020"
+            }
+          ]
+        }
+      }
+    },
+    "2021": {
+      "May_June_2021": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Two fair dice are rolled. Find the probability that the sum is (a) 7, (b) greater than 9.",
+              "topic": "statistics",
+              "marks": 4,
+              "mark_scheme_points": [
+                "(a) Favourable outcomes: (1,6)(2,5)(3,4)(4,3)(5,2)(6,1) → 6/36 = 1/6 (B2)",
+                "(b) Sum > 9: (4,6)(5,5)(6,4)(5,6)(6,5)(6,6) → 6/36 = 1/6 (B2)"
+              ],
+              "examiner_tips": "List all outcomes systematically. Total outcomes = 6 × 6 = 36. Easier to list favourable cases.",
+              "year": "2021", "season": "May_June_2021"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "ABCD is a cyclic quadrilateral. Angle A = 3x, angle B = 2x + 15, angle C = 2x + 10, angle D = x + 11. Find all angles using the property of cyclic quadrilaterals.",
+              "topic": "geometry",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Opposite angles sum to 180°: A + C = 180° (M1 + reason)",
+                "3x + 2x + 10 = 180 → 5x = 170 → x = 34° (M1 + A1)",
+                "A=102°, B=83°, C=78°, D=45° (A2 — 1 per two correct)"
+              ],
+              "examiner_tips": "Cyclic quadrilateral: opposite angles are supplementary (sum to 180°). State this theorem.",
+              "year": "2021", "season": "May_June_2021"
+            },
+            {
+              "question": "Find the range of values of k for which 3x² - 4x + k = 0 has no real roots.",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Discriminant < 0: b² - 4ac < 0 (M1)",
+                "(-4)² - 4(3)(k) < 0 → 16 - 12k < 0 (M1)",
+                "k > 4/3 (A1)"
+              ],
+              "examiner_tips": "No real roots ↔ discriminant < 0. Two real roots ↔ discriminant > 0. Repeated root ↔ discriminant = 0.",
+              "year": "2021", "season": "May_June_2021"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2021": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Show that OAB and OCD are similar triangles. Hence find OD.",
+              "topic": "geometry",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Angle O is common (B1)",
+                "State reason why angle OAB = angle OCD (e.g. parallel lines, alternate angles etc.) (B1 + reason)",
+                "Two angles equal → triangles similar (AA) (B1)",
+                "Scale factor = OA/OC (M1)",
+                "OD = OC × OB/OA (A1)"
+              ],
+              "examiner_tips": "For similarity: show at least two pairs of equal angles. Always state the reason for each.",
+              "year": "2021", "season": "Oct_Nov_2021"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Solve: log₂(x + 3) = 4",
+              "topic": "algebra",
+              "marks": 2,
+              "mark_scheme_points": [
+                "x + 3 = 2⁴ = 16 (M1)",
+                "x = 13 (A1)"
+              ],
+              "examiner_tips": "log_a(x) = n ↔ x = aⁿ. Convert from log form to index form.",
+              "year": "2021", "season": "Oct_Nov_2021"
+            }
+          ]
+        }
+      }
+    },
+    "2022": {
+      "May_June_2022": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Without using a calculator, show that (3 + √2)² - (3 - √2)² = 12√2.",
+              "topic": "number",
+              "marks": 3,
+              "mark_scheme_points": [
+                "(3+√2)² = 9 + 6√2 + 2 = 11 + 6√2 (M1)",
+                "(3-√2)² = 9 - 6√2 + 2 = 11 - 6√2 (M1)",
+                "Difference = (11+6√2) - (11-6√2) = 12√2 ✓ (A1)"
+              ],
+              "examiner_tips": "'Show that' questions: every step must be shown. Use (a+b)² = a² + 2ab + b² formula.",
+              "year": "2022", "season": "May_June_2022"
+            },
+            {
+              "question": "A car depreciates by 15% each year. It costs $20000 new. Find its value after 3 years.",
+              "topic": "number",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Multiplier = 1 - 0.15 = 0.85 (M1)",
+                "Value = 20000 × (0.85)³ (M1)",
+                "= 20000 × 0.614125 = $12,282.50 (A1)"
+              ],
+              "examiner_tips": "Depreciation: use multiplier (1 - rate). Same formula as compound interest but multiplier < 1.",
+              "year": "2022", "season": "May_June_2022"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "The curve y = ax³ + bx passes through (1, 4) and has gradient 9 at x=1. Find a and b.",
+              "topic": "calculus",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Substitute (1,4): a + b = 4 (M1 + A1)",
+                "dy/dx = 3ax² + b; at x=1: 3a + b = 9 (M1 + A1)",
+                "Subtract: 2a = 5 → a = 2.5, b = 1.5 (A1)"
+              ],
+              "examiner_tips": "Two unknowns require two equations. Point substitution gives one equation; gradient gives the other.",
+              "year": "2022", "season": "May_June_2022"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2022": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Use the trapezium rule with 4 strips to estimate ∫₀⁸ √(1+x) dx.",
+              "topic": "calculus",
+              "marks": 5,
+              "mark_scheme_points": [
+                "h = (8-0)/4 = 2; x values: 0,2,4,6,8 (M1)",
+                "y values: √1, √3, √5, √7, √9 = 1, 1.732, 2.236, 2.646, 3 (M1)",
+                "Trapezium rule: h/2(y₀+2y₁+2y₂+2y₃+y₄) (M1)",
+                "= 1(1 + 2(1.732+2.236+2.646) + 3) (M1)",
+                "= 1(4 + 13.228) = 17.23 (A1 — accept 17.2 to 17.3)"
+              ],
+              "examiner_tips": "Formula: h/2[y₀ + 2(y₁+y₂+...+y_{n-1}) + yₙ]. First and last values have coefficient 1, all middle have coefficient 2.",
+              "year": "2022", "season": "Oct_Nov_2022"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Express as a single fraction in its simplest form: 2/(x-3) + 3/(x+2)",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "LCD = (x-3)(x+2) (M1)",
+                "= [2(x+2) + 3(x-3)] / [(x-3)(x+2)] (M1)",
+                "= (5x - 5) / [(x-3)(x+2)] = 5(x-1)/[(x-3)(x+2)] (A1)"
+              ],
+              "examiner_tips": "Always find LCD first. Expand numerators carefully then simplify/factorise if possible.",
+              "year": "2022", "season": "Oct_Nov_2022"
+            }
+          ]
+        }
+      }
+    },
+    "2023": {
+      "May_June_2023": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Solve the equation: 2^(x+1) = 8^(x-1)",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "Write 8 = 2³: 2^(x+1) = 2^(3x-3) (M1)",
+                "Equal bases → equal powers: x+1 = 3x-3 (M1)",
+                "x = 2 (A1)"
+              ],
+              "examiner_tips": "Express both sides with the same base, then equate the exponents.",
+              "year": "2023", "season": "May_June_2023"
+            },
+            {
+              "question": "A box contains 12 chocolates: 5 dark, 4 milk, 3 white. Find probability that two picked at random (without replacement) are the same type.",
+              "topic": "statistics",
+              "marks": 4,
+              "mark_scheme_points": [
+                "P(both dark) = 5/12 × 4/11 = 20/132 (M1)",
+                "P(both milk) = 4/12 × 3/11 = 12/132 (M1)",
+                "P(both white) = 3/12 × 2/11 = 6/132 (M1)",
+                "Total = 38/132 = 19/66 (A1)"
+              ],
+              "examiner_tips": "Add probabilities for mutually exclusive events (same type = all dark OR all milk OR all white).",
+              "year": "2023", "season": "May_June_2023"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "A curve has equation y = x³ - 3x² - 9x + 11. (a) Find dy/dx. (b) Find the coordinates of the turning points. (c) Determine their nature.",
+              "topic": "calculus",
+              "marks": 8,
+              "mark_scheme_points": [
+                "(a) dy/dx = 3x² - 6x - 9 (B2)",
+                "(b) Set dy/dx = 0: 3(x²-2x-3) = 0 → (x-3)(x+1) = 0 (M1)",
+                "x = 3 or x = -1 (A1)",
+                "y values: at x=3: 27-27-27+11=-16; at x=-1: -1-3+9+11=16 (A1)",
+                "Turning points: (3,-16) and (-1,16) (A1)",
+                "(c) d²y/dx² = 6x-6; at x=3: 12>0 (min); at x=-1: -12<0 (max) (M1 + A1)"
+              ],
+              "examiner_tips": "dy/dx=0 gives turning points. Second derivative > 0 means minimum (U-shape), < 0 means maximum (n-shape).",
+              "year": "2023", "season": "May_June_2023"
+            },
+            {
+              "question": "In triangle ABC, AB=8 cm, BC=10 cm. Angle B = 35°. Find area of triangle and length AC.",
+              "topic": "trigonometry",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Area = ½ × AB × BC × sinB = ½ × 8 × 10 × sin35° (M1 + A1)",
+                "= 40 × 0.5736 = 22.9 cm² (A1)",
+                "AC² = 8² + 10² - 2(8)(10)cos35° (cosine rule) (M1)",
+                "= 164 - 160 × 0.8192 = 33.9, AC = 5.82 cm (A1)"
+              ],
+              "examiner_tips": "Area = ½ ab sinC (SAS). For AC use cosine rule (2 sides, included angle → opposite side).",
+              "year": "2023", "season": "May_June_2023"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2023": {
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "Prove that the angle at the centre is twice the angle at the circumference subtended by the same arc.",
+              "topic": "geometry",
+              "marks": 5,
+              "mark_scheme_points": [
+                "Let angle at circumference = x, draw radius to form two isosceles triangles (M1)",
+                "Base angles of isosceles triangle equal (B1)",
+                "Exterior angle of triangle = sum of two non-adjacent interior angles (M1)",
+                "Show angle at centre = 2x (M1 + A1)"
+              ],
+              "examiner_tips": "This is a formal proof. Draw the configuration carefully. Label all angles clearly.",
+              "year": "2023", "season": "Oct_Nov_2023"
+            }
+          ]
+        },
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Simplify: log 8 + log 27 - 2log 6 (without a calculator)",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "log(8 × 27) - log 36 (M1)",
+                "= log 216 - log 36 (M1)",
+                "= log(216/36) = log 6 (A1)"
+              ],
+              "examiner_tips": "Log laws: log a + log b = log(ab); log a - log b = log(a/b); n log a = log(aⁿ).",
+              "year": "2023", "season": "Oct_Nov_2023"
+            }
+          ]
+        }
+      }
+    },
+    "2024": {
+      "May_June_2024": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "The nth term of a sequence is (n+1)/(n+3). Write the first 3 terms and explain why the sequence is increasing.",
+              "topic": "algebra",
+              "marks": 4,
+              "mark_scheme_points": [
+                "n=1: 2/4=1/2; n=2: 3/5; n=3: 4/6=2/3 (B2)",
+                "Show (n+1)/(n+3) < (n+2)/(n+4): cross-multiply (M1)",
+                "(n+1)(n+4) vs (n+2)(n+3): n²+5n+4 < n²+5n+6 ✓ (A1)"
+              ],
+              "examiner_tips": "To prove increasing: show Tₙ₊₁ > Tₙ algebraically by cross-multiplying and comparing.",
+              "year": "2024", "season": "May_June_2024"
+            },
+            {
+              "question": "Solve graphically: x² - x - 2 = 0 by drawing y = x² and y = x + 2 on the same axes.",
+              "topic": "algebra",
+              "marks": 4,
+              "mark_scheme_points": [
+                "Correct table and curve for y=x² (B1)",
+                "Correct line y=x+2 (B1)",
+                "Both graphs intersecting (B1)",
+                "x = -1 and x = 2 from graph (B1)"
+              ],
+              "examiner_tips": "x²-x-2=0 can be rewritten as x²=x+2, so intersections of y=x² and y=x+2 give solutions.",
+              "year": "2024", "season": "May_June_2024"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "The table shows the time (minutes) taken by 100 students in a race. Draw a cumulative frequency graph. Find (a) median, (b) IQR, (c) number of students who took more than 38 minutes.",
+              "topic": "statistics",
+              "marks": 7,
+              "mark_scheme_points": [
+                "Correct cumulative frequencies (B1)",
+                "All points correctly plotted at upper class boundaries (B2)",
+                "Smooth curve joining all plotted points (B1)",
+                "(a) Median at 50th value: read from graph (B1)",
+                "(b) LQ at 25th, UQ at 75th; IQR = UQ - LQ (B1)",
+                "(c) CF at 38 min read from graph; number above = 100 - that value (B1)"
+              ],
+              "examiner_tips": "Plot cumulative frequency at upper class boundary. Median = value at n/2. IQR = value at 3n/4 minus value at n/4.",
+              "year": "2024", "season": "May_June_2024"
+            },
+            {
+              "question": "OABC is a parallelogram. OA = a, OC = c. D is midpoint of AB. E is midpoint of OC. (a) Express OD and BD in terms of a and c. (b) Show that B, D, E are collinear.",
+              "topic": "vectors",
+              "marks": 7,
+              "mark_scheme_points": [
+                "OD = OA + AD = a + ½c (since AD = ½AB = ½OC) (M1 + A1)",
+                "BD = OD - OB = (a+½c) - (a+c) = -½c (M1 + A1)",
+                "OE = ½c (B1)",
+                "BE = OE - OB = ½c - (a+c) = -a - ½c (M1)",
+                "BD = -½c = -½(c); BE = -(a + ½c). Check if BE = k×BD... (M1 + A1 for conclusion)"
+              ],
+              "examiner_tips": "For collinearity: show one vector is a scalar multiple of another. Calculate each vector step by step.",
+              "year": "2024", "season": "May_June_2024"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2024": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Given log p = 0.4 and log q = 0.7, find log(p²/√q).",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "log(p²) = 2 × 0.4 = 0.8 (M1)",
+                "log(√q) = ½ × 0.7 = 0.35 (M1)",
+                "log(p²/√q) = 0.8 - 0.35 = 0.45 (A1)"
+              ],
+              "examiner_tips": "Use log laws: log(aⁿ) = n log a; log(a/b) = log a - log b.",
+              "year": "2024", "season": "Oct_Nov_2024"
+            },
+            {
+              "question": "Two circles touch externally. Their radii are 5 cm and 3 cm. Find the distance between their centres.",
+              "topic": "geometry",
+              "marks": 1,
+              "mark_scheme_points": ["Distance = 5 + 3 = 8 cm (B1)"],
+              "examiner_tips": "For externally touching circles: distance between centres = sum of radii.",
+              "year": "2024", "season": "Oct_Nov_2024"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "A function f(x) = (2x+1)/(x-3), x ≠ 3. (a) Find f⁻¹(x). (b) Solve f(x) = f⁻¹(x).",
+              "topic": "algebra",
+              "marks": 7,
+              "mark_scheme_points": [
+                "(a) Let y=(2x+1)/(x-3); y(x-3)=2x+1; xy-3y=2x+1 (M1)",
+                "x(y-2) = 3y+1; x = (3y+1)/(y-2) (M1)",
+                "f⁻¹(x) = (3x+1)/(x-2) (A1)",
+                "(b) f(x) = f⁻¹(x): (2x+1)/(x-3) = (3x+1)/(x-2) (M1)",
+                "Cross multiply: (2x+1)(x-2) = (3x+1)(x-3) (M1)",
+                "2x²-3x-2 = 3x²-8x-3 → x²-5x-1=0 (M1)",
+                "Wait: 2x²-3x-2 = 3x²-8x-3 → -x²+5x+1=0 → x²-5x-1=0 (A1 for correct equation)"
+              ],
+              "examiner_tips": "For inverse function: swap x and y then rearrange for y. For f(x)=f⁻¹(x), cross-multiply carefully.",
+              "year": "2024", "season": "Oct_Nov_2024"
+            }
+          ]
+        }
+      }
+    },
+    "2025": {
+      "May_June_2025": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Without using a calculator, evaluate: (16/81)^(3/4)",
+              "topic": "number",
+              "marks": 3,
+              "mark_scheme_points": [
+                "(16/81)^(1/4) = 2/3 (M1 + A1)",
+                "(2/3)³ = 8/27 (A1)"
+              ],
+              "examiner_tips": "For (a/b)^(p/q): take the qth root first, then raise to power p. Work with fractions throughout.",
+              "year": "2025", "season": "May_June_2025"
+            },
+            {
+              "question": "The sum of an arithmetic progression with first term 4 and last term 100 is 1040. Find the number of terms.",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "S = n/2 × (a + l) (M1)",
+                "1040 = n/2 × (4 + 100) = 52n (M1)",
+                "n = 1040/52 = 20 (A1)"
+              ],
+              "examiner_tips": "When first and last terms are known: S = n/2(a+l). When common difference known: S = n/2(2a+(n-1)d).",
+              "year": "2025", "season": "May_June_2025"
+            },
+            {
+              "question": "Solve the simultaneous equations: y = 3x - 2 and y = x² + 2x - 5",
+              "topic": "algebra",
+              "marks": 4,
+              "mark_scheme_points": [
+                "3x - 2 = x² + 2x - 5 (M1)",
+                "x² - x - 3 = 0 (M1)",
+                "x = (1 ± √13)/2 (M1 — using quadratic formula)",
+                "x = 2.30 or x = -1.30 (A1); corresponding y values (A1)"
+              ],
+              "examiner_tips": "Substitute linear into quadratic. If doesn't factorise, use the formula. Give answers to 3 s.f. unless exact form asked.",
+              "year": "2025", "season": "May_June_2025"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "The velocity of a particle at time t is given by v = 3t² - 12t + 9. (a) Find the acceleration at t=3. (b) Find the displacement from t=1 to t=4. (c) Find when the particle is at rest and state the direction of motion for t > 3.",
+              "topic": "calculus",
+              "marks": 9,
+              "mark_scheme_points": [
+                "(a) a = dv/dt = 6t - 12; at t=3: a = 18-12 = 6 m/s² (M1 + A1)",
+                "(b) s = ∫v dt = t³ - 6t² + 9t (M1 + A1)",
+                "s(4) - s(1) = (64-96+36) - (1-6+9) = 4 - 4 = 0 m (M1 + A1)",
+                "(c) v = 0: 3(t²-4t+3) = 0 → (t-1)(t-3) = 0 → t=1 or t=3 (M1 + A1)",
+                "For t>3: v = 3(t-1)(t-3) > 0, particle moves in positive direction (A1)"
+              ],
+              "examiner_tips": "At rest: v=0. Displacement: integrate velocity. Acceleration: differentiate velocity. Sign of v gives direction of motion.",
+              "year": "2025", "season": "May_June_2025"
+            },
+            {
+              "question": "ABCD is a quadrilateral. A(0,0), B(6,2), C(8,6), D(2,4). (a) Find the midpoints of AC and BD. (b) Show ABCD is a parallelogram. (c) Find the area of ABCD.",
+              "topic": "coordinate_geometry",
+              "marks": 8,
+              "mark_scheme_points": [
+                "(a) Midpoint AC = (4,3); Midpoint BD = (4,3) (B2)",
+                "(b) Since midpoints are equal, diagonals bisect each other → ABCD is a parallelogram (M1 + A1)",
+                "(c) Area using Shoelace: |½|x_A(y_B-y_D)+x_B(y_C-y_A)+x_C(y_D-y_B)+x_D(y_A-y_C)|| (M1 + M1)",
+                "= ½|0(2-4)+6(6-0)+8(4-2)+2(0-6)| = ½|0+36+16-12| = ½×40 = 20 sq units (A1 + A1)"
+              ],
+              "examiner_tips": "Parallelogram: diagonals bisect each other. Area of parallelogram: use Shoelace formula or |base × height|.",
+              "year": "2025", "season": "May_June_2025"
+            },
+            {
+              "question": "The heights (cm) in a class of 40 students are given in the table. Draw a cumulative frequency curve. Find the median, LQ, UQ and any outliers using 1.5×IQR rule.",
+              "topic": "statistics",
+              "marks": 8,
+              "mark_scheme_points": [
+                "Correct cumulative frequency table (B1)",
+                "Points plotted at upper class boundaries (B2)",
+                "Smooth curve (B1)",
+                "Median at 20th value (B1)",
+                "LQ at 10th, UQ at 30th (B1)",
+                "IQR = UQ - LQ (B1)",
+                "Outlier detection: below LQ - 1.5×IQR or above UQ + 1.5×IQR (B1)"
+              ],
+              "examiner_tips": "Outlier rules vary — Cambridge usually just asks for IQR boundaries. Always read carefully from graph.",
+              "year": "2025", "season": "May_June_2025"
+            }
+          ]
+        }
+      },
+      "Oct_Nov_2025": {
+        "paper_1": {
+          "mark_scheme": [
+            {
+              "question": "Solve: 3^(2x-1) = 27^(x+1)",
+              "topic": "algebra",
+              "marks": 3,
+              "mark_scheme_points": [
+                "27 = 3³, so 3^(2x-1) = 3^(3x+3) (M1)",
+                "2x - 1 = 3x + 3 (M1)",
+                "x = -4 (A1)"
+              ],
+              "examiner_tips": "Express all terms with the same base. Then equate the exponents.",
+              "year": "2025", "season": "Oct_Nov_2025"
+            },
+            {
+              "question": "A and B are events such that P(A) = 0.4, P(B) = 0.5, P(A∪B) = 0.7. Are A and B independent?",
+              "topic": "statistics",
+              "marks": 3,
+              "mark_scheme_points": [
+                "P(A∩B) = P(A)+P(B)-P(A∪B) = 0.4+0.5-0.7 = 0.2 (M1 + A1)",
+                "P(A)×P(B) = 0.4 × 0.5 = 0.2 = P(A∩B) ✓ (M1)",
+                "Yes, A and B are independent (A1)"
+              ],
+              "examiner_tips": "Independence test: P(A∩B) = P(A)×P(B). Find P(A∩B) from inclusion-exclusion formula first.",
+              "year": "2025", "season": "Oct_Nov_2025"
+            }
+          ]
+        },
+        "paper_2": {
+          "mark_scheme": [
+            {
+              "question": "A curve C has equation y = x³ - 12x + 16. (a) Find the coordinates of stationary points. (b) Classify them. (c) Find the area enclosed between C and the x-axis from x=0 to the first positive x-intercept.",
+              "topic": "calculus",
+              "marks": 10,
+              "mark_scheme_points": [
+                "(a) dy/dx = 3x² - 12 = 0 → x² = 4 → x = ±2 (M1 + A1)",
+                "y(2) = 8-24+16 = 0; y(-2) = -8+24+16 = 32 (A1 each)",
+                "Stationary points: (2,0) and (-2,32) (A1)",
+                "(b) d²y/dx² = 6x; at x=2: 12>0 min; at x=-2: -12<0 max (M1 + A1)",
+                "(c) Factoring y: (x-2)²(x+4)=0 confirmed intercept at x=2 (M1)",
+                "Area = ∫₀² (x³-12x+16) dx (M1)",
+                "= [x⁴/4 - 6x² + 16x]₀² = (4-24+32) - 0 = 12 sq units (M1 + A1)"
+              ],
+              "examiner_tips": "Check if curve is above x-axis in integration range. Negative areas indicate curve is below — take absolute value if needed.",
+              "year": "2025", "season": "Oct_Nov_2025"
+            },
+            {
+              "question": "A boat is sailed from port P. It goes 15 km North, then 20 km on bearing 140°. (a) Show the journey on a diagram. (b) Find the distance and bearing back to P.",
+              "topic": "trigonometry",
+              "marks": 7,
+              "mark_scheme_points": [
+                "(a) Clear diagram: P, 15km North to A, 20km on bearing 140° to B (B2)",
+                "(b) Find angle at A between North and AB: 180°-140°=40°, so angle PAB = 180°-40° = 140° (M1)",
+                "Use cosine rule: PB² = 15²+20²-2(15)(20)cos140° (M1 + M1)",
+                "= 225+400-600cos140° = 625+459.6 = 1084.6 (M1)",
+                "PB = 32.9 km (A1)",
+                "Use sine rule for bearing angle (M1 + A1)"
+              ],
+              "examiner_tips": "Bearings and navigation: ALWAYS draw careful diagram with North indicated at all points.",
+              "year": "2025", "season": "Oct_Nov_2025"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

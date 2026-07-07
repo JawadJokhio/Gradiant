@@ -11,6 +11,7 @@ class DataRepository:
     _geography_data: Dict[str, Any] = {}
     _history_sources_data: Dict[str, Any] = {}
     _math_data: Dict[str, Any] = {}
+    _math_past_papers_data: Dict[str, Any] = {}
     _economics_data: Dict[str, Any] = {}
     _economics_past_papers_data: Dict[str, Any] = {}
     _loaded = False
@@ -26,6 +27,7 @@ class DataRepository:
             self._geography_data = load_json(settings.geog_data_path)
             self._history_sources_data = load_json(settings.history_sources_data_path)
             self._math_data = load_json("app/data/math_dataset.json")
+            self._math_past_papers_data = load_json(settings.math_past_papers_path)
             self._economics_data = load_json(settings.econ_data_path)
             self._economics_past_papers_data = load_json(settings.econ_past_papers_path)
             self._loaded = True
@@ -45,6 +47,10 @@ class DataRepository:
     def get_math_data(self) -> Dict[str, Any]:
         self._ensure_loaded()
         return self._math_data
+
+    def get_math_past_papers_data(self) -> Dict[str, Any]:
+        self._ensure_loaded()
+        return self._math_past_papers_data
 
     def get_economics_data(self) -> Dict[str, Any]:
         self._ensure_loaded()

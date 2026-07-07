@@ -25,6 +25,55 @@ data_repo = DataRepository()
 # Load Math Dataset
 MATH_DATASET = data_repo.get_math_data()
 
+# Load Math Past Papers Dataset (2002-2025)
+MATH_PAST_PAPERS = data_repo.get_math_past_papers_data()
+
+
+def _get_past_paper_context(question: str, marks: int) -> str:
+    """Search the 2002-2025 O-Level Math past papers for similar questions to enrich LLM context."""
+    if not MATH_PAST_PAPERS:
+        return ""
+
+    q_lower = question.lower()
+    # Key topic words to match
+    keywords = re.findall(r"\b\w{4,}\b", q_lower)
+    keyword_set = set(keywords)
+
+    best_matches = []
+    past_papers = MATH_PAST_PAPERS.get("past_papers", {})
+
+    for year_data in past_papers.values():
+        for session_data in year_data.values():
+            for paper_key in ("paper_1", "paper_2"):
+                paper = session_data.get(paper_key, {})
+                for entry in paper.get("mark_scheme", []):
+                    entry_q = entry.get("question", "").lower()
+                    entry_words = set(re.findall(r"\b\w{4,}\b", entry_q))
+                    overlap = len(keyword_set & entry_words)
+                    if overlap >= 2:
+                        best_matches.append((overlap, entry))
+
+    if not best_matches:
+        return ""
+
+    # Sort by overlap score, take top 3
+    best_matches.sort(key=lambda x: x[0], reverse=True)
+    top = best_matches[:3]
+
+    lines = ["### Relevant Past Paper Mark Scheme Examples (Cambridge O-Level 4024):"]
+    for _, entry in top:
+        lines.append(
+            f"\n**Q [{entry.get('year','')} {entry.get('season','')}] ({entry.get('marks','')} marks):** "
+            f"{entry.get('question','')}"
+        )
+        for pt in entry.get("mark_scheme_points", []):
+            lines.append(f"  - {pt}")
+        tip = entry.get("examiner_tips", "")
+        if tip:
+            lines.append(f"  💡 Examiner tip: {tip}")
+
+    return "\n".join(lines)
+
 # ── Concept keys the LLM is allowed to reference ──────────────────────────────
 VALID_CONCEPT_KEYS = {
     "addition", "subtraction", "multiplication", "division", "bodmas",
@@ -862,8 +911,8 @@ def _build_graph_visual(query: str, extracted_text: str) -> str | None:
     return None
 
 
-def get_math_context(query: str, extracted_text: str = "") -> str:
-    """Find relevant O-Level syllabus tips and patterns based on the query."""
+def get_math_context(query: str, extracted_text: str = "", marks: int = 4) -> str:
+    """Find relevant O-Level syllabus tips, marking patterns, and past paper examples based on the query."""
     context = ""
     processed_query = nlp_processor.preprocess(f"{query} {extracted_text}")
     query_set = set(processed_query)
@@ -886,6 +935,12 @@ def get_math_context(query: str, extracted_text: str = "") -> str:
     for action, detail in marking_patterns.items():
         if action in query.lower() or action in extracted_text.lower():
             context += f"\n- **Marking Rule for '{action}':** {detail}\n"
+
+    # Inject past paper context from 2002-2025 dataset
+    combined_query = f"{query} {extracted_text}"
+    past_paper_context = _get_past_paper_context(combined_query, marks)
+    if past_paper_context:
+        context += f"\n{past_paper_context}\n"
             
     return context
 
@@ -913,13 +968,17 @@ def solve_math_question(question: str, question_number: int, marks: int) -> dict
             "raw_question": question,
         }
 
+    # Enrich context with past paper mark schemes (2002-2025)
+    context = get_math_context(question, marks=marks)
+
     user_prompt = (
         f"EXAM QUESTION {question_number} [{marks} MARKS]\n\n"
         f"{question.strip()}\n\n"
-        f"As a master O-Level examiner, provide a high-precision, step-by-step solution. "
+        f"As a master O-Level Cambridge 4024 examiner, provide a high-precision, step-by-step solution. "
         f"The depth of your explanation and the number of steps must be strictly calibrated to the {marks} marks awarded. "
         "Show all necessary algebraic manipulations and intermediate results. "
         "Use Unicode notation for all mathematical symbols."
+        + (f"\n\n{context}" if context else "")
     )
 
     raw = llm.generate_response(
