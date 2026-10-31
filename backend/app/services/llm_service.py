@@ -20,21 +20,34 @@ class GroqProvider(BaseLLMProvider):
         if not api_key:
             raise ValueError("Groq API key is missing")
         self.client = Groq(api_key=api_key)
+        self.model = getattr(settings, "groq_model", "openai/gpt-oss-120b")
+        self.fallback_models = [self.model, "openai/gpt-oss-20b", "qwen/qwen3.8-27b", "allam-2-7b"]
 
     def generate(self, system_prompt: str, user_prompt: str, max_tokens: int = 2500, temperature: float = 0.3) -> str:
-        try:
-            completion = self.client.chat.completions.create(
-                model="llama-3.3-70b-versatile",
-                messages=[
-                    {"role": "system", "content": system_prompt},
-                    {"role": "user", "content": user_prompt}
-                ],
-                temperature=temperature,
-                max_tokens=max_tokens
-            )
-            return completion.choices[0].message.content
-        except Exception as e:
-            raise LLMProviderError(f"Groq generation failed: {str(e)}")
+        last_error = None
+        tried = set()
+        for model_name in self.fallback_models:
+            if not model_name or model_name in tried:
+                continue
+            tried.add(model_name)
+            try:
+                completion = self.client.chat.completions.create(
+                    model=model_name,
+                    messages=[
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": user_prompt}
+                    ],
+                    temperature=temperature,
+                    max_tokens=max_tokens
+                )
+                return completion.choices[0].message.content
+            except Exception as e:
+                last_error = e
+                err_str = str(e).lower()
+                if "model_not_found" in err_str or "404" in err_str or "does not exist" in err_str:
+                    continue
+                raise LLMProviderError(f"Groq generation failed: {str(e)}")
+        raise LLMProviderError(f"Groq generation failed: {str(last_error)}")
 
 class GroqVisionProvider(BaseLLMProvider):
     def __init__(self, api_key: str):
@@ -69,7 +82,7 @@ class GeminiProvider(BaseLLMProvider):
             raise ValueError("Gemini API key missing")
         # Initialize the new Google GenAI client
         self.client = genai.Client(api_key=api_key)
-        self.model_id = "gemini-2.0-flash"
+        self.model_id = getattr(settings, "gemini_model", "gemini-3.8-flash")
 
     def generate(self, system_prompt: str, user_prompt: str, max_tokens: int = 2000, temperature: float = 0.3) -> str:
         try:
@@ -92,7 +105,7 @@ class GeminiVisionProvider(BaseLLMProvider):
             raise ValueError("Gemini API key missing")
         # Initialize the new Google GenAI client
         self.client = genai.Client(api_key=api_key)
-        self.model_id = "gemini-2.0-flash"
+        self.model_id = getattr(settings, "gemini_model", "gemini-3.8-flash")
 
     def generate(self, system_prompt: str, user_prompt: str, image_base64: str = None, max_tokens: int = 1500, temperature: float = 0.3) -> str:
         try:
@@ -251,7 +264,10 @@ class LLMProviderFactory:
     @staticmethod
     def create_vision_providers() -> list[BaseLLMProvider]:
         providers = []
-        # Ordered by fallback priority
+        # Ordered by fallback priority - Gemini provides native multimodal vision
+        if settings.gemini_api_key:
+            providers.append(GeminiVisionProvider(settings.gemini_api_key))
+
         if settings.groq_api_key and settings.groq_api_key.startswith("gsk_"):
             providers.append(GroqVisionProvider(settings.groq_api_key))
             
@@ -261,9 +277,6 @@ class LLMProviderFactory:
             
         if settings.openrouter_api_key and settings.openrouter_api_key.startswith("sk-or-v1-"):
             providers.append(OpenRouterVisionProvider(settings.openrouter_api_key))
-            
-        if settings.gemini_api_key:
-            providers.append(GeminiVisionProvider(settings.gemini_api_key))
             
         return providers
 

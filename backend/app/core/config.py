@@ -15,6 +15,10 @@ class Settings(BaseSettings):
     openrouter_api_key: str = Field(default="", validation_alias=AliasChoices("openrouter_api_key", "OPENROUTER_API_KEY"))
     gemini_api_key: str = Field(default="", validation_alias=AliasChoices("gemini_api_key", "GEMINI_API_KEY", "GOOGLE_API_KEY"))
 
+    # Model configuration
+    groq_model: str = Field(default="openai/gpt-oss-120b", validation_alias=AliasChoices("groq_model", "GROQ_MODEL"))
+    gemini_model: str = Field(default="gemini-3.8-flash", validation_alias=AliasChoices("gemini_model", "GEMINI_MODEL"))
+
     # Database & Security
     mongo_uri: str = ""
     secret_key: str = "default_secret_key"
