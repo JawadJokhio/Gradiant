@@ -1,9 +1,9 @@
 """
 Math API Routes
-POST /api/math/solve   — solve a math question step-by-step
-POST /api/math/analyze-image — solve a math question from an image
-GET  /api/math/concepts        — list all concept keys
-GET  /api/math/concepts/{key}  — get a concept by key
+POST /api/math/solve         - solve a math question step-by-step
+POST /api/math/analyze-image - solve a math question from an image (OCR-first)
+GET  /api/math/concepts      - list all concept keys
+GET  /api/math/concepts/{key} - get a concept by key
 """
 
 # pyrefly: ignore [missing-import]
@@ -18,7 +18,7 @@ from app.utils.helpers import extract_base64_from_file
 router = APIRouter(prefix="/api/math", tags=["Math"])
 
 
-# ── Request / Response Models ─────────────────────────────────────────────────
+# ── Request / Response Models ──────────────────────────────────────────────────
 
 class MathSolveRequest(BaseModel):
     question: str = Field(..., min_length=3, description="The math question text")
@@ -58,7 +58,7 @@ class ConceptResponse(BaseModel):
     example: str
 
 
-# ── Endpoints ─────────────────────────────────────────────────────────────────
+# ── Endpoints ──────────────────────────────────────────────────────────────────
 
 @router.post("/solve", response_model=MathSolveResponse)
 async def solve(request: MathSolveRequest):
@@ -85,26 +85,47 @@ async def analyze_image(
 ):
     """
     Solves a math question from an uploaded image.
+    Uses OCR as a fast-path first (cheaper, no vision API call needed).
+    Falls back to the full vision model if OCR confidence is low.
     Includes subject relevance validation.
     """
     try:
         content = await image.read()
         base64_img = extract_base64_from_file(content)
-        
-        result = solve_math_image_question(
-            image_base64=base64_img,
-            query=query,
-            marks=marks
-        )
-        
+
+        # ── OCR fast-path ──────────────────────────────────────────────────
+        # If OCR extracts the equation text with good confidence, solve it
+        # directly via the text solver - no expensive vision API call needed.
+        ocr_question_text = None
+        try:
+            from app.services.ocr_service import OCRService
+            ocr_svc = OCRService()   # No llm_service needed for printed math
+            ocr_result = ocr_svc.extract_text_from_base64(base64_img, mode="printed")
+            if ocr_result.confidence > 0.65 and len(ocr_result.raw_text.strip()) > 5:
+                ocr_question_text = ocr_result.raw_text.strip()
+        except Exception:
+            pass  # OCR failure is non-blocking; falls through to vision model
+
+        if ocr_question_text:
+            effective_marks = marks or 4
+            result = solve_math_question(
+                question=ocr_question_text,
+                question_number=1,
+                marks=effective_marks,
+            )
+        else:
+            # Full vision path - original behaviour
+            result = solve_math_image_question(
+                image_base64=base64_img,
+                query=query,
+                marks=marks
+            )
+
         if "error" in result:
-            # If it's a relevance error, we return it in a way the frontend can handle or raise 400
-            # Thinking: User asked for a "prompt" showing the message.
-            # We can return it inside the response so the frontend shows it nicely.
-            # But the schema requires steps. We can use a single step to show the error.
+            # Return relevance/validation errors in schema-conformant form
             return MathSolveResponse(
                 question_number=1,
-                marks=marks,
+                marks=marks or 4,
                 steps=[{
                     "step_number": 1,
                     "description": "Validation Error",
@@ -115,7 +136,7 @@ async def analyze_image(
                 mark_commentary=result.get("relevance_reason", "Not Math"),
                 raw_question="Image Upload"
             )
-            
+
         return result
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Math image solver error: {str(e)}")

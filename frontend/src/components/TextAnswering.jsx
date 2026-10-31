@@ -1,6 +1,7 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { MessageSquare, ArrowLeft, Send, Sparkles, Brain, BookOpen, ChevronLeft } from 'lucide-react'
+import { logInteraction } from './SessionTracker'
 
 export default function TextAnswering({ onBack, initialSubject }) {
 
@@ -33,6 +34,7 @@ export default function TextAnswering({ onBack, initialSubject }) {
             // Geography endpoint returns .explanation, History returns .answer
             const resultText = subject === 'geography' ? data.explanation : data.answer;
             setExplanation(resultText)
+            logInteraction({ subject: subject, topic: 'auto', questionText: query, marksAvailable: marks, mode: 'text', llmResponse: resultText })
         } catch (error) {
             console.error("Analysis error:", error)
             setExplanation("**Error:** AI engine connection failed. Please check your backend.\n\n### Concept Explainer (Simulation)\nSince you asked about **" + subject + "**, here is a conceptual breakdown:\n- **Definition:** Core principles of the topic.\n- **Significance:** Why this is tested in the O-Level syllabus.\n- **Exam Strategy:** How to approach this in a Paper 1 or Paper 2 context.")

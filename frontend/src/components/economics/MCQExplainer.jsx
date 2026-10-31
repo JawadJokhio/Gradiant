@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+﻿import { useState, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
     Upload, X, CheckCircle, XCircle, AlertTriangle,
@@ -126,6 +126,7 @@ export default function MCQExplainer({ onBack }) {
             const data = await res.json()
             if (data.error) { setError(data.error); return }
             setResult(data)
+            logInteraction({ subject: 'economics', topic: data.concept || 'auto', questionText: mode === 'text' ? textQuery : 'MCQ Image Question', marksAvailable: 1, marksObtained: 1, mode: mode, llmResponse: JSON.stringify(data) })
         } catch {
             setError('Could not reach the backend. Please ensure the server is running.')
         } finally {

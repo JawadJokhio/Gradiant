@@ -1,6 +1,7 @@
-import { useState, useRef, useEffect } from 'react'
+﻿import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Send, Brain, BookOpen, User, Award, ShieldCheck, Info, Sparkles, ChevronRight, AlertTriangle, ArrowLeft, ChevronLeft, Sparkle } from 'lucide-react'
+import { logInteraction } from './SessionTracker'
 
 export default function HistoryExaminer({ onBack }) {
 
@@ -50,6 +51,7 @@ export default function HistoryExaminer({ onBack }) {
             }
 
             setMessages(prev => [...prev, { role: 'ai', content: data.answer, marks: selectedMarks }])
+            logInteraction({ subject: 'history', topic: 'auto', questionText: userQuery, marksAvailable: selectedMarks, mode: 'chat', llmResponse: data.answer })
         } catch (error) {
             setMessages(prev => [...prev, { role: 'ai', content: "Error connecting to Examiner Engine. Please ensure the backend is running.", isError: true }])
         } finally {

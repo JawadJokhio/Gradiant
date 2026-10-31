@@ -1,7 +1,9 @@
-import { useState } from 'react'
+﻿import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Camera, Upload, ArrowLeft, Send, CheckCircle2, Copy, RefreshCw, X, ChevronLeft, Sparkles, Brain, BookOpen } from 'lucide-react'
 import MathSolutionViewer from './math/MathSolutionViewer'
+import OCRViewer from './OCRViewer'
+import { logInteraction } from './SessionTracker'
 
 export default function VisionAnswering({ onBack, initialSubject }) {
 
@@ -12,6 +14,7 @@ export default function VisionAnswering({ onBack, initialSubject }) {
     const [isAnalyzing, setIsAnalyzing] = useState(false)
     const [answer, setAnswer] = useState(null)
     const [mathSolution, setMathSolution] = useState(null)
+    const [extractedOcr, setExtractedOcr] = useState('')
 
     const handleImageUpload = (e) => {
         const file = e.target.files?.[0]
@@ -21,6 +24,7 @@ export default function VisionAnswering({ onBack, initialSubject }) {
             reader.onload = (event) => setSelectedImage(event.target?.result)
             reader.readAsDataURL(file)
             setAnswer(null)
+            setExtractedOcr('')
         }
     }
 
@@ -33,6 +37,7 @@ export default function VisionAnswering({ onBack, initialSubject }) {
         formData.append('subject', subject)
         formData.append('mode', 'vision')
         formData.append('marks', marks.toString())
+        if (extractedOcr) formData.append('query', extractedOcr)
 
         const endpoint = subject === 'history'
             ? 'http://localhost:8000/history-sources/analyze-image-question'
@@ -57,6 +62,7 @@ export default function VisionAnswering({ onBack, initialSubject }) {
                 }
             } else {
                 setAnswer(data.answer)
+                logInteraction({ subject, topic: 'auto', questionText: extractedOcr || ('Image Upload: ' + (imageFile?.name || 'Question')), marksAvailable: marks, mode: 'vision', llmResponse: data.answer })
             }
         } catch (error) {
             console.error("Analysis error:", error)
@@ -145,12 +151,14 @@ export default function VisionAnswering({ onBack, initialSubject }) {
                                             <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none"></div>
                                         </div>
                                         <button
-                                            onClick={() => { setSelectedImage(null); setAnswer(null); }}
+                                            onClick={() => { setSelectedImage(null); setAnswer(null)
+            setExtractedOcr(''); }}
                                             className="absolute top-8 right-8 p-3 bg-[var(--bg-card)]/90 backdrop-blur-md text-[var(--primary-purple)] rounded-2xl hover:bg-rose-500 dark:hover:bg-rose-600 hover:text-white transition-all shadow-xl"
                                         >
                                             <X size={20} />
                                         </button>
                                     </div>
+                                    <OCRViewer imageFile={imageFile} onTextExtracted={(text) => setExtractedOcr(text)} />
                                     <button
                                         onClick={handleAnalyze}
                                         disabled={isAnalyzing}

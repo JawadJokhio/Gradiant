@@ -12,6 +12,8 @@ from app.api.history_sources_routes import router as history_sources_router
 from app.api.math_routes import router as math_router
 from app.api.economics_routes import router as economics_router
 from app.api.economics_paper2_routes import router as economics_paper2_router
+from app.api.ocr_routes import router as ocr_router
+from app.api.weakness_routes import router as weakness_router
 
 app = FastAPI(title=settings.app_name)
 
@@ -35,6 +37,8 @@ app.include_router(history_sources_router)
 app.include_router(math_router)
 app.include_router(economics_router)
 app.include_router(economics_paper2_router)
+app.include_router(ocr_router)
+app.include_router(weakness_router)
 
 if __name__ == "__main__":
     uvicorn.run("app.main:app", host="0.0.0.0", port=8000, reload=True)

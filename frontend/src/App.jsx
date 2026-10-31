@@ -14,6 +14,7 @@ import Paper2Examiner from './components/economics/Paper2Examiner'
 import WeaknessAnalysis from './components/WeaknessAnalysis'
 import PaperExplorer from './components/PaperExplorer'
 import MathModule from './components/math/MathModule'
+import SessionTracker from './components/SessionTracker'
 
 const subjectsData = {
     history: { id: 'history', name: 'History', color: 'from-purple-600 to-purple-800' },
@@ -114,6 +115,7 @@ function App() {
 
     return (
         <div className={`h-screen w-full font-sans transition-colors duration-500 overflow-y-auto custom-scrollbar ${darkMode ? 'dark bg-[#0f0a1e]' : 'bg-[#fdf9f6]'}`}>
+            <SessionTracker />
             {renderContent()}
             {renderToggle()}
         </div>
