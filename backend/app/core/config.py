@@ -1,4 +1,4 @@
-import os
+﻿import os
 from pydantic import AliasChoices, Field, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
@@ -16,8 +16,8 @@ class Settings(BaseSettings):
     gemini_api_key: str = Field(default="", validation_alias=AliasChoices("gemini_api_key", "GEMINI_API_KEY", "GOOGLE_API_KEY"))
 
     # Model configuration
-    groq_model: str = Field(default="openai/gpt-oss-120b", validation_alias=AliasChoices("groq_model", "GROQ_MODEL"))
-    gemini_model: str = Field(default="gemini-3.8-flash", validation_alias=AliasChoices("gemini_model", "GEMINI_MODEL"))
+    groq_model: str = Field(default="llama-3.3-70b-versatile", validation_alias=AliasChoices("groq_model", "GROQ_MODEL"))
+    gemini_model: str = Field(default="gemini-2.5-flash", validation_alias=AliasChoices("gemini_model", "GEMINI_MODEL"))
 
     # Database & Security
     mongo_uri: str = ""

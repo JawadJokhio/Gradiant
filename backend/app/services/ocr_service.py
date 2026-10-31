@@ -56,14 +56,27 @@ class OCRService:
 
         # Handwriting always goes straight to Gemini
         if mode == "handwriting":
-            return self._gemini_ocr(image_base64, start)
+            try:
+                return self._gemini_ocr(image_base64, start)
+            except Exception as hw_err:
+                print(f"[OCRService] Handwriting OCR (Gemini) failed ({hw_err}), returning empty result.")
+                return OCRResult(
+                    raw_text="",
+                    confidence=0.0,
+                    blocks=[],
+                    language_detected="unknown",
+                    processing_time_ms=round((time.time() - start) * 1000, 1),
+                )
 
         # Printed / auto / math: try EasyOCR first
         try:
             result = self._easyocr_extract(image_base64, start)
             # If EasyOCR confidence is too low, escalate
             if result.confidence < 0.3 and self.llm_service:
-                return self._gemini_ocr(image_base64, start)
+                try:
+                    return self._gemini_ocr(image_base64, start)
+                except Exception:
+                    pass  # Keep EasyOCR result if Gemini also fails
             return result
         except Exception as easyocr_err:
             print(f"[OCRService] EasyOCR failed ({easyocr_err}), trying Tesseract…")
@@ -74,9 +87,12 @@ class OCRService:
             print(f"[OCRService] Tesseract failed ({tess_err}), trying Gemini…")
 
         if self.llm_service:
-            return self._gemini_ocr(image_base64, start)
+            try:
+                return self._gemini_ocr(image_base64, start)
+            except Exception as gemini_err:
+                print(f"[OCRService] Gemini OCR tier failed ({gemini_err}), returning empty result.")
 
-        # All tiers exhausted — return empty result
+        # All tiers exhausted — return empty result (never raise to caller)
         return OCRResult(
             raw_text="",
             confidence=0.0,
@@ -174,6 +190,18 @@ class OCRService:
         raw_text = self.llm_service.generate_vision_response(
             system_prompt, user_prompt, image_base64
         )
+        if raw_text is None:
+            raw_text = ""
+
+        # If vision providers all failed, raw_text contains an error string — don't use it as OCR output
+        _VISION_FAILURE_MARKERS = (
+            "vision engines offline",
+            "failed at runtime",
+            "no provider is configured",
+            "intelligence engines offline",
+        )
+        if any(marker in raw_text.lower() for marker in _VISION_FAILURE_MARKERS):
+            raise RuntimeError(f"Vision OCR tier unavailable: {raw_text[:120]}")
 
         return OCRResult(
             raw_text=raw_text.strip(),

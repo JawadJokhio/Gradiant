@@ -1,4 +1,4 @@
-import base64
+﻿import base64
 import json
 import requests
 from google import genai
@@ -20,8 +20,8 @@ class GroqProvider(BaseLLMProvider):
         if not api_key:
             raise ValueError("Groq API key is missing")
         self.client = Groq(api_key=api_key)
-        self.model = getattr(settings, "groq_model", "openai/gpt-oss-120b")
-        self.fallback_models = [self.model, "openai/gpt-oss-20b", "qwen/qwen3.8-27b", "allam-2-7b"]
+        self.model = getattr(settings, "groq_model", "llama-3.3-70b-versatile")
+        self.fallback_models = [self.model, "llama-3.3-70b-versatile", "llama-3.1-8b-instant", "mixtral-8x7b-32768", "gemma2-9b-it"]
 
     def generate(self, system_prompt: str, user_prompt: str, max_tokens: int = 2500, temperature: float = 0.3) -> str:
         last_error = None
@@ -54,7 +54,7 @@ class GroqVisionProvider(BaseLLMProvider):
         if not api_key:
             raise ValueError("Groq API key is missing")
         self.client = Groq(api_key=api_key)
-        self.model = "meta-llama/llama-4-scout-17b-16e-instruct"
+        self.model = "llama-3.2-11b-vision-preview"
 
     def generate(self, system_prompt: str, user_prompt: str, image_base64: str = None, max_tokens: int = 1500, temperature: float = 0.3) -> str:
         try:
@@ -82,7 +82,7 @@ class GeminiProvider(BaseLLMProvider):
             raise ValueError("Gemini API key missing")
         # Initialize the new Google GenAI client
         self.client = genai.Client(api_key=api_key)
-        self.model_id = getattr(settings, "gemini_model", "gemini-3.8-flash")
+        self.model_id = getattr(settings, "gemini_model", "gemini-2.0-flash")
 
     def generate(self, system_prompt: str, user_prompt: str, max_tokens: int = 2000, temperature: float = 0.3) -> str:
         try:
@@ -95,7 +95,7 @@ class GeminiProvider(BaseLLMProvider):
                     max_output_tokens=max_tokens
                 )
             )
-            return response.text
+            return response.text or ""
         except Exception as e:
             raise LLMProviderError(f"Gemini text failed: {str(e)}")
 
@@ -105,7 +105,7 @@ class GeminiVisionProvider(BaseLLMProvider):
             raise ValueError("Gemini API key missing")
         # Initialize the new Google GenAI client
         self.client = genai.Client(api_key=api_key)
-        self.model_id = getattr(settings, "gemini_model", "gemini-3.8-flash")
+        self.model_id = getattr(settings, "gemini_model", "gemini-2.0-flash")
 
     def generate(self, system_prompt: str, user_prompt: str, image_base64: str = None, max_tokens: int = 1500, temperature: float = 0.3) -> str:
         try:
@@ -127,7 +127,7 @@ class GeminiVisionProvider(BaseLLMProvider):
                     max_output_tokens=max_tokens
                 )
             )
-            return response.text
+            return response.text or ""
         except Exception as e:
             raise LLMProviderError(f"Gemini vision failed: {str(e)}")
 
@@ -161,7 +161,7 @@ class OpenRouterVisionProvider(BaseLLMProvider):
     def __init__(self, api_key: str):
         self.api_key = api_key
         self.url = "https://openrouter.ai/api/v1/chat/completions"
-        self.model = "google/gemini-2.0-flash-exp:free"
+        self.model = "meta-llama/llama-3.2-11b-vision-instruct:free"
 
     def generate(self, system_prompt: str, user_prompt: str, image_base64: str = None, max_tokens: int = 1500, temperature: float = 0.3) -> str:
         try:

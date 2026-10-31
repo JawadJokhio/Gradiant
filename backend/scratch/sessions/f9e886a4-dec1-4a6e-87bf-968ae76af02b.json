@@ -1,0 +1,31 @@
+{
+  "session_id": "f9e886a4-dec1-4a6e-87bf-968ae76af02b",
+  "interactions": [
+    {
+      "id": "8f301440-bb0f-4046-913e-a7bcf4d5010a",
+      "session_id": "f9e886a4-dec1-4a6e-87bf-968ae76af02b",
+      "subject": "history",
+      "topic": "history_general",
+      "question_text": "Image Upload: HT2.png",
+      "marks_available": 4,
+      "marks_obtained": 1,
+      "mode": "vision",
+      "examiner_band": null,
+      "timestamp": "2026-10-31T17:15:29.755846"
+    },
+    {
+      "id": "fc9393ae-465d-41b4-834a-9ee5f15a4048",
+      "session_id": "f9e886a4-dec1-4a6e-87bf-968ae76af02b",
+      "subject": "history",
+      "topic": "history_general",
+      "question_text": "Image Upload: HT3.png",
+      "marks_available": 5,
+      "marks_obtained": 1,
+      "mode": "vision",
+      "examiner_band": null,
+      "timestamp": "2026-10-31T17:16:58.707911"
+    }
+  ],
+  "created_at": "2026-10-31T17:15:29.757653",
+  "last_active": "2026-10-31T17:16:58.732599"
+}

@@ -35,14 +35,37 @@ export default function OCRViewer({ imageFile, mode = 'auto', onTextExtracted })
                 method: 'POST',
                 body: formData,
             })
-            if (!res.ok) throw new Error(`Server error ${res.status}`)
+
+            if (!res.ok) {
+                // Non-2xx from server — OCR pipeline hit an error server-side
+                const detail = await res.json().then(d => d.detail || '').catch(() => '')
+                setError(`OCR unavailable (${res.status}${detail ? ': ' + detail : ''}). The AI vision model will analyse the image directly.`)
+                onTextExtracted?.('')
+                return
+            }
+
             const data = await res.json()
-            setOcrText(data.raw_text || '')
+
+            // Backend returned empty result — all OCR tiers exhausted (libraries not installed / API keys invalid)
+            if (!data.raw_text || data.raw_text.trim() === '') {
+                setError('No text could be extracted (OCR libraries not installed or API key missing). The AI vision model will analyse the image directly.')
+                onTextExtracted?.('')
+                return
+            }
+
+            setOcrText(data.raw_text)
             setConfidence(data.confidence)
             setLanguage(data.language_detected)
-            onTextExtracted?.(data.raw_text || '')
+            onTextExtracted?.(data.raw_text)
         } catch (err) {
-            setError('OCR extraction failed. The AI vision model will be used instead.')
+            // Network error — backend is likely not running
+            const isNetworkErr = err instanceof TypeError && err.message.includes('fetch')
+            setError(
+                isNetworkErr
+                    ? 'Cannot reach the backend server. Make sure it is running (python main.py in the backend folder). The AI vision model will be used directly.'
+                    : 'OCR extraction failed. The AI vision model will analyse the image directly.'
+            )
+            onTextExtracted?.('')
         } finally {
             setLoading(false)
         }
@@ -108,11 +131,11 @@ export default function OCRViewer({ imageFile, mode = 'auto', onTextExtracted })
                 </div>
             )}
 
-            {/* Error state */}
+            {/* Error / fallback notice */}
             {error && (
-                <div className="flex items-start gap-2 p-3 rounded-xl bg-rose-50 dark:bg-rose-900/10 border border-rose-200 dark:border-rose-900/20 text-rose-600 dark:text-rose-400 text-xs font-medium">
-                    <AlertCircle size={14} className="mt-0.5 shrink-0" />
-                    {error}
+                <div className="flex items-start gap-2 p-3 rounded-xl bg-amber-50 dark:bg-amber-900/10 border border-amber-200 dark:border-amber-900/20 text-amber-700 dark:text-amber-400 text-xs font-medium">
+                    <AlertCircle size={14} className="mt-0.5 shrink-0 text-amber-500" />
+                    <span>{error}</span>
                 </div>
             )}
 

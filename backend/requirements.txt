@@ -1,0 +1,32 @@
+
+# ── Web framework ────────────────────────────────────────────────────────────
+fastapi
+uvicorn[standard]
+python-multipart
+
+# ── AI / LLM providers ───────────────────────────────────────────────────────
+google-genai
+groq
+huggingface_hub
+openai
+requests
+
+# ── Settings / validation ────────────────────────────────────────────────────
+pydantic
+pydantic-settings
+python-dotenv
+
+# ── OCR libraries (Tier 1 & 2) ───────────────────────────────────────────────
+# Tier 1: EasyOCR – bilingual English + Urdu, no system install needed
+easyocr
+# Tier 2: Tesseract wrapper – requires Tesseract binary installed separately
+#   Windows installer: https://github.com/UB-Mannheim/tesseract/wiki
+pytesseract
+# Required by both tiers for image loading
+Pillow
+
+# ── Data / utilities ─────────────────────────────────────────────────────────
+numpy
+torch        # required by easyocr (CPU-only is fine)
+torchvision  # required by easyocr
+
